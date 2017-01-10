@@ -1,0 +1,17 @@
+﻿@model Biz4CMS.ViewModels.BoxLinkDto
+<div class="BoxRight">
+    <p>@Html.DisplayFor(model => model.BoxName)</p>
+    <div class="CBoxRight">
+        <div class="@(Model.BoxType=="Gallery"?"gallery":"newsleft")">
+            <ul>
+                @foreach (var item in Model.Links)
+                {
+                    <li> <a href="@item.Link">@item.Name </a> </li>
+                }
+            </ul>
+        </div>
+        <!--newsleft-->
+    </div>
+    <!--CBoxRight-->
+</div>
+<!--BoxRight-->

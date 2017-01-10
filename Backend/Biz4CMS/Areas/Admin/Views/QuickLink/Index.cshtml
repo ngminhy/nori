@@ -1,0 +1,55 @@
+﻿@using Biz4CMS.Models;
+@{
+    ViewBag.Title = "Index";
+    
+}
+@model IEnumerable<QuickLink>
+@(Html.Kendo().Grid<QuickLink>()
+    .Name("grid")
+        .Editable(editable => editable.Mode(GridEditMode.InCell))
+        .Pageable()
+        .DataSource(dataSource => dataSource
+            .Ajax()
+            .Batch(true)
+            .PageSize(20)
+            .Events(events => events.Error("error_handler"))
+                .Model(model => {model.Id(p => p.QuickLinkId);model.Field(p => p.QuickLinkId).Editable(false);})
+            .Create(create => create.Action("Create", "QuickLink"))
+            .Read(read => read.Action("Get", "QuickLink"))
+            .Update(update => update.Action("Edit", "QuickLink"))
+            .Destroy(destroy => destroy.Action("Delete", "QuickLink"))
+        )
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.QuickLinkId).Title("Id").Width(60);
+        columns.Bound(p => p.FullPath).Width(100).ClientTemplate("<img width='100px' src='#: FullPath #' />");
+        columns.Bound(p => p.Filename).Width(100);        
+        columns.Bound(p => p.Title).Width(150);
+        columns.Bound(p => p.Description).Width(300);       
+        columns.Bound(p => p.Tag).Width(150);
+        columns.Bound(p => p.Link).Width(150);
+        columns.Bound(p => p.Order).Width(80);
+        columns.Command(command => { command.Destroy(); });
+    })
+    .ToolBar(toolbar =>
+        {
+            toolbar.Create();
+            toolbar.Save();
+        })
+
+)
+<script type="text/javascript">
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+</script>

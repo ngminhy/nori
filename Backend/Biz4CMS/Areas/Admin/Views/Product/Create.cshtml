@@ -1,0 +1,241 @@
+﻿@model Biz4CMS.ViewModels.ProductDto
+@using Kendo.Mvc.UI;
+@{
+    ViewBag.Title = "Create";
+}
+<h2>
+    Create</h2>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        wndNewContact = $("#imgBrowser").kendoWindow({
+            actions: ["Close", "Refresh"],
+            Title: "Choose your file:",
+            visible: false,
+            dragable: true,
+            modal: true,
+            width: 800,
+            height: 415
+            //minHeight:300,
+
+            //height:300
+
+        }).data("kendoWindow")
+
+        $("#upload").click(function () {
+            wndNewContact.open();
+            wndNewContact.center()
+        });
+
+        $("#imgBrowser").kendoImageBrowser({
+
+            transport: {
+                type: "imagebrowser-aspnetmvc",
+                read: "/ImageBrowser/Read",
+                destroy: {
+                    url: "/ImageBrowser/Destroy",
+                    type: "POST"
+                },
+                create: {
+                    url: "/ImageBrowser/Create",
+                    type: "POST"
+                },
+                thumbnailUrl: "/ImageBrowser/Thumbnail",
+                uploadUrl: "/ImageBrowser/Upload",
+                imageUrl: "~/Content/Images/{0}"
+            },
+            change: function () {
+                //this.value(); //Selected image URL
+                $("#MainImage").val(this.value());
+                wndNewContact.close();
+            }
+        });
+        if ($('#ProductId').val() == 0) {
+            $('#submit').click(function () {
+
+                var folder = $('#Folder').val();
+                if (folder) {
+                    var path = 'Products/' + folder;
+                    $.ajax({
+                        type: "POST",
+                        url: "/ImageBrowser/Read/",
+                        data: { path: path },
+                        dataType: "json",
+                        async: false,
+                        success: function (data) {
+                            //alert('data');
+                            $('#ImagesJson').val(JSON.stringify(data));
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            alert(xhr.status);
+                            alert(thrownError);
+                        }
+                    });
+
+
+                }
+                //return false;
+            });
+        }
+    });
+
+</script>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Product</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name, new { style = "width: 400px;" })
+            @Html.EditorFor(model => model.IsSpecial) Homepage
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Code)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Code, new { style = "width: 400px;" })
+            @Html.ValidationMessageFor(model => model.Code)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+           @* <div class="editor-label">
+                @Html.LabelFor(model => model.Folder)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Folder)
+                @>Html.ValidationMessageFor(model => model.Folder)
+            </div*@
+            <div class="editor-label">
+                @Html.LabelFor(model => model.MainImage)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.MainImage)<a href="#" class="k-tool-icon k-insertImage"
+                    id="upload" style="text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                @Html.ValidationMessageFor(model => model.MainImage)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Price)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Price, new { @class = "number" })
+                @Html.ValidationMessageFor(model => model.Price)
+            </div>
+        <div style="float: left;">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.BasePrice)
+            </div>
+            <div class="editor-field ">
+                @Html.EditorFor(model => model.BasePrice, new { @class = "number" })
+                @Html.ValidationMessageFor(model => model.BasePrice)
+            </div>
+        </div>
+        
+        <div class="editor-field">
+            @(Html.Kendo().EditorFor(model => model.Content).Encode(false).HtmlAttributes(new { style = "width: 740px;height:400px" })
+                    .ImageBrowser(imageBrowser => imageBrowser
+                            .Image("~/Content/Images/{0}")
+                            .Read("Read", "ImageBrowser")
+                            .Create("Create", "ImageBrowser")
+                            .Destroy("Destroy", "ImageBrowser")
+                            .Upload("Upload", "ImageBrowser")
+                            .Thumbnail("Thumbnail", "ImageBrowser"))
+                )
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Active)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Active)
+            @Html.ValidationMessageFor(model => model.Active)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Tags)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Tags)
+            @Html.ValidationMessageFor(model => model.Tags)
+        </div>
+        <div style="float: left;clear:both;margin-right:20px;">
+            <div class="col-md-6">
+                <div class="editor-label">
+                    Loại
+                </div>
+                <div class="editor-field">
+                    @(Html.Kendo().DropDownListFor(model => model.CategoryId)
+
+  .DataTextField("Name")
+  .DataValueField("CategoryId")
+  .BindTo(@ViewBag.Categorys)
+
+)
+                    @Html.ValidationMessageFor(model => model.CategoryId)
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="editor-label">
+                    Thương hiệu
+                </div>
+                <div class="editor-field">
+                    @(Html.Kendo().DropDownListFor(model => model.BrandId)
+
+  .DataTextField("Name")
+  .DataValueField("CategoryId")
+.BindTo(@ViewBag.Brands)
+
+)
+                    @Html.ValidationMessageFor(model => model.BrandId)
+                </div>
+            </div></div>
+<div style="float: left;">
+            <div class="col-md-6">
+                <div class="editor-label">
+                Xuất xứ:
+            </div>
+            <div class="editor-field">
+                @(Html.Kendo().DropDownListFor(model => model.CountryId)
+
+  .DataTextField("Name")
+  .DataValueField("CategoryId")
+  .BindTo(@ViewBag.Countries)
+
+)
+                @Html.ValidationMessageFor(model => model.CountryId)
+            </div>
+            </div>
+            
+       
+        </div>
+         <div class="editor-label">
+            @Html.LabelFor(model => model.PageURL)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PageURL)
+            @Html.ValidationMessageFor(model => model.PageURL)
+        </div>
+        <div class="editor-label">
+            @Html.HiddenFor(model => model.ProductId)
+            @Html.HiddenFor(model => model.ImagesJson)
+        </div>
+        <div class="editor-field">
+            <input id="submit" type="submit" value="Create or Update" />
+        </div>
+        <p>
+        </p>
+    </fieldset>
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+    <div id="imgBrowser" style="display: none;">
+    </div>
+</div>

@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Biz4CMS.ViewModels.ProductCat>
+@{ViewBag.Title = "Tạp hóa và đặc sản "; }
+<script type="text/javascript" language="javascript">
+    $(function () {
+        $(".quantity").change(function () {
+            var url = $(this).closest("div").next().children("a").attr("href");
+            url = url.substr(0, url.indexOf("=") + 1) + $(this).val();
+            $(this).closest("div").next().children("a").attr("href", url);
+        });
+    });
+</script>
+
+@{  var i = 1;
+    var preCat = 0;
+}
+<div>
+@foreach (var item in Model)
+{
+
+    if (preCat != item.CategoryId)
+    {
+        @:</div><div class="pheadline"><h2>@item.CategoryName </h2></div><div class="row">
+    }
+    @Html.Partial("_productItem", item)      
+    preCat = item.CategoryId;
+    i++;
+}
+</div>

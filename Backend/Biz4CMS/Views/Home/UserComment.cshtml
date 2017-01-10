@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Biz4CMS.Models.Comment>
+<div class="headline">
+    <h3>
+        <a href="@Url.Content("~/home/contact")">Ý kiến khách hàng</a> </h3>
+</div>
+@foreach (var item in Model)
+{
+    <blockquote>
+        <p>
+            @item.Description
+        </p>
+        <small>@item.FullName <cite>@item.JobTitle </cite></small>
+    </blockquote>
+}

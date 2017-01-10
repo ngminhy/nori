@@ -1,0 +1,51 @@
+﻿@using Biz4CMS.Models;
+@{
+    ViewBag.Title = "Index";
+    
+}
+@model IEnumerable<Biz4CMS.Models.Comment>
+@(Html.Kendo().Grid<Biz4CMS.Models.Comment>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.CommentId).Width(70);
+        columns.Bound(p => p.FullName).Width(240);
+        columns.Bound(p => p.JobTitle).Width(240);
+        columns.Bound(p => p.Description).Title("Comment").Width(150);
+        columns.Bound(p => p.Order).Width(150);
+        columns.Command(command => { command.Destroy(); }).Width(90);
+    })
+    .ToolBar(toolbar =>
+        {
+            toolbar.Create();
+            toolbar.Save();
+        })
+    .Editable(editable => editable.Mode(GridEditMode.InCell))
+    .Pageable()
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Batch(true)
+        .PageSize(20)
+        .Events(events => events.Error("error_handler"))
+        .Model(model => { model.Id(p => p.CommentId); model.Field(p => p.CommentId).Editable(false); })
+        .Create(create => create.Action("Create", "Comment"))
+        .Read(read => read.Action("Get", "Comment"))
+        .Update(update => update.Action("Edit", "Comment"))
+        .Destroy(destroy => destroy.Action("Delete", "Comment"))
+    )       
+)
+<script type="text/javascript">
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+</script>

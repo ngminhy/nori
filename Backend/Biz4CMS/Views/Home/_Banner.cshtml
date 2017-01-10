@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Biz4CMS.Models.Banner>
+<script type='text/javascript'>
+    $(document).ready(function () {
+        $('.carousel').carousel({
+            interval: 3000
+        })
+    });    
+</script>
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <div class="carousel slide" id="carousel-500161">
+            <ol class="carousel-indicators">
+                @for (var i = 0; i < Model.Count(); i++)
+                {
+                    if (i == Model.Count() - 1)
+                    {
+                    <li data-slide-to="@i" data-target="#carousel-500161" class="active" ></li>
+                    }
+                    else
+                    { 
+                    <li data-slide-to="@i" data-target="#carousel-500161" ></li>
+                    }
+
+                }
+            </ol>
+            <div class="carousel-inner">
+                @{int iCount = Model.Count();}
+                @foreach (var item in Model)
+                {               
+                    <div class="item @(iCount == 1 ? "active" : "")">
+                        <img  src="@Url.Content(item.FullPath)">
+                        @if (item.Heading1 != null && item.Heading1.Length > 3)
+                        {
+                            <div class="carousel-caption">
+                                <div class="col-md-6 @(item.Align == "Right" ? "col-md-offset-6" : "")">
+                                    <h2>
+                                        @item.Heading1
+                                    </h2>
+                                    @if (item.Heading2 != null && item.Heading2.Length > 3)
+                                    {
+                                        <h2>
+                                            @item.Heading2
+                                        </h2>
+                                    }
+                                    @if (item.Description != null && item.Description.Length > 10)
+                                    {
+                                    <p>
+                                        @item.Description
+                                    </p>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                        iCount--;
+                }
+            </div>
+            <a class="left carousel-control" href="#carousel-500161" data-slide="prev"><span
+                class="glyphicon glyphicon-chevron-left"></span></a><a class="right carousel-control"
+                    href="#carousel-500161" data-slide="next"><span class="glyphicon glyphicon-chevron-right">
+                    </span></a>
+        </div>
+    </div>
+</div>

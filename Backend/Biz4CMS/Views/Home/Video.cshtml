@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Biz4CMS.Models.Video>
+
+<div class="headline">
+<h3><a href="@Url.Content("~/home/videos")">Video</a> </h3>
+</div>
+<div class="carousel slide video" id="carousel-500111">
+    <ol class="carousel-indicators">
+        
+        @for(var i = 0; i < Model.Count(); i++)
+        {
+            if (i == Model.Count() - 1)
+            {
+                <li data-slide-to="@i" data-target="#carousel-500111" class="active" ></li>
+            }
+            else { 
+                <li data-slide-to="@i" data-target="#carousel-500111" ></li>
+            }
+
+        }
+    </ol>
+    <div class="carousel-inner">        
+        @{int iCount = Model.Count();}
+        @foreach (var lnk in Model)
+        {
+            <div class="item @(iCount == 1 ? "active" : "")">
+                <a class="youtube" href="@lnk.Link" title="@lnk.Title">
+                    <img width="100%" src="@Url.Content(lnk.FullPath)"></a>
+            </div>
+            iCount--;
+        }
+    </div>
+</div>

@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Biz4CMS.Models.Banner>
+
+@foreach (var lnk in Model)
+    {
+        <div class="margin-bottom-20">
+        <a href="@Url.Content(string.IsNullOrEmpty(lnk.Link) ? "/" : lnk.Link)">
+            <img width="100%" alt="@lnk.Heading1"  src="@Url.Content(string.IsNullOrEmpty(lnk.FullPath ) ? "/" : lnk.FullPath)"></a>
+           
+        </div>
+}

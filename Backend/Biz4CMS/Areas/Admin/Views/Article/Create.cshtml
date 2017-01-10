@@ -1,0 +1,162 @@
+﻿@model Biz4CMS.Models.Article
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add new article</title>
+</head>
+<body>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            wndNewContact = $("#imgBrowser").kendoWindow({
+                actions: ["Close", "Refresh"],
+                Title: "Choose your file:",
+                visible: false,
+                dragable: true,
+                modal: true,
+                width: 800,
+                height: 415
+                //minHeight:300,
+
+                //height:300
+
+            }).data("kendoWindow")
+
+            $("#upload,#upload1").click(function () {
+                console.log($(this).attr('id'));
+                $("#firebutton").val($(this).attr('id'));
+                wndNewContact.open();
+                wndNewContact.center()
+            });
+
+            $("#imgBrowser").kendoImageBrowser({
+
+                transport: {
+                    type: "imagebrowser-aspnetmvc",
+                    read: "/ImageBrowser/Read",
+                    destroy: {
+                        url: "/ImageBrowser/Destroy",
+                        type: "POST"
+                    },
+                    create: {
+                        url: "/ImageBrowser/Create",
+                        type: "POST"
+                    },
+                    thumbnailUrl: "/ImageBrowser/Thumbnail",
+                    uploadUrl: "/ImageBrowser/Upload",
+                    imageUrl: "~/Content/Images/{0}"
+                },
+                change: function () {
+                    //this.value(); //Selected image URL
+                    if ($("#firebutton").val() == "upload1") {
+                        $("#Banner").val(this.value());
+                    } else {
+                        $("#MainImage").val(this.value());
+                    }
+                    wndNewContact.close();
+                }
+            });
+        });
+    </script>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <input type="hidden" id="firebutton" value="upload" />
+        <fieldset>
+
+            <legend>Article</legend>
+            
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Title)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Title)
+                @Html.ValidationMessageFor(model => model.Title)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Description)
+            </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.Description)
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.MainImage)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.MainImage)<a href="#" class="k-tool-icon k-insertImage"  id="upload" style="text-decoration:none;" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+               
+                @Html.ValidationMessageFor(model => model.MainImage)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Banner)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Banner)<a href="#" class="k-tool-icon k-insertImage"  id="upload1" style="text-decoration:none;" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+               
+                @Html.ValidationMessageFor(model => model.Banner)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Content)
+            </div>
+            <div class="editor-field">
+                @(Html.Kendo().EditorFor(model => model.Content).Encode(false).HtmlAttributes(new { style = "width: 740px;height:400px" })
+                    .ImageBrowser(imageBrowser => imageBrowser
+                            .Image("~/Content/Images/{0}")
+                            .Read("Read", "ImageBrowser")
+                            .Create("Create", "ImageBrowser")
+                            .Destroy("Destroy", "ImageBrowser")
+                            .Upload("Upload", "ImageBrowser")
+                            .Thumbnail("Thumbnail", "ImageBrowser"))
+                )
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Active)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Active)
+                @Html.ValidationMessageFor(model => model.Active)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.CategoryId)
+            </div>
+            <div class="editor-field">
+            @(Html.Kendo().DropDownListFor(model => model.CategoryId)
+  
+  .DataTextField("Name")
+  .DataValueField("CategoryId")
+  .BindTo(@ViewBag.Categorys)
+
+)
+                @Html.ValidationMessageFor(model => model.CategoryId)
+            </div>
+            <div class="editor-label">
+            @Html.LabelFor(model => model.PageURL)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PageURL)
+            @Html.ValidationMessageFor(model => model.PageURL)
+        </div>
+            <div class="editor-label">
+                &nbsp;
+                @Html.HiddenFor(model => model.ArticleId)
+                @Html.HiddenFor(model => model.IsDeleted)
+                @Html.HiddenFor(model => model.CreatedDate)
+                @Html.HiddenFor(model => model.PublicDate)
+                @Html.HiddenFor(model => model.Order)
+                @Html.HiddenFor(model => model.Keyword)
+            </div>
+            <div class="editor-field">
+                <input type="submit" value="Create or Update" />
+            </div>
+        </fieldset>
+    }
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+        <div id="imgBrowser" style="display: none;"> </div>
+    </div>
+</body>
+</html>

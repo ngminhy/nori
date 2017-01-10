@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Biz4CMS.ViewModels.BriefProductDto>
+@{
+    ViewBag.Title = "Tạp hóa, đặc sản: " + ViewBag.GalleryName;
+    int i = 0;
+    bool isOpen =false;
+  }
+<script type="text/javascript" language="javascript">
+    $(function () {
+        $(".quantity").change(function () {
+            var url = $(this).closest("div").next().children("a").attr("href");
+            url = url.substr(0, url.indexOf("=") + 1) + $(this).val();
+            $(this).closest("div").next().children("a").attr("href", url);
+        });
+    });
+</script>
+<div class="headline">
+    <h1>
+        @(string.IsNullOrEmpty( ViewBag.GalleryName) ? "Sản phẩm"  : ViewBag.GalleryName)</h1>
+</div>
+
+    @foreach (var item in Model)
+    {
+        if (i % 3 == 0)
+        { 
+            isOpen =true;
+            @:<div class="row">
+        }
+        @Html.Partial("_productItem2", item);
+        if (i % 3 == 2){ 
+            isOpen =true;
+                @:</div>
+            
+        }
+        i++;
+    }
+    @if (isOpen){
+        @:</div> 
+    }
+    
+

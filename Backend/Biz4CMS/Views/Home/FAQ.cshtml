@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Biz4CMS.Models.FAQ>
+<div class="headline">
+    <h3>
+        <a href="@Url.Content("~/home/FAQs")">Hỏi đáp</a></h3>
+</div>
+
+
+   
+
+<div class="panel-group" id="accordion">
+   @{var i =1;}
+   @foreach (var item in Model)
+   {
+   var idstring = "faq" + i;    
+   <div class="panel panel-info">
+      <div class="panel-heading">
+         <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion"   href="@("#FAQ"+i)" >
+               @item.Question
+            </a>
+         </h4>
+      </div>
+      <div id="@("FAQ"+i)"  class="@(i == 1 ? "panel-collapse collapse in" : "panel-collapse collapse")">
+         <div class="panel-body">
+            @Html.Raw(item.Description)
+            <div class="text-right">@item.Author</div>
+         </div>
+      </div>
+   </div>
+    i++;
+}
+</div>

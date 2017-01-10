@@ -1,0 +1,12 @@
+﻿
+@{ViewBag.Title = "Tạp hóa online"; }
+
+<div></div>
+
+@section Banner{
+    @{Html.RenderAction("Banner", "Home");}
+    <div class="row clearfix">
+        @{Html.RenderAction("TopQuickLink", "Home");}
+    </div>
+}
+

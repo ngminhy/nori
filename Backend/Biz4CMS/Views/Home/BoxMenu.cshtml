@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Biz4CMS.ViewModels.LinkDto>
+<div class="list-group @(ViewBag.type == 0 ? "" : "col-md-3")">
+    <a href="@ViewBag.MenuLink" class="list-group-item active"><b>@ViewBag.MenuTitle</b></a>
+    @foreach (var lnk in Model)
+    {
+        <a class="list-group-item" href="@Url.Content(string.IsNullOrEmpty(lnk.Link) ? "" : lnk.Link)" >
+            @lnk.Title
+        </a>                        
+    }
+</div>

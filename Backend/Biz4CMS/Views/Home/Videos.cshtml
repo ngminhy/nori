@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Biz4CMS.Models.Video>
+@{
+    ViewBag.Title = "Video - Gel bôi trơn hỗ trợ khả năng sinh sản tự nhiên";
+  
+}
+<link href="@Url.Content("~/css/colorbox.css")" rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/js/jquery.colorbox.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".youtube").colorbox({ iframe: true, innerWidth: 640, innerHeight: 390 });
+    });
+</script>
+
+<div class="headline">
+    <h1>
+        Videos</h1>
+</div>
+<div class="row clearfix">
+    @foreach (var lnk in Model)
+    {
+        <div class="col-md-6 column">
+            <div class="thumbnail">
+                <a class="youtube" href="@lnk.Link" title="@lnk.Title">
+                    <img width="100%" src="@Url.Content(lnk.FullPath)"></a>
+                <p>@lnk.Title</p>
+            </div>
+        </div>
+            
+    }
+</div>

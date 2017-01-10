@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+            $("#uploadpanel").kendoImageBrowser({
+
+            transport: {
+                type: "imagebrowser-aspnetmvc",
+                read: "/ImageBrowser/Read",
+                destroy: {
+                    url: "/ImageBrowser/Destroy",
+                    type: "POST"
+                },
+                create: {
+                    url: "/ImageBrowser/Create",
+                    type: "POST"
+                },
+                thumbnailUrl: "/ImageBrowser/Thumbnail",
+                uploadUrl: "/ImageBrowser/Upload",
+                imageUrl: "~/Content/Images/{0}"
+            },
+            change: function () {
+                //this.value(); //Selected image URL
+                //$("#MainImage").val(this.value());
+                //wndNewContact.close();
+            }
+        });
+    });
+    </script>
+<h2>Browser & Upload your files</h2>
+<div id="uploadpanel"></div>

@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "Contact";   
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#submit").click(function () {
+            var Success = false;
+            var Content = $("#Content").val();
+            var Email = $("#Email").val();
+            var FullName = $("#FullName").val();
+            if (Content.length > 8 && Email.length > 8 && FullName.length > 2) {
+                $.ajax({
+                    type: "POST",
+                    url: "/home/contact",
+                    dataType: "text",
+                    data: JSON.stringify({ Content: Content, FullName: FullName, Email: Email }),
+                    contentType: "application/json; charset=utf-8",
+                    async: false,
+                    success: function (data) {
+                        if (data) { //doesnt goes here
+                            alert('Your message has been saved, we will contact you soon');
+                        } else {
+                            $('#s1').text('Please enter all required fields')
+                        }
+                    },
+                    error: function (textStatus, errorThrown) {
+                        Success = false; //doesnt goes here
+                    }
+
+                });
+            } else {
+                $('#s1').text('Please enter all required fields, message must be at least 20 characters')
+            }
+            return false;
+        });
+
+
+    });
+
+   
+
+</script>
+@*@{Html.RenderAction("FeedBack", "Home");}*@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">
+            Form liên hệ</h2>
+    </div>
+    <div class="panel-body">
+        <form>
+        <span style="color: #d2751f !important;" id="s1"></span><span style="color: #d2751f !important;">@ViewBag.Message
+            (*&nbsp;Required Fields)</span><br />
+        <label>
+            Your Name <span class="color-red">*</span></label>
+        <div class="row margin-bottom-20">
+            <div class="col-md-7 col-md-offset-0">
+                <input type="text" class="form-control" id="FullName">
+            </div>
+        </div>
+        <label>
+            Your Email <span class="color-red">*</span></label>
+        <div class="row margin-bottom-20">
+            <div class="col-md-7 col-md-offset-0">
+                <input type="text" class="form-control" id="Email">
+            </div>
+        </div>
+        <label>
+            Message<span class="color-red">*</span></label>
+        <div class="row margin-bottom-20">
+            <div class="col-md-11 col-md-offset-0">
+                <textarea class="form-control" rows="8" id="Content"></textarea>
+            </div>
+        </div>
+        <p>
+            <button class="btn btn-primary" type="submit" id="submit">
+                Send Message</button></p>
+        </form>
+    </div>
+</div>

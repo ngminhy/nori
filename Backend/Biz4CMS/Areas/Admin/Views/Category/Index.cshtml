@@ -1,0 +1,36 @@
+﻿@using Biz4CMS.Models;
+@{
+    ViewBag.Title = "Index";
+    
+}
+<a href="/bo/category/create" class="k-button k-button-icontext k-grid-add"><span class="k-icon k-add"></span>Add new item</a>
+@(Html.Kendo().Grid<Category>()
+    .Name("aricleGrid")
+    .Sortable()
+    .Filterable()
+    .Pageable()
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Model(model => model.Id(p => p.CategoryId))
+        .Read(read => read.Action("Get", "Category"))
+        .Destroy(destroy => destroy.Action("Delete", "Category"))
+    )
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.CategoryId).Title("Id").Width("40px");
+        columns.Bound(p => p.Name);
+        columns.Bound(p => p.Description);
+        columns.Bound(p => p.Tag);
+        columns.Bound(p => p.PageURL).Title("URL").ClientTemplate("#= (Tag=='Article' ? '/c/' : '/s/').concat(PageURL)   #"); 
+        columns.Bound(p => p.CategoryId).Title("").ClientTemplate("<a class='k-button' href='" + Url.Action("edit", "Category") + "/#=CategoryId#'><span class='k-icon k-edit'></span>Edit</a>");
+        columns.Command(cmd =>
+        {
+
+            cmd.Destroy();
+        }).Width("100px");
+
+
+    })
+    )
+
+    

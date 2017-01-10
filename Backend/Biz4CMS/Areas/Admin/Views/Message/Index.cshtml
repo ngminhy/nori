@@ -1,0 +1,32 @@
+﻿@using Biz4CMS.Models;
+@{
+    ViewBag.Title = "Message";
+    
+}
+@(Html.Kendo().Grid<Message>()
+    .Name("aricleGrid")
+    .Sortable()
+    .Filterable()
+    .Pageable()
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Model(model => model.Id(p => p.MessageId))
+        .Read(read => read.Action("Get", "Message"))
+        .Destroy(destroy => destroy.Action("Delete", "Message"))
+    )
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.MessageId).Title("Id").Width("80");
+        columns.Bound(p => p.FullName);
+        columns.Bound(p => p.Email);
+        columns.Bound(p => p.Content).Width(400);
+        columns.Bound(p => p.CreatedDate).ClientTemplate("#= kendo.toString(CreatedDate,'dd/MM/yyyy HH:mm') #"); ;
+        columns.Command(cmd =>
+        {
+
+            cmd.Destroy();
+        }).Width("100px");
+
+
+    })
+    )

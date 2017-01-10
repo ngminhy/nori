@@ -1,0 +1,118 @@
+﻿@model Biz4CMS.Models.FAQ
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add new FAQ</title>
+</head>
+<body>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            
+            wndNewContact = $("#imgBrowser").kendoWindow({
+                actions: ["Close","Refresh"],
+                Question: "Choose your file:",
+                visible: false,
+                dragable: true,
+                modal: true,
+                width: 800,
+                height: 415
+                //minHeight:300,
+
+                //height:300
+
+            }).data("kendoWindow")
+            
+            $("#upload").click(function (){
+                wndNewContact.open();
+                wndNewContact.center()
+            });
+
+            $("#imgBrowser").kendoImageBrowser({
+
+                transport: {
+                    type: "imagebrowser-aspnetmvc",
+                    read: "/ImageBrowser/Read",
+                    destroy: {
+                        url: "/ImageBrowser/Destroy",
+                        type: "POST"
+                    },
+                    create: {
+                        url: "/ImageBrowser/Create",
+                        type: "POST"
+                    },
+                    thumbnailUrl: "/ImageBrowser/Thumbnail",
+                    uploadUrl: "/ImageBrowser/Upload",
+                    imageUrl: "~/Content/Images/{0}"
+                },
+                change: function () {
+                    //this.value(); //Selected image URL
+                    $("#MainImage").val(this.value());
+                    wndNewContact.close();
+                }
+            });
+        });
+    </script>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+    
+        <fieldset>
+
+            <legend>FAQ</legend>
+            
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Question)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Question)
+                @Html.ValidationMessageFor(model => model.Question)
+            </div>
+           
+            
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Description)
+            </div>
+            <div class="editor-field">
+                @(Html.Kendo().EditorFor(model => model.Description).Encode(false).HtmlAttributes(new { style = "width: 900px;height:500px" })                    
+                    .ImageBrowser(imageBrowser => imageBrowser
+                            .Image("~/Content/Images/{0}")
+                            .Read("Read", "ImageBrowser")
+                            .Create("Create", "ImageBrowser")
+                            .Destroy("Destroy", "ImageBrowser")
+                            .Upload("Upload", "ImageBrowser")
+                            .Thumbnail("Thumbnail", "ImageBrowser"))
+                )
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Author)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Author)
+                @Html.ValidationMessageFor(model => model.Author)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Tag)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Tag)
+                @Html.ValidationMessageFor(model => model.Tag)
+            </div>
+                      <div class="editor-label">
+                &nbsp;
+                @Html.HiddenFor(model => model.FAQId)
+                @Html.HiddenFor(model => model.Order)
+            </div>
+            <div class="editor-field">
+                <input type="submit" value="Create or Update" />
+            </div>
+        </fieldset>
+    }
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+        <div id="imgBrowser" style="display: none;"> </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+﻿@model Biz4CMS.Models.Category
+@{
+    ViewBag.Title = "Create";
+}
+<h2>
+    Create</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Category</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Tag)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Tag)
+            @Html.ValidationMessageFor(model => model.Tag)
+        </div>
+        
+        <div class="editor-label">
+            &nbsp;
+            @Html.HiddenFor(model => model.CategoryId)
+            @Html.HiddenFor(model => model.IsDeleted)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PageURL)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PageURL)
+            @Html.ValidationMessageFor(model => model.PageURL)
+        </div>
+        <div class="editor-field">
+            <input type="submit" value="Create or Update" />
+        </div>
+    </fieldset>
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

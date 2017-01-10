@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Biz4CMS.ViewModels.LinkDto>
+<div>
+    <h4>@ViewBag.MenuTitle</h4>
+   <ul class="menu">
+    @foreach (var lnk in Model)
+    {
+        <li><a href="@lnk.Link" >
+            @lnk.Title
+        </a>
+        </li>                        
+    }
+    </ul>
+</div>

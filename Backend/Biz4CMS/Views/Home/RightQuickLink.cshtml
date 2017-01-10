@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Biz4CMS.Models.QuickLink>
+@foreach (var lnk in Model)
+{
+    <div>
+        <h3>
+            @lnk.Title
+        </h3>
+        <p>
+            @lnk.Description
+        </p>
+        <p class="text-right padding-right-20" >
+            <a  href="@Url.Content(lnk.Link)">Xem chi tiết</a>
+        </p>
+    </div>
+}

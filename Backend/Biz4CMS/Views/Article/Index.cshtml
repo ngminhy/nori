@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Biz4CMS.ViewModels.BriefArticleDto>
+<div class="headline">
+        <h1 class="title">@ViewBag.Title</h1>
+    </div>
+@foreach (var item in Model)
+{
+    if (!string.IsNullOrEmpty(item.MainImage))
+    { 
+        <div class="row margin-top-10 border-bottom-pink">
+            <div class="col-md-4"><a href="/a/@item.PageURL"><img class="thumbnail"   src="@Url.Content(item.MainImage) " alt="@item.Title" /></a></div>
+            <div class="col-md-8"> <h3 class="margin-top-0"><a href="/a/@item.PageURL"> @item.Title </a>
+            </h3>
+             @item.Description</div>
+        </div>
+        
+    }
+    else
+    { 
+        <div class="row margin-top-10 border-bottom-pink">
+            <div class="col-md-12"> <h3><a href="/a/@item.PageURL"> @item.Title </a>
+            </h3>
+             @item.Description</div>
+        </div>
+    }
+        
+    
+}
+@if (ViewBag.TotalPage > 1)
+{
+    <div class="text-center">
+        <ul class="pagination">
+            @if (ViewBag.PageIndex > 1)
+            {
+            <li><a href='@(Request.Url.AbsolutePath)?page=@(ViewBag.PageIndex - 1)'>
+                &laquo;</a></li>
+            }
+            @for (var i = 1; i <= ViewBag.TotalPage; i++)
+            {
+                
+                <li class='@(ViewBag.PageIndex == i ? "active" : "")'><a href='@(Request.Url.AbsolutePath)?page=@i' >@i</a>
+                </li>       
+            }
+            @if (ViewBag.PageIndex < ViewBag.TotalPage)
+            {
+            <li><a href='@(Request.Url.AbsolutePath)?page=@(ViewBag.PageIndex + 1)'>
+                &raquo;</a></li>
+            }
+        </ul>
+    </div>
+}

@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Biz4CMS.ViewModels.LinkDto>
+<div>
+    @foreach (var lnk in Model)
+    {
+        <a class="textlink" href="@lnk.Link" target="_blank" >
+            @lnk.Title
+        </a> 
+    }
+</div>

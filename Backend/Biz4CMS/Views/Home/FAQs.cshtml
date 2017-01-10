@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Biz4CMS.Models.FAQ>
+@{
+    ViewBag.Title = "Hỏi đáp về Muối thông minh";
+  
+}
+<div class="headline">
+    <h1 class="title">
+        FAQs- Muối thông minh</h1>
+</div>
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        @foreach (var item in Model)
+        {
+            <h3 class="text-success">@item.Question</h3>          
+            @Html.Raw(item.Description)
+            <div class="text-right">@item.Author</div>
+            <hr class="margin-bottom-20" />
+      
+        }
+    </div>
+</div>
+@*<div class="panel-group" id="accordion">
+   @{var i =1;}
+   @foreach (var item in Model)
+   {
+   var idstring = "faq" + i;    
+   <div class="panel panel-info">
+      <div class="panel-heading">
+         <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion"   href="@("#FAQ"+i)" >
+               @item.Question
+            </a>
+         </h4>
+      </div>
+      <div id="@("FAQ"+i)"  class="@(i == 1 ? "panel-collapse collapse in" : "panel-collapse collapse")">
+         <div class="panel-body">
+            @Html.Raw(item.Description)
+            <div class="text-right">@item.Author</div>
+         </div>
+      </div>
+   </div>
+    i++;
+}
+</div>
+*@

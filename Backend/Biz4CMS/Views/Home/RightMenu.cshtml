@@ -1,0 +1,9 @@
+﻿@model IEnumerable<int>
+
+    @foreach (var iMenuId in Model)
+    {
+        Html.RenderAction("BoxMenu", "Home", new { id = iMenuId });
+                                    
+    }
+
+    
