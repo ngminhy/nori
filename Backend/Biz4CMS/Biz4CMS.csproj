@@ -625,6 +625,7 @@
     <Content Include="Content\Assets\Scripts\cultures\kendo.culture.zh.min.js" />
     <Content Include="Content\Assets\Scripts\cultures\kendo.culture.zu-ZA.min.js" />
     <Content Include="Content\Assets\Scripts\cultures\kendo.culture.zu.min.js" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout_Old.cshtml" />
     <None Include="Content\Assets\Scripts\jquery-1.7.1-vsdoc.js" />
     <Content Include="Content\Assets\Scripts\jquery-1.7.1.js" />
     <Content Include="Content\Assets\Scripts\jquery-1.7.1.min.js" />

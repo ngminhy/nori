@@ -33,6 +33,7 @@ namespace Biz4CMS.Controllers
                 if (db.UserProfiles.Any(p => p.UserName == model.UserName && p.Password == model.Password))
                 {
                     FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
+                    Session["username"]= model.UserName;
                     if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                         && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
                     {
