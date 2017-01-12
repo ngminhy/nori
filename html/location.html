@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>NoriExpress</title>
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="css/font-awesome.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link type="text/css" rel="stylesheet" href="css/main.css" media="all" />
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="js/jquery.min.1.11.0.js"></script>
+
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body class="html front not-logged-in no-sidebars page-home">
+	<section class="header">
+		<div id="page">
+			<div id="header">
+				<div class="row">
+					<div class="section">
+						<div class="panel-pane pane-page-logo"  id="logo-wrapper">
+							<div class="pane-content">
+								<a href="index.html" rel="home" id="logo" title="Home">
+									<!-- <img src="images/logo.png" alt="Home" /> -->
+								</a>
+							</div>
+						</div>
+						<div class="panel-pane pane-block pane-system-main-menu"  id="primary-menu">
+							<div class="pane-content">
+								<ul class="menu">
+									<li  class="leaf home">
+										<a href="index.html">Home</a>
+									</li>
+									<li  class="leaf branches">
+										<a href="location.html">Location</a>
+									</li>
+									<!-- <li  class="leaf our-menu">
+										<a href="food.html" title="">Our Menu</a>
+									</li> -->
+									<li  class="expanded who-we-are">
+										<a href="who-we-are.html">Who we are</a>
+									</li>
+									<li  class="expanded who-we-are">
+										<a href="blog.html">Blogs</a>
+										<ul class="menu">
+											<li  class="first last leaf the-wasabi-way the-wasabi-way">
+												<a href="who-we-are.html">Câu chuyện Nori</a>
+											</li>
+											<li  class="first last leaf the-wasabi-way the-wasabi-way">
+												<a href="hen-ho-cung-nori.html">Hẹn hò cùng Nori</a>
+											</li>
+											<li  class="first last leaf the-wasabi-way the-wasabi-way">
+												<a href="an-xe-cung-nori.html">Ăn xế cùng Nori</a>
+											</li>
+											<li  class="first last leaf the-wasabi-way the-wasabi-way">
+												<a href="full-lunch-set.html">Full Lunch Set</a>
+											</li>
+											<li  class="first last leaf the-wasabi-way the-wasabi-way">
+												<a href="the-thanh-vien.html">Thẻ thành viên</a>
+											</li>
+										</ul>
+									</li>
+									<li  class="leaf branches">
+										<a href="http://noriexpress.oddle.me/">Order Now</a>
+									</li>
+									<!-- <li  class="expanded careers">
+										<a href="careers/working-at-wasabi.html" title="">Careers</a>
+										<ul class="menu">
+											<li  class="first leaf working-at-wasabi working-at-wasabi">
+												<a href="careers/working-at-wasabi.html" title="">Working at Wasabi</a>
+											</li>
+											<li  class="leaf our-people our-people">
+												<a href="careers/our-people.html" title="">Our people</a>
+											</li>
+											<li  class="leaf vacancies vacancies">
+												<a href="http://www.wasabi.uk.com/vacancies" title="">Vacancies</a>
+											</li>
+											<li  class="last leaf your-development your-development">
+												<a href="careers/training.html" title="">Your development</a>
+											</li>
+										</ul>
+									</li>
+									<li  class="last expanded contact-us">
+										<a href="get-in-touch.html" title="">Contact Us</a>
+										<ul class="menu">
+											<li  class="first leaf get-in-touch get-in-touch">
+												<a href="get-in-touch.html" title="">Get in touch</a>
+											</li>
+											<li  class="leaf useful-information useful-information">
+												<a href="useful-information.html" title="">Useful Information</a>
+											</li>
+											<li  class="last leaf faq faq">
+												<a href="faq.html" title="">FAQ</a>
+											</li>
+										</ul>
+									</li> -->
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	
+	<section class="location">
+	<div class="container">
+	<div class="row"><div class="col-md-12"> <h1 >Địa điểm</h1>
+	<p>Sơ đồ vị trí tất cả các chi nhánh của Nori tại thành phố Hồ Chí Minh</p>
+	</div>
+		</div></div>
+		<div id="map_canvas" style="height: 500px"></div>
+		<script type="text/javascript">
+		jQuery(function($) {
+    // Asynchronously Load the map API 
+    var script = document.createElement('script');
+
+    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDQ0pDRDKSyAO4lm10ttEXa2_uoZmWQzHc&callback=initialize";
+    document.body.appendChild(script);
+});
+// 93 Hồ Tùng Mậu, phường Bến Nghé, Quận 1
+// 39 Tống Hữu Định, Phường Thảo Điền, Quận 2
+// 341 Nguyễn Tri Phương, Phường 5, Quận 10
+// 186 Phan Xích Long, phường 2, Quận Phú Nhuận
+// 33 Grand View B, Nguyễn Đức Cảnh, P. Tân Phong, Quận 7
+function initialize() {
+    var map;
+    var bounds = new google.maps.LatLngBounds();
+    var mapOptions = {
+        mapTypeId: 'roadmap'
+    };
+                    
+    // Display a map on the page
+    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+    map.setTilt(45);
+        
+    // Multiple Markers
+    var markers = [
+        ['93 Hồ Tùng Mậu, phường Bến Nghé, Quận 1', 10.77227,106.703553],
+        ['39 Tống Hữu Định, Phường Thảo Điền, Quận 2', 10.8064743,106.7343668],
+        ['341 Nguyễn Tri Phương, Phường 5, Quận 10', 10.7623243,106.6681527],
+        ['186 Phan Xích Long, phường 2, Quận Phú Nhuận', 10.7973806,106.6915892],
+        ['33 Grand View B, Nguyễn Đức Cảnh, P. Tân Phong, Quận 7', 10.7219118,106.7109253]
+    ];
+                        
+    // Info Window Content
+    var infoWindowContent = [
+        ['<div class="info_content">' +
+        '<h3>93 Hồ Tùng Mậu, phường Bến Nghé, Quận 1</h3></div>'],
+        ['<div class="info_content">' +
+        '<h3>39 Tống Hữu Định, Phường Thảo Điền, Quận 2</h3></div>'],
+        ['<div class="info_content">' +
+        '<h3>341 Nguyễn Tri Phương, Phường 5, Quận 10</h3></div>'],
+        ['<div class="info_content">' +
+        '<h3>186 Phan Xích Long, phường 2, Quận Phú Nhuận</h3></div>'],
+        ['<div class="info_content">' +
+        '<h3>33 Grand View B, Nguyễn Đức Cảnh, P. Tân Phong, Quận 7</h3></div>'],
+    ];
+        
+    // Display multiple markers on a map
+    var infoWindow = new google.maps.InfoWindow(), marker, i;
+    
+    // Loop through our array of markers & place each one on the map  
+    for( i = 0; i < markers.length; i++ ) {
+        var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+        bounds.extend(position);
+        marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            icon:'images/tn_me.png',
+            title: markers[i][0]
+        });
+        
+        // Allow each marker to have an info window    
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+                infoWindow.setContent(infoWindowContent[i][0]);
+                infoWindow.open(map, marker);
+            }
+        })(marker, i));
+
+        // Automatically center the map fitting all markers on the screen
+        map.fitBounds(bounds);
+    }
+
+    // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
+    var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+        this.setZoom(12);
+        google.maps.event.removeListener(boundsListener);
+    });
+    
+}
+		</script>
+	</section>
+	<section class="footer">
+		<div id="footer">
+			<div class="row">
+				<div class="section column">
+					<div class="panel-pane pane-block pane-menu-menu-footer-menu"  id="footer-links-menu">
+						<div class="pane-content">
+							<ul class="menu">
+					
+								<li  class="leaf home">
+									<a href="index.html">Home</a>
+								</li>
+								<li  class="leaf branches">
+									<a href="location.html">Location</a>
+								</li>
+								<!-- <li  class="leaf our-menu">
+									<a href="food.html" title="">Our Menu</a>
+								</li> -->
+								<li  class="expanded who-we-are">
+									<a href="blog.html">Who we are</a>
+								</li>
+								<li  class="leaf branches">
+									<a href="http://noriexpress.oddle.me/">Order Now</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="panel-pane pane-custom pane-1"  id="footer-social-wrapper">
+						<div class="pane-content">
+							<ul id="footer-social">
+								<li class="leaf title">Follow us!</li>
+								<li class="leaf">
+									<a href="#" target="_blank">​
+		                          	<span class="fa fa-facebook"></span>
+									</a>
+								</li>
+								<li class="leaf">
+									<a href="#" target="_blank">​
+		                         		<span class="fa fa-twitter"></span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="panel-pane pane-custom pane-2" >
+						<div class="pane-content">
+							<div id="footer-logo">
+								<a href="index.html"></a>
+								<div></div>
+							</div>
+							<div class="panel-pane pane-panels-mini pane-footer-copyright" >
+								<div class="pane-content">
+									<div class="panel-display panel-1col clearfix" id="mini-panel-footer_copyright">
+										<div class="panel-panel panel-col">
+											<div>
+												<div class="panel-pane pane-custom pane-3" >
+													<div class="pane-content">
+														<p style="text-align: center;"> An Phong Co. Ltd 2016. Registered in Vietnam No.: 0313633836</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script type="text/javascript" src="js/js_slider.js"></script>
+</body>
+</html>
