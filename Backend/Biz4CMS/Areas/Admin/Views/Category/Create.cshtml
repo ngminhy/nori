@@ -1,9 +1,15 @@
-﻿@model Biz4CMS.Models.Category
+﻿
+@model Biz4CMS.Models.Category
 @{
     ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-<h2>
-    Create</h2>
+<script type="text/javascript">
+    $(document).ready(function () {
+        document.getElementById("main-container").className = "main-container";
+    });
+
+</script>
 @using (Html.BeginForm())
 {
     @Html.ValidationSummary(true)
@@ -31,7 +37,7 @@
             @Html.EditorFor(model => model.Tag)
             @Html.ValidationMessageFor(model => model.Tag)
         </div>
-        
+
         <div class="editor-label">
             &nbsp;
             @Html.HiddenFor(model => model.CategoryId)

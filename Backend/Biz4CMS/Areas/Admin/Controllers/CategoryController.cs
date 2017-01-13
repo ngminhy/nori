@@ -20,6 +20,7 @@ namespace Biz4CMS.Areas.Admin.Controllers
         {
                                 return View();
         }
+  
         public JsonResult Get([DataSourceRequest]DataSourceRequest request) {
             var Categorys = db.Categorys.OrderBy(p=> p.Tag).OrderByDescending(p=> p.CategoryId).ToList();
             return this.Json(Categorys.ToDataSourceResult(request),JsonRequestBehavior.AllowGet );
