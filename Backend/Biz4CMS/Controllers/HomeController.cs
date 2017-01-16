@@ -60,6 +60,12 @@ namespace Biz4CMS.Controllers
             var banners = db.Banners.Where(p => p.Tag == "Right").OrderBy(p => p.BannerId).ToList();
             return PartialView("RightBanner", banners);
         }
+
+        public ActionResult Slider()
+        {
+            return PartialView("_Slider");
+        }
+
         //public ActionResult RightMenu()
         //{
         //    var rightMenu = new List<BoxLinkDto>();

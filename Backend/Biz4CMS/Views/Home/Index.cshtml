@@ -1,12 +1,54 @@
 ﻿
-@{ViewBag.Title = "Tạp hóa online"; }
+@{ViewBag.Title = "Tạp hóa online";
+  Layout = "~/Views/Shared/_LayoutNori.cshtml";
+   }
 
-<div></div>
+@{Html.RenderAction("Slider", "Home");}
+<section class="main">
+    <div id="main-wrapper">
+        <div id="main" class="row">
+            <div id="content" class="column large-12">
+                <div class="section">
+                    <div class="panel-pane pane-node" id="home-page-footer-buttons">
+                        <div class="pane-content">
+                            <div id="node-1325" class="node node-page clearfix">
+                                <h2>
+                                    <a href="node/1325.html"></a>
+                                </h2>
+                                <div class="content">
+                                    <div class="field field-name-body field-type-text-with-summary field-label-hidden">
+                                        <div class="field-items">
+                                            <div class="field-item even">
+                                                <div class="our-menu-button  home-footer-button" style="height: 100px;width:33.3% !important">
+                                                    <div class="icon-wrapper text-center">
+                                                        <i class="fa fa-shopping-cart fa-4x"> </i>
+                                                        <h5><a class="menu" href="blog.html">Khuyến Mãi</a></h5>
+                                                    </div>
+                                                </div>
+                                                <div class="branches-button  home-footer-button" style="height: 100px;width:33.3% !important">
+                                                    <div class="icon-wrapper text-center">
 
-@section Banner{
-    @{Html.RenderAction("Banner", "Home");}
-    <div class="row clearfix">
-        @{Html.RenderAction("TopQuickLink", "Home");}
+                                                        <i class="fa fa-credit-card fa-4x"> </i>
+                                                        <h5><a class="menu" href="the-thanh-vien.html">Thẻ Thành Viên</a></h5>
+                                                    </div>
+                                                </div>
+                                                <div class="careers-button  home-footer-button " style="height: 100px; width:33.3% !important">
+                                                    <div class="icon-wrapper text-center">
+
+                                                        <i class="fa fa-calendar fa-4x"> </i>
+                                                        <h5><a class="menu" href="blog.html">Tin Tức - Sự Kiện</a></h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-}
+</section>
 

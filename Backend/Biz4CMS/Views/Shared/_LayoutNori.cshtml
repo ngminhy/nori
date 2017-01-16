@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title - NoriExpress</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="@Url.Content("~/Content/Assets/css/bootstrap.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/Assets/css/main.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/Assets/css/font-awesome.css")" rel="stylesheet">    
+    <link rel="shortcut icon" href="img/favicon.png">
+    <script type="text/javascript" src="@Url.Content("~/Content/Assets/js/jquery.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/Assets/js/bootstrap.min.js")"></script>    
+</head>
+<body class="html">
+    <section class="header">
+        <div id="page">
+            <div id="header">
+                <div class="row">
+                    <div class="section">
+                        <div class="panel-pane pane-page-logo" id="logo-wrapper">
+                            <div class="pane-content">
+                                <a href="index.html" rel="home" id="logo" title="Home">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="panel-pane pane-block pane-system-main-menu" id="primary-menu">
+                            <div class="pane-content">
+                                <ul class="menu">
+                                    <li class="leaf home">
+                                        <a href="index.html">Home</a>
+                                    </li>
+                                    <li class="leaf branches">
+                                        <a href="location.html">Location</a>
+                                    </li>
+                                    <li class="expanded who-we-are">
+                                        <a href="who-we-are.html">Who we are</a>
+                                    </li>
+                                    <li class="expanded who-we-are">
+                                        <a href="blog.html">Blogs</a>
+                                        <ul class="menu">
+                                            <li class="first last leaf the-wasabi-way the-wasabi-way">
+                                                <a href="who-we-are.html">Câu chuyện Nori</a>
+                                            </li>
+                                            <li class="first last leaf the-wasabi-way the-wasabi-way">
+                                                <a href="hen-ho-cung-nori.html">Hẹn hò cùng Nori</a>
+                                            </li>
+                                            <li class="first last leaf the-wasabi-way the-wasabi-way">
+                                                <a href="an-xe-cung-nori.html">Ăn xế cùng Nori</a>
+                                            </li>
+                                            <li class="first last leaf the-wasabi-way the-wasabi-way">
+                                                <a href="full-lunch-set.html">Full Lunch Set</a>
+                                            </li>
+                                            <li class="first last leaf the-wasabi-way the-wasabi-way">
+                                                <a href="the-thanh-vien.html">Thẻ thành viên</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="leaf branches">
+                                        <a href="http://noriexpress.oddle.me/">Order Now</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    @RenderBody()
+    <section class="footer">
+        <div id="footer">
+            <div class="row">
+                <div class="section column">
+                    <div class="panel-pane pane-block pane-menu-menu-footer-menu" id="footer-links-menu">
+                        <div class="pane-content">
+                            <ul class="menu">
+
+                                <li class="leaf home">
+                                    <a href="index.html">Home</a>
+                                </li>
+                                <li class="leaf branches">
+                                    <a href="location.html">Location</a>
+                                </li>
+                                <li class="expanded who-we-are">
+                                    <a href="blog.html">Who we are</a>
+                                </li>
+                                <li class="leaf branches">
+                                    <a href="http://noriexpress.oddle.me/">Order Now</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel-pane pane-custom pane-1" id="footer-social-wrapper">
+                        <div class="pane-content">
+                            <ul id="footer-social">
+                                <li class="leaf title">Follow us!</li>
+                                <li class="leaf">
+                                    <a href="#" target="_blank">
+
+                                        <span class="fa fa-facebook"></span>
+                                    </a>
+                                </li>
+                                <li class="leaf">
+                                    <a href="#" target="_blank">
+
+                                        <span class="fa fa-twitter"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel-pane pane-custom pane-2">
+                        <div class="pane-content">
+                            <div id="footer-logo">
+                                <a href="index.html"></a>
+                                <div></div>
+                            </div>
+                            <div class="panel-pane pane-panels-mini pane-footer-copyright">
+                                <div class="pane-content">
+                                    <div class="panel-display panel-1col clearfix" id="mini-panel-footer_copyright">
+                                        <div class="panel-panel panel-col">
+                                            <div>
+                                                <div class="panel-pane pane-custom pane-3">
+                                                    <div class="pane-content">
+                                                        <p style="text-align: center;"> An Phong Co. Ltd 2016. Registered in Vietnam No.: 0313633836</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript" src="@Url.Content("~/Content/Assets/js/js_slider.js")"></script>
+</body>
+</html>
