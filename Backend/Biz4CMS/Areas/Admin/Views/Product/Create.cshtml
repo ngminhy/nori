@@ -79,62 +79,61 @@
     });
 
 </script>
-@using (Html.BeginForm())
+@using (Html.BeginForm(ViewContext.RouteData.Values["Action"].ToString(), ViewContext.RouteData.Values["Controller"].ToString(), FormMethod.Post, new { @class = "form-horizontal" }))
 {
     @Html.ValidationSummary(true)
 
     <fieldset>
         <legend>Product</legend>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Name)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Name, new { style = "width: 400px;" })
-            @Html.EditorFor(model => model.IsSpecial) Homepage
-            @Html.ValidationMessageFor(model => model.Name)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Code)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Code, new { style = "width: 400px;" })
-            @Html.ValidationMessageFor(model => model.Code)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Description)
-        </div>
-        <div class="editor-field">
-            @Html.TextAreaFor(model => model.Description, new { rows = "4", cols = "102" })
-            @Html.ValidationMessageFor(model => model.Description)
-        </div>
-
-            <div class="editor-label">
-                @Html.LabelFor(model => model.MainImage)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "col-sm-3 control-label no-padding-right" })
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.Name, new { @class = "form-control" })
+                @Html.EditorFor(model => model.IsSpecial) Homepage
+                @Html.ValidationMessageFor(model => model.Name)
             </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.MainImage)<a href="#" class="k-tool-icon k-insertImage"
-                    id="upload" style="text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Code, new { @class = "col-sm-3 control-label no-padding-right" })
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.Code, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Code)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, new { @class = "col-sm-3 control-label no-padding-right" })
+            <div class="col-sm-9">
+                @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+   
+        <div class="form-group">
+            @Html.LabelFor(model => model.MainImage, new { @class = "col-sm-3 control-label no-padding-right" })
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.MainImage, new { @class = "form-control" })<a href="#" class="k-tool-icon k-insertImage" id="upload" style="text-decoration:none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
                 @Html.ValidationMessageFor(model => model.MainImage)
             </div>
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Price)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Price, new { @class = "number" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Price, new { @class = "col-sm-3 control-label no-padding-right" })
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.Price, new { @class = "number form-control" })
                 @Html.ValidationMessageFor(model => model.Price)
             </div>
-        <div style="float: left;">
-            <div class="editor-label">
-                @Html.LabelFor(model => model.BasePrice)
-            </div>
-            <div class="editor-field ">
-                @Html.EditorFor(model => model.BasePrice, new { @class = "number" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.BasePrice, new { @class = "col-sm-3 control-label no-padding-right" })
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.BasePrice, new { @class = "number form-control" })
                 @Html.ValidationMessageFor(model => model.BasePrice)
             </div>
         </div>
-        
-        <div class="editor-field">
-            @(Html.Kendo().EditorFor(model => model.Content).Encode(false).HtmlAttributes(new { style = "width: 740px;height:400px" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Content, new { @class = "col-sm-3 control-label no-padding-right" })
+            <div class="col-sm-9">
+                @(Html.Kendo().EditorFor(model => model.Content).Encode(false)
                     .ImageBrowser(imageBrowser => imageBrowser
                             .Image("~/Content/Images/{0}")
                             .Read("Read", "ImageBrowser")
@@ -143,49 +142,47 @@
                             .Upload("Upload", "ImageBrowser")
                             .Thumbnail("Thumbnail", "ImageBrowser"))
                 )
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Active)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Active)
-            @Html.ValidationMessageFor(model => model.Active)
-        </div>
-
-        <div style="float: left;clear:both;margin-right:20px;">
-            <div class="col-md-6">
-                <div class="editor-label">
-                    Category
-                </div>
-                <div class="editor-field">
-                    @(Html.Kendo().DropDownListFor(model => model.CategoryId)
-
-  .DataTextField("Name")
-  .DataValueField("CategoryId")
-  .BindTo(@ViewBag.Categorys)
-
-)
-                    @Html.ValidationMessageFor(model => model.CategoryId)
-                </div>
             </div>
- </div>
 
-         <div class="editor-label">
-            @Html.LabelFor(model => model.PageURL)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PageURL)
-            @Html.ValidationMessageFor(model => model.PageURL)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Active, new { @class = "col-sm-3 control-label no-padding-right" })
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.Active, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Active)
+            </div>
         </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.CategoryId, new { @class = "col-sm-3 control-label no-padding-right" })
+            <div class="col-sm-9">
+                @(Html.Kendo().DropDownListFor(model => model.CategoryId)
+                          .DataTextField("Name")
+                          .DataValueField("CategoryId")
+                          .BindTo(@ViewBag.Categorys)
+                )
+                @Html.ValidationMessageFor(model => model.CategoryId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PageURL, new { @class = "col-sm-3 control-label no-padding-right" })
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.PageURL, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PageURL)
+            </div>
+        </div>
+       
         <div class="editor-label">
             @Html.HiddenFor(model => model.ProductId)
             @Html.HiddenFor(model => model.ImagesJson)
         </div>
-        <div class="editor-field">
-            <input id="submit" type="submit" value="Create or Update" />
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right"></label>
+            <div class="col-sm-9">
+                <input type="submit" value="Create or Update" class="btn btn-info" />
+            </div>
+
         </div>
-        <p>
-        </p>
     </fieldset>
 }
 <div>
