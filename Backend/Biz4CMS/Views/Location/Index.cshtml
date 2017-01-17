@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutNori.cshtml";
+}
+
+<section class="location">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Địa điểm</h1>
+                <p>Sơ đồ vị trí tất cả các chi nhánh của Nori tại thành phố Hồ Chí Minh</p>
+            </div>
+        </div>
+    </div>
+    <div id="map_canvas" style="height: 500px"></div>
+    <script type="text/javascript">
+		jQuery(function($) {
+    // Asynchronously Load the map API
+    var script = document.createElement('script');
+
+    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDQ0pDRDKSyAO4lm10ttEXa2_uoZmWQzHc&callback=initialize";
+    document.body.appendChild(script);
+});
+// 93 Hồ Tùng Mậu, phường Bến Nghé, Quận 1
+// 39 Tống Hữu Định, Phường Thảo Điền, Quận 2
+// 341 Nguyễn Tri Phương, Phường 5, Quận 10
+// 186 Phan Xích Long, phường 2, Quận Phú Nhuận
+// 33 Grand View B, Nguyễn Đức Cảnh, P. Tân Phong, Quận 7
+function initialize() {
+    var map;
+    var bounds = new google.maps.LatLngBounds();
+    var mapOptions = {
+        mapTypeId: 'roadmap'
+    };
+
+    // Display a map on the page
+    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+    map.setTilt(45);
+
+    // Multiple Markers
+    var markers = [
+        ['93 Hồ Tùng Mậu, phường Bến Nghé, Quận 1', 10.77227,106.703553],
+        ['39 Tống Hữu Định, Phường Thảo Điền, Quận 2', 10.8064743,106.7343668],
+        ['341 Nguyễn Tri Phương, Phường 5, Quận 10', 10.7623243,106.6681527],
+        ['186 Phan Xích Long, phường 2, Quận Phú Nhuận', 10.7973806,106.6915892],
+        ['33 Grand View B, Nguyễn Đức Cảnh, P. Tân Phong, Quận 7', 10.7219118,106.7109253]
+    ];
+
+    // Info Window Content
+    var infoWindowContent = [
+        ['<div class="info_content">' +
+        '<h3>93 Hồ Tùng Mậu, phường Bến Nghé, Quận 1</h3></div>'],
+        ['<div class="info_content">' +
+        '<h3>39 Tống Hữu Định, Phường Thảo Điền, Quận 2</h3></div>'],
+        ['<div class="info_content">' +
+        '<h3>341 Nguyễn Tri Phương, Phường 5, Quận 10</h3></div>'],
+        ['<div class="info_content">' +
+        '<h3>186 Phan Xích Long, phường 2, Quận Phú Nhuận</h3></div>'],
+        ['<div class="info_content">' +
+        '<h3>33 Grand View B, Nguyễn Đức Cảnh, P. Tân Phong, Quận 7</h3></div>'],
+    ];
+
+    // Display multiple markers on a map
+    var infoWindow = new google.maps.InfoWindow(), marker, i;
+
+    // Loop through our array of markers & place each one on the map
+    for( i = 0; i < markers.length; i++ ) {
+        var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+        bounds.extend(position);
+        marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            icon: '@Url.Content("~/Content/Assets/images/tn_me.png")',
+            title: markers[i][0]
+        });
+
+        // Allow each marker to have an info window
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+                infoWindow.setContent(infoWindowContent[i][0]);
+                infoWindow.open(map, marker);
+            }
+        })(marker, i));
+
+        // Automatically center the map fitting all markers on the screen
+        map.fitBounds(bounds);
+    }
+
+    // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
+    var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+        this.setZoom(12);
+        google.maps.event.removeListener(boundsListener);
+    });
+
+}
+    </script>
+</section>

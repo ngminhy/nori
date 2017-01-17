@@ -25,7 +25,7 @@ document.getElementById("navbar-container").className = "navbar-container";
         @Html.LabelFor(model => model.Description)
     </div>
     <div class="editor-field">
-        @Html.TextAreaFor(model => model.Description)
+        @Html.TextAreaFor(model => model.Description, new { rows = "4", cols = "102" })
         @Html.ValidationMessageFor(model => model.Description)
     </div>
     <div class="editor-label">

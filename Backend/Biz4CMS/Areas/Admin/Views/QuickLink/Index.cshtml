@@ -22,20 +22,20 @@
     .Columns(columns =>
     {
         columns.Bound(p => p.QuickLinkId).Title("Id").Width(60);
-        columns.Bound(p => p.FullPath).Width(100).ClientTemplate("<img width='100px' src='#: FullPath #' />");
-        columns.Bound(p => p.Filename).Width(100);        
+        columns.Bound(p => p.FullPath).Width(100).ClientTemplate("<i class='#: Filename #'> </i>");
+        columns.Bound(p => p.Filename).Width(100);
         columns.Bound(p => p.Title).Width(150);
-        columns.Bound(p => p.Description).Width(300);       
+        columns.Bound(p => p.Description).Width(300);
         columns.Bound(p => p.Tag).Width(150);
         columns.Bound(p => p.Link).Width(150);
         columns.Bound(p => p.Order).Width(80);
         columns.Command(command => { command.Destroy(); });
     })
     .ToolBar(toolbar =>
-        {
-            toolbar.Create();
-            toolbar.Save();
-        })
+    {
+        toolbar.Create();
+        toolbar.Save();
+    })
 
 )
 <script type="text/javascript">
