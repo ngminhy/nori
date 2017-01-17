@@ -1,10 +1,24 @@
 ﻿
 @model IEnumerable<Biz4CMS.ViewModels.LinkDto>
 <ul class="menu">
-@foreach (var lnk in Model)
-{
-    <li class="leaf branches">
-        <a href="@lnk.Link">@lnk.Title</a>
-    </li>
-}    
+    @foreach (var lnk in Model)
+    {
+        <li class="leaf branches">
+            <a href="@lnk.Link">@lnk.Title</a>
+            @if (lnk.SubMenus != null)
+            {
+                <ul class="menu">
+
+                    @foreach (var subMenu in lnk.SubMenus)
+                    {
+                        <li class="first last leaf the-wasabi-way the-wasabi-way">
+                            <a href="@subMenu.Link"> @subMenu.Title</a>
+                        </li>
+                    }
+                </ul>
+
+            }
+
+        </li>
+    }
 </ul>

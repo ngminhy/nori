@@ -42,21 +42,7 @@
                 <div class="section column">
                     <div class="panel-pane pane-block pane-menu-menu-footer-menu" id="footer-links-menu">
                         <div class="pane-content">
-                            <ul class="menu">
-
-                                <li class="leaf home">
-                                    <a href="index.html">Home</a>
-                                </li>
-                                <li class="leaf branches">
-                                    <a href="location.html">Location</a>
-                                </li>
-                                <li class="expanded who-we-are">
-                                    <a href="blog.html">Who we are</a>
-                                </li>
-                                <li class="leaf branches">
-                                    <a href="http://noriexpress.oddle.me/">Order Now</a>
-                                </li>
-                            </ul>
+                            @{Html.RenderAction("BottomMenu", "Home");}
                         </div>
                     </div>
                     <div class="panel-pane pane-custom pane-1" id="footer-social-wrapper">

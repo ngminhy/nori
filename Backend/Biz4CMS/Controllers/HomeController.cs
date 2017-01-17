@@ -91,7 +91,11 @@ namespace Biz4CMS.Controllers
         //}
         public ActionResult TopMenu()
         {
-            var menus = db.Menus.Where(p => p.ParentId == 0 && p.Tag == "Top").OrderByDescending(p => p.Order).ThenBy(p => p.MenuId).Select(p => new LinkDto() { Title = p.Text, Link = p.Link }).ToList();
+            var menus = db.Menus.Where(p => p.ParentId == 0 && p.Tag == "Top").OrderByDescending(p => p.Order).ThenBy(p => p.MenuId).Select(p => new LinkDto() { Title = p.Text, Link = p.Link,MenuId = p.MenuId }).ToList();
+            foreach (var item in menus)
+            {
+                item.SubMenus = db.Menus.Where(p => p.ParentId == item.MenuId && p.Tag == "Top").OrderByDescending(p => p.Order).ThenBy(p => p.MenuId).Select(p => new LinkDto() { Title = p.Text, Link = p.Link, MenuId = p.MenuId }).ToList();
+            }
             return PartialView("TopMenu", menus);
         }
         public ActionResult BoxMenu(int id,int type = 0 )
@@ -110,16 +114,21 @@ namespace Biz4CMS.Controllers
             var menus = db.Menus.Where(p => p.ParentId == 0 && p.Tag == "Right").OrderByDescending(p => p.Order).ThenBy(p => p.MenuId).Select(p => p.MenuId).ToList();
             return PartialView("RightMenu", menus);
         }
+
+        public ActionResult RightBox()
+        {
+            return PartialView("RightBox");
+        }
         public ActionResult RightMenuB()
         {
 
             var menus = db.Menus.Where(p => p.ParentId == 0 && p.Tag == "Right").OrderByDescending(p => p.Order).ThenBy(p => p.MenuId).Select(p => p.MenuId).ToList();
             return PartialView("RightMenuB", menus);
         }
-        public ActionResult BottomMenu(int id)
+        public ActionResult BottomMenu()
         {
-            ViewBag.MenuTitle = "test";
-            var menus = db.Menus.Where(p =>  p.Tag == "Bottom").OrderByDescending(p => p.Order).ThenBy(p => p.MenuId).Select(p => new LinkDto() { Title = p.Text, Link = p.Link }).ToList();
+            ViewBag.MenuTitle = "Nori Express";
+            var menus = db.Menus.Where(p => p.ParentId == 0 && p.Tag == "Top").OrderByDescending(p => p.Order).ThenBy(p => p.MenuId).Select(p => new LinkDto() { Title = p.Text, Link = p.Link }).ToList();
             return PartialView("BottomMenu", menus);
         }
         public ActionResult Textlink()

@@ -807,6 +807,7 @@
     <Content Include="Views\Shared\_LayoutNori.cshtml" />
     <Content Include="Views\Home\_Slider.cshtml" />
     <Content Include="Views\Location\Index.cshtml" />
+    <Content Include="Views\Home\RightBox.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

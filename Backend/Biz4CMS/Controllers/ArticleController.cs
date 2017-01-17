@@ -58,7 +58,7 @@ namespace Biz4CMS.Controllers
             var article = db.Articles.Where(p => p.PageURL == pageURL && p.Active).FirstOrDefault();
             if (article == null) article = db.Articles.Where(p => p.Active).OrderByDescending(p => p.ArticleId).FirstOrDefault();
             if (article == null) return RedirectToAction("index", "home");
-            ViewBag.RelatedArticles = db.Articles.Where(p => p.CategoryId == article.CategoryId && p.Active && p.ArticleId < article.ArticleId).OrderByDescending(p => p.ArticleId).Take(30).AsEnumerable().Select(p => new LinkDto() { Title = p.Title, Link = string.Format("/a/{0}", p.PageURL) }).ToList();
+            ViewBag.RelatedArticles = db.Articles.Where(p => p.CategoryId == article.CategoryId && p.Active).OrderByDescending(p => p.ArticleId).Take(30).AsEnumerable().Select(p => new LinkDto() { Title = p.Title, Link = string.Format("{0}", p.PageURL) }).ToList();
             return View(article);
         }
 

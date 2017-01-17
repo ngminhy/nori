@@ -4,32 +4,48 @@
     Layout = "~/Views/Shared/_LayoutNori.cshtml";
 }
 @if (Model.Banner != null)
-{             
-    <div class="margin-bottom-30">
-        <img width="100%"   src="@Url.Content(Model.Banner) " alt="@Model.Title" />
-    </div> 
+{
+    <div style="background-image: url(@Url.Content(Model.Banner));" id="node-1643" class="node node-home-page-slide node-promoted clearfix"></div>
 }
-<div class="panel panel-pink">
-<div class="headline">
-        <h1 class="title">@Model.Title</h1>
-    </div>
-    
-    <div>
-        @Html.Raw(Model.Content)
-    </div>
-    @if (ViewBag.RelatedArticles != null && ViewBag.RelatedArticles.Count > 0)
-    {
-        <div class="panel-body">
-            <h3>
-                <u>Thông tin liên quan:</u></h3>
-            <div class="relatedarticle">
-                <ul>
-                    @foreach (var item in ViewBag.RelatedArticles)
-                    {
-                        <li><a href="@item.Link">@item.Title </a></li>
-                    }
-                </ul>
+<section class="main-content">
+    <div class="container">
+        <div class="row" style="position: relative;">
+            <div class="col-md-8">
+                <article class="post">
+
+                    <div class="post-content">
+                        <header class="entry-header  text-uppercase">
+
+                            <h1 class="entry-title"><a href="#">@Model.Title</a></h1>
+
+                        </header>
+                        <div class="entry-content">
+                            <p>
+                                @Html.Raw(Model.Content)
+                            </p>
+                        </div>
+
+                    </div>
+
+                </article>
+                @if (ViewBag.RelatedArticles != null && ViewBag.RelatedArticles.Count > 0)
+            {
+                    <div class="panel-body">
+                        <h3>
+                            <u>Thông tin liên quan:</u>
+                        </h3>
+                        <div class="relatedarticle">
+                            <ul>
+                                @foreach (var item in ViewBag.RelatedArticles)
+                                {
+                                    <li><a href="@item.Link">@item.Title</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                }
             </div>
-        </div>
-    }
-</div>
+
+            @{Html.RenderAction("RightBox", "Home");}
+    </div>
+</section>
