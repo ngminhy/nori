@@ -27,40 +27,7 @@
                         </div>
                         <div class="panel-pane pane-block pane-system-main-menu" id="primary-menu">
                             <div class="pane-content">
-                                <ul class="menu">
-                                    <li class="leaf home">
-                                        <a href="index.html">Home</a>
-                                    </li>
-                                    <li class="leaf branches">
-                                        <a href="location.html">Location</a>
-                                    </li>
-                                    <li class="expanded who-we-are">
-                                        <a href="who-we-are.html">Who we are</a>
-                                    </li>
-                                    <li class="expanded who-we-are">
-                                        <a href="blog.html">Blogs</a>
-                                        <ul class="menu">
-                                            <li class="first last leaf the-wasabi-way the-wasabi-way">
-                                                <a href="who-we-are.html">Câu chuyện Nori</a>
-                                            </li>
-                                            <li class="first last leaf the-wasabi-way the-wasabi-way">
-                                                <a href="hen-ho-cung-nori.html">Hẹn hò cùng Nori</a>
-                                            </li>
-                                            <li class="first last leaf the-wasabi-way the-wasabi-way">
-                                                <a href="an-xe-cung-nori.html">Ăn xế cùng Nori</a>
-                                            </li>
-                                            <li class="first last leaf the-wasabi-way the-wasabi-way">
-                                                <a href="full-lunch-set.html">Full Lunch Set</a>
-                                            </li>
-                                            <li class="first last leaf the-wasabi-way the-wasabi-way">
-                                                <a href="the-thanh-vien.html">Thẻ thành viên</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="leaf branches">
-                                        <a href="http://noriexpress.oddle.me/">Order Now</a>
-                                    </li>
-                                </ul>
+                               @{Html.RenderAction("TopMenu", "Home");}
                             </div>
                         </div>
                     </div>

@@ -1,19 +1,27 @@
 ﻿@model IEnumerable<Biz4CMS.Models.QuickLink>
-<div class="row clearfix tagline1">
-    @foreach (var lnk in Model)
-    {
-        <div class="col-md-4 column text-center ">
-            <img alt="@lnk.Title" class="img-circle" src="@Url.Content(@lnk.FullPath)">
-            <h2>
-                @lnk.Title
-            </h2>
-            <p>
-                @lnk.Description
-            </p>
-            <p>
-                <a class="btn btn-primary" href="@Url.Content(lnk.Link)">Xem chi tiết</a>
-            </p>
+<div class="section">
+    <div class="panel-pane pane-node">
+        <div class="pane-content">
+            <div class="node node-page clearfix">
+                <h2></h2>   
+                <div class="content">
+                    <div class="field field-name-body field-type-text-with-summary field-label-hidden">
+                        <div class="field-items">
+                            <div class="field-item even">
+                                @foreach (var lnk in Model)
+                                {
+                                    <div class="home-footer-button" style="height: 100px;width:33.3% !important">
+                                        <div class="icon-wrapper text-center">
+                                            <i class="@lnk.Filename"> </i>
+                                            <h5><a class="menu" href="@Url.Content(lnk.Link)">@lnk.Title</a></h5>
+                                        </div>
+                                    </div>
+                                }                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-    }
+    </div>
 </div>

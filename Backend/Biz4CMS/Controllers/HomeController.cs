@@ -63,7 +63,8 @@ namespace Biz4CMS.Controllers
 
         public ActionResult Slider()
         {
-            return PartialView("_Slider");
+            var banners = db.Banners.Where(p => p.Tag == "Top").OrderBy(p => p.BannerId).ToList();
+            return PartialView("_Slider", banners);
         }
 
         //public ActionResult RightMenu()
