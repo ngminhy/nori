@@ -107,13 +107,7 @@
             @Html.TextAreaFor(model => model.Description, new { rows = "4", cols = "102" })
             @Html.ValidationMessageFor(model => model.Description)
         </div>
-           @* <div class="editor-label">
-                @Html.LabelFor(model => model.Folder)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Folder)
-                @>Html.ValidationMessageFor(model => model.Folder)
-            </div*@
+
             <div class="editor-label">
                 @Html.LabelFor(model => model.MainImage)
             </div>
@@ -157,17 +151,11 @@
             @Html.EditorFor(model => model.Active)
             @Html.ValidationMessageFor(model => model.Active)
         </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Tags)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Tags)
-            @Html.ValidationMessageFor(model => model.Tags)
-        </div>
+
         <div style="float: left;clear:both;margin-right:20px;">
             <div class="col-md-6">
                 <div class="editor-label">
-                    Loại
+                    Category
                 </div>
                 <div class="editor-field">
                     @(Html.Kendo().DropDownListFor(model => model.CategoryId)
@@ -180,40 +168,8 @@
                     @Html.ValidationMessageFor(model => model.CategoryId)
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="editor-label">
-                    Thương hiệu
-                </div>
-                <div class="editor-field">
-                    @(Html.Kendo().DropDownListFor(model => model.BrandId)
+ </div>
 
-  .DataTextField("Name")
-  .DataValueField("CategoryId")
-.BindTo(@ViewBag.Brands)
-
-)
-                    @Html.ValidationMessageFor(model => model.BrandId)
-                </div>
-            </div></div>
-<div style="float: left;">
-            <div class="col-md-6">
-                <div class="editor-label">
-                Xuất xứ:
-            </div>
-            <div class="editor-field">
-                @(Html.Kendo().DropDownListFor(model => model.CountryId)
-
-  .DataTextField("Name")
-  .DataValueField("CategoryId")
-  .BindTo(@ViewBag.Countries)
-
-)
-                @Html.ValidationMessageFor(model => model.CountryId)
-            </div>
-            </div>
-            
-       
-        </div>
          <div class="editor-label">
             @Html.LabelFor(model => model.PageURL)
         </div>

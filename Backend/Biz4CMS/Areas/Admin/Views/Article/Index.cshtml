@@ -3,8 +3,9 @@
     ViewBag.Title = "Index";
     
 }
-<a href="/bo/article/create" class="k-button k-button-icontext k-grid-add"><span class="k-icon k-add"></span>Add new item</a>
-            
+<p>
+<a href="/bo/article/create" class="btn btn-info"><i class="ace-icon fa fa-plus bigger-110"></i>Add new item</a>    
+ </p>    
 @(Html.Kendo().Grid<Article>()
     .Name("aricleGrid")
     .Sortable()
