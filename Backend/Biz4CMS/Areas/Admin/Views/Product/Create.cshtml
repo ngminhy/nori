@@ -171,6 +171,14 @@
                 @Html.ValidationMessageFor(model => model.PageURL)
             </div>
         </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaxFiller, new { @class = "col-sm-3 control-label no-padding-right" })
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.MaxFiller, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MaxFiller)
+            </div>
+        </div>
        
         <div class="editor-label">
             @Html.HiddenFor(model => model.ProductId)

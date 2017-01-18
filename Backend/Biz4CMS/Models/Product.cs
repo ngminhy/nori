@@ -47,6 +47,7 @@ namespace Biz4CMS.Models
         public int CategoryId { get; set; }
         public Category Category { get; set; }
         public string PageURL { get; set; }
+        public int MaxFiller { get; set; }
 
         public Product() { }
         public Product(ProductDto model)
@@ -70,6 +71,7 @@ namespace Biz4CMS.Models
             BasePrice = model.BasePrice;
             CreatedDate = DateTime.Now;
             PageURL = model.PageURL;
+            MaxFiller = model.MaxFiller;
         }
     }
 }

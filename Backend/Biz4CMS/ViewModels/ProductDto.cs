@@ -29,6 +29,7 @@ namespace Biz4CMS.ViewModels
         public int CountryId { get; set; }
         public string Code { get; set; }
         public string PageURL { get; set; }
+        public int MaxFiller { get; set; }
         public ProductDto(Product model)
         {
             ProductId = model.ProductId;
@@ -49,6 +50,7 @@ namespace Biz4CMS.ViewModels
             BasePrice = model.BasePrice;
             Price = model.Price;
             PageURL = model.PageURL;
+            MaxFiller = model.MaxFiller;
 
         }
         public ProductDto()
