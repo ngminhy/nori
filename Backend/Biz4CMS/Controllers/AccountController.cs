@@ -21,6 +21,12 @@ namespace Biz4CMS.Controllers
             return View();
         }
 
+        [Authorize]
+        public ActionResult MyProfile()
+        {
+            return View();
+        }
+
         //
         // POST: /Account/LogOn
 
@@ -32,8 +38,13 @@ namespace Biz4CMS.Controllers
                 model.Password = Encode(model.Password);
                 if (db.UserProfiles.Any(p => p.UserName == model.UserName && p.Password == model.Password))
                 {
+                    
                     FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
-                    Session["username"]= model.UserName;
+                    var user = db.UserProfiles.FirstOrDefault(p => p.UserName == model.UserName);
+                    if (user != null)
+                    {
+                        HttpContext.Session["role"] = user.IsAdmin;
+                    }
                     if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                         && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
                     {
@@ -41,7 +52,15 @@ namespace Biz4CMS.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        if(user != null && user.IsAdmin)
+                        {
+                            
+                            return RedirectToAction("Index", "bo/Home");
+                        }else
+                        {
+                            return RedirectToAction("Index", "Home");
+
+                        }
                     }
                 }
                 else
@@ -60,13 +79,13 @@ namespace Biz4CMS.Controllers
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
-
+            HttpContext.Session["role"] = null;
             return RedirectToAction("Index", "Home");
         }
 
         //
         // GET: /Account/Register
-        [Authorize]
+       
         public ActionResult Register()
         {
             return View();
@@ -74,7 +93,6 @@ namespace Biz4CMS.Controllers
 
         //
         // POST: /Account/Register
-        [Authorize]
         [HttpPost]
         public ActionResult Register(RegisterModel model)
         {
