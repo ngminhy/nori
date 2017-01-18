@@ -21,4 +21,30 @@
 
         </li>
     }
+    @if (HttpContext.Current.Session["role"] != null)
+    {
+        <li class="leaf branches">
+            <a href="/account/myprofile">Account</a>
+            <ul class="menu">
+                <li class="first last leaf the-wasabi-way the-wasabi-way">
+                    <a href="/account/myorder"> My Order</a>
+                </li>
+                <li class="first last leaf the-wasabi-way the-wasabi-way">
+                    <a href="/account/myprofile"> My Profile</a>
+                </li>
+                <li class="first last leaf the-wasabi-way the-wasabi-way">
+                    <a href="/account/ChangePassword"> Change Password</a>
+                </li>
+                <li class="first last leaf the-wasabi-way the-wasabi-way">
+                    <a href="/account/logoff"> Sign Out</a>
+                </li>
+            </ul>
+        </li>
+    }
+    else
+    {
+        <li class="leaf branches">
+            <a href="/account/logon"> Sign In</a>
+        </li>
+    }
 </ul>

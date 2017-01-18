@@ -24,6 +24,10 @@ namespace Biz4CMS.Controllers
         [Authorize]
         public ActionResult MyProfile()
         {
+            if(HttpContext.Session["role"] == null)
+            {
+                return RedirectToAction("LogOn", "Account");
+            }
             return View();
         }
 
@@ -118,6 +122,10 @@ namespace Biz4CMS.Controllers
         [Authorize]
         public ActionResult ChangePassword()
         {
+            if (HttpContext.Session["role"] == null)
+            {
+                return RedirectToAction("LogOn", "Account");
+            }
             return View();
         }
 
@@ -136,7 +144,6 @@ namespace Biz4CMS.Controllers
                 bool changePasswordSucceeded=false;
                 try
                 {
-                    MembershipUser currentUser = Membership.GetUser(User.Identity.Name, true /* userIsOnline */);
                     var user = db.UserProfiles.FirstOrDefault(p => p.UserName == User.Identity.Name);
                     if (user != null) {
                         user.Password = Encode(model.NewPassword);

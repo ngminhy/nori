@@ -46,6 +46,10 @@ namespace Biz4CMS.Controllers
         
         public ActionResult Index(string pageURL)
         {
+            if (HttpContext.Session["role"] == null)
+            {
+                return Redirect("/account/logon?ReturnUrl=/product");
+            }
             if (!string.IsNullOrEmpty( pageURL))
             {
                 var Category = db.Categorys.Where(p => (p.PageURL == pageURL)).FirstOrDefault();
