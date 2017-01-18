@@ -24,24 +24,28 @@ namespace Biz4CMS.Areas.Admin.Controllers
         }
         public JsonResult Get([DataSourceRequest]DataSourceRequest request)
         {
-            var Products = db.Products.OrderByDescending(p => p.ProductId).Select(model => new ProductDto()
-            { 
-             ProductId = model.ProductId,
-            CategoryId = model.CategoryId,
-             BrandId = model.BrandId,
-             CountryId = model.CountryId,
-             Code = model.Code,
-             MaterialId = model.MaterialId,
+            var Products = (from p in db.Products
+                            join c in db.Categorys
+                            on p.CategoryId equals c.CategoryId
+                            orderby p.ProductId descending
+                            select new ProductDto
+                            {
+                                ProductId = p.ProductId,
+                                CategoryId = p.CategoryId,
+                                BrandId = p.BrandId,
+                                CountryId = p.CountryId,
+                                Code = p.Code,
+                                MaterialId = p.MaterialId,
 
-            Description = model.Description,
-            Tags = model.Tags,
-            Folder = model.Folder,
-            ImagesJson = model.ImagesJson,
-            Name = model.Name,
-            CategoryName = model.Category.Name,
-            PageURL = model.PageURL
-            
-            }).ToList();
+                                Description = p.Description,
+                                Tags = p.Tags,
+                                Folder = p.Folder,
+                                ImagesJson = p.ImagesJson,
+                                Name = p.Name,
+                                CategoryName = c.Name,
+                                PageURL = p.PageURL
+                            }).ToList();
+
             return this.Json(Products.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
 
         }
