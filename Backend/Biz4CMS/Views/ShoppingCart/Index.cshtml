@@ -128,6 +128,7 @@
 <div class="row col-md-11" id="paymentform">
     @using (Html.BeginForm(null, null, FormMethod.Post))
     {
+        <input hidden name="Total" value="@ViewBag.Cart.CartTotal"/>
         <div class="form-group">
             <label for="exampleInputEmail1" class="col-md-2">
                 Họ và Tên</label>
@@ -159,11 +160,11 @@
                 Thanh toán</label>
             <div class="col-md-9">
                 <label class="radio-inline">
-                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                    <input type="radio" name="PaymentType" value="1">
                     Chuyển khoản
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" checked="checked">
+                    <input type="radio" name="PaymentType" value="2" checked="checked">
                     Tiền mặt
                 </label>
             </div>

@@ -72,8 +72,9 @@ namespace Biz4CMS.Controllers
             try
             {
 
-                //order.Username = User.Identity.Name;
-                order.Username = new Guid().ToString();
+                order.Username = User.Identity.Name;
+                //order.Username = new Guid().ToString();
+
                 order.OrderDate = DateTime.Now;
 
                 //Save Order
@@ -81,11 +82,13 @@ namespace Biz4CMS.Controllers
                 storeDB.SaveChanges();
                 //Process the order
                 var cart = ShoppingCart.GetCart(this.HttpContext);
-                string strBody = cart.CreateOrderEmail();
+                //string strBody = cart.CreateOrderEmail();
+                
+                
                 cart.CreateOrder(order);
-                strBody = strBody + "<h2>Thông tin người mua:</h2>Họ và Tên:  " + order.FullName + " <br />Số điện thoại: " + order.Phone + " <br />Email: " + order.Email +" <br />Địa chỉ: " + order.Address +" <br />Thanh toán: " + order.PaymentType  +" (Chuyển khoản | Tiền mặt) <br />Ghi chú: " + order.Note + " <br /> <br />";
-                strBody = strBody + "<h3>Đơn hàng số: " + order.OrderId.ToString() + "</h3>";  
-                SendEmail(order.Email,strBody );
+                //strBody = strBody + "<h2>Thông tin người mua:</h2>Họ và Tên:  " + order.FullName + " <br />Số điện thoại: " + order.Phone + " <br />Email: " + order.Email + " <br />Địa chỉ: " + order.Address + " <br />Thanh toán: " + order.PaymentType + " (Chuyển khoản | Tiền mặt) <br />Ghi chú: " + order.Note + " <br /> <br />";
+                //strBody = strBody + "<h3>Đơn hàng số: " + order.OrderId.ToString() + "</h3>";
+                //SendEmail(order.Email, strBody);
                 return RedirectToAction("Complete",
                     new { id = order.OrderId });
 
