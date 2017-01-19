@@ -16,17 +16,8 @@ namespace Biz4CMS.Controllers
         public ActionResult Details(string  pageURL)
         {
             var Product = db.Products.Where(p => p.PageURL == pageURL && p.Active).FirstOrDefault();
-            //var pictures = db.Pictures.Where(p => p.ProductId == Product.ProductId).OrderByDescending(p => p.PictureId).Select(p => new PictureDto()
-            //{
-            //    Name = p.Name,
-            //    PictureId = p.PictureId,
-            //    Tags = p.Tags,
-            //    Src = p.Src,
-            //    ProductFolder = p.Product.Folder
-            //}).ToList();
             if (Product != null) { 
                 ViewBag.Brand = GetCategoryName(Product.BrandId); 
-                //ViewBag.Material = GetCategoryName(Product.MaterialId); 
                 ViewBag.Country = GetCategoryName(Product.CountryId);
                 ViewBag.RelatedProducts = db.Products.Where(p => (p.CategoryId == Product.CategoryId) && p.Active).OrderByDescending(p => p.Price).Take(6).Select(a => new BriefProductDto
                 {
@@ -38,7 +29,6 @@ namespace Biz4CMS.Controllers
                     BasePrice = a.BasePrice,
                     Price = a.Price,
                     PageURL = a.PageURL
-                    // other assignments
                 });
             }
             return View(Product);
@@ -46,9 +36,9 @@ namespace Biz4CMS.Controllers
         
         public ActionResult Index(string pageURL)
         {
-            if (HttpContext.Session["role"] == null)
+            if (HttpContext.Session["userinfo"] == null)
             {
-                return Redirect("/account/logon?ReturnUrl=/product");
+                return RedirectToAction("Index", "Order");
             }
             if (!string.IsNullOrEmpty( pageURL))
             {

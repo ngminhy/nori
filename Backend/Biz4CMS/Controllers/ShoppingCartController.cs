@@ -15,6 +15,10 @@ namespace Biz4CMS.Controllers
         // GET: /ShoppingCart/
         public ActionResult Index()
         {
+            if (HttpContext.Session["userinfo"] == null)
+            {
+                return RedirectToAction("Index", "Order");
+            }
             var cart = ShoppingCart.GetCart(this.HttpContext);
 
             // Set up our ViewModel
@@ -72,8 +76,9 @@ namespace Biz4CMS.Controllers
             try
             {
 
-                order.Username = User.Identity.Name;
-                //order.Username = new Guid().ToString();
+                //order.Username = User.Identity.Name;
+                var userinfo =(UserInfo) HttpContext.Session["userinfo"];
+                order.Username = userinfo.Email;
 
                 order.OrderDate = DateTime.Now;
 

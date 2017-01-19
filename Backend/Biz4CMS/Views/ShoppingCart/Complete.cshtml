@@ -3,7 +3,9 @@
 @{
     ViewBag.Title = "Complete";
     Layout = "~/Views/Shared/_LayoutNori.cshtml";
+   var orderid = ViewContext.RouteData.Values["id"];
 }
 
 <h2>Đặt hàng thành công</h2>
+<p>Mã đơn hàng: @orderid</p>
 <p>Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất có thể. Xin chân thành cảm ơn</p>

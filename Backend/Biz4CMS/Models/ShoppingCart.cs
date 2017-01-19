@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Biz4CMS.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,7 +16,10 @@ namespace Biz4CMS.Models
         public static ShoppingCart GetCart(HttpContextBase context)
         {
             var cart = new ShoppingCart();
-            cart.ShoppingCartId = cart.GetCartId(context);
+
+            //cart.ShoppingCartId = cart.GetCartId(context);
+            var userinfo =(UserInfo) context.Session["userinfo"];
+            cart.ShoppingCartId = userinfo.Email;
             return cart;
         }
         // Helper method to simplify shopping cart calls

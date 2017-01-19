@@ -17,37 +17,11 @@ Sản phẩm > @Model.Name <hr />
 <div class="row">
     <div class="col-md-8">
     <img src="@Url.Content(Model.MainImage)" class="img-thumbnail" alt="@Model.Name "/>
-@*<div class="carousel slide" id="carousel-500161">
-            
-            <div class="carousel-inner">
-                @{int iCount = Model.Count();}
-                @foreach (var item in Model)
-                {               
-                    <div class="item @(iCount == 1 ? "active" : "")">
-                        <img  src="@Url.Content(@item.Image)" alt="@ViewBag.ProductName - @item.Name" />  
-                       
-                    </div>
-                        iCount--;
-                }
-            </div>
-            @if (Model.Count() > 1)
-            {
-            <a class="left carousel-control" href="#carousel-500161" data-slide="prev"><span
-                class="glyphicon glyphicon-chevron-left"></span></a><a class="right carousel-control"
-                    href="#carousel-500161" data-slide="next"><span class="glyphicon glyphicon-chevron-right">
-                    </span></a>
-            }    
-        </div>*@
-        
-        
-        
         <div class ="clearfix"></div>
     </div>
-    
     <div class="col-md-4">
          <div class="headline">
             <h2>@Model.Name</h2>
-            
         </div>
         (Mã : @Model.Code)<br /><br />
         @Model.Description <br />

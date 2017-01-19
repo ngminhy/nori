@@ -47,4 +47,10 @@
             <a href="/account/logon"> Sign In</a>
         </li>
     }
+    @if (HttpContext.Current.Session["userinfo"] !=null)
+    {
+        <li class="leaf branches">
+            <a href="/shoppingCart"> Cart (0)</a>
+        </li>
+    }
 </ul>

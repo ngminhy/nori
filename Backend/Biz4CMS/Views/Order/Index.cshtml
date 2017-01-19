@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutNori.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+                <button btn btn-info>DELIVERY</button>
+                <button btn btn-info>CARRY OUT</button>
+                <form method="post" action="/Order">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone:</label>
+                        <input type="text class="form-control" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Adrress:</label>
+                        <input type="text" class="form-control" name="address">
+                    </div>
+                    <div class="form-group">
+                        <label for="branch">Branch:</label>
+                        <select class="form-control" name="branch">
+                            <option value="1">93 Hồ Tùng Mậu, phường Bến Nghé, Quận 1</option>
+                            <option value="2">39 Tống Hữu Định, Phường Thảo Điền, Quận 2</option>
+                            <option value="3">341 Nguyễn Tri Phương, Phường 5, Quận 10</option>
+                            <option value="4">186 Phan Xích Long, phường 2, Quận Phú Nhuận</option>
+                            <option value="5">33 Grand View B, Nguyễn Đức Cảnh, P. Tân Phong, Quận 7</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookingtime">Booking Time:</label>
+                        <select class="form-control" name="bookingtime">
+                            <option>Now</option>
+                            <option>10:00</option>
+                            <option>10:10</option>
+                            <option>10:20</option>
+                            <option>11:20</option>
+                            <option>12:20</option>
+                            <option>13:20</option>
+                            <option>14:20</option>
+                            <option>15:20</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="note">Note:</label>
+                        <textarea class="form-control" rows="2" name="note"></textarea>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox"> I have read and agreed with the	<a href="#"></a>TERMS AND CONDITIONS</a></label>
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>

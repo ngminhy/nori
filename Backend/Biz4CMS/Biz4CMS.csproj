@@ -191,6 +191,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -233,6 +234,7 @@
     <Compile Include="ViewModels\PictureDto.cs" />
     <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
     <Compile Include="ViewModels\ShoppingCartRemove.cs" />
+    <Compile Include="ViewModels\UserInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Content\AdminSite.css" />
@@ -816,6 +818,7 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Error\InternalServer.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
