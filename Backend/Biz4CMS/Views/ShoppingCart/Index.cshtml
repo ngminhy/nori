@@ -86,11 +86,11 @@
                 <tr id="row-@item.RecordId"> <td>
                  <a href="/p/@item.Product.PageURL"><strong>@item.Product.Name</strong></a>
                 </td> <td>
-                @item.Product.Price
+                @string.Format("{0:0,0}", item.Product.Price)
                 </td> <td id="item-count-@item.RecordId"> <input type="number" min="1" max="100"
                 value="@item.Count" class="form-control quantity"> </td> <td align="right" style="padding-right:
                 30px;">
-                @(item.Product.Price * item.Count)
+                @string.Format("{0:0,0}", (item.Product.Price * item.Count))
                 </td> <td> <a href="#" class="RemoveLink btn btn-danger btn-block" data-id="@item.RecordId">Xóa
             </a> </td> </tr>
         }
@@ -104,7 +104,7 @@
         <td>
         </td>
         <td id="cart-total" align="right" style="padding-right: 30px;">
-            @ViewBag.Cart.CartTotal
+           @string.Format("{0:0,0}", ViewBag.Cart.CartTotal) 
         </td>
         <td>
         </td>

@@ -142,7 +142,8 @@ namespace Biz4CMS.Models
                     ProductId = item.ProductId,
                     OrderId = order.OrderId,
                     UnitPrice = item.Product.Price,
-                    Quantity = item.Count
+                    Quantity = item.Count,
+                    ListCakeFiller = item.ListCakeFiller
                 };
                 // Set the order total of the shopping cart
                 orderTotal += (item.Count * item.Product.Price);

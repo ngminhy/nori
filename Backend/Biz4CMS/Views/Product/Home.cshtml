@@ -59,7 +59,7 @@
                                 <li>
                                 
                                     <div class="checkbox">
-                                        <label><input type="checkbox" name="chkCakeFiller[]" value="@filler.CakeFillerId">@filler.Name</label>
+                                        <label><input type="checkbox"  name="chkCakeFiller[]" value="@filler.CakeFillerId">@filler.Name</label>
                                     </div>
                                 </li>
                             }
@@ -93,13 +93,14 @@
         }
 
         $("input[name='chkCakeFiller[]']").on("change", function () {
+            console.log(this.Attr("datapirce"));
             updateCounter(this);
         });
         $("#addCakeFiller").click(function () {
             var chkCake = $("input[name='chkCakeFiller[]']:checked").map(function (_, el) {
                 return $(el).val();
             }).get();
-            //alert(chkCake);
+
             $.get("/ShoppingCart/AddToCart/" + ProductId + "?listCakeFiller=" + chkCake, function (data) {
                 $('#myModal').modal('toggle');
                 location.href = "/ShoppingCart";
