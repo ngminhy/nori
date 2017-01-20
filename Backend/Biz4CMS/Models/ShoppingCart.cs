@@ -27,12 +27,14 @@ namespace Biz4CMS.Models
         {
             return GetCart(controller.HttpContext);
         }
-        public void AddToCart(Product product, int count = 1)
+        public void AddToCart(Product product, int count = 1,string listCakeFiller = "")
         {
             // Get the matching cart and product instances
-            var cartItem = storeDB.Carts.SingleOrDefault(
+
+            var hashkey = listCakeFiller.GetHashCode().ToString();
+            var cartItem = storeDB.Carts.OrderByDescending(c=> c.ListCakeFiller).FirstOrDefault(
                 c => c.CartId == ShoppingCartId
-                && c.ProductId == product.ProductId);
+                && c.ProductId == product.ProductId && c.HashKey == hashkey);
 
             if (cartItem == null)
             {
@@ -42,6 +44,8 @@ namespace Biz4CMS.Models
                     ProductId = product.ProductId,
                     CartId = ShoppingCartId,
                     Count = count,
+                    ListCakeFiller = listCakeFiller,
+                    HashKey = hashkey,
                     DateCreated = DateTime.Now
                 };
                 storeDB.Carts.Add(cartItem);

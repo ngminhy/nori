@@ -105,8 +105,8 @@ namespace Biz4CMS.Controllers
             }
         }
         //
-        // GET: /Store/AddToCart/5
-        public ActionResult AddToCart(int id, int count = 1)
+        // GET: /ShoppingCart/AddToCart/5
+        public ActionResult AddToCart(int id, int count = 1, string listCakeFiller = "")
         {
             // Retrieve the Product from the database
             var addedProduct = storeDB.Products
@@ -115,7 +115,7 @@ namespace Biz4CMS.Controllers
             // Add it to the shopping cart
             var cart = ShoppingCart.GetCart(this.HttpContext);
 
-            cart.AddToCart(addedProduct, count);
+            cart.AddToCart(addedProduct, count, listCakeFiller);
 
             // Go back to the main store page for more shopping
             return RedirectToAction("Index");

@@ -13,7 +13,10 @@ namespace Biz4CMS.Models
         public string CartId { get; set; }
         public int ProductId { get; set; }
         public int Count { get; set; }
-        public System.DateTime DateCreated { get; set; }
+        public DateTime DateCreated { get; set; }
+        [StringLength(200)]
+        public string ListCakeFiller { get; set; }
+        public string HashKey { get; set; }
         public virtual Product Product { get; set; }
     }
 }

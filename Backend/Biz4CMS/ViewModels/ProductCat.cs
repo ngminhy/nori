@@ -19,7 +19,7 @@ namespace Biz4CMS.ViewModels
         public string Code { get; set; }
         public string PageURL { get; set; }
         public string CategoryPageURL { get; set; }
-
+        public int MaxFiller { get; set; }
 
 
     }
