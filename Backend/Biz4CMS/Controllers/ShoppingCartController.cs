@@ -28,7 +28,14 @@ namespace Biz4CMS.Controllers
                 CartTotal = cart.GetTotal()
             };
             // Return the view
-            return View();
+            var userinfo = (UserInfo)HttpContext.Session["userinfo"];
+            var order = new Order();
+            order.Email = userinfo.Email;
+            order.FullName = userinfo.Name;
+            order.Phone = userinfo.Phone;
+            order.Address = userinfo.Address;
+            order.Note = userinfo.Note;
+            return View(order);
         }
         private bool SendEmail(string toEmail,string strBody)
         {
