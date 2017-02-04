@@ -7243,8 +7243,8 @@ label {
   color: #4d4d4d;
   cursor: pointer;
   display: block;
-  font-weight: 500;
-  margin-bottom: 0.1875em;
+  font-weight: 600;
+  margin-bottom: 1em;
 }
 
 label.right {
