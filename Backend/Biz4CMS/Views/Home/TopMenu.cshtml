@@ -21,7 +21,7 @@
 
         </li>
     }
-    @if (HttpContext.Current.Session["role"] != null)
+    @*@if (HttpContext.Current.Session["role"] != null)
     {
         <li class="leaf branches">
             <a href="/account/myprofile">Account</a>
@@ -46,7 +46,7 @@
         <li class="leaf branches">
             <a href="/account/logon"> Sign In</a>
         </li>
-    }
+    }*@
     @if (HttpContext.Current.Session["userinfo"] !=null)
     {
         <li class="leaf branches">
