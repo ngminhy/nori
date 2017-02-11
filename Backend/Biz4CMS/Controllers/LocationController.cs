@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Biz4CMS.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,8 +12,12 @@ namespace Biz4CMS.Controllers
         //
         // GET: /Location/
 
+        Biz4Db db = new Biz4Db();
         public ActionResult Index()
         {
+            var Locations = db.Location.OrderByDescending(p => p.LocationId).ToList();
+            ViewBag.data = Locations;
+
             return View();
         }
 

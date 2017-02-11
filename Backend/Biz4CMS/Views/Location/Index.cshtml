@@ -14,6 +14,7 @@
     </div>
     <div id="map_canvas" style="height: 500px"></div>
     <script type="text/javascript">
+        var objLocations = @Html.Raw(Json.Encode(@ViewBag.data));
 		jQuery(function($) {
     // Asynchronously Load the map API
     var script = document.createElement('script');
@@ -37,28 +38,20 @@ function initialize() {
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
     map.setTilt(45);
 
-    // Multiple Markers
-    var markers = [
-        ['93 Hồ Tùng Mậu, phường Bến Nghé, Quận 1', 10.77227,106.703553],
-        ['39 Tống Hữu Định, Phường Thảo Điền, Quận 2', 10.8064743,106.7343668],
-        ['341 Nguyễn Tri Phương, Phường 5, Quận 10', 10.7623243,106.6681527],
-        ['186 Phan Xích Long, phường 2, Quận Phú Nhuận', 10.7973806,106.6915892],
-        ['33 Grand View B, Nguyễn Đức Cảnh, P. Tân Phong, Quận 7', 10.7219118,106.7109253]
-    ];
+    var markers = [];
+    var infoWindowContent = [];
+    for(var i = 0; i < objLocations.length; i++) {
+        var item = [];
+        item.push( objLocations[i].Address);
+        item.push( objLocations[i].Lat);
+        item.push( objLocations[i].Lon);
+        markers.push(item);
+        infoWindowContent.push(['<div class="info_content">' +
+        '<h3>'+objLocations[i].Address+'</h3></div>'])
 
-    // Info Window Content
-    var infoWindowContent = [
-        ['<div class="info_content">' +
-        '<h3>93 Hồ Tùng Mậu, phường Bến Nghé, Quận 1</h3></div>'],
-        ['<div class="info_content">' +
-        '<h3>39 Tống Hữu Định, Phường Thảo Điền, Quận 2</h3></div>'],
-        ['<div class="info_content">' +
-        '<h3>341 Nguyễn Tri Phương, Phường 5, Quận 10</h3></div>'],
-        ['<div class="info_content">' +
-        '<h3>186 Phan Xích Long, phường 2, Quận Phú Nhuận</h3></div>'],
-        ['<div class="info_content">' +
-        '<h3>33 Grand View B, Nguyễn Đức Cảnh, P. Tân Phong, Quận 7</h3></div>'],
-    ];
+    }
+
+
 
     // Display multiple markers on a map
     var infoWindow = new google.maps.InfoWindow(), marker, i;
