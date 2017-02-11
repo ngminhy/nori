@@ -98,12 +98,14 @@
                            
                             <td id="cart-total" align="right">
                                 @string.Format("{0:0,0}", ViewBag.Cart.CartTotal)
+                                <input hidden value="@ViewBag.Cart.CartTotal" id="carttotal" />
                             </td>
+                            
                             <td></td>
                         </tr>
                         <tr>
                             <td colspan="4">
-                                <button type="submit" class="btn btn-success">
+                                <button type="submit" class="btn btn-success" id="submit">
                                     Đăng ký mua hàng
                                 </button>
                             </td>
@@ -189,6 +191,16 @@
                     });
             }
         });
+
+        $('#submit').click(function () {
+            var total = $('#carttotal').val();
+            $.post("/ShoppingCart", { "total": total }, function (data) {
+                console.log(data);
+                if (data.id>0) {
+                    location.href = "/shoppingcart/complete/" + data.id;
+                }
+            });
+            });
 
         $(".RemoveLink").click(function () {
             // Get the id from the link

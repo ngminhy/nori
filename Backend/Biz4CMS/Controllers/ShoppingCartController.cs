@@ -75,7 +75,7 @@ namespace Biz4CMS.Controllers
         }
         // POST: /ShoppingCart/
         [HttpPost]
-        public ActionResult Index(FormCollection values)
+        public ActionResult Index(FormCollection values,int total)
         {
             var order = new Order();
             TryUpdateModel(order);
@@ -86,6 +86,11 @@ namespace Biz4CMS.Controllers
                 //order.Username = User.Identity.Name;
                 var userinfo =(UserInfo) HttpContext.Session["userinfo"];
                 order.Username = userinfo.Email;
+                order.FullName = userinfo.Name;
+                order.Phone = userinfo.Phone;
+                order.Note = userinfo.Note;
+                order.Address = userinfo.Address;
+                order.Total = total;
 
                 order.OrderDate = DateTime.Now;
 
@@ -101,14 +106,16 @@ namespace Biz4CMS.Controllers
                 //strBody = strBody + "<h2>Thông tin người mua:</h2>Họ và Tên:  " + order.FullName + " <br />Số điện thoại: " + order.Phone + " <br />Email: " + order.Email + " <br />Địa chỉ: " + order.Address + " <br />Thanh toán: " + order.PaymentType + " (Chuyển khoản | Tiền mặt) <br />Ghi chú: " + order.Note + " <br /> <br />";
                 //strBody = strBody + "<h3>Đơn hàng số: " + order.OrderId.ToString() + "</h3>";
                 //SendEmail(order.Email, strBody);
-                return RedirectToAction("Complete",
-                    new { id = order.OrderId });
+                //return RedirectToAction("Complete",
+                //    new { id = order.OrderId });
+                return Json(new{id=order.OrderId });
 
             }
-            catch
-            {
+            catch { 
+
                 //Invalid - redisplay with errors
-                return View(order);
+                //return View(order);
+            return Json(new { id = 0 });
             }
         }
         //
