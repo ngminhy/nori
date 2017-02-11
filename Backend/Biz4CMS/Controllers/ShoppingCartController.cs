@@ -125,7 +125,7 @@ namespace Biz4CMS.Controllers
             cart.AddToCart(addedProduct, count, listCakeFiller);
 
             // Go back to the main store page for more shopping
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "product"); 
         }
         //
         // AJAX: /ShoppingCart/RemoveFromCart/5

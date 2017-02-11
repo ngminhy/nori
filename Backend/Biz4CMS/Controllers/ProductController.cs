@@ -56,7 +56,14 @@ namespace Biz4CMS.Controllers
                     Price = x.Price
                 }).ToList();
 
+            var cart = ShoppingCart.GetCart(this.HttpContext);
 
+            // Set up our ViewModel
+            ViewBag.Cart = new ShoppingCartViewModel
+            {
+                CartItems = cart.GetCartItems(),
+                CartTotal = cart.GetTotal()
+            };
 
             ViewData["CakeFillers"] = CakeFillers;
             if (!string.IsNullOrEmpty(pageURL))
