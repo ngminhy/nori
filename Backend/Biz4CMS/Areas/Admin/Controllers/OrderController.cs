@@ -14,9 +14,41 @@ namespace Biz4CMS.Areas.Admin.Controllers
     {
         //
         // GET: /bo/Order/
-        Biz4Db db = new Biz4Db(); 
+        Biz4Db db = new Biz4Db();
+        static List<OrderStatus> listorderstatus = new List<OrderStatus>();
+
+        static OrderController()
+        {
+            listorderstatus.Add(new OrderStatus
+            {
+                OrderStatusId = 1,
+                Title = "Beverages"
+            });
+
+            listorderstatus.Add(new OrderStatus
+            {
+                OrderStatusId = 2,
+                Title = "Condiments"
+            });
+            listorderstatus.Add(new OrderStatus
+            {
+                OrderStatusId = 3,
+                Title = "Condiments"
+            });
+            listorderstatus.Add(new OrderStatus
+            {
+                OrderStatusId = 4,
+                Title = "Condiments"
+            });
+
+        }
+        public JsonResult GetListOrderStatus()
+        {
+            return Json(listorderstatus, JsonRequestBehavior.AllowGet);
+        }
         public ActionResult Index()
         {
+            ViewData["OrderStatus"] = listorderstatus;
                                 return View();
         }
         public JsonResult Get([DataSourceRequest]DataSourceRequest request) {
@@ -37,6 +69,26 @@ namespace Biz4CMS.Areas.Admin.Controllers
             }
 
             return Json(new[] { OrderToDelete }.ToDataSourceResult(request));
+        }
+
+        [HttpPost]
+        public ActionResult Edit([DataSourceRequest] DataSourceRequest request, [Bind(Prefix = "models")]IEnumerable<Biz4CMS.Models.Order> Orders)
+        {
+            if (Orders != null && ModelState.IsValid)
+            {
+                foreach (var Order in Orders)
+                {
+                    var target = db.Orders.FirstOrDefault(p => p.OrderId == Order.OrderId);
+                    if (target != null)
+                    {
+                        target.OrderStatusId = Order.OrderStatusId;
+                    }
+
+                }
+                db.SaveChanges();
+            }
+
+            return Json(Orders.ToDataSourceResult(request, ModelState));
         }
     }
 }

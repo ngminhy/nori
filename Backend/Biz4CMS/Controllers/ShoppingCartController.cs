@@ -91,7 +91,7 @@ namespace Biz4CMS.Controllers
                 order.Note = userinfo.Note;
                 order.Address = userinfo.Address;
                 order.Total = total;
-
+                order.OrderStatusId = 1;
                 order.OrderDate = DateTime.Now;
 
                 //Save Order

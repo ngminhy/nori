@@ -23,6 +23,7 @@ namespace Biz4CMS.Models
             public decimal Total { get; set; }
             public string Note { get; set; }
             public decimal PaymentType { get; set; }
+            public int OrderStatusId { get; set; }
             public System.DateTime OrderDate { get; set; }
             public List<OrderDetail> OrderDetails { get; set; }
         }

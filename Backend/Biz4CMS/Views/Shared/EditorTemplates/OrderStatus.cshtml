@@ -1,0 +1,14 @@
+﻿@model int?
+
+@(
+ Html.Kendo().DropDownListFor(m => m)
+        .BindTo((System.Collections.IEnumerable)ViewData["categories"])
+        .DataValueField("OrderStatusId")
+        .DataTextField("Title")
+        .DataSource(dataSource =>
+        {
+            dataSource.Read(read => read.Action("GetListOrderStatus","Order"))
+                    .ServerFiltering(true);
+        })
+
+)

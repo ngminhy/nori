@@ -206,6 +206,7 @@
     <Compile Include="Models\FitImageResizer.cs" />
     <Compile Include="Models\ImageSize.cs" />
     <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\OrderStatus.cs" />
     <Compile Include="Models\ThumbnailCreator.cs" />
     <Compile Include="ViewModels\OrderDetailDto.cs" />
     <Compile Include="ViewModels\ProductCat.cs" />
@@ -823,6 +824,7 @@
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
     <None Include="Properties\PublishProfiles\Nori.pubxml" />
+    <Content Include="Views\Shared\EditorTemplates\OrderStatus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
