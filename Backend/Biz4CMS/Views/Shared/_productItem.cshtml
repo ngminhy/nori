@@ -2,7 +2,7 @@
 <div class="col-md-4 productModel img-thumbnail" style="padding: 3px;">
     @if (!string.IsNullOrEmpty(Model.MainImage))
     {
-        <a href="/p/@Model.PageURL">
+        <a href="#">
             <img src="/ImageBrowser/CropImage?path=@Model.MainImage.Replace("~/content/images/","")" class="" alt="@Model.Name " />
         </a>
     }
@@ -14,12 +14,13 @@
             {
                 <input hidden value="@Model.MaxFiller" id="MaxFiller" />
                 <input hidden value="@Model.ProductId" id="ProductId" />
+                <input hidden value="@Model.Price" id="ProductPrice" />
                 <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#myModal">Add</button>
 
             }
             else
             {
-                @Html.ActionLink("Add", "AddToCart", "ShoppingCart", new { id = Model.ProductId, count = 1 }, new { @class = "btn btn-success btn-block" })
+                @Html.ActionLink("Add", "AddToCart", "ShoppingCart", new { id = Model.ProductId, count = 1, price = Model.Price }, new { @class = "btn btn-success btn-block" })
 
             }
         </div>

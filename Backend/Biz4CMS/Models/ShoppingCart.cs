@@ -27,7 +27,7 @@ namespace Biz4CMS.Models
         {
             return GetCart(controller.HttpContext);
         }
-        public void AddToCart(Product product, int count = 1,string listCakeFiller = "")
+        public void AddToCart(Product product, int count = 1,string listCakeFiller = "", string listCakeName = "", long price =0)
         {
             // Get the matching cart and product instances
 
@@ -46,7 +46,10 @@ namespace Biz4CMS.Models
                     Count = count,
                     ListCakeFiller = listCakeFiller,
                     HashKey = hashkey,
-                    DateCreated = DateTime.Now
+                    DateCreated = DateTime.Now,
+                    ListCakeName = listCakeName,
+                    Price = price
+
                 };
                 storeDB.Carts.Add(cartItem);
             }
@@ -124,7 +127,7 @@ namespace Biz4CMS.Models
             decimal? total = (from cartItems in storeDB.Carts
                               where cartItems.CartId == ShoppingCartId
                               select (int?)cartItems.Count *
-                              cartItems.Product.Price).Sum();
+                              cartItems.Price).Sum();
 
             return total ?? decimal.Zero;
         }
@@ -141,12 +144,12 @@ namespace Biz4CMS.Models
                 {
                     ProductId = item.ProductId,
                     OrderId = order.OrderId,
-                    UnitPrice = item.Product.Price,
+                    UnitPrice = item.Price,
                     Quantity = item.Count,
                     ListCakeFiller = item.ListCakeFiller
                 };
                 // Set the order total of the shopping cart
-                orderTotal += (item.Count * item.Product.Price);
+                orderTotal += (item.Count * item.Price);
 
                 storeDB.OrderDetails.Add(orderDetail);
 
@@ -172,8 +175,8 @@ namespace Biz4CMS.Models
             // adding the order details for each
             foreach (var item in cartItems)
             {
-                string sItem = "<tr><td>" + item.Product.Name + "</td><td> " + item.Product.Price + "</td><td>" + item.Count + "</td><td align='right' style='padding-right: 30px;'>" + (item.Product.Price * item.Count) + "</td></tr>";
-                orderTotal += (item.Count * item.Product.Price);
+                string sItem = "<tr><td>" + item.Product.Name + "</td><td> " + item.Price + "</td><td>" + item.Count + "</td><td align='right' style='padding-right: 30px;'>" + (item.Price * item.Count) + "</td></tr>";
+                orderTotal += (item.Count * item.Price);
                 strOut = strOut + sItem;
             }
             strOut = strOut + "<tr><td><b>Tổng cộng</b></td><td></td><td></td><td align='right' style='padding-right: 30px;'>" + orderTotal.ToString() + "</td></tr></table>";

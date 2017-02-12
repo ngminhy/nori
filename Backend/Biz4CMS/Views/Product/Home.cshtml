@@ -72,7 +72,9 @@
                             {
                                 <tr id="row-@item.RecordId">
                                     <td>
-                                        <a href="/p/@item.Product.PageURL"><strong>@item.Product.Name</strong></a>
+                                        <a href="#"><strong>@item.Product.Name</strong></a>
+                                        <br />
+                                        @item.ListCakeName
                                     </td>
                                     
                                     <td id="item-count-@item.RecordId">
@@ -80,7 +82,7 @@
                                                value="@item.Count" class="form-control quantity">
                                     </td>
                                     <td align="right">
-                                        @string.Format("{0:0,0}", item.Product.Price)
+                                        @string.Format("{0:0,0}", item.Price)
                                     </td>
                                     <td>
                                         <a href="#" class="RemoveLink" data-id="@item.RecordId">
@@ -141,7 +143,7 @@
                             {
                                 <tr>
                                     <td>
-                                        <input style="margin-top:12px;" data-price="@filler.Price" type="checkbox" name="chkCakeFiller[]" value="@filler.CakeFillerId" />
+                                        <input style="margin-top:12px;" data-name="@filler.Name" data-price="@filler.Price" type="checkbox" name="chkCakeFiller[]" value="@filler.CakeFillerId" />
                                     </td>
                                     <td>
                                         @filler.Name
@@ -225,6 +227,7 @@
 
         var MaxFiller = $("#MaxFiller").val();
         var ProductId = $("#ProductId").val();
+        var prouctPrice = $("#ProductPrice").val();
         $("#maxchoise").text("Max: " + MaxFiller);
         function updateCounter(chk) {
             var len = $("input[name='chkCakeFiller[]']:checked").length;
@@ -242,11 +245,21 @@
             var chkCake = $("input[name='chkCakeFiller[]']:checked").map(function (_, el) {
                 return $(el).val();
             }).get();
-            var chkCake1 = $("input[name='chkCakeFiller[]']:checked").map(function (_, el) {
+
+            var chkCakeName = $("input[name='chkCakeFiller[]']:checked").map(function (_, el) {
+                return $(el).attr("data-name");
+            }).get();
+
+            var chkCakePrice = $("input[name='chkCakeFiller[]']:checked").map(function (_, el) {
                 return $(el).attr("data-price");
             }).get();
-            console.log(chkCake);
-            $.get("/ShoppingCart/AddToCart/" + ProductId + "?listCakeFiller=" + chkCake, function (data) {
+            
+            var price = parseInt(prouctPrice);
+            $.each(chkCakePrice, function () {
+                price += parseInt(this);
+            });          
+
+            $.get("/ShoppingCart/AddToCart/" + ProductId + "?listCakeFiller=" + chkCake + "&listCakeName=" + chkCakeName + "&price=" + price, function (data) {
                 $('#myModal').modal('toggle');
                 location.href = "/Product";
             });
