@@ -29,6 +29,7 @@ namespace Biz4CMS.Areas.Admin.Controllers
                 OrderDetailId  = p.OrderDetailId,
                 ProductId = p.ProductId,
                 ProductName = p.Product.Name,
+                ListCakeName = p.ListCakeName,
                 UnitPrice = p.UnitPrice,
                 Quantity = p.Quantity   ,
                 Total = p.Quantity * p.UnitPrice

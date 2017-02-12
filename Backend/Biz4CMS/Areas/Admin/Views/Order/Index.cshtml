@@ -15,7 +15,7 @@
         columns.Bound(p => p.City).Width(150);
         
         columns.Bound(p => p.Note).Width(250);
-        columns.Bound(p => p.Total).Width(150);
+        columns.Bound(p => p.Total).Format("{0:0,0}").Width(150);
 
         columns.Bound(u => u.OrderId).Title("Details").ClientTemplate("<a class='k-button' href='" + Url.Action("index", "OrderDetail") + "/?OrderId=#=OrderId#'>Details</a>");
         columns.Command(command => { command.Destroy(); }).Width(90);

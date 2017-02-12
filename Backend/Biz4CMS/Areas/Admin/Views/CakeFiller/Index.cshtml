@@ -11,7 +11,7 @@
     {
         columns.Bound(p => p.CakeFillerId).Width(70);
         columns.Bound(p => p.Name).Width(240);
-        columns.Bound(p => p.Price).Width(240);
+        columns.Bound(p => p.Price).Format("{0:0,0}").Width(240);
         columns.Bound(p => p.FillerImage).Width(150);
         columns.Command(command => { command.Destroy(); }).Width(90);
     })
