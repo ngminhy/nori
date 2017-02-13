@@ -138,7 +138,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <table width="100%" border="0" style="border:none">
+                        <table width="100%" border="0" style="border:none" id="cake">
                             @foreach (var filler in CakeFillers)
                             {
                                 <tr>
@@ -237,6 +237,12 @@
                 alert("You had max choise!");
             }
         }
+
+        $("#cake tr").click(function (event) {
+            if (event.target.type !== 'checkbox') {
+                $(':checkbox', this).trigger('click');
+            }
+        })
 
         $("input[name='chkCakeFiller[]']").on("change", function () {
             updateCounter(this);
