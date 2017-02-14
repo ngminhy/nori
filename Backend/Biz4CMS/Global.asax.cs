@@ -33,7 +33,7 @@ namespace Biz4CMS
 
             routes.MapRoute(
               name: "Article",
-              url: "a/{pageURL}/{id}",
+              url: "a/{pageURL}",
               defaults: new { controller = "Article", action = "Details", pageURL = UrlParameter.Optional,id= UrlParameter.Optional },
               namespaces: new String[] { "Biz4CMS.Controllers" }
            );
