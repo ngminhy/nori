@@ -242,6 +242,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CakeFiller.cs" />
+    <Compile Include="Models\CheckOrder.cs" />
     <Compile Include="Models\FAQ.cs" />
     <Compile Include="Models\FitImageResizer.cs" />
     <Compile Include="Models\ImageSize.cs" />
@@ -865,6 +866,7 @@
     <Content Include="Views\Order\Index.cshtml" />
     <None Include="Properties\PublishProfiles\Nori.pubxml" />
     <Content Include="Views\Shared\EditorTemplates\OrderStatus.cshtml" />
+    <Content Include="Views\Order\CheckOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />

@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using Biz4CMS.Models;
 using Biz4CMS.ViewModels;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Biz4CMS.Controllers
 {
@@ -35,6 +37,8 @@ namespace Biz4CMS.Controllers
             order.Phone = userinfo.Phone;
             order.Address = userinfo.Address;
             order.Note = userinfo.Note;
+            order.BookingTime = userinfo.BookingTime;
+            order.BranchName = userinfo.BranchName;
             return View(order);
         }
         private bool SendEmail(string toEmail,string strBody)
@@ -73,6 +77,26 @@ namespace Biz4CMS.Controllers
            
             return View();
         }
+
+        public static string GetUniqueKey(int maxSize)
+        {
+            char[] chars = new char[62];
+            chars =
+            "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".ToCharArray();
+            byte[] data = new byte[1];
+            using (RNGCryptoServiceProvider crypto = new RNGCryptoServiceProvider())
+            {
+                crypto.GetNonZeroBytes(data);
+                data = new byte[maxSize];
+                crypto.GetNonZeroBytes(data);
+            }
+            StringBuilder result = new StringBuilder(maxSize);
+            foreach (byte b in data)
+            {
+                result.Append(chars[b % (chars.Length)]);
+            }
+            return result.ToString();
+        }
         // POST: /ShoppingCart/
         [HttpPost]
         public ActionResult Index(FormCollection values,int total)
@@ -93,7 +117,9 @@ namespace Biz4CMS.Controllers
                 order.Total = total;
                 order.OrderStatusId = 1;
                 order.OrderDate = DateTime.Now;
-
+                order.BookingTime = userinfo.BookingTime;
+                order.BranchName = userinfo.BranchName;
+                order.OrderCode = GetUniqueKey(8);
                 //Save Order
                 storeDB.Orders.Add(order);
                 storeDB.SaveChanges();

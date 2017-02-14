@@ -6,8 +6,12 @@
 <div class="container">
     <div class="row" style="position: relative; padding-top:10px; padding-bottom:10px;">
         <div class="col-md-8">
-            <button class="btn btn-info">DELIVERY</button>
-            <button class="btn btn-info">CARRY OUT</button>
+          
+            <div class="btn-group btn-toggle">
+                <button class="btn btn-lg btn-default">Giao hàng</button>
+                <button class="btn btn-lg btn-primary " >Mua mang đi</button>
+            </div>
+            
             <form method="post" action="/Order">
                 <div class="form-group">
                    
@@ -24,16 +28,17 @@
                     <label for="phone">Phone:</label>
                     <input type="text" class="form-control" name="phone" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="collapsible_address">
                     <label for="address">Adrress:</label>
-                    <input type="text" class="form-control" name="address" required>
+                    <input type="text" class="form-control" name="address" >
                 </div>
-                <div class="form-group">
+               
+                <div class="form-group" id="collapsible">
                     <label for="branch">Branch:</label>
-                    <select class="form-control" name="branch">
+                    <select class="form-control" name="branchname">
                         @foreach (var item in ViewBag.data)
                         {
-                            <option value="@item.LocationId">@item.Address</option>
+                            <option value="@item.Address">@item.Address</option>
                         }
                     </select>
                 </div>
@@ -72,4 +77,26 @@
 <script>
     function checkInput() {
     }
+    $('#collapsible_address').hide();
+    $('.btn-toggle').click(function () {
+        if ($(this).find('.btn-primary').hasClass('active')) {
+            $('#collapsible_address').hide();
+            $('#collapsible').show();
+        }
+        else {
+           
+            $('#collapsible_address').show();
+            $('#collapsible').hide();
+        }
+        $(this).find('.btn').toggleClass('active');
+
+        if ($(this).find('.btn-primary').size() > 0) {
+           
+            $(this).find('.btn').toggleClass('btn-primary');
+        }
+
+        $(this).find('.btn').toggleClass('btn-default');
+       
+
+    });
 </script>

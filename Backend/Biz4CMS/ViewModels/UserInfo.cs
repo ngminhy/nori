@@ -13,6 +13,7 @@ namespace Biz4CMS.ViewModels
         public string Address { get; set; }
         public string BookingTime { get; set; }
         public int Branch { get; set; }
+        public string BranchName { get; set; }
         public string Note { get; set; }
     }
 }
