@@ -28,23 +28,8 @@
 <section class="main-content">
     <div class="container">
         <div class="row" style="position: relative; padding-top:10px; padding-bottom:10px;">
-            <div class="col-md-8">
-
-                @foreach (var item in Model)
-                {
-
-                    if (preCat != item.CategoryId)
-                    {
-                        @:<div style="clear:both;"><h3>@item.CategoryName </h3></div>
-                        }
-                        @Html.Partial("_productItem", item)
-                     
-                    preCat = item.CategoryId;
-                    i++;
-                  
-                }
-            </div>
-            <div class="col-md-4" data-sticky_column="">
+    
+            <div class="col-md-4 col-sm-push-8" data-sticky_column="">
                 <div class="row">
                     <h3>Thông tin giỏ hàng</h3>
 
@@ -120,6 +105,23 @@
                 
                 
             </div>
+            <div class="col-md-8 col-sm-pull-4">
+
+                @foreach (var item in Model)
+                {
+
+                    if (preCat != item.CategoryId)
+                    {
+                        @:<div style="clear:both;"><h3>@item.CategoryName </h3></div>
+                        }
+                    @Html.Partial("_productItem", item)
+
+                    preCat = item.CategoryId;
+                    i++;
+
+                }
+            </div>
+
     </div>
         </div>
 </section>
