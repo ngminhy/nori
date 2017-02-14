@@ -19,8 +19,11 @@ namespace Biz4CMS.Areas.Admin.Controllers
         public ActionResult Index(int? OrderId )
         {
            
-                ViewBag.OrderId = OrderId;
-                return View();
+            ViewBag.OrderId = OrderId;
+            var order = db.Orders.Where(p => p.OrderId == OrderId).FirstOrDefault();
+           order.State = Biz4CMS.Util.Common.GetOrderStatus(order.OrderStatusId);
+            ViewBag.order = order;
+            return View();
             
         }
         public JsonResult Get([DataSourceRequest]DataSourceRequest request, int OrderId) {

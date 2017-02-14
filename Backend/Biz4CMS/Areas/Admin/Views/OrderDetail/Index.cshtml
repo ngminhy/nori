@@ -1,28 +1,43 @@
 ﻿@using Biz4CMS.Models;
 @{
     ViewBag.Title = "Index";
-    
+    var order =(Biz4CMS.Models.Order) ViewBag.order;
 }
 @model IEnumerable<Biz4CMS.ViewModels.OrderDetailDto>
-@(Html.Kendo().Grid<Biz4CMS.ViewModels.OrderDetailDto>()
+<div class="row">
+    <div class="col-md-6">
+        <b>Name:</b> @order.FullName <br />
+        <b>Phone:</b> @order.Phone <br />
+        <b>Email:</b> @order.Email <br />
+        <b>Address:</b> @order.Address <br />
+    </div>
+    <div class="col-md-6">
+        <b>Order Date:</b> @order.OrderDate <br />
+        <b>Booking Time:</b> @order.BookingTime <br />
+        <b>Branch:</b> @order.BranchName <br />
+        <b>Note:</b> @order.Note <br />
+        <b>Status:</b> @order.State <br />
+    </div>
+</div>
+    @(Html.Kendo().Grid<Biz4CMS.ViewModels.OrderDetailDto>()
     .Name("grid")
     .Columns(columns =>
     {
         columns.Bound(p => p.OrderDetailId).Width(70);
-        
+
         columns.Bound(p => p.ProductId).Width(240);
         columns.Bound(p => p.ProductName).Title("Product").Width(150);
         columns.Bound(p => p.ListCakeName).Title("Cake Name").Width(150);
         columns.Bound(p => p.Quantity).Width(240);
         columns.Bound(p => p.UnitPrice).Format("{0:0,0}").Width(150);
-        columns.Bound(p => p.Total).Format("{0:0,0}");
+        columns.Bound(p => p.Total).Format("{0:0,0}").FooterTemplate(@order.Total.ToString("0,0,0"));
         columns.Command(command => { command.Destroy(); }).Width(90);
     })
     .ToolBar(toolbar =>
-        {
-            toolbar.Create();
-            toolbar.Save();
-        })
+    {
+        toolbar.Create();
+        toolbar.Save();
+    })
     .Editable(editable => editable.Mode(GridEditMode.InCell))
     .Pageable()
     .DataSource(dataSource => dataSource
@@ -35,23 +50,23 @@
                 .Read(read => read.Action("Get", "OrderDetail", new { OrderId = @ViewBag.OrderId }))
                     .Update(update => update.Action("Edit", "OrderDetail", new { OrderId = @ViewBag.OrderId }))
                     .Destroy(destroy => destroy.Action("Delete", "OrderDetail", new { OrderId = @ViewBag.OrderId }))
-    )       
-)
-<script type="text/javascript">
-    function error_handler(e) {
-        if (e.errors) {
-            var message = "Errors:\n";
-            $.each(e.errors, function (key, value) {
-                if ('errors' in value) {
-                    $.each(value.errors, function () {
-                        message += this + "\n";
-                    });
-                }
-            });
-            alert(message);
+    )
+    )
+    <script type="text/javascript">
+        function error_handler(e) {
+            if (e.errors) {
+                var message = "Errors:\n";
+                $.each(e.errors, function (key, value) {
+                    if ('errors' in value) {
+                        $.each(value.errors, function () {
+                            message += this + "\n";
+                        });
+                    }
+                });
+                alert(message);
+            }
         }
-    }
-    
-</script>
+
+    </script>
 
 

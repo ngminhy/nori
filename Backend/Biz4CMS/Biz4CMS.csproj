@@ -249,6 +249,7 @@
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\OrderStatus.cs" />
     <Compile Include="Models\ThumbnailCreator.cs" />
+    <Compile Include="Util\Common.cs" />
     <Compile Include="ViewModels\OrderDetailDto.cs" />
     <Compile Include="ViewModels\ProductCat.cs" />
     <Compile Include="Models\AccountModels.cs" />
