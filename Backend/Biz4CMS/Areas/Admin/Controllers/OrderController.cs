@@ -22,23 +22,28 @@ namespace Biz4CMS.Areas.Admin.Controllers
             listorderstatus.Add(new OrderStatus
             {
                 OrderStatusId = 1,
-                Title = "Beverages"
+                Title = "Đặt hàng thành công"
             });
 
             listorderstatus.Add(new OrderStatus
             {
                 OrderStatusId = 2,
-                Title = "Condiments"
+                Title = "Đã tiếp nhận đơn hàng"
             });
             listorderstatus.Add(new OrderStatus
             {
                 OrderStatusId = 3,
-                Title = "Condiments"
+                Title = "Đang đóng gói"
             });
             listorderstatus.Add(new OrderStatus
             {
                 OrderStatusId = 4,
-                Title = "Condiments"
+                Title = "Đang vận chuyển"
+            });
+            listorderstatus.Add(new OrderStatus
+            {
+                OrderStatusId = 5,
+                Title = "Giao hàng thành công"
             });
 
         }

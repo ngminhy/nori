@@ -12,7 +12,6 @@
         columns.Bound(p => p.FullName).Width(240);
         columns.Bound(p => p.Phone).Width(150);
         columns.Bound(p => p.Address).Width(240);
-        columns.Bound(p => p.City).Width(150);
         columns.ForeignKey(p => p.OrderStatusId, (System.Collections.IEnumerable)ViewData["OrderStatus"],
             "OrderStatusId", "Title").EditorTemplateName("OrderStatus").Title("Status");
         columns.Bound(p => p.Note).Width(250);
