@@ -11,21 +11,21 @@
 {
     <article class="post">
         <div class="post-thumb">
-            <a href="@item.PageURL/@item.ArticleId"><img src="@Url.Content(item.MainImage)" alt="@item.Title"></a>
-            <a href="@item.PageURL/@item.ArticleId" class="post-thumb-overlay text-center">
+            <a href="@Url.Content(item.PageURL)"><img src="@Url.Content(item.MainImage)" alt="@item.Title"></a>
+            <a href="@Url.Content(item.PageURL)" class="post-thumb-overlay text-center">
                 <div class="text-uppercase text-center">View Post</div>
             </a>
         </div>
         <div class="post-content">
             <header class="entry-header  text-uppercase">
-                <h1 class="entry-title"><a href="@item.PageURL/@item.ArticleId">@item.Title</a></h1>
+                <h1 class="entry-title"><a href="@Url.Content(item.PageURL)">@item.Title</a></h1>
             </header>
             <div class="entry-content">
                 <p>
                     @item.Description
                 </p>
                 <div class="btn-continue-reading text-center text-uppercase">
-                    <a href="@item.PageURL/@item.ArticleId" class="more-link">Continue Reading</a>
+                    <a href="@Url.Content(item.PageURL)" class="more-link">Continue Reading</a>
                 </div>
             </div>
         </div>
