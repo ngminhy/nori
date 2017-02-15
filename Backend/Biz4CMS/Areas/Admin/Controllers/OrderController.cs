@@ -75,6 +75,24 @@ namespace Biz4CMS.Areas.Admin.Controllers
 
             return Json(new[] { OrderToDelete }.ToDataSourceResult(request));
         }
+        [HttpPost]
+        public ActionResult Delete([DataSourceRequest] DataSourceRequest request, [Bind(Prefix = "models")]IEnumerable<Order> Orders)
+        {
+            if (Orders.Any())
+            {
+                foreach (var order in Orders)
+                {
+                    var OrderToDelete = db.Orders.First(p => p.OrderId == order.OrderId);
+                    if (OrderToDelete != null)
+                    {
+                        db.Orders.Remove(OrderToDelete);
+                    }
+                }
+                db.SaveChanges();
+            }
+
+            return Json(Orders.ToDataSourceResult(request, ModelState));
+        }
 
         [HttpPost]
         public ActionResult Edit([DataSourceRequest] DataSourceRequest request, [Bind(Prefix = "models")]IEnumerable<Biz4CMS.Models.Order> Orders)
@@ -94,6 +112,12 @@ namespace Biz4CMS.Areas.Admin.Controllers
             }
 
             return Json(Orders.ToDataSourceResult(request, ModelState));
+        }
+
+        public JsonResult NotificationOrder()
+        {
+            var newOrder = db.Orders.Where(p => p.OrderStatusId == 1).Count();
+            return Json(new { neworder = newOrder }, JsonRequestBehavior.AllowGet);
         }
     }
 }

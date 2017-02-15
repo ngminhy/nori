@@ -94,9 +94,9 @@
                 <ul class="nav ace-nav">
 
                     <li class="purple">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <a  href="/BO/Order">
                             <i class="ace-icon fa fa-bell icon-animated-bell"></i>
-                            <span class="badge badge-important">8</span>
+                            <span class="badge badge-important" id="neworder">0</span>
                         </a>
 
                     </li>
@@ -369,6 +369,15 @@
     <script type="text/javascript"> ace.vars['base'] = '..'; </script>
     <script src="@Url.Content("~/Areas/Admin/Content/assets/js/ace/elements.onpage-help.js")"></script>
     <script src="@Url.Content("~/Areas/Admin/Content/assets/js/ace/ace.onpage-help.js")"></script>
+    <script>
+        $(function () {
+            $.get("/bo/order/NotificationOrder").then(function (data) {
+                if (data.neworder) {
+                    $("#neworder").text(data.neworder);
+                }
+            })
+        })
+    </script>
 
 </body>
 </html>
