@@ -114,38 +114,57 @@
                 pointer-events: none;
             }
     /*END Form Wizard*/
+    
 </style>
 <div class="container">
-    <h2>Tra cứu tinh trạng đơn hàng</h2>
-    Nhập mã đơn hàng: <input type="text" id="ordercode" value="@Model.ordercode"/>
-    <button class="btn btn-default" id="checkorder">Kiểm tra</button><br />
-    @if (!string.IsNullOrEmpty(Model.ordercode))
-    {
-       <span> Mã đơn hàng: @Model.ordercode</span><br />
-       <span>Tình trạng: @Model.message</span> 
-    }
-   
-    @if (Model.status > 0)
-    {
-        <div class="row bs-wizard" style="border-bottom:0;">
-
-            @for (var i = 1; i < 6; i++)
+    <div class="row">
+        
+        <div  style="width:auto; margin-top:20px; text-align:center">
+            <h4>Tra cứu tinh trạng đơn hàng</h4>
+            <table class="center-block" style="width:440px">
+                <tr>
+                    <td><b>Nhập mã đơn hàng:</b> </td>
+                    <td><input type="text" style="margin-top:12px;" id="ordercode" value="@Model.ordercode" /></td>
+                    <td><button class="btn btn-default" id="checkorder">Kiểm tra</button></td>
+                </tr>
+            </table>
+            @if (!string.IsNullOrEmpty(Model.ordercode))
             {
-                string status = "disabled";
-                if (i < Model.status)
-                {
-                    status = "complete";
-                }
-                else if (i == Model.status) { status = "active"; }
-                <div class="col-xs-2 bs-wizard-step @status">
-                    <div class="text-center bs-wizard-stepnum">@Model.liststatus[i-1]</div>
-                    <div class="progress-order"><div class="progress-bar-order"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
-                </div>
+               <div style="padding-bottom:5px;">Mã đơn hàng:<b> @Model.ordercode</b></div>
+                <div>Tình trạng:<b> @Model.message</b></div>
             }
         </div>
+    </div>
+    
+         
+   
+    @if (Model.status > 0)
+{
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-10">
+                <div class="bs-wizard center-block" style="border-bottom:0; ">
 
-    }
+                    @for (var i = 1; i < 6; i++)
+                    {
+                        string status = "disabled";
+                        if (i < Model.status)
+                        {
+                            status = "complete";
+                        }
+                        else if (i == Model.status) { status = "active"; }
+                        <div class="col-xs-2 bs-wizard-step @status">
+                            <div class="text-center bs-wizard-stepnum">@Model.liststatus[i - 1]</div>
+                            <div class="progress-order"><div class="progress-bar-order"></div></div>
+                            <a href="#" class="bs-wizard-dot"></a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+   
+
+}
 
 </div>
 

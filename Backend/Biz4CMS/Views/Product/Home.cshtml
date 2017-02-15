@@ -200,7 +200,7 @@
             var total = $('#carttotal').val();
             $.post("/ShoppingCart", { "total": total }, function (data) {
                 console.log(data);
-                if (data.id>0) {
+                if (data.id!='') {
                     location.href = "/shoppingcart/complete/" + data.id;
                 }
             });

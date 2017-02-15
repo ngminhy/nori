@@ -134,14 +134,14 @@ namespace Biz4CMS.Controllers
                 //SendEmail(order.Email, strBody);
                 //return RedirectToAction("Complete",
                 //    new { id = order.OrderId });
-                return Json(new{id=order.OrderId });
+                return Json(new { id = order.OrderCode });
 
             }
             catch { 
 
                 //Invalid - redisplay with errors
                 //return View(order);
-            return Json(new { id = 0 });
+            return Json(new { id = "" });
             }
         }
         //
