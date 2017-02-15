@@ -715,6 +715,7 @@
     <Content Include="Content\Assets\fonts\UTM-Avo\UTM-Avo.woff" />
     <Content Include="Areas\Admin\Views\CakeFiller\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Location\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CakeFiller\Create.cshtml" />
     <None Include="Content\Assets\Scripts\jquery-1.7.1-vsdoc.js" />
     <Content Include="Content\Assets\Scripts\jquery-1.7.1.js" />
     <Content Include="Content\Assets\Scripts\jquery-1.7.1.min.js" />
@@ -868,6 +869,7 @@
     <None Include="Properties\PublishProfiles\Nori.pubxml" />
     <Content Include="Views\Shared\EditorTemplates\OrderStatus.cshtml" />
     <Content Include="Views\Order\CheckOrder.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\ImageUrl.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />

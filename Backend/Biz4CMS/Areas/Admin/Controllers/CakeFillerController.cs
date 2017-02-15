@@ -25,64 +25,61 @@ namespace Biz4CMS.Areas.Admin.Controllers
             return this.Json(Menus.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
 
         }
-        [HttpPost]
-        public ActionResult Create([DataSourceRequest] DataSourceRequest request, [Bind(Prefix = "models")]IEnumerable<Biz4CMS.Models.CakeFiller> CakeFillers)
+        public ActionResult Create()
         {
-            var results = new List<Biz4CMS.Models.CakeFiller>();
+            var cakefiller = new CakeFiller();
+            return View(cakefiller);
+        }
+        // POST: /bo/CakeFiller/Create
 
-            if (CakeFillers != null && ModelState.IsValid)
+        [HttpPost]
+        public ActionResult Create(CakeFiller model)
+        {
+            if (ModelState.IsValid)
             {
-                foreach (var CakeFiller in CakeFillers)
-                {
-
-                    db.CakeFillers.Add(CakeFiller);
-                    results.Add(CakeFiller);
-                }
+                db.CakeFillers.Add(model);
                 db.SaveChanges();
             }
+            return RedirectToAction("Index");
 
-            return Json(results.ToDataSourceResult(request, ModelState));
+        }
+        [HttpPost]
+        public ActionResult Edit(CakeFiller model)
+        {
+            if (ModelState.IsValid)
+            {
+                var updateCakeFiller = db.CakeFillers.FirstOrDefault(p => p.CakeFillerId == model.CakeFillerId);
+                if (updateCakeFiller != null)
+                {
+
+                    TryUpdateModel(updateCakeFiller);
+                    db.SaveChanges();
+                }
+            }
+            return RedirectToAction("Index");
+
+        }
+        //
+        // GET: /bo/CakeFiller/Edit/5
+
+        public ActionResult Edit(int id)
+        {
+            var cakefiller = db.CakeFillers.FirstOrDefault(p => p.CakeFillerId == id);
+            return View("Create", cakefiller);
         }
 
-        [HttpPost]
-        public ActionResult Edit([DataSourceRequest] DataSourceRequest request, [Bind(Prefix = "models")]IEnumerable<Biz4CMS.Models.CakeFiller> CakeFillers)
-        {
-            if (CakeFillers != null && ModelState.IsValid)
-            {
-                foreach (var CakeFiller in CakeFillers)
-                {
-                    var target = db.CakeFillers.FirstOrDefault(p => p.CakeFillerId == CakeFiller.CakeFillerId);
-                    if (target != null)
-                    {
-                        target.Name = CakeFiller.Name;
-                        target.FillerImage = CakeFiller.FillerImage;
-                        target.Price = CakeFiller.Price;
-                    }
+        //
 
-                }
+
+        public ActionResult Delete([DataSourceRequest] DataSourceRequest request, CakeFiller model)
+        {
+            var cakefillerToDelete = db.CakeFillers.First(p => p.CakeFillerId == model.CakeFillerId);
+            if (cakefillerToDelete != null)
+            {
+                db.CakeFillers.Remove(cakefillerToDelete);
                 db.SaveChanges();
             }
-
-            return Json(CakeFillers.ToDataSourceResult(request, ModelState));
-        }
-
-        [HttpPost]
-        public ActionResult Delete([DataSourceRequest] DataSourceRequest request, [Bind(Prefix = "models")]IEnumerable<Biz4CMS.Models.CakeFiller> CakeFillers)
-        {
-            if (CakeFillers.Any())
-            {
-                foreach (var CakeFiller in CakeFillers)
-                {
-                    var CakeFillerToDelete = db.CakeFillers.First(p => p.CakeFillerId == CakeFiller.CakeFillerId);
-                    if (CakeFillerToDelete != null)
-                    {
-                        db.CakeFillers.Remove(CakeFillerToDelete);
-                    }
-                }
-                db.SaveChanges();
-            }
-
-            return Json(CakeFillers.ToDataSourceResult(request, ModelState));
+            return Json(new[] { cakefillerToDelete }.ToDataSourceResult(request));
         }
 
     }

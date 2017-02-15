@@ -1,0 +1,16 @@
+﻿
+
+@(Html.Kendo().Editor()
+.Name("input")
+.HtmlAttributes(new { style = "width: 740px;height:440px" })
+.Value(@<text>
+        helo
+</text>)
+.ImageBrowser(imageBrowser => imageBrowser
+.Image("~/Content/images/{0}")
+.Read("Read", "ImageBrowser")
+.Create("Create", "ImageBrowser")
+.Destroy("Destroy", "ImageBrowser")
+.Upload("Upload", "ImageBrowser")
+.Thumbnail("Thumbnail", "ImageBrowser"))
+)

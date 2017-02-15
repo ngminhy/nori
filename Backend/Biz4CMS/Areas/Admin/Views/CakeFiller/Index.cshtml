@@ -4,49 +4,40 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 
 }
-@model IEnumerable<Biz4CMS.Models.CakeFiller>
-@(Html.Kendo().Grid<Biz4CMS.Models.CakeFiller>()
-    .Name("grid")
+
+<p>
+    <a href="/bo/CakeFiller/create" class="btn btn-info"><i class="ace-icon fa fa-plus bigger-110"></i>Add new item</a>
+</p> 
+@(Html.Kendo().Grid<CakeFiller>()
+    .Name("CakeFillerGrid")
+    .Sortable()
+    //.Filterable()
+    .Pageable()
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Model(model => model.Id(p => p.CakeFillerId))
+        .Read(read => read.Action("Get", "CakeFiller"))
+        .Destroy(destroy => destroy.Action("Delete", "CakeFiller"))
+    )
     .Columns(columns =>
     {
         columns.Bound(p => p.CakeFillerId).Width(70);
         columns.Bound(p => p.Name).Width(240);
         columns.Bound(p => p.Price).Format("{0:0,0}").Width(240);
         columns.Bound(p => p.FillerImage).Width(150);
-        columns.Command(command => { command.Destroy(); }).Width(90);
+
+        columns.Bound(u => u.CakeFillerId).Title("").ClientTemplate("<a class='k-button' href='" + Url.Action("edit", "CakeFiller") + "/#=CakeFillerId#'><span class='k-icon k-edit'></span>Edit</a>");
+        columns.Command(cmd =>
+        {
+
+            cmd.Destroy();
+        });
+
+
     })
-    .ToolBar(toolbar =>
-    {
-        toolbar.Create();
-        toolbar.Save();
-    })
-    .Editable(editable => editable.Mode(GridEditMode.InCell))
-    .Pageable()
-    .DataSource(dataSource => dataSource
-        .Ajax()
-        .Batch(true)
-        .PageSize(20)
-        .Events(events => events.Error("error_handler"))
-        .Model(model => { model.Id(p => p.CakeFillerId); model.Field(p => p.CakeFillerId).Editable(false); })
-        .Create(create => create.Action("Create", "CakeFiller"))
-        .Read(read => read.Action("Get", "CakeFiller"))
-        .Update(update => update.Action("Edit", "CakeFiller"))
-        .Destroy(destroy => destroy.Action("Delete", "CakeFiller"))
-    )
+
+
 )
-<script type="text/javascript">
-    function error_handler(e) {
-        if (e.errors) {
-            var message = "Errors:\n";
-            $.each(e.errors, function (key, value) {
-                if ('errors' in value) {
-                    $.each(value.errors, function () {
-                        message += this + "\n";
-                    });
-                }
-            });
-            alert(message);
-        }
-    }
-</script>
+
+ 
 
