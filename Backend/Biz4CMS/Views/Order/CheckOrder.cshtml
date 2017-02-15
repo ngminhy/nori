@@ -117,8 +117,14 @@
 </style>
 <div class="container">
     <h2>Tra cứu tinh trạng đơn hàng</h2>
-    Mã đơn hàng:  <br />
-    Tình trạng: @Model.message
+    Nhập mã đơn hàng: <input type="text" id="ordercode" value="@Model.ordercode"/>
+    <button class="btn btn-default" id="checkorder">Kiểm tra</button><br />
+    @if (!string.IsNullOrEmpty(Model.ordercode))
+    {
+       <span> Mã đơn hàng: @Model.ordercode</span><br />
+       <span>Tình trạng: @Model.message</span> 
+    }
+   
     @if (Model.status > 0)
     {
         <div class="row bs-wizard" style="border-bottom:0;">
@@ -142,4 +148,14 @@
     }
 
 </div>
+
+<script>
+    $(function () {
+        $('#checkorder').click(function () {
+            var ordercode = $('#ordercode').val();
+       
+            location.href = "/order/checkorder/" + ordercode;
+        });
+    });
+</script>
 
