@@ -38,7 +38,7 @@
                             <ul>
                                 @foreach (var item in ViewBag.RelatedArticles)
                                 {
-                                    <li><a href="@item.Link">@item.Title</a></li>
+                                    <li><a href="@Url.Content(item.Link)">@item.Title</a></li>
                                 }
                             </ul>
                         </div>
