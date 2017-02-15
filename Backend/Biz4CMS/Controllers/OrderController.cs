@@ -43,6 +43,13 @@ namespace Biz4CMS.Controllers
                 checkorder.status = status.OrderStatusId;
                 checkorder.message = Biz4CMS.Util.Common.GetOrderStatus(status.OrderStatusId);
             }
+            checkorder.liststatus = new string[5];
+            checkorder.liststatus[0] = "Đặt thành công";
+            checkorder.liststatus[1] = "Đã tiếp nhận";
+            checkorder.liststatus[2] = "Đang đóng gói";
+            checkorder.liststatus[3] = "Đang vận chuyển";
+            checkorder.liststatus[4] = "Giao thành công";
+
             return View(checkorder);
         }
 

@@ -9,5 +9,6 @@ namespace Biz4CMS.Models
     {
         public string message { get; set; }
         public int status { get; set; }
+        public string[] liststatus { get; set; }
     }
 }
