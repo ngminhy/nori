@@ -147,8 +147,10 @@
                                     <td>
                                         <input style="margin-top:12px;" data-name="@filler.Name" data-price="@filler.Price" type="checkbox" name="chkCakeFiller[]" value="@filler.CakeFillerId" />
                                     </td>
+                                    <td><img width="60" src="/ImageBrowser/CropImage?path=@filler.FillerImage.Replace("~/content/images/","")" class="" alt="@filler.FillerImage" /></td>
                                     <td style="vertical-align:middle">
                                         @filler.Name
+                                        
                                     </td>
                                     <td>
                                         @string.Format("{0:0,0}", filler.Price) VND
