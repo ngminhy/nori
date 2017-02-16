@@ -870,6 +870,7 @@
     <Content Include="Views\Shared\EditorTemplates\OrderStatus.cshtml" />
     <Content Include="Views\Order\CheckOrder.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\ImageUrl.cshtml" />
+    <Content Include="Views\Shared\_ProductDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />

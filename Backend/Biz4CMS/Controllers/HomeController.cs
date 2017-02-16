@@ -17,6 +17,24 @@ namespace Biz4CMS.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult ProductDetail(int id = 0)
+        {
+            //var product = new BriefArticleDto();
+          var product = db.Products.Where(a => a.ProductId == id).Select(a => new BriefProductDto
+            {
+                Name = a.Name, // or pc.ProdId
+                ProductId = a.ProductId,
+                MainImage = a.MainImage == null ? "" : a.MainImage,
+                Description = a.Description == null ? "" : a.Description,
+                Code = a.Code == null ? "" : a.Code,
+                BasePrice = a.BasePrice,
+                Price = a.Price,
+                PageURL = a.PageURL
+            }).FirstOrDefault();
+            return PartialView("_ProductDetail", product);
+        }
+
 
         public ActionResult About()
         {
