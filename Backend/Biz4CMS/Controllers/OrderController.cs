@@ -34,7 +34,12 @@ namespace Biz4CMS.Controllers
 
         public ActionResult CheckOrder(string id)
         {
-            var status = db.Orders.Where(p => p.OrderCode == id).FirstOrDefault();
+            var status = new Order();
+            if (!string.IsNullOrEmpty(id))
+            {
+                status = db.Orders.Where(p => p.OrderCode == id).FirstOrDefault();
+
+            }
             var checkorder = new CheckOrder();
             checkorder.status = 0;
             checkorder.message = "Đơn hàng không tồn tại";
