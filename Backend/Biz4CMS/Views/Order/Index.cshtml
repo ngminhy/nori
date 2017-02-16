@@ -59,8 +59,8 @@
                     <select class="form-control" name="bookingtime">
                         <option>Now</option>
                         @{ 
-                            var from = 7;
-                            var to = 20;
+                            var from = DateTime.Now.Hour + 1;
+                            var to = 21;
                             var tstep = 30;
 
                         }
