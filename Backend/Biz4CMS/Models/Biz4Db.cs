@@ -29,5 +29,6 @@ namespace Biz4CMS.Models
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<CakeFiller> CakeFillers { get; set; }
         public DbSet<Location> Location { get; set; }
+        public DbSet<ShippingLocation> ShippingLocation { get; set; }
     }
 }

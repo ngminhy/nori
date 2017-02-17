@@ -1,0 +1,153 @@
+﻿@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model Biz4CMS.Models.ShippingLocation
+@using (Html.BeginForm(ViewContext.RouteData.Values["Action"].ToString(), ViewContext.RouteData.Values["Controller"].ToString(),
+                                                                        new { ReturnUrl = ViewBag.ReturnUrl },
+                                                                        FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+
+        <legend>ShippingLocation</legend>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title , new { @class = "col-sm-3 control-label no-padding-right" })
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.Title, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Title)
+            </div>
+
+        </div>
+   
+     
+        <div class="form-group">
+            @Html.LabelFor(model => model.Polyobj, new { @class = "col-sm-3 control-label no-padding-right" })
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.Polyobj, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Polyobj)
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Polyobj, new { @class = "col-sm-3 control-label no-padding-right" })
+            <div class="col-sm-9">
+                <div id="map_canvas" style="width:500px; height:450px;"></div>
+                
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Active, new { @class = "col-sm-3 control-label no-padding-right" })
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.Active, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Active)
+            </div>
+
+        </div>
+
+        <div class="editor-label">
+            &nbsp;
+            @Html.HiddenFor(model => model.ShippingLocationId)
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right"></label>
+            <div class="col-sm-9">
+                <input type="submit" value="Create or Update" class="btn btn-info" />
+            </div>
+
+        </div>
+
+    </fieldset>
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+<script>
+      // This example requires the Drawing library. Include the libraries=drawing
+      // parameter when you first load the API. For example:
+
+     var map; // Global declaration of the map
+      var lat_longs = new Array();
+      var markers = new Array();
+      var drawingManager;
+      var boundaryPolygon;
+      function initialize() {
+
+          var boundary = $('#Polyobj').val();
+          var boundarydata = new Array();
+
+          var latlongs = boundary.split("),(");
+          console.log(latlongs)
+
+          for (var i = 0; i < latlongs.length; i++) {
+              latlong = latlongs[i].trim().split(",");
+              console.log(latlong[1].replace(")", ""))
+              console.log(latlong[0].replace("(", ""))
+              boundarydata[i] = new google.maps.LatLng(latlong[1].replace(")",""), latlong[0].replace("(",""));
+          }
+          console.log(boundarydata)
+          boundaryPolygon = new google.maps.Polygon({
+              paths: boundarydata,
+              strokeColor: "#0000FF",
+              strokeOpacity: 0.8,
+              strokeWeight: 2,
+              fillColor: 'Red',
+              fillOpacity: 0.4
+
+          });
+
+      var iw = new google.maps.InfoWindow(); // Global declaration of the infowindow
+
+      var myLatlng = new google.maps.LatLng(10.817605, 106.6345552);
+        var myOptions = {
+            zoom: 13,
+            center: myLatlng,
+            fullscreenControl:true,
+            mapTypeId: google.maps.MapTypeId.ROADMAP}
+        map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+        drawingManager = new google.maps.drawing.DrawingManager({
+        drawingMode: google.maps.drawing.OverlayType.POLYGON,
+          drawingControl: true,
+          drawingControlOptions: {
+            position: google.maps.ControlPosition.TOP_CENTER,
+          drawingModes: [google.maps.drawing.OverlayType.POLYGON]
+        },
+            polygonOptions: { editable: true }
+
+      });
+        drawingManager.setMap(map);
+        drawingManager.setValues(boundaryPolygon)
+    
+      google.maps.event.addListener(drawingManager, "overlaycomplete", function(event) {
+        var newShape = event.overlay;
+        newShape.type = event.type;
+      });
+
+            google.maps.event.addListener(drawingManager, "overlaycomplete", function(event){
+                overlayClickListener(event.overlay);
+                console.log(event.overlay.getPath().getArray())
+                $('#Polyobj').val(event.overlay.getPath().getArray());
+            });
+        }
+function overlayClickListener(overlay) {
+    google.maps.event.addListener(overlay, "mouseup", function(event){
+        $('#Polyobj').val(overlay.getPath().getArray());
+    });
+}
+
+$(function(){
+    $('#save').click(function(){
+        //iterate polygon vertices?
+    });
+});
+</script>
+
+<script src="http://maps.google.com/maps/api/js?key=AIzaSyDQ0pDRDKSyAO4lm10ttEXa2_uoZmWQzHc&sensor=false&libraries=drawing&callback=initialize&dummy=.js"></script>

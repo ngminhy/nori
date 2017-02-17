@@ -1,0 +1,40 @@
+﻿@using Biz4CMS.Models;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+    <a href="/bo/ShippingLocation/create" class="btn btn-info"><i class="ace-icon fa fa-plus bigger-110"></i>Add new item</a>
+</p>
+@(Html.Kendo().Grid<ShippingLocation>()
+    .Name("ShippingLocationGrid")
+    .Sortable()
+    //.Filterable()
+    .Pageable()
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Model(model => model.Id(p => p.ShippingLocationId))
+        .Read(read => read.Action("Get", "ShippingLocation"))
+        .Destroy(destroy => destroy.Action("Delete", "ShippingLocation"))
+    )
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.ShippingLocationId).Width(70);
+        columns.Bound(p => p.Title).Width(240);
+        columns.Bound(p => p.Active).Width(150);
+
+        columns.Bound(u => u.ShippingLocationId).Title("").ClientTemplate("<a class='k-button' href='" + Url.Action("edit", "ShippingLocation") + "/#=ShippingLocationId#'><span class='k-icon k-edit'></span>Edit</a>");
+        columns.Command(cmd =>
+        {
+
+            cmd.Destroy();
+        });
+
+
+    })
+
+
+)
+
+
