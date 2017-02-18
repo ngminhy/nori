@@ -99,7 +99,24 @@
         dataLayer.addListener('addfeature', savePolygon);
         dataLayer.addListener('removefeature', savePolygon);
         dataLayer.addListener('setgeometry', savePolygon);
+        map.data.addListener('click', function (event) {
+            console.log(event)
+            if (event.feature.getGeometry().getType() === 'Polygon') {
+                var polyPath = event.feature.getGeometry().getAt(0).getArray();
+                console.log(polyPath)
+                var poly = new google.maps.Polygon({
+                    paths: polyPath
+                });
+                var myLatlng = new google.maps.LatLng(10.817605, 106.6345552);
+                if (google.maps.geometry.poly.containsLocation(myLatlng, poly)) {
+                        alert('co')
+                    } else {
+                        aler('ko')
+                    }
+            };
+        });
     }
+ 
 
     function loadPolygons(map) {
         //var data = JSON.parse(localStorage.getItem('geoData'));

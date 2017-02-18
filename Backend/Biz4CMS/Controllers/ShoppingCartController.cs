@@ -74,7 +74,8 @@ namespace Biz4CMS.Controllers
         {
 
             // Return the view
-           
+            //clear session
+            HttpContext.Session["userinfo"] = null;
             return View();
         }
 

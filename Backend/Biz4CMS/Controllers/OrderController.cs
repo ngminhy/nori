@@ -17,6 +17,8 @@ namespace Biz4CMS.Controllers
         {
             var Locations = db.Location.OrderByDescending(p => p.LocationId).ToList();
             ViewBag.data = Locations;
+            var polyobj = db.ShippingLocation.Where(p => p.Active).OrderByDescending(p => p.ShippingLocationId).ToList();
+            ViewBag.polyobj = polyobj;
             return View();
         }
 

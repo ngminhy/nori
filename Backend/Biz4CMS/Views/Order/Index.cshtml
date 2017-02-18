@@ -12,7 +12,7 @@
                 <button class="btn btn-lg btn-primary " >Mua mang đi</button>
             </div>
             
-            <form method="post" action="/Order">
+            <form id="orderform" method="post" action="/Order">
                 <div class="form-group">
                    
                 </div>
@@ -79,36 +79,158 @@
                     <label><input type="checkbox"> Tôi chấp nhận <a href="#"></a>TERMS AND CONDITIONS</a></label>
                 </div>
                 <button type="submit" class="btn btn-primary btn-lg">Đăng ký</button>
-             
-            </form>
+                <button type="button" onclick="test();">test</button>
+</form>
         </div>
         @{Html.RenderAction("RightBox", "Home");}
     </div>
 </div>
 </section>
+
 <script>
-    function checkInput() {
-    }
-    $('#collapsible_address').hide();
+    $( "#orderform" ).submit(function( event ) {
+       
+        var address = $('input[name=address').val();
+        var ward = $('input[name=ward').val();
+        var dist = $('input[name=dist').val();
+        var city = $('input[name=city').val();
+        var longaddress = address + " "+ward+" "+dist+" "+city;
+        var url = 'http://maps.google.com/maps/api/geocode/json?address='+longaddress;
+        var myLatlng=null;
+        if(!carryout){
+            event.preventDefault();
+            $.get(url,function(res){
+                if(res.status =='OK'){
+                    var latlng = res.results[0].geometry.location;
+                    myLatlng = new google.maps.LatLng(latlng.lat,latlng.lng);
+                    console.log(myLatlng)
+                    console.log(myLatlng)
+                    var check =false;
+                    for(var i =0;i<arrPolyObj.length;i++){
+                        console.log(arrPolyObj[i])
+                        if(arrPolyObj[i].Contains(myLatlng) ){
+                            check=true;
+                            break;
+                        }else
+                        {
+                            check=false;
+                        }
+                    }
+                    if(!check){
+                        alert('Hiện tại không hỗ trợ giao hàng tại địa điểm này.')
+                        event.preventDefault();
+
+                    }else{
+                        $.post("/order",function(data){
+                            location.href = "/product";
+                        })
+                    }
+                }else{
+                    alert('Hiện tại không hỗ trợ giao hàng tại địa điểm này.')
+                    event.preventDefault();
+                }
+            });
+        }
+        
+    });
+  
+    var carryout = true;
+
+    $("div[id=collapsible_address]").hide();
     $('.btn-toggle').click(function () {
         if ($(this).find('.btn-primary').hasClass('active')) {
-            $('#collapsible_address').hide();
+            carryout=true;
+            $("div[id=collapsible_address]").hide();
             $('#collapsible').show();
         }
         else {
-           
-            $('#collapsible_address').show();
+            carryout = false;
+            $("div[id=collapsible_address]").show();
             $('#collapsible').hide();
         }
         $(this).find('.btn').toggleClass('active');
 
         if ($(this).find('.btn-primary').size() > 0) {
-           
+
             $(this).find('.btn').toggleClass('btn-primary');
         }
 
         $(this).find('.btn').toggleClass('btn-default');
-       
 
     });
+
+    var arrPolyObj;
+    var myLatlng;
+    var map;
+
+    function initMap(){
+        var listpoly = @Html.Raw(Json.Encode(@ViewBag.polyobj));
+
+        google.maps.Polygon.prototype.Contains = function (point) {
+            // ray casting alogrithm http://rosettacode.org/wiki/Ray-casting_algorithm
+            var crossings = 0,
+        path = this.getPath();
+
+            // for each edge
+            for (var i = 0; i < path.getLength() ; i++) {
+                var a = path.getAt(i),
+            j = i + 1;
+                if (j >= path.getLength()) {
+                    j = 0;
+                }
+                var b = path.getAt(j);
+                if (rayCrossesSegment(point, a, b)) {
+                    crossings++;
+                }
+            }
+
+            // odd number of crossings?
+            return (crossings % 2 == 1);
+
+            function rayCrossesSegment(point, a, b) {
+                var px = point.lng(),
+                py = point.lat(),
+                ax = a.lng(),
+                ay = a.lat(),
+                bx = b.lng(),
+                by = b.lat();
+                if (ay > by) {
+                    ax = b.lng();
+                    ay = b.lat();
+                    bx = a.lng();
+                    by = a.lat();
+                }
+                if (py == ay || py == by) py += 0.00000001;
+                if ((py > by || py < ay) || (px > Math.max(ax, bx))) return false;
+                if (px < Math.min(ax, bx)) return true;
+
+                var red = (ax != bx) ? ((by - ay) / (bx - ax)) : Infinity;
+                var blue = (ax != px) ? ((py - ay) / (px - ax)) : Infinity;
+                return (blue >= red);
+            }
+        };
+
+         arrPolyObj = [];
+        for(var i =0;i<listpoly.length;i++){
+            var arrFeatures = JSON.parse( listpoly[i].Polyobj).features;
+            for(var j=0;j<arrFeatures.length;j++){
+                var listCoordinates = arrFeatures[j].geometry.coordinates[0];
+                var points =[];
+                for(var k =0;k<listCoordinates.length;k++){
+                    points.push(new google.maps.LatLng(listCoordinates[k][1],listCoordinates[k][0]));
+                }
+
+                var poly = new google.maps.Polygon({
+                    path: points
+                });
+                poly.setMap(map)
+                arrPolyObj.push(poly);
+            }
+        }
+
+    }
+
+
 </script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQ0pDRDKSyAO4lm10ttEXa2_uoZmWQzHc&v=3.exp&sensor=false&callback=initMap"></script>
+
