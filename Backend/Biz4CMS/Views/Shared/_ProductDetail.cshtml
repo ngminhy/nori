@@ -1,8 +1,13 @@
 ﻿@model  Biz4CMS.ViewModels.BriefProductDto
 
 <div class="row">
-    <div class="col-md-12">
-      @Model.Name
+    <div class="col-md-7">
+     
     <img src="@Url.Content(Model.MainImage)" />
+    </div>
+    <div class="col-md-5">
+       <h3>@Model.Name</h3> 
+        <div>Giá :<b> @string.Format("{0:0,0}", Model.Price) VND</b></div>
+        <p>@Model.Description</p>
     </div>
 </div>

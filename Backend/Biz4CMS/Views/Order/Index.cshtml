@@ -79,7 +79,7 @@
                     <label><input type="checkbox"> Tôi chấp nhận <a href="#"></a>TERMS AND CONDITIONS</a></label>
                 </div>
                 <button type="submit" class="btn btn-primary btn-lg">Đăng ký</button>
-                <button type="button" onclick="test();">test</button>
+                <a href="javascript:test()" class="btn btn-primary btn-lg">test</a>
 </form>
         </div>
         @{Html.RenderAction("RightBox", "Home");}
@@ -88,6 +88,19 @@
 </section>
 
 <script>
+    function test(){
+        if(!carryout){
+
+        }
+        else{
+            savaData();
+        }
+
+    }
+    function savaData(){
+       
+
+    }
     $( "#orderform" ).submit(function( event ) {
        
         var address = $('input[name=address').val();
@@ -95,40 +108,64 @@
         var dist = $('input[name=dist').val();
         var city = $('input[name=city').val();
         var longaddress = address + " "+ward+" "+dist+" "+city;
+
         var url = 'http://maps.google.com/maps/api/geocode/json?address='+longaddress;
         var myLatlng=null;
         if(!carryout){
-            event.preventDefault();
-            $.get(url,function(res){
-                if(res.status =='OK'){
-                    var latlng = res.results[0].geometry.location;
-                    myLatlng = new google.maps.LatLng(latlng.lat,latlng.lng);
-                    console.log(myLatlng)
-                    console.log(myLatlng)
-                    var check =false;
-                    for(var i =0;i<arrPolyObj.length;i++){
-                        console.log(arrPolyObj[i])
-                        if(arrPolyObj[i].Contains(myLatlng) ){
-                            check=true;
-                            break;
-                        }else
-                        {
-                            check=false;
+            //event.preventDefault();
+            $.ajax({
+                url: url,
+                type: 'GET',
+                async: false,
+                success : function(res) {
+          
+                    if(res.status =='OK'){
+                        var latlng = res.results[0].geometry.location;
+                        myLatlng = new google.maps.LatLng(latlng.lat,latlng.lng);
+                        console.log(myLatlng)
+                        console.log(myLatlng)
+                        var check =false;
+                        for(var i =0;i<arrPolyObj.length;i++){
+                            console.log(arrPolyObj[i])
+                            if(arrPolyObj[i].Contains(myLatlng) ){
+                                check=true;
+                                break;
+                            }else
+                            {
+                                check=false;
+                            }
                         }
-                    }
-                    if(!check){
+                        if(!check){
+                            alert('Hiện tại không hỗ trợ giao hàng tại địa điểm này.')
+                            event.preventDefault();
+
+                        }else{         
+                            var form =  $("#orderform");
+                            $.ajax({
+                                url: form.action,
+                                type: form.method,
+                                data: $(form).serialize(),
+                                then: function(response) {
+                                    location.href = "/product";
+                                }            
+                            });
+                        }
+                    }else{
                         alert('Hiện tại không hỗ trợ giao hàng tại địa điểm này.')
                         event.preventDefault();
-
-                    }else{
-                        $.post("/order",function(data){
-                            location.href = "/product";
-                        })
                     }
-                }else{
-                    alert('Hiện tại không hỗ trợ giao hàng tại địa điểm này.')
-                    event.preventDefault();
-                }
+                }});
+
+        }
+        else{
+            var form =  $("#orderform");
+            $.ajax({
+                url: form.action,
+                type: form.method,
+                data: $(form).serialize(),
+                then: function(response) {
+                    location.href = "/product";
+                }            
             });
         }
         

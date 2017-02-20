@@ -25,10 +25,17 @@ namespace Biz4CMS.Controllers
         //POST: /Order/
 
         [HttpPost]
-        public ActionResult Index(FormCollection values)
+        public ActionResult Index(string name, string email, string phone,string address,string bookingtime,string branchname,string note,string ward,string dist,string city)
         {
             var userinfo = new UserInfo();
-            TryUpdateModel(userinfo);
+            userinfo.Address = address;
+            userinfo.BookingTime = bookingtime;
+            userinfo.BranchName = branchname;
+            userinfo.Email = email;
+            userinfo.Phone = phone;
+            userinfo.Name = name;
+            userinfo.Note= note;
+            //TryUpdateModel(userinfo);
             HttpContext.Session["userinfo"] = userinfo;
             return RedirectToAction("Index", "product");
         }
