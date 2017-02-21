@@ -19119,4 +19119,8 @@ ul {
         background-color: #ff6d00;
         border-color: #ff6d00;
 }
+.remember-me{
+    float:left;
+    margin-right:5px;
+}
 
