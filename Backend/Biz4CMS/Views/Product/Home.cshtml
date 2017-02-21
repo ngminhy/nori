@@ -32,8 +32,10 @@
             <div class="col-md-4 col-sm-push-8" data-sticky_column="">
                 <div class="row">
                     <h3>Thông tin giỏ hàng</h3>
-
-                    <div id="update-message">
+                
+                    <div class="alert alert-success" style="display:none" id="success-alert-cart">
+                        <strong>Thông báo! </strong>
+                        <span id="alert-content-cart"></span>
                     </div>
                     <table width="100%">
                         <tr>
@@ -93,7 +95,7 @@
                         <tr>
                             <td colspan="4">
                                 <button type="submit" class="btn btn-success" id="submit">
-                                    Đăng ký mua hàng
+                                    Thanh toán
                                 </button>
                             </td>
                            
@@ -135,7 +137,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Choose Your Dressing  <b id="maxchoise">Max: </b></h4>
+                <h4 class="modal-title">Các loại nhân tự chọn  <b id="maxchoise">Tối đa: </b></h4>
+                <div class="alert alert-success" style="display:none" id="success-alert-cake">
+                    <strong>Thông báo! </strong>
+                    <span id="alert-content-cake"></span>
+                </div>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -191,6 +197,13 @@
     </div>
 </div>
 <script>
+    function showAlert(divid,idcontent,content) {
+        $("#" + divid).alert();
+        $('#' + idcontent).text(content);
+        $("#" + divid).fadeTo(5000, 500).slideUp(800, function () {
+            $("#" + divid).slideUp(800);
+        });
+    }
     function showDetail(productid) {
         $.get("/home/ProductDetail/" + productid, function (data) {
             console.log(data);
@@ -215,9 +228,10 @@
                     function (data) {
                         // Successful requests get here
                         // Update the page elements
-
-                        $('#cart-total').text(data.CartTotal);
-                        $('#update-message').text(data.Message);
+                        var total = data.CartTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                        $('#cart-total').text(total);
+                        //$('#update-message').text(data.Message);
+                        showAlert("success-alert-cart", "alert-content-cart", data.Message);
                         $('#cart-status').text(data.CartCount);
                     });
             }
@@ -225,12 +239,17 @@
 
         $('#submit').click(function () {
             var total = $('#carttotal').val();
-            $.post("/ShoppingCart", { "total": total }, function (data) {
-                console.log(data);
-                if (data.id!='') {
-                    location.href = "/shoppingcart/complete/" + data.id;
-                }
-            });
+            if (total == "0" || total == undefined) {
+                showAlert("success-alert-cart", "alert-content-cart", "Chọn sản phẩm trước khi thanh toán.");
+          
+            } else {
+                $.post("/ShoppingCart", { "total": total }, function (data) {
+                    if (data.id != '') {
+                        location.href = "/shoppingcart/complete/" + data.id;
+                    }
+                });
+            }
+         
             });
 
         $(".RemoveLink").click(function () {
@@ -248,7 +267,8 @@
                             $('#item-count-' + data.DeleteId).text(data.ItemCount);
                         }
                         $('#cart-total').text(data.CartTotal);
-                        $('#update-message').text(data.Message);
+                        //$('#update-message').text(data.Message);
+                        showAlert("success-alert-cart", "alert-content-cart", data.Message);
                         $('#cart-status').text(data.CartCount);
                     });
             }
@@ -257,13 +277,13 @@
         var MaxFiller = $("#MaxFiller").val();
         var ProductId = $("#ProductId").val();
         var prouctPrice = $("#ProductPrice").val();
-        $("#maxchoise").text("Max: " + MaxFiller);
+        $("#maxchoise").text("Tối đa: " + MaxFiller);
         function updateCounter(chk) {
             var len = $("input[name='chkCakeFiller[]']:checked").length;
 
             if (len > MaxFiller) {
                 chk.checked = false;
-                alert("You had max choise!");
+                showAlert("success-alert-cake", "alert-content-cake", 'Bạn đã chọn tối đa số nhân quy định!');
             }
         }
 

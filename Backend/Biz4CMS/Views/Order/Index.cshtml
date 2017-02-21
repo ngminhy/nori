@@ -40,11 +40,36 @@
                 </div>
                 <div class="form-group" id="collapsible_address">
                     <label for="phuong">Quận:</label>
-                    <input type="text" class="form-control" name="dist">
+                    <select class="form-control" name="dist">
+                        <option>Quận 1</option>
+                        <option>Quận 2</option>
+                        <option>Quận 3</option>
+                        <option>Quận 4</option>
+                        <option>Quận 5</option>
+                        <option>Quận 6</option>
+                        <option>Quận 7</option>
+                        <option>Quận 8</option>
+                        <option>Quận 9</option>
+                        <option>Quận 10</option>
+                        <option>Quận 11</option>
+                        <option>Quận 12</option>
+                        <option>Quận Thủ Đức</option>
+                        <option>Quận Gò Vấp</option>
+                        <option>Quận Bình Thạnh</option>
+                        <option>Quận Tân Bình</option>
+                        <option>Quận Tân Phú</option>
+                        <option>Quận Phú Nhuận</option>                  
+                        <option>Quận Bình Tân</option>
+                        <option>Huyện Củ Chi</option>
+                        <option>Huyện Hóc Môn</option>
+                        <option>Huyện Bình Chánh</option>
+                        <option>Huyện Nhà Bè</option>
+                        <option>Huyện Cần Giờ</option>
+                    </select>
                 </div>
                 <div class="form-group" id="collapsible_address">
                     <label for="phuong">Thành phố:</label>
-                    <input type="text" class="form-control" name="city">
+                    <input type="text" class="form-control" name="city" value="Hồ Chí Minh">
                 </div>
                 <div class="form-group" id="collapsible">
                     <label for="branch">Cửa hàng Nori:</label>
@@ -73,7 +98,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="note">Note:</label>
+                    <label for="note">Ghi chú:</label>
                     <textarea class="form-control" rows="2" name="note"></textarea>
                 </div>
                 <div class="checkbox">
@@ -110,7 +135,7 @@
        
         var address = $('input[name=address').val();
         var ward = $('input[name=ward').val();
-        var dist = $('input[name=dist').val();
+        var dist = $('select[name=dist').val();
         var city = $('input[name=city').val();
         var longaddress = address + " "+ward+" "+dist+" "+city;
 

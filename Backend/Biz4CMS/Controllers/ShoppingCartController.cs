@@ -180,7 +180,7 @@ namespace Biz4CMS.Controllers
             var results = new ShoppingCartRemove
             {
                 Message = Server.HtmlEncode(ProductName) +
-                    " has been removed from your shopping cart.",
+                    " đã xóa khỏi giỏ hàng.",
                 CartTotal = cart.GetTotal(),
                 CartCount = cart.GetCount(),
                 ItemCount = itemCount,
@@ -203,7 +203,7 @@ namespace Biz4CMS.Controllers
             // Display the confirmation message
             var results = new ShoppingCartRemove
             {
-                Message ="Updated",
+                Message ="Đã thay đổi.",
                 CartTotal = cart.GetTotal(),
                 CartCount = cart.GetCount(),
             };

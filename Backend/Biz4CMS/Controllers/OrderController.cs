@@ -31,7 +31,7 @@ namespace Biz4CMS.Controllers
             var  longaddress = "";
             if (!string.IsNullOrEmpty(address))
             {
-                longaddress = address + " Phường " + ward + " Quận " + dist + " Thành Phố " + city;
+                longaddress = address + " Phường " + ward + " " + dist + " Thành Phố " + city;
                 branchname = "";
 
 
