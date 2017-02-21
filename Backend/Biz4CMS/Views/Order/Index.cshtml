@@ -2,6 +2,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutNori.cshtml";
 }
+
 <section class="main-content">
 <div class="container">
     <div class="row" style="position: relative; padding-top:10px; padding-bottom:10px;">
@@ -9,7 +10,7 @@
           
             <div class="btn-group btn-toggle">
                 <button class="btn btn-lg btn-default">Giao hàng</button>
-                <button class="btn btn-lg btn-primary " >Mua mang đi</button>
+                <button class="btn btn-lg btn-nori ">Mua mang đi</button>
             </div>
             
             <form id="orderform" method="post" action="/Order">
@@ -78,7 +79,12 @@
                 <div class="checkbox">
                     <label><input type="checkbox"> Tôi chấp nhận <a href="#"></a>TERMS AND CONDITIONS</a></label>
                 </div>
-                <button type="submit" class="btn btn-primary btn-lg">Đăng ký</button>
+                <button type="submit" class="btn btn-lg btn-nori">Đăng ký</button>
+                <div class="alert alert-success" style="display:none" id="success-alert">
+                    
+                    <strong>Thông báo! </strong>
+                    <span id="alert-content"></span>
+                </div>
 </form>
         </div>
         @{Html.RenderAction("RightBox", "Home");}
@@ -135,7 +141,8 @@
                             }
                         }
                         if(!check){
-                            alert('Hiện tại không hỗ trợ giao hàng tại địa điểm này.')
+                            showAlert('Hiện tại không hỗ trợ giao hàng tại địa điểm này.');
+
                             event.preventDefault();
 
                         }else{         
@@ -150,7 +157,7 @@
                             });
                         }
                     }else{
-                        alert('Hiện tại không hỗ trợ giao hàng tại địa điểm này.')
+                        showAlert('Hiện tại không hỗ trợ giao hàng tại địa điểm này.');
                         event.preventDefault();
                     }
                 }});
@@ -172,6 +179,13 @@
   
     var carryout = true;
 
+    function showAlert(content){
+        $("#success-alert").alert();
+        $('#alert-content').text(content);
+        $("#success-alert").fadeTo(5000, 500).slideUp(800, function(){
+            $("#success-alert").slideUp(800);
+        });   
+    }
     $("div[id=collapsible_address]").hide();
     $('.btn-toggle').click(function () {
         if ($(this).find('.btn-primary').hasClass('active')) {
@@ -186,9 +200,9 @@
         }
         $(this).find('.btn').toggleClass('active');
 
-        if ($(this).find('.btn-primary').size() > 0) {
+        if ($(this).find('.btn-nori').size() > 0) {
 
-            $(this).find('.btn').toggleClass('btn-primary');
+            $(this).find('.btn').toggleClass('btn-nori');
         }
 
         $(this).find('.btn').toggleClass('btn-default');
