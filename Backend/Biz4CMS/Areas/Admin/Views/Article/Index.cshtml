@@ -9,7 +9,8 @@
 @(Html.Kendo().Grid<Article>()
     .Name("aricleGrid")
     .Sortable()
-    //.Filterable()
+    .Sortable()
+    .Filterable()
     .Pageable()
     .DataSource(dataSource => dataSource
         .Ajax()
