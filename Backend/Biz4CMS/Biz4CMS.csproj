@@ -1487,6 +1487,17 @@
     <Content Include="Content\Images\Blogs\blog-4.jpg" />
     <Content Include="Content\Images\Blogs\Chrysanthemum.jpg" />
     <Content Include="Content\Images\Blogs\o_1ea12ff1dabae4cf-1.jpg" />
+    <Content Include="Content\Images\Cake\avocado.png" />
+    <Content Include="Content\Images\Cake\capsium.png" />
+    <Content Include="Content\Images\Cake\carrot.png" />
+    <Content Include="Content\Images\Cake\cheese.png" />
+    <Content Include="Content\Images\Cake\crab stick.png" />
+    <Content Include="Content\Images\Cake\cucumber.png" />
+    <Content Include="Content\Images\Cake\egg.png" />
+    <Content Include="Content\Images\Cake\mango.png" />
+    <Content Include="Content\Images\Cake\octopus.png" />
+    <Content Include="Content\Images\Cake\salmon.png" />
+    <Content Include="Content\Images\Cake\strawberry.png" />
     <Content Include="Content\Images\Products\AlbaMineralWater28ccb0.jpg" />
     <Content Include="Content\Images\Products\AlbaSparklingMineralWater2912e0.jpg" />
     <Content Include="Content\Images\Products\Coke6046e2.jpg" />
@@ -1518,6 +1529,9 @@
     <Content Include="Content\Images\Products\UnagiSpecial6fe9a8.jpg" />
     <Content Include="Content\Images\Products\YeosChrysanthemumTeab0149f.jpg" />
     <Content Include="Content\Images\Products\Yeossoybean8d212f.jpg" />
+    <Content Include="Content\Images\Quicklinks\collection_1.jpg" />
+    <Content Include="Content\Images\Quicklinks\collection_2.jpg" />
+    <Content Include="Content\Images\Quicklinks\collection_3.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
@@ -1548,7 +1562,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Content\Images\Quicklinks\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
