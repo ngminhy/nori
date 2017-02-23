@@ -47,7 +47,7 @@ namespace Biz4CMS.Controllers
                 FillerImage = p.FillerImage,
                 Name = p.Name,
                 Price = p.Price
-            }).ToList()
+            }).ToList().OrderBy(p=>p.Name)
                 .Select(x => new CakeFiller()
                 {
                     CakeFillerId = x.CakeFillerId,
