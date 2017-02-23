@@ -200,7 +200,7 @@
     function showAlert(divid,idcontent,content) {
         $("#" + divid).alert();
         $('#' + idcontent).text(content);
-        $("#" + divid).fadeTo(5000, 500).slideUp(800, function () {
+        $("#" + divid).fadeTo(10000, 500).slideUp(800, function () {
             $("#" + divid).slideUp(800);
         });
     }
