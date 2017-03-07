@@ -1461,7 +1461,8 @@ a {
 }
 
 a:hover,a:focus {
-  color: #2795b6;
+  color: #ff6d00;
+  text-decoration: underline;
 }
 
 a img {
@@ -19120,4 +19121,12 @@ ul {
 .relatedarticle ul {
     color: #ff6d00 !important;
     padding-left: 12px !important;
+}
+.product_box h3 {
+  padding-top: 25px !important;
+  border-bottom: solid 1px #dddddd;
+}
+.productModel {
+  background: none;
+  border: 0px;
 }
