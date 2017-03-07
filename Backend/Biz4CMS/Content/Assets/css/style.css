@@ -116,7 +116,6 @@ blockquote
 #footer-outer .widget h4
 {
     color: #777777;
-    font-family: 'OpenSansbold';
     font-size: 12px;
     letter-spacing: 2px;
     margin-bottom: 20px;
@@ -321,9 +320,9 @@ a.textlink
 .productitem
 {
     min-height:360px;
-    }    
+}    
     
 .margin-top-10
 {
     margin-top:10px;
-    }    
+}

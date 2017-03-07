@@ -25,6 +25,7 @@ html {
 
 body {
   margin: 0;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
 }
 
 a:focus {
@@ -1573,7 +1574,6 @@ small {
 }
 
 code {
-  font-family: Consolas,"Liberation Mono",Courier,monospace;
   font-weight: bold;
   color: #7f0a0c;
 }
@@ -5175,7 +5175,6 @@ form.custom .custom.disabled {
   border-style: solid;
   border-width: 1px;
   margin: 0;
-  font-family: "Consolas","Menlo","Courier",monospace;
   font-size: 0.875em;
   padding: 0.125em 0.25em 0;
   -webkit-border-radius: 3px;
@@ -7858,7 +7857,7 @@ body {
 }
 
 body,h2,h3,h4,h5,h6 {
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   font-weight: normal;
 }
 
@@ -8100,7 +8099,7 @@ form.custom select.custom {
 #title-area h1 {
   margin: 20px 0 -10px 0;
   color: #ff6d00;
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   font-weight: normal;
   font-size: 46px;
   line-height: 46px;
@@ -8285,7 +8284,7 @@ form.custom select.custom {
 }
 
 #primary-menu ul.menu li {
-  font-family: "UTM-Avo", arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   font-weight: normal;
 }
 
@@ -8527,7 +8526,7 @@ form.custom select.custom {
 
 #delivery-inspiration-list h2 {
   color: #ff6d00;
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   border-bottom: 2px solid #dddddd;
 }
 
@@ -8941,7 +8940,7 @@ div.messages.error a,div.messages.warning a {
 }
 
 #food-page-grid .item-details h3 {
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   font-size: 30px;
   line-height: 30px;
   color: white;
@@ -8951,7 +8950,7 @@ div.messages.error a,div.messages.warning a {
 }
 
 #food-page-grid .item-details a {
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   color: white;
   padding: 0;
   margin: 0;
@@ -10180,7 +10179,7 @@ div.messages.error a,div.messages.warning a {
   font-weight: normal;
   font-size: 36px;
   line-height: 36px;
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   text-align: left;
   border-bottom: 1px solid #90ad96;
   padding: 10px 0;
@@ -10543,7 +10542,7 @@ div.messages.error a,div.messages.warning a {
   color: #ff6d00;
   text-align: left;
   font-size: 24px;
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   font-weight: normal;
   margin: 0;
   line-height: 18px;
@@ -10620,7 +10619,7 @@ div.messages.error a,div.messages.warning a {
 .search-results-heading {
   font-size: 24px;
   color: white;
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   border-bottom: 1px solid #90ad96;
   font-weight: normal;
   padding: 15px 0;
@@ -10699,7 +10698,7 @@ div.messages.error a,div.messages.warning a {
 .careers-case-wrap h3 {
   font-size: 30px !important;
   font-weight: normal !important;
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
 }
 
 .careers-case-wrap .close-button {
@@ -11384,7 +11383,7 @@ div.messages.error a,div.messages.warning a {
   padding: 20px 0;
   border-bottom: 5px solid #e0e0e0;
   margin-bottom: 20px;
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   color: #ff6d00;
 }
 
@@ -11392,7 +11391,7 @@ div.messages.error a,div.messages.warning a {
   font-size: 32px;
   padding: 0px 0;
   margin-bottom: 0px;
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   color: #ff6d00;
   display: inline-block;
 }
@@ -11431,7 +11430,7 @@ div.messages.error a,div.messages.warning a {
 }
 
 .small-sidebar h3 {
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   border-bottom: 1px solid #ff6d00;
   color: #ff6d00;
   font-size: 32px;
@@ -13311,7 +13310,7 @@ body .node-food .food-details .description {
 .banner-heading h1 {
   color: white;
   font-size: 60px;
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   font-weight: normal;
 }
 
@@ -13592,7 +13591,7 @@ body .node-food .food-details .description {
 
 .page-checkout-complete h3 {
   margin-top: 15px;
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   color: #ff6d00;
 }
 
@@ -13690,7 +13689,7 @@ body .node-food .food-details .description {
 .delivery-slider .slide h2 {
   font-size: 35px;
   line-height: 40px;
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   color: #ff6d00;
 }
 
@@ -13741,7 +13740,7 @@ body .node-food .food-details .description {
 }
 
 .waw-slider .slide h2 {
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   font-weight: normal;
   color: #ff6d00;
   font-size: 60px;
@@ -13911,7 +13910,7 @@ body .node-food .food-details .description {
 }
 
 .top-banner-text {
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
 }
 
 .cta-button {
@@ -13938,7 +13937,7 @@ body .node-food .food-details .description {
 }
 
 .page-careers #main-wrapper h2 {
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   margin-top: 20px;
   margin-bottom: 0;
 }
@@ -13973,7 +13972,7 @@ body .node-food .food-details .description {
 
 #careers-slider .row h2 {
   font-size: 48px;
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   margin-bottom: 0;
   color: #ff6d00;
 }
@@ -14153,7 +14152,7 @@ body .node-food .food-details .description {
 }
 
 .node-home-page-slide h2 {
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   font-size: 70px;
   font-weight: bold;
   line-height: 64px;
@@ -14172,7 +14171,7 @@ body .node-food .food-details .description {
   font-size: 25px;
   line-height: 25px;
   color: #ff6d00;
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
 }
 
 .node-careers-slide {
@@ -14184,7 +14183,7 @@ body .node-food .food-details .description {
 }
 
 .node-careers-slide h2 {
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   font-size: 64px;
   font-weight: normal;
   line-height: 64px;
@@ -14237,7 +14236,7 @@ body .node-food .food-details .description {
   padding: 5px 20px;
   font-size: 34px;
   font-weight: normal;
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   margin: 0;
   float: left;
 }
@@ -14277,7 +14276,7 @@ body .node-food .food-details .description {
 .login-page h2 {
   color: #ff6d00;
   display: block;
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   margin-bottom: 10px !important;
   padding: 0;
 }
@@ -14326,7 +14325,6 @@ body .node-food .food-details .description {
 
 #footer-links-menu .menu li a {
   color: #ff6d00;
-  font-size: 13px;
   position: relative;
   padding: 0 5px 0 0;
 }
@@ -14364,7 +14362,6 @@ body .node-food .food-details .description {
   margin-top: 10px;
   float: left;
   width: 100%;
-  font-size: 13px;
 }
 
 .pane-footer-copyright .panel-separator {
@@ -14727,7 +14724,7 @@ body .node-food .food-details .description {
   text-align: center;
   font-size: 30px;
   font-weight: normal;
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   color: #ff6d00;
 }
 
@@ -14758,7 +14755,7 @@ body .node-food .food-details .description {
   font-size: 46px;
   margin-bottom: 25px;
   margin-top: 10px;
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
 }
 
 #sus-slider .s-header p {
@@ -14783,7 +14780,7 @@ body .node-food .food-details .description {
 
 #sus-slider .s-green2 .gr-wrapper h3 {
   font-size: 28px;
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   text-align: left;
   color: white;
   line-height: 24px;
@@ -14809,7 +14806,7 @@ body .node-food .food-details .description {
 
 #sus-slider .s-green .gr-wrapper h3 {
   font-size: 28px;
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   text-align: left;
   color: white;
   line-height: 24px;
@@ -14899,7 +14896,7 @@ body .node-food .food-details .description {
 
 #sus-slider .s-red .gr-wrapper h3 {
   font-size: 28px;
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   text-align: left;
   color: white;
   line-height: 24px;
@@ -14925,7 +14922,7 @@ body .node-food .food-details .description {
 
 #sus-slider .s-yellow .gr-wrapper h3 {
   font-size: 28px;
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   text-align: left;
   color: white;
   line-height: 24px;
@@ -15338,7 +15335,7 @@ div.node-faq .field-name-field-answer {
   font-size: 28px;
   color: #ff6d00;
   margin-top: 5px;
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
 }
 
 .contact-item .title a {
@@ -15856,7 +15853,7 @@ div.node-faq .field-name-field-answer {
 }
 
 .view-list-jobs h2 {
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   color: #ff6d00;
 }
 
@@ -15887,7 +15884,7 @@ div.node-faq .field-name-field-answer {
   text-align: center;
   padding: 93px 30px;
   font-size: 55px;
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   -webkit-transition: all 0.2s ease;
   -moz-transition: all 0.2s ease;
   -o-transition: all 0.2s ease;
@@ -15913,7 +15910,7 @@ div.node-faq .field-name-field-answer {
 }
 
 .node-webform h2 {
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   font-weight: normal;
   margin-top: 20px;
 }
@@ -16122,7 +16119,7 @@ textarea {
 }
 
 .footer-bar .wrapper .item .item-inner .item-header h2 {
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
 }
 
 .footer-bar {
@@ -16376,12 +16373,12 @@ textarea {
 }
 
 .footer-bar .wrapper .item.active .item-header h2 {
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
 }
 
 .footer-bar .wrapper .item.active .item-header h2 a {
   color: white;
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
 }
 
 .footer-bar .wrapper .item.active .item-header img {
@@ -17025,7 +17022,6 @@ textarea {
 }
 
 #footer-social {
-  font-size: 13px;
   list-style: none;
   text-align: center;
   margin: 0;
@@ -17655,7 +17651,7 @@ textarea {
 
   #top-category-list .pane-content .food-menu li a {
     padding: 16px 10px;
-    font-family: arial,helvetica,sans-serif;
+    font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
     font-size: 24px;
     text-align: left;
   }
@@ -18809,7 +18805,7 @@ form.custom .custom.dropdown .current {
 body {
   margin: 0;
   padding: 0;    
-  font-family: arial,helvetica,sans-serif;
+  font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   url('')
     font-weight: normal;
 }
@@ -18843,7 +18839,7 @@ body {
     -moz-transition: all 0.2s ease;
     -o-transition: all 0.2s ease;
     transition: all 0.2s ease;
-    font-family: arial,helvetica,sans-serif;
+    font-family: "UTM-Avo","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
     font-weight: normal;
 }
 .header .menu ul li a:after {
@@ -18976,7 +18972,6 @@ body {
     line-height: 34px;
 }
 .entry-content span, .entry-content p, .entry-content input {
-    font-family: 'Merriweather', serif;
     line-height: 26px;
 }
 a.more-link {
@@ -19055,7 +19050,6 @@ a.more-link {
     text-transform: uppercase;
 }
 .about-me-content span, .about-me-content p, .about-me-content input {
-    font-family: 'Merriweather', serif;
     line-height: 26px;
 }
 .decoration a {
@@ -19123,4 +19117,7 @@ ul {
     float:left;
     margin-right:5px;
 }
-
+.relatedarticle ul {
+    color: #ff6d00 !important;
+    padding-left: 12px !important;
+}
