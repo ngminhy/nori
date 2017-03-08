@@ -9,8 +9,8 @@
         <div class="col-md-8">
           
             <div class="btn-group btn-toggle">
-                <button class="btn btn-lg btn-default">Giao hàng</button>
-                <button class="btn btn-lg btn-nori ">Mua mang đi</button>
+                <button class="btn btn-lg btn-default"><b>Giao hàng tận nơi</b> <br/> (Miễn phí với đơn hàng > 200K)</button>
+                <button class="btn btn-lg btn-nori "><b>Mua mang về</b> <br/>(Nhận hàng tại cửa hàng)</button>
             </div>
             
             <form id="orderform" method="post" action="/Order">
@@ -102,7 +102,7 @@
                     <textarea class="form-control" rows="2" name="note"></textarea>
                 </div>
                 <div class="checkbox">
-                    <label><input type="checkbox"> Tôi chấp nhận <a href="#"></a>TERMS AND CONDITIONS</a></label>
+                    <label><input type="checkbox"> Tôi chấp nhận <a href="/a/dieu-khoan-mua-hang">các điều khoản mua hàng</a></label>
                 </div>
                 <button type="submit" class="btn btn-lg btn-nori">Đăng ký</button>
                 <div class="alert alert-success" style="display:none" id="success-alert">
@@ -182,7 +182,7 @@
                             });
                         }
                     }else{
-                        showAlert('Hiện tại Nori Express chưa hỗ trợ giao hàng tại địa điểm này. Xin quý khách chọn điểm giao hàng khác.');
+                        showAlert('Hiện tại Nori Express chưa hỗ trợ giao hàng tại địa điểm này. Xin quý khách chọn điểm giao hàng khác hoặc nhận thức ăn tại nhà hàng của Nori Express.');
                         event.preventDefault();
                     }
                 }});
