@@ -19130,3 +19130,9 @@ ul {
   background: none;
   border: 0px;
 }
+.modal-header .close {
+  margin-bottom: 0px !important;
+}
+#myProductDetail h3{
+  margin-top: 0px;
+}
