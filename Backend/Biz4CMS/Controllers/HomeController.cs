@@ -224,21 +224,21 @@ namespace Biz4CMS.Controllers
             var videos = db.Videos.OrderByDescending(p => p.VideoId).ToList();
             return View(videos);
         }
-        private bool SendEmailToManager(string strBody)
+        private bool SendEmailToManager(string strBody, string subject = "Thông tin liên hệ - noriexpress.com")
         {
 
 
             System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
-            message.To.Add("sonquynhshop@gmail.com"); //recipient
-            //message.To.Add("syduypham@yahoo.com.vn");
-            message.Subject = "Thông tin lien he - sqshops.com";
-            message.From = new System.Net.Mail.MailAddress("sonquynhshop@gmail.com"); //from email
+            message.To.Add("trucchi@noriexpress.com"); //recipient
+            
+            message.Subject = subject ;
+            message.From = new System.Net.Mail.MailAddress("noriexpress.sg@gmail.com"); //from email
             message.Body = strBody;
             message.IsBodyHtml = true;
             System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.gmail.com");// you need an smtp server address to send emails
             smtp.UseDefaultCredentials = false;
             smtp.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
-            smtp.Credentials = new System.Net.NetworkCredential("sonquynhshop@gmail.com", "sq!23456");
+            smtp.Credentials = new System.Net.NetworkCredential("noriexpress.sg@gmail.com", "nr123$65");
 
             smtp.Port = 587;
             smtp.EnableSsl = true;

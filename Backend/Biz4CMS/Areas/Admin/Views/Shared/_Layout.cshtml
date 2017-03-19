@@ -252,13 +252,13 @@
                     </a>
                     <b class="arrow"></b>
                 </li>
-                @*<li class="@(ViewContext.RouteData.Values["Controller"].ToString() + ViewContext.RouteData.Values["Action"].ToString() == "MessageIndex" ? "active" : "")">
+                <li class="@(ViewContext.RouteData.Values["Controller"].ToString() + ViewContext.RouteData.Values["Action"].ToString() == "MessageIndex" ? "active" : "")">
                     <a href="@Url.Action("Index", "Message")">
-                        <i class="menu-icon fa fa-rss"></i>
+                        <i class="menu-icon fa fa-comments"></i>
                         <span class="menu-text"> Feedback </span>
                     </a>
                     <b class="arrow"></b>
-                </li>*@
+                </li>
             </ul><!-- /.nav-list -->
             <!-- #section:basics/sidebar.layout.minimize -->
             <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
