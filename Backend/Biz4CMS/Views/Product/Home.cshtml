@@ -244,11 +244,12 @@
                 showAlert("success-alert-cart", "alert-content-cart", "Chọn sản phẩm trước khi thanh toán.");
           
             } else {
-                $.post("/ShoppingCart", { "total": total }, function (data) {
-                    if (data.id != '') {
-                        location.href = "/shoppingcart/complete/" + data.id;
-                    }
-                });
+                //$.post("/ShoppingCart", { "total": total }, function (data) {
+                //    if (data.id != '') {
+                //        location.href = "/shoppingcart/complete/" + data.id;
+                //    }
+                //});
+                location.href = "/order";
             }
          
             });

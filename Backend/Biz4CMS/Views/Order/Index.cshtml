@@ -13,7 +13,7 @@
                 <button class="btn btn-lg btn-nori "><b>Mua mang về</b> <br/>(Nhận hàng tại cửa hàng)</button>
             </div>
             
-            <form id="orderform" method="post" action="/Order">
+            <form id="orderform" method="post" action="">
                 <div class="form-group">
                    
                 </div>
@@ -143,7 +143,7 @@
         var url = 'http://maps.google.com/maps/api/geocode/json?address='+longaddress;
         var myLatlng=null;
         if(!carryout){
-            //event.preventDefault();
+            event.preventDefault();
             $.ajax({
                 url: url,
                 type: 'GET',
@@ -173,13 +173,10 @@
 
                         }else{         
                             var form =  $("#orderform");
-                            $.ajax({
-                                url: form.action,
-                                type: form.method,
-                                data: $(form).serialize(),
-                                then: function(response) {
-                                    location.href = "/product";
-                                }            
+                            $.post("/order", $(form).serialize(), function (data) {
+                                if (data.id != '') {
+                                    location.href = "/shoppingcart/complete/" + data.id;
+                                }
                             });
                         }
                     }else{
@@ -190,14 +187,12 @@
 
         }
         else{
+            event.preventDefault();
             var form =  $("#orderform");
-            $.ajax({
-                url: form.action,
-                type: form.method,
-                data: $(form).serialize(),
-                then: function(response) {
-                    location.href = "/product";
-                }            
+            $.post("/order", $(form).serialize(), function (data) {
+                if (data.id != '') {
+                    location.href = "/shoppingcart/complete/" + data.id;
+                }
             });
         }
         

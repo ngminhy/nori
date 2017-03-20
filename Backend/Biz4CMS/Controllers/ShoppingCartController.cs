@@ -19,7 +19,7 @@ namespace Biz4CMS.Controllers
         {
             if (HttpContext.Session["userinfo"] == null)
             {
-                return RedirectToAction("Index", "Order");
+                return RedirectToAction("Index", "product");
             }
             var cart = ShoppingCart.GetCart(this.HttpContext);
 
