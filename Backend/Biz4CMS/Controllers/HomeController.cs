@@ -163,7 +163,7 @@ namespace Biz4CMS.Controllers
 
         public ActionResult TopProduct()
         {
-            var topproducts = db.Products.Where(p => p.Active).OrderByDescending(p => p.ProductId).Take(12).Select(model => new BriefProductDto()
+            var topproducts = db.Products.Where(p => 1==1 ).OrderByDescending(p => p.ProductId).Take(12).Select(model => new BriefProductDto()
             {
                 ProductId = model.ProductId,
                 Description = model.Description,
