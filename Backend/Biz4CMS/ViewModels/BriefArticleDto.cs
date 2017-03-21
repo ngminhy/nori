@@ -12,5 +12,7 @@ namespace Biz4CMS.ViewModels
         public String Description { get; set; }
         public String MainImage { get; set; }
         public String PageURL { get; set; }
+        public String ButtonName { get; set; }
+        public String ButtonLink { get; set; }
     }
 }

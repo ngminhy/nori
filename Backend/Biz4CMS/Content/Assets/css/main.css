@@ -1535,6 +1535,13 @@ h2 {
   }
 }
 
+.thumbnail {
+    min-height: 400px;
+}
+.thumbnail h3 {
+    font-size: 1.225em;
+}
+
 h3 {
   font-size: 1.375em;
 }

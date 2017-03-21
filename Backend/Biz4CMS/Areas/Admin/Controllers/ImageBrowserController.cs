@@ -82,8 +82,8 @@ namespace Biz4CMS.Areas.Admin.Controllers
 
         }
 
-        [OutputCache(Duration = 86400, VaryByParam = "path")]
-        public virtual ActionResult CropImage(string path)
+        [OutputCache(Duration = 86400, VaryByParam = "path;w;h")]
+        public virtual ActionResult CropImage(string path, int w =200, int h=300)
         {
             try{
                 path = NormalizePath(path);
@@ -93,7 +93,7 @@ namespace Biz4CMS.Areas.Admin.Controllers
                 if (System.IO.File.Exists(physicalPath))
                 {
                     Response.AddFileDependency(physicalPath);
-                    return CropImage(physicalPath, 300, 300);
+                    return GetCropImage(physicalPath, w, h);
                 }
                 else
                 {
@@ -125,14 +125,14 @@ namespace Biz4CMS.Areas.Admin.Controllers
             }
         }
 
-        private FileContentResult CropImage(string physicalPath, int width = 80, int height = 80)
+        private FileContentResult GetCropImage(string physicalPath, int w = 80, int h = 80)
         {
             using (var fileStream = System.IO.File.OpenRead(physicalPath))
             {
                 var desiredSize = new Biz4CMS.Models.ImageSize
                 {
-                    Width = width,
-                    Height = height
+                    Width = w,
+                    Height = h
                 };
 
                 const string contentType = "image/png";

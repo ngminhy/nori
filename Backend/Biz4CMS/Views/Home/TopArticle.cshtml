@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Biz4CMS.ViewModels.BriefArticleDto>
+
+<div class="row" style="position: relative;">
+   
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
+                <div class="thumbnail">
+                    <a href="@Url.Content(item.PageURL)"><img src="/ImageBrowser/CropImage?w=300&h=160&path=@Url.Content(item.MainImage)" alt="@item.Title"></a>
+                    <div class="caption">
+                        <h3><a href="@Url.Content(item.PageURL)">@item.Title</a></h3>
+                        <p>@item.Description</p>
+                        @if(!string.IsNullOrEmpty(@item.ButtonLink)) {
+                            <p><a class="btn btn-nori" href="@Url.Content(item.ButtonLink)">@item.ButtonName</a> </p>
+                        }
+                            
+                    </div>
+                    
+                </div>
+            </div>
+        }
+            
+</div>

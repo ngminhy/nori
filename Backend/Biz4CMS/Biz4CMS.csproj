@@ -1559,6 +1559,7 @@
     <Content Include="Views\Shared\EditorTemplates\ImageUrl.cshtml" />
     <Content Include="Views\Shared\_ProductDetail.cshtml" />
     <None Include="Properties\PublishProfiles\nori.pubxml" />
+    <Content Include="Views\Home\TopArticle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />

@@ -163,7 +163,7 @@ namespace Biz4CMS.Controllers
 
         public ActionResult TopProduct()
         {
-            var topproducts = db.Products.Where(p => p.IsSpecial && p.Active).OrderByDescending(p => p.ProductId).Take(18).Select(model => new BriefProductDto()
+            var topproducts = db.Products.Where(p => p.Active).OrderByDescending(p => p.ProductId).Take(12).Select(model => new BriefProductDto()
             {
                 ProductId = model.ProductId,
                 Description = model.Description,
@@ -176,6 +176,22 @@ namespace Biz4CMS.Controllers
 
             }).ToList();
             return PartialView("TopProduct", topproducts);
+        }
+
+        public ActionResult TopArticle()
+        {
+            var topArticles = db.Articles.Where(p => p.Active).OrderByDescending(p => p.ArticleId).Take(6).Select(p => new BriefArticleDto()
+            {
+                ArticleId = p.ArticleId,
+                MainImage = p.MainImage,
+                Description = p.Description,
+                Title = p.Title,
+                PageURL = "/a/" + p.PageURL,
+                ButtonLink = string.IsNullOrEmpty( p.ButtonLink) ? "" : p.ButtonLink,
+                ButtonName = string.IsNullOrEmpty(p.ButtonName) ? "" : p.ButtonName
+
+            }).ToList();
+            return PartialView("TopArticle", topArticles);
         }
         public ActionResult NewProduct()
         {

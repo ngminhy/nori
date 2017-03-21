@@ -31,6 +31,7 @@ namespace Biz4CMS.Models
         public int CategoryId { get; set; }
         public Category Category { get; set; }
         public string PageURL { get; set; }
-        
+        public string ButtonName { get; set; }
+        public string ButtonLink { get; set; }       
     }
 }

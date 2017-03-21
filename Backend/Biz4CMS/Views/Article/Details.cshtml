@@ -24,7 +24,13 @@
                                 @Html.Raw(Model.Content)
                             </p>
                         </div>
+                        <div>
+                            @if (!string.IsNullOrEmpty(@Model.ButtonLink))
+                            {
+                                <p><a class="btn btn-nori" href="@Url.Content(Model.ButtonLink)">@Model.ButtonName</a> </p>
+                            }
 
+                        </div>
                     </div>
 
                 </article>

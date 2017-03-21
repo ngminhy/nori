@@ -586,7 +586,9 @@ tr.pager td {
     padding: 0 0.25em 0 0;
 }
 
-
+.thumbnail {    
+    border-color:  #ff6d00 !important;
+}
 /********************
 *   Mobile Styles   *
 ********************/
