@@ -2,13 +2,13 @@
 <div class="col-md-3 productModel">
     @if (!string.IsNullOrEmpty(Model.MainImage))
     {
-        <a href="/p/@Model.PageURL">
+        <a href="">
             <img src="/ImageBrowser/CropImage?w=220&h=320&path=@Url.Content(Model.MainImage)" class="img-thumbnail" alt="@Model.Name "/></a>
     }
     <div class="row margin-top-10 clearfix">
         <br />
         <div class="col-md-4">
-            @Html.ActionLink("Mua", "AddToCart", "ShoppingCart", new { id = Model.ProductId, count = 1 }, new { @class = "btn btn-nori" })
+            @Html.ActionLink("Mua", "AddToCart", "ShoppingCart", new { id = Model.ProductId, count = 1, price = Model.Price }, new { @class = "btn btn-nori" })
         </div>
         <div class="col-md-8 text-right margin-top-15">
             <span class="price">@string.Format("{0:0,0}", Model.Price) </span>&nbsp;
