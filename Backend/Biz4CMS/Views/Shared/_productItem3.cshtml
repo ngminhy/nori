@@ -5,8 +5,9 @@
         <a href="">
             <img src="/ImageBrowser/CropImage?w=220&h=320&path=@Url.Content(Model.MainImage)" class="img-thumbnail" alt="@Model.Name "/></a>
     }
-    <div class="row margin-top-10 clearfix">
-        <br />
+    <div class="row margin-top-10 clearfix">        
+        <div class="col-md-12"> <h4><a href="#">@Model.Name</a> </h4> </div>
+       
         <div class="col-md-4">
             @Html.ActionLink("Mua", "AddToCart", "ShoppingCart", new { id = Model.ProductId, count = 1, price = Model.Price }, new { @class = "btn btn-nori" })
         </div>

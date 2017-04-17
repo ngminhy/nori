@@ -163,7 +163,7 @@ namespace Biz4CMS.Controllers
 
         public ActionResult TopProduct()
         {
-            var topproducts = db.Products.Where(p => 1==1 ).OrderByDescending(p => p.ProductId).Take(12).Select(model => new BriefProductDto()
+            var topproducts = db.Products.Where(p => p.IsSpecial ).OrderByDescending(p => p.ProductId).Take(12).Select(model => new BriefProductDto()
             {
                 ProductId = model.ProductId,
                 Description = model.Description,
@@ -180,7 +180,7 @@ namespace Biz4CMS.Controllers
 
         public ActionResult TopArticle()
         {
-            var topArticles = db.Articles.Where(p => p.Active).OrderByDescending(p => p.ArticleId).Take(6).Select(p => new BriefArticleDto()
+            var topArticles = db.Articles.Where(p => p.Active).OrderByDescending(p => p.ArticleId).Take(3).Select(p => new BriefArticleDto()
             {
                 ArticleId = p.ArticleId,
                 MainImage = p.MainImage,
