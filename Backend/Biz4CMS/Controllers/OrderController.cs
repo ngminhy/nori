@@ -27,6 +27,15 @@ namespace Biz4CMS.Controllers
             ViewBag.data = Locations;
             var polyobj = db.ShippingLocation.Where(p => p.Active).OrderByDescending(p => p.ShippingLocationId).ToList();
             ViewBag.polyobj = polyobj;
+
+           
+
+            // Set up our ViewModel
+            ViewBag.Cart = new ShoppingCartViewModel
+            {
+                CartItems = cart.GetCartItems(),
+                CartTotal = cart.GetTotal()
+            };
             return View();
         }
 

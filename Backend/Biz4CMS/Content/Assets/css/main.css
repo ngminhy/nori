@@ -19143,3 +19143,18 @@ ul {
 #myProductDetail h3{
   margin-top: 0px;
 }
+
+.price
+{    
+    font-weight: 800;
+    font-size: larger;
+    color: #666666;       
+}
+#productmenu ul
+{
+margin: 0;
+padding: 0;
+list-style-type: none;
+}
+
+#productmenu ul li { display: inline; margin-right : 20px; }

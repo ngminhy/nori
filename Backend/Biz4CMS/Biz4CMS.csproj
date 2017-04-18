@@ -1561,6 +1561,7 @@
     <None Include="Properties\PublishProfiles\nori.pubxml" />
     <Content Include="Views\Home\TopArticle.cshtml" />
     <Content Include="Views\Shared\_productItem3.cshtml" />
+    <Content Include="Views\Article\Index.saleoff.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />

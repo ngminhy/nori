@@ -1,18 +1,17 @@
 ﻿@model Biz4CMS.ViewModels.BriefProductDto
-<div class="col-md-3 productModel">
+<div class="col-md-3 col-xs-6 productModel">
     @if (!string.IsNullOrEmpty(Model.MainImage))
     {
         <a href="">
             <img src="/ImageBrowser/CropImage?w=220&h=320&path=@Url.Content(Model.MainImage)" class="img-thumbnail" alt="@Model.Name "/></a>
     }
     <div class="row margin-top-10 clearfix">        
-        <div class="col-md-12"> <h4><a href="#">@Model.Name</a> </h4> </div>
-       
+        <div class="col-md-12"> <h4><a href="#">@Model.Name</a> </h4> </div>       
         <div class="col-md-4">
             @Html.ActionLink("Mua", "AddToCart", "ShoppingCart", new { id = Model.ProductId, count = 1, price = Model.Price }, new { @class = "btn btn-nori" })
         </div>
         <div class="col-md-8 text-right margin-top-15">
-            <span class="price">@string.Format("{0:0,0}", Model.Price) </span>&nbsp;
+            <span class="price">@string.Format("{0:0,0}", Model.Price) VND</span>&nbsp;
         </div>
 
     </div>

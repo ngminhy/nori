@@ -1,14 +1,14 @@
 ﻿@model Biz4CMS.ViewModels.ProductCat
-<div class="col-md-4 productModel img-thumbnail" style="padding: 3px;">
+<div class="col-md-4 col-xs-6 productModel img-thumbnail" style="padding: 3px;">
     @if (!string.IsNullOrEmpty(Model.MainImage))
     {
         <a  onclick="showDetail(@Model.ProductId)">
             <img src="/ImageBrowser/CropImage?path=@Model.MainImage.Replace("~/content/images/","")" class="" alt="@Model.Name " />
         </a>
     }
-    <div class="row" style="margin:5px;">
+    <div>
         <h4><a href="#">@Model.Name</a> </h4>
-        <div style="padding-bottom:5px;">@string.Format("{0:0,0}", Model.Price) VND </div>
+        <div class="price pull-right" style="padding-bottom:5px;">@string.Format("{0:0,0}", Model.Price) VND </div>
         <div>
             @if (Model.MaxFiller > 0)
             {
