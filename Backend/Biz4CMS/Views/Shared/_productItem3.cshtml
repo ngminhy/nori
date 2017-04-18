@@ -7,10 +7,10 @@
     }
     <div class="row margin-top-10 clearfix">        
         <div class="col-md-12"> <h4><a href="#">@Model.Name</a> </h4> </div>       
-        <div class="col-md-4">
+        <div class="col-md-3">
             @Html.ActionLink("Mua", "AddToCart", "ShoppingCart", new { id = Model.ProductId, count = 1, price = Model.Price }, new { @class = "btn btn-nori" })
         </div>
-        <div class="col-md-8 text-right margin-top-15">
+        <div class="col-md-9 text-right margin-top-15">
             <span class="price">@string.Format("{0:0,0}", Model.Price) VND</span>&nbsp;
         </div>
 

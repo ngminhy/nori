@@ -6,23 +6,13 @@
             <img src="/ImageBrowser/CropImage?path=@Model.MainImage.Replace("~/content/images/","")" class="" alt="@Model.Name " />
         </a>
     }
-    <div>
-        <h4><a href="#">@Model.Name</a> </h4>
-        <div class="price pull-right" style="padding-bottom:5px;">@string.Format("{0:0,0}", Model.Price) VND </div>
-        <div>
-            @if (Model.MaxFiller > 0)
-            {
-                <input hidden value="@Model.MaxFiller" id="MaxFiller" />
-                <input hidden value="@Model.ProductId" id="ProductId" />
-                <input hidden value="@Model.Price" id="ProductPrice" />
-                <button type="button" class="btn btn-success btn-nori" data-toggle="modal" data-target="#myModal">Mua</button>
-
-            }
-            else
-            {
-                @Html.ActionLink("Mua", "AddToCart", "ShoppingCart", new { id = Model.ProductId, count = 1, price = Model.Price }, new { @class = "btn btn-success btn-nori" })
-
-            }
+    <div class="row">
+        <div class="col-md-12"> <h4><a href="#">@Model.Name</a> </h4> </div>
+        <div class="col-md-3">
+            @Html.ActionLink("Mua", "AddToCart", "ShoppingCart", new { id = Model.ProductId, count = 1, price = Model.Price }, new { @class = "btn btn-nori" })
+        </div>
+        <div class="col-md-9 text-right margin-top-15">
+            <span class="price">@string.Format("{0:0,0}", Model.Price) VND</span>&nbsp;
         </div>
     </div>
     
