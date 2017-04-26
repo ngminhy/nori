@@ -11,132 +11,99 @@
         -moz-column-count: 3;
         column-count: 3; /*3 is just placeholder -- can be anything*/
     }
-
-        #limheight li {
-            display: inline-block;
-            padding-bottom: 20px;
-        }
+    #limheight li {
+        display: inline-block;
+        padding-bottom: 20px;
+    }
 </style>
-
 
 @{  var i = 1;
     var preCat = 0;
     var CakeFillers = (List<Biz4CMS.Models.CakeFiller>)ViewData["CakeFillers"];
 }
 
-
 <section class="main-content">
     <div class="container">
-        <div class="row product_box" style="position: relative; padding-top:10px; padding-bottom:10px;">
-            <div class="col-md-12" id="productmenu">
-                <ul>
-                    @{var preCat1 = -1; }
-                    @foreach (var item in Model)
-                    {
-                       
-                        if (preCat1 != item.CategoryId)
+        <div class="product_box">
+            <div class="row">
+                <div class="col-md-12" id="productmenu">
+                    <ul>
+                        @{var preCat1 = -1; }
+                        @foreach (var item in Model)
                         {
-                            @:<li> <a href= "#@item.CategoryName" >@item.CategoryName </a></li>
-                            preCat1 = item.CategoryId;
-                        }
-
-                    }
-                </ul>
-            </div>
-            <div class="col-md-4 col-sm-push-8" data-sticky_column="">
-                <div class="row">
-                    <h3>Thông tin giỏ hàng</h3>
-
-                    <div class="alert alert-success" style="display:none" id="success-alert-cart">
-                        <strong>Thông báo! </strong>
-                        <span id="alert-content-cart"></span>
-                    </div>
-                    <table width="100%">
-                        <tr>
-                            <th>
-                                Tên sản phẩm
-                            </th>
-
-                            <th>
-                                Số lượng
-                            </th>
-                            <th>
-                                Giá (VND)
-                            </th>
-                            <th>
-                            </th>
-                        </tr>
-                        @if (ViewBag.Cart.CartItems != null)
-                        {
-                            var CartItems = (List<Biz4CMS.Models.Cart>)ViewBag.Cart.CartItems;
-                            foreach (var item in CartItems)
+                           
+                            if (preCat1 != item.CategoryId)
                             {
-                                <tr id="row-@item.RecordId">
-                                    <td>
-                                        <a href="#"><strong>@item.Product.Name</strong></a>
-                                        <br />
-                                        @item.ListCakeName
-                                    </td>
-
-                                    <td id="item-count-@item.RecordId">
-                                        <input type="number" min="1" max="100"
-                                               value="@item.Count" class="form-control quantity">
-                                    </td>
-                                    <td align="right">
-                                        @string.Format("{0:0,0}", item.Price)
-                                    </td>
-                                    <td>
-                                        <a href="#" class="RemoveLink" data-id="@item.RecordId">
-                                            <i class="glyphicon glyphicon-remove"></i>
-                                        </a>
-                                    </td>
-                                </tr>
+                                @:<li><a href= "#@item.CategoryName" >@item.CategoryName</a></li>
+                                preCat1 = item.CategoryId;
                             }
                         }
-                        <tr>
-                            <td>
-                                <b>Tổng cộng</b>
-                            </td>
-                            <td></td>
-
-                            <td id="cart-total" align="right">
-                                @string.Format("{0:0,0}", ViewBag.Cart.CartTotal)
-                            </td>
-
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td colspan="4">
-                                <button type="submit" class="btn btn-success btn-nori" id="submit">
-                                    Thanh toán
-                                </button>
-                                <span style="display:none;" id="carttotal">@ViewBag.Cart.CartTotal</span>
-                            </td>
-
-                        </tr>
-                    </table>
-
-
+                    </ul>
                 </div>
-
-
             </div>
-            <div class="col-md-8 col-sm-pull-4">
-
-                @foreach (var item in Model)
-                {
-
-                    if (preCat != item.CategoryId)
+            <div class="row">
+                <div class="col-md-3 col-md-push-9 col-sm-5 col-sm-push-7 col-xs-12" data-sticky_column="">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Đơn hàng</h3>
+                            <div class="alert alert-success" style="display:none" id="success-alert-cart">
+                                <strong>Thông báo! </strong>
+                                <span id="alert-content-cart"></span>
+                            </div>
+                            <table class="cart-view">
+                                @if (ViewBag.Cart.CartItems != null)
+                                {
+                                    var CartItems = (List<Biz4CMS.Models.Cart>)ViewBag.Cart.CartItems;
+                                    foreach (var item in CartItems)
+                                    {
+                                        <tr id="row-@item.RecordId">
+                                            <td>
+                                                <div class="product-name">
+                                                    <strong>@item.Product.Name</strong>
+                                                    <span>@item.ListCakeName</span>
+                                                </div>
+                                                <div>
+                                                    <strong>@item.ListCakeName</strong>
+                                                </div>
+                                                <div id="item-count-@item.RecordId">
+                                                    <input type="number" min="1" max="100" value="@item.Count" class="quantity">
+                                                    <span class="price"> x @string.Format("{0:0,0}", item.Price) VNĐ</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a href="#" class="removeLink" data-id="@item.RecordId">
+                                                    <i class="glyphicon glyphicon-remove"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                <tr>
+                                    <td colspan="2" class="footer-cart">
+                                        <b>Tổng cộng</b>
+                                        <div id="cart-total">@string.Format("{0:0,0}", ViewBag.Cart.CartTotal) VNĐ</div>
+                                        <button type="submit" class="btn btn-nori" id="submit">
+                                            Thanh toán
+                                        </button>
+                                        <span style="display:none;" id="carttotal">@ViewBag.Cart.CartTotal</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9 col-md-pull-3 col-sm-7 col-sm-pull-5 col-xs-12 product-listing">
+                    @foreach (var item in Model)
                     {
-                        @:<div style="clear:both;"><h3> <a name="@item.CategoryName" style="color:#808080">@item.CategoryName </a> </h3></div>
+                        if (preCat != item.CategoryId)
+                        {
+                            @:<div class="product-category-title"><h3><a href="#">@item.CategoryName</a> </h3></div>
                         }
-                    @Html.Partial("_productItem", item)
-
-                    preCat = item.CategoryId;
-                 
-                }
+                        @Html.Partial("_productItem", item)
+                        preCat = item.CategoryId;
+                    }
+                </div>
             </div>
-
         </div>
     </div>
 </section>
@@ -229,7 +196,7 @@
         $(".quantity").change(function () {
             var rlist = [];
             var qlist = [];
-            $(".RemoveLink").each(function () {
+            $(".removeLink").each(function () {
                 rlist.push($(this).attr("data-id"));
             });
             $(".quantity").each(function () {
@@ -267,7 +234,7 @@
 
         });
 
-        $(".RemoveLink").click(function () {
+        $(".removeLink").click(function () {
             // Get the id from the link
             var recordToDelete = $(this).attr("data-id");
             if (recordToDelete != '') {

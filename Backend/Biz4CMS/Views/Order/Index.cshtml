@@ -3,16 +3,56 @@
     Layout = "~/Views/Shared/_LayoutNori.cshtml";
 }
 
-<section class="main-content">
+<section id="checkout-page" class="main-content">
 <div class="container">
-    <div class="row" style="position: relative; padding-top:10px; padding-bottom:10px;">
-        <div class="col-md-8">
-          
-            <div class="btn-group btn-toggle">
-                <button class="btn btn-lg btn-default"><b>Giao hàng tận nơi</b> <br/> (Miễn phí với đơn hàng > 200K)</button>
-                <button class="btn btn-lg btn-nori "><b>Mua mang về</b> <br/>(Nhận hàng tại cửa hàng)</button>
+    <div class="row">
+        <div class="col-md-3 col-md-push-9 col-sm-5 col-sm-push-7 col-xs-12 product_box">
+            <h3>Đơn hàng</h3>
+            <div class="alert alert-success" style="display:none" id="success-alert-cart">
+                <strong>Thông báo! </strong>
+                <span id="alert-content-cart"></span>
             </div>
-            
+            <table class="cart-view">
+                @if (ViewBag.Cart.CartItems != null)
+                {
+                    var CartItems = (List<Biz4CMS.Models.Cart>)ViewBag.Cart.CartItems;
+                    foreach (var item in CartItems)
+                    {
+                        <tr id="row-@item.RecordId">
+                            <td>
+                                <div class="product-name">
+                                    <strong>@item.Product.Name</strong>
+                                    <span>@item.ListCakeName</span>
+                                </div>
+                                <div>
+                                    <strong>@item.ListCakeName</strong>
+                                </div>
+                                <div id="item-count-@item.RecordId">
+                                    <input type="number" min="1" max="100" value="@item.Count" class="quantity">
+                                    <span class="price"> x @string.Format("{0:0,0}", item.Price) VNĐ</span>
+                                </div>
+                            </td>
+                            <td>
+                                <a href="#" class="removeLink" data-id="@item.RecordId">
+                                    <i class="glyphicon glyphicon-remove"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+                <tr>
+                    <td colspan="2" class="footer-cart">
+                        <b>Tổng cộng</b>
+                        <div id="cart-total">@string.Format("{0:0,0}", ViewBag.Cart.CartTotal) VNĐ</div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-9 col-md-pull-3 col-sm-7 col-sm-pull-5 col-xs-12">
+            <div class="btn-group btn-toggle">
+                <button class="btn btn-sm btn-default btn-delivery"><b>Giao hàng tận nơi</b> <br/> (Miễn phí với đơn hàng > 200K)</button>
+                <button class="btn btn-sm btn-nori btn-no-delivery"><b>Mua mang về</b> <br/>(Nhận hàng tại cửa hàng)</button>
+            </div>
             <form id="orderform" method="post" action="">
                 <div class="form-group">
                    
@@ -105,85 +145,14 @@
                 <div class="checkbox">
                     <label><input type="checkbox"> Tôi chấp nhận <a href="/a/dieu-khoan-mua-hang">các điều khoản mua hàng</a></label>
                 </div>
-                <button type="submit" class="btn btn-lg btn-nori">Đăng ký</button>
+                <button type="submit" class="btn btn-sm btn-nori">Đăng ký</button>
                 <div class="alert alert-success" style="display:none" id="success-alert">
                     
                     <strong>Thông báo! </strong>
                     <span id="alert-content"></span>
                 </div>
-</form>
+            </form>
         </div>
-        <div class="col-md-4">
-            <div class="row">
-                <h3>Thông tin giỏ hàng</h3>
-
-                <div class="alert alert-success" style="display:none" id="success-alert-cart">
-                    <strong>Thông báo! </strong>
-                    <span id="alert-content-cart"></span>
-                </div>
-                <table width="100%">
-                    <tr>
-                        <th>
-                            Tên sản phẩm
-                        </th>
-
-                        <th>
-                            Số lượng
-                        </th>
-                        <th>
-                            Giá (VND)
-                        </th>
-                        <th>
-                        </th>
-                    </tr>
-                    @if (ViewBag.Cart.CartItems != null)
-                    {
-                        var CartItems = (List<Biz4CMS.Models.Cart>)ViewBag.Cart.CartItems;
-                        foreach (var item in CartItems)
-                        {
-                            <tr id="row-@item.RecordId">
-                                <td>
-                                    <a href="#"><strong>@item.Product.Name</strong></a>
-                                    <br />
-                                    @item.ListCakeName
-                                </td>
-
-                                <td id="item-count-@item.RecordId">
-                                    <input type="number" min="1" max="100"
-                                           value="@item.Count" class="form-control quantity">
-                                </td>
-                                <td align="right">
-                                    @string.Format("{0:0,0}", item.Price)
-                                </td>
-                                <td>
-                                    <a href="#" class="RemoveLink" data-id="@item.RecordId">
-                                        <i class="glyphicon glyphicon-remove"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        }
-                    }
-                    <tr>
-                        <td>
-                            <b>Tổng cộng</b>
-                        </td>
-                        <td></td>
-
-                        <td id="cart-total" align="right">
-                            @string.Format("{0:0,0}", ViewBag.Cart.CartTotal)
-                        </td>
-
-                        <td></td>
-                    </tr>
-                    
-                </table>
-
-
-            </div>
-
-
-        </div>
-
     </div>
 </div>
 </section>
@@ -393,7 +362,7 @@
         $(".quantity").change(function () {
             var rlist = [];
             var qlist = [];
-            $(".RemoveLink").each(function () {
+            $(".removeLink").each(function () {
                 rlist.push($(this).attr("data-id"));
             });
             $(".quantity").each(function () {
@@ -431,7 +400,7 @@
 
         });
 
-        $(".RemoveLink").click(function () {
+        $(".removeLink").click(function () {
             // Get the id from the link
             var recordToDelete = $(this).attr("data-id");
             if (recordToDelete != '') {

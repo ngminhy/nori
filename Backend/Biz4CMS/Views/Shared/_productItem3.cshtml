@@ -1,20 +1,22 @@
 ﻿@model Biz4CMS.ViewModels.BriefProductDto
-<div class="col-md-3 col-xs-6 productModel style="padding: 3px;">
+<div class="col-md-3 col-sm-4 col-xs-6 productModel">
     @if (!string.IsNullOrEmpty(Model.MainImage))
     {
         <a href="">
-            <img src="/ImageBrowser/CropImage?w=220&h=320&path=@Url.Content(Model.MainImage)" class="img-thumbnail" alt="@Model.Name "/></a>
+            <img src="/ImageBrowser/CropImage?w=220&h=320&path=@Url.Content(Model.MainImage)" class="product-img-thumbnail" alt="@Model.Name "/>
+        </a>
     }
-    <div class="row margin-top-10 clearfix">        
-        <div class="col-md-12"> <h4><a href="#">@Model.Name</a> </h4> </div>       
-        <div class="col-md-3">
-            @Html.ActionLink("Mua", "AddToCart", "ShoppingCart", new { id = Model.ProductId, count = 1, price = Model.Price }, new { @class = "btn btn-nori" })
-        </div>
-        <div class="col-md-9 text-right margin-top-15">
-            <span class="price">@string.Format("{0:0,0}", Model.Price) VND</span>&nbsp;
-        </div>
-
+    <div class="clearfix">   
+        <div class="row">
+            <div class="col-md-12 product-title">
+                <h4><a href="#">@Model.Name</a></h4>
+            </div>
+            <div class="col-md-12 product-price">
+                <span class="price">@string.Format("{0:0,0}", Model.Price) VNĐ</span>&nbsp;
+            </div>
+            <div class="col-md-12 product-add-cart">
+                @Html.ActionLink("Mua", "AddToCart", "ShoppingCart", new { id = Model.ProductId, count = 1, price = Model.Price }, new { @class = "btn btn-nori" })
+            </div>
+        </div>     
     </div>
-    
-   
 </div>  

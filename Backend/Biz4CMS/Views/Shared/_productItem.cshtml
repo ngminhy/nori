@@ -1,19 +1,22 @@
 ﻿@model Biz4CMS.ViewModels.ProductCat
-<div class="col-md-4 col-xs-6 productModel img-thumbnail" style="padding: 3px;">
+<div class="col-md-4 col-sm-4 col-xs-6 productModel">
     @if (!string.IsNullOrEmpty(Model.MainImage))
     {
-        <a  onclick="showDetail(@Model.ProductId)">
-            <img src="/ImageBrowser/CropImage?path=@Model.MainImage.Replace("~/content/images/","")" class="" alt="@Model.Name " />
+        <a onclick="showDetail(@Model.ProductId)">
+            <img src="/ImageBrowser/CropImage?path=@Model.MainImage.Replace("~/content/images/","")" class="product-img-thumbnail" alt="@Model.Name " />
         </a>
     }
-    <div class="row">
-        <div class="col-md-12"> <h4><a href="#">@Model.Name</a> </h4> </div>
-        <div class="col-md-3">
-            @Html.ActionLink("Mua", "AddToCart", "ShoppingCart", new { id = Model.ProductId, count = 1, price = Model.Price }, new { @class = "btn btn-nori" })
-        </div>
-        <div class="col-md-9 text-right margin-top-15">
-            <span class="price">@string.Format("{0:0,0}", Model.Price) VND</span>&nbsp;
+    <div class="clearfix">   
+        <div class="row">
+            <div class="col-md-12 product-title">
+                <h4><a href="#">@Model.Name</a></h4>
+            </div>
+            <div class="col-md-12 product-price">
+                <span class="price">@string.Format("{0:0,0}", Model.Price) VNĐ</span>&nbsp;
+            </div>
+            <div class="col-md-12 product-add-cart">
+                @Html.ActionLink("Mua", "AddToCart", "ShoppingCart", new { id = Model.ProductId, count = 1, price = Model.Price }, new { @class = "btn btn-nori" })
+            </div>
         </div>
     </div>
-    
 </div>
