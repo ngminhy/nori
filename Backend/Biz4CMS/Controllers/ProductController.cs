@@ -37,10 +37,10 @@ namespace Biz4CMS.Controllers
 
         public ActionResult Index(string pageURL)
         {
-            if (HttpContext.Session["userinfo"] == null)
-            {
-                return RedirectToAction("Index", "Order");
-            }
+            //if (HttpContext.Session["userinfo"] == null)
+            //{
+            //    return RedirectToAction("Index", "Order");
+            //}
             var CakeFillers = db.CakeFillers.Select(p => new
             {
                 CakeFillerId = p.CakeFillerId,

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Biz4CMS.ViewModels.BriefArticleDto>
+@{
+    Layout = "~/Views/Shared/_LayoutNori.cshtml";
+}
+
+<section class="main-content">
+    <div class="container">
+        <div class="clear-fix">&nbsp;</div>
+        <div class="row" style="position: relative;">
+
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4">
+                    <div class="thumbnail" style="min-height:280px;max-height:280px;">
+                        <a href="@Url.Content(item.PageURL)"><img src="/ImageBrowser/CropImage?w=300&h=160&path=@Url.Content(item.MainImage)" alt="@item.Title"></a>
+                        <div class="caption">
+                            <h3><a href="@Url.Content(item.PageURL)">@item.Title</a></h3>
+                            @*<p>@item.Description</p>*@
+                            @if (!string.IsNullOrEmpty(@item.ButtonLink))
+                            {
+                                <p><a class="btn btn-nori" href="@Url.Content(item.ButtonLink)">@item.ButtonName</a> </p>
+                            }
+
+                        </div>
+
+                    </div>
+                </div>
+            }
+
+        </div>
+
+
+        @if (ViewBag.TotalPage > 1)
+        {
+            <div class="text-center">
+                <ul class="pagination">
+                    @if (ViewBag.PageIndex > 1)
+                    {
+                        <li>
+                            <a href='@(Request.Url.AbsolutePath)?page=@(ViewBag.PageIndex - 1)'>
+                                &laquo;
+                            </a>
+                        </li>
+                    }
+                    @for (var i = 1; i <= ViewBag.TotalPage; i++)
+                    {
+
+                        <li class='@(ViewBag.PageIndex == i ? "active" : "")'>
+                            <a href='@(Request.Url.AbsolutePath)?page=@i'>@i</a>
+                        </li>
+                    }
+                    @if (ViewBag.PageIndex < ViewBag.TotalPage)
+                    {
+                        <li>
+                            <a href='@(Request.Url.AbsolutePath)?page=@(ViewBag.PageIndex + 1)'>
+                                &raquo;
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+
+    </div>
+
+
+</section>

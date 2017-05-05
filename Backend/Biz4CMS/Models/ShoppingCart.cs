@@ -17,9 +17,9 @@ namespace Biz4CMS.Models
         {
             var cart = new ShoppingCart();
 
-            //cart.ShoppingCartId = cart.GetCartId(context);
-            var userinfo =(UserInfo) context.Session["userinfo"];
-            cart.ShoppingCartId = userinfo.Email;
+            cart.ShoppingCartId = cart.GetCartId(context);
+            //var userinfo =(UserInfo) context.Session["userinfo"];
+            //cart.ShoppingCartId = userinfo.Email;
             return cart;
         }
         // Helper method to simplify shopping cart calls

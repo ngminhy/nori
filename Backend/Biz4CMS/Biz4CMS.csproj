@@ -779,19 +779,6 @@
     <Content Include="Content\Assets\css\main.css" />
     <Content Include="Content\Assets\css\style.css" />
     <Content Include="Content\Assets\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Content\Assets\images\logo.jpg" />
-    <Content Include="Content\Assets\images\logo.png" />
-    <Content Include="Content\Assets\images\logo_nori.png" />
-    <Content Include="Content\Assets\images\logo_xmas.png" />
-    <Content Include="Content\Assets\images\me-cover.jpg" />
-    <Content Include="Content\Assets\images\me.png" />
-    <Content Include="Content\Assets\images\open_the_boxes.png" />
-    <Content Include="Content\Assets\images\slideshow_1.jpg" />
-    <Content Include="Content\Assets\images\slideshow_2.jpg" />
-    <Content Include="Content\Assets\images\slideshow_3.jpg" />
-    <Content Include="Content\Assets\images\sprite-2x-s883f768b5b.png" />
-    <Content Include="Content\Assets\images\sprite-sedb1a8cb30.png" />
-    <Content Include="Content\Assets\images\tn_me.png" />
     <Content Include="Content\Assets\img\logo_nori.png" />
     <Content Include="Content\Assets\img\logo_xmas.png" />
     <Content Include="Content\Assets\img\me.png" />
@@ -1541,6 +1528,9 @@
     <Content Include="Views\Shared\EditorTemplates\ImageUrl.cshtml" />
     <Content Include="Views\Shared\_ProductDetail.cshtml" />
     <None Include="Properties\PublishProfiles\nori.pubxml" />
+    <Content Include="Views\Home\TopArticle.cshtml" />
+    <Content Include="Views\Shared\_productItem3.cshtml" />
+    <Content Include="Views\Article\Index.saleoff.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />

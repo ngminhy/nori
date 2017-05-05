@@ -163,7 +163,7 @@ namespace Biz4CMS.Controllers
 
         public ActionResult TopProduct()
         {
-            var topproducts = db.Products.Where(p => p.IsSpecial && p.Active).OrderByDescending(p => p.ProductId).Take(18).Select(model => new BriefProductDto()
+            var topproducts = db.Products.Where(p => p.IsSpecial ).OrderByDescending(p => p.ProductId).Take(12).Select(model => new BriefProductDto()
             {
                 ProductId = model.ProductId,
                 Description = model.Description,
@@ -176,6 +176,22 @@ namespace Biz4CMS.Controllers
 
             }).ToList();
             return PartialView("TopProduct", topproducts);
+        }
+
+        public ActionResult TopArticle()
+        {
+            var topArticles = db.Articles.Where(p => p.Active).OrderByDescending(p => p.ArticleId).Take(3).Select(p => new BriefArticleDto()
+            {
+                ArticleId = p.ArticleId,
+                MainImage = p.MainImage,
+                Description = p.Description,
+                Title = p.Title,
+                PageURL = "/a/" + p.PageURL,
+                ButtonLink = string.IsNullOrEmpty( p.ButtonLink) ? "" : p.ButtonLink,
+                ButtonName = string.IsNullOrEmpty(p.ButtonName) ? "" : p.ButtonName
+
+            }).ToList();
+            return PartialView("TopArticle", topArticles);
         }
         public ActionResult NewProduct()
         {
@@ -224,21 +240,21 @@ namespace Biz4CMS.Controllers
             var videos = db.Videos.OrderByDescending(p => p.VideoId).ToList();
             return View(videos);
         }
-        private bool SendEmailToManager(string strBody)
+        private bool SendEmailToManager(string strBody, string subject = "Thông tin liên hệ - noriexpress.com")
         {
 
 
             System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
-            message.To.Add("sonquynhshop@gmail.com"); //recipient
-            //message.To.Add("syduypham@yahoo.com.vn");
-            message.Subject = "Thông tin lien he - sqshops.com";
-            message.From = new System.Net.Mail.MailAddress("sonquynhshop@gmail.com"); //from email
+            message.To.Add("trucchi@noriexpress.com"); //recipient
+            
+            message.Subject = subject ;
+            message.From = new System.Net.Mail.MailAddress("noriexpress.sg@gmail.com"); //from email
             message.Body = strBody;
             message.IsBodyHtml = true;
             System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.gmail.com");// you need an smtp server address to send emails
             smtp.UseDefaultCredentials = false;
             smtp.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
-            smtp.Credentials = new System.Net.NetworkCredential("sonquynhshop@gmail.com", "sq!23456");
+            smtp.Credentials = new System.Net.NetworkCredential("noriexpress.sg@gmail.com", "nr123$65");
 
             smtp.Port = 587;
             smtp.EnableSsl = true;

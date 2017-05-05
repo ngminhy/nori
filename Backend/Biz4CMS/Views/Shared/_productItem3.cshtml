@@ -1,9 +1,9 @@
-﻿@model Biz4CMS.ViewModels.ProductCat
-<div class="col-md-4 col-sm-4 col-xs-6 productModel">
+﻿@model Biz4CMS.ViewModels.BriefProductDto
+<div class="col-md-3 col-sm-4 col-xs-6 productModel">
     @if (!string.IsNullOrEmpty(Model.MainImage))
     {
-        <a onclick="showDetail(@Model.ProductId)">
-            <img src="/ImageBrowser/CropImage?path=@Model.MainImage.Replace("~/content/images/","")" class="product-img-thumbnail" alt="@Model.Name " />
+        <a href="">
+            <img src="/ImageBrowser/CropImage?w=220&h=320&path=@Url.Content(Model.MainImage)" class="product-img-thumbnail" alt="@Model.Name "/>
         </a>
     }
     <div class="clearfix">   
@@ -17,6 +17,6 @@
             <div class="col-md-12 product-add-cart">
                 @Html.ActionLink("Mua", "AddToCart", "ShoppingCart", new { id = Model.ProductId, count = 1, price = Model.Price }, new { @class = "btn btn-nori" })
             </div>
-        </div>
+        </div>     
     </div>
-</div>
+</div>  

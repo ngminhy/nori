@@ -30,9 +30,11 @@ body {
 
 a:focus {
   outline: thin dotted;
+  color: #ff6d00;
 }
 
-a:active,a:hover {
+a:active, a:hover {
+  color: #ff6d00;
   outline: 0;
 }
 
@@ -195,15 +197,13 @@ body {
   position: relative;
   cursor: default;
 }
-
 a:hover { 
   cursor: pointer;
+  text-decoration: none;
 }
-
 a:focus {
   outline: none;
 }
-
 img,object,embed {
   max-width: 100%;
   height: auto;
@@ -1459,12 +1459,6 @@ a {
   text-decoration: none;
   line-height: inherit;
 }
-
-a:hover,a:focus {
-  color: #ff6d00;
-  text-decoration: underline;
-}
-
 a img {
   border: none;
 }
@@ -1533,6 +1527,13 @@ h2 {
   .chop-chop {
     margin: 100px 0 40px 0;
   }
+}
+
+.thumbnail {
+    min-height: 400px;
+}
+.thumbnail h3 {
+    font-size: 1.225em;
 }
 
 h3 {
@@ -2017,19 +2018,6 @@ button.large,.button.large {
 }
 
 @media only screen {
-  button,.button {
-    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset;
-    box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset;
-    -webkit-transition: background-color 300ms ease-out;
-    -moz-transition: background-color 300ms ease-out;
-    transition: background-color 300ms ease-out;
-  }
-
-  button:active,.button:active {
-    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2) inset;
-    box-shadow: 0 1px 0 rgba(0,0,0,0.2) inset;
-  }
-
   button.radius,.button.radius {
     -webkit-border-radius: 3px;
     border-radius: 3px;
@@ -4503,7 +4491,7 @@ label.error {
 }
 
 .joyride-close-tip:hover,.joyride-close-tip:focus {
-  color: #eee !important;
+  color: #e5e5e5 !important;
 }
 
 .joyride-modal-bg {
@@ -5146,7 +5134,7 @@ form.custom .custom.dropdown ul li {
 }
 
 form.custom .custom.dropdown ul li.selected {
-  background: #eeeeee;
+  background: #e5e5e5;
   color: black;
 }
 
@@ -5156,7 +5144,7 @@ form.custom .custom.dropdown ul li:hover {
 }
 
 form.custom .custom.dropdown ul li.selected:hover {
-  background: #eeeeee;
+  background: #e5e5e5;
   cursor: default;
   color: black;
 }
@@ -5331,7 +5319,7 @@ form.custom .custom.disabled {
 }
 
 .pricing-table .price {
-  background-color: #eeeeee;
+  background-color: #e5e5e5;
   padding: 0.9375em 1.25em;
   text-align: center;
   color: #333333;
@@ -5950,7 +5938,7 @@ a.th {
 }
 
 .f-dropdown li:hover,.f-dropdown li:focus {
-  background: #eeeeee;
+  background: #e5e5e5;
 }
 
 .f-dropdown li a {
@@ -7184,19 +7172,6 @@ button.large,.button.large {
 }
 
 @media only screen {
-  button,.button {
-    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset;
-    box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset;
-    -webkit-transition: background-color 300ms ease-out;
-    -moz-transition: background-color 300ms ease-out;
-    transition: background-color 300ms ease-out;
-  }
-
-  button:active,.button:active {
-    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2) inset;
-    box-shadow: 0 1px 0 rgba(0,0,0,0.2) inset;
-  }
-
   button.radius,.button.radius {
     -webkit-border-radius: 3px;
     border-radius: 3px;
@@ -7792,7 +7767,7 @@ form.custom .custom.dropdown ul li {
 }
 
 form.custom .custom.dropdown ul li.selected {
-  background: #eeeeee;
+  background: #e5e5e5;
   color: black;
 }
 
@@ -7802,7 +7777,7 @@ form.custom .custom.dropdown ul li:hover {
 }
 
 form.custom .custom.dropdown ul li.selected:hover {
-  background: #eeeeee;
+  background: #e5e5e5;
   cursor: default;
   color: black;
 }
@@ -11021,7 +10996,7 @@ div.messages.error a,div.messages.warning a {
   margin-left: 0;
   float: left;
   clear: right;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1px solid #e5e5e5;
   position: relative;
   margin-bottom: 10px;
 }
@@ -17929,9 +17904,9 @@ textarea {
     width: 32px;
     cursor: pointer;
     position: absolute;
-    top: 30px;
-    right: 20px;
-    z-index: 20;
+    top: 3px;
+    right: 5px;
+    z-index: 999;
   }
 
   #primary-menu {
@@ -17956,7 +17931,7 @@ textarea {
     overflow-y: auto;
     position: absolute;
     right: 0;
-    top: 0;
+    top: 0px;
     padding: 0;
     margin: 0;
   }
@@ -18890,8 +18865,7 @@ body {
   color: #ff6d00;
 }
 .main-content {
-  /*margin-top: 50px;*/
-  background: #F4F4F4;
+  background: #FFFFFF;
 }
 .post {
     background: #fff;
@@ -18956,6 +18930,7 @@ body {
 .post-content {
     padding: 0 43px;
     overflow: hidden;
+    border: 1px solid #e5e5e5;
 }
 .entry-header {
     margin: 40px 0 23px;
@@ -18984,12 +18959,12 @@ a.more-link {
     margin: 24px 0 28px;
     display: inline-block;
     color: #ff6d00;
-    border: 1px solid #eee;
+    border: 1px solid #e5e5e5;
     -webkit-transition: all 0.5s;
     transition: all 0.5s;
 }
 .post .social-share {
-    border-top: 1px solid #EEE;
+    border-top: 1px solid #e5e5e5;
     padding: 15px 0 75px;
 }
 .social-share {
@@ -19024,7 +18999,7 @@ a.more-link {
     padding: 30px 30px;
     margin-bottom: 35px;
     background-color: #fff;
-    border: 1px solid #eee;
+    border: 1px solid #e5e5e5;
 }
 .about-me-widget {
     background: url(../images/me-cover.jpg) no-repeat;
@@ -19104,35 +19079,165 @@ ul {
     -webkit-margin-end: 0px;
     -webkit-padding-start: 40px;
 }
-.btn-nori:hover, .btn-nori:focus, .btn-nori:active, .btn-nori.active, .open > .dropdown-toggle.btn-nori {
-        color: #fff;
-        background-color: #ff6d00;
-        border-color: #ff6d00;
-    }
-.btn-nori {
-        color: #fff;
-        background-color: #ff6d00;
-        border-color: #ff6d00;
-}
 .remember-me{
     float:left;
     margin-right:5px;
 }
 .relatedarticle ul {
-    color: #ff6d00 !important;
-    padding-left: 12px !important;
+  color: #ff6d00 !important;
+  padding-left: 12px !important;
 }
 .product_box h3 {
-  padding-top: 25px !important;
-  border-bottom: solid 1px #dddddd;
-}
-.productModel {
-  background: none;
-  border: 0px;
+  padding: 0 0 5px;
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 20px;
+  text-align: left;
 }
 .modal-header .close {
   margin-bottom: 0px !important;
 }
 #myProductDetail h3{
   margin-top: 0px;
+}
+.price
+{    
+    font-weight: 500;
+    font-size: 18px;
+    color: #666666;       
+}
+/*Hieu css*/
+h4 {
+  font-size: 18px;
+}
+.product-listing .productModel {
+  padding-left: 3px;
+  padding-right: 3px;
+}
+.productModel {
+  background: none;
+  border: 0px;
+  padding-bottom: 15px;
+}
+.product-img-thumbnail {
+  display: inline-block;
+  height: auto;
+  max-width: 100%;
+  padding: 4px;
+  line-height: 1.428571429;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+.product-title, .product-price, .product-add-cart {
+  padding-top: 10px;
+}
+.productModel h4 {
+  margin-bottom: 0px;
+}
+.btn-nori {
+  color: #fff;
+  background-color: #ff6d00;
+  border-color: #ff6d00;
+  padding: 5px 20px 5px 20px;
+}
+.btn-nori:hover, .btn-nori:focus, .btn-nori:active, .btn-nori.active, .open > .dropdown-toggle.btn-nori {
+  color: #fff;
+  background-color: #ff6d00;
+  border-color: #ff6d00;
+}
+.article-thumbnail {
+  min-height: 280px;
+  display: block;
+  width: 100%;
+  padding: 4px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  text-align: center;
+}
+.article-img-thumbnail {
+  width: 100%;
+}
+.article-thumbnail .caption h4 {
+  margin-top: 10px;
+}
+.product-category-title {
+  clear: both;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+.product-category-title h3 a {
+  color: #222222;
+}
+.homepage #article, #checkout-page {
+  padding-top: 15px;
+}
+.cart-view {
+  width: 100%;
+}
+.cart-view .product-name {
+  color: #ff6d00;
+  margin-bottom: 5px;
+}
+.cart-view input.quantity {
+  width: 60px;
+  float: left;
+}
+.cart-view .price {
+  float: left;
+  font-weight: normal;
+  font-size: 14px;
+  margin-left: 5px;
+  line-height: 2.2;
+}
+.cart-view .footer-cart {
+  text-align: center;
+  line-height: 1.5;
+  font-size: 18px;
+}
+#productmenu ul
+{
+  list-style-type: none;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px dotted #CCCCCC;
+}
+#productmenu ul li { 
+  display: inline;
+  padding-right: 10px;
+  padding-left: 10px;
+  border-right: 1px solid #e5e5e5;
+}
+#productmenu ul li:first-child { 
+  padding-right: 10px;
+  padding-left: 0px;
+}
+#productmenu ul li:last-child { 
+  padding-right: 0px;
+  padding-left: 10px;
+  border-right: none;
+}
+.form-control {
+  border-radius: 0px !important;
+}
+@media screen and (max-width: 767px) {
+  .article-thumbnail {
+    min-height: 100%;
+    height: 100%;
+  }
+}
+@media screen and (max-width: 992px) {
+  .productModel {
+    text-align: center;
+  }
+  .productModel h4, .productModel span.price {
+    font-size: 16px;
+  }
+  .btn-delivery, .btn-no-delivery {
+    width: 100% !important;
+    border-radius: 0px;
+  }
 }

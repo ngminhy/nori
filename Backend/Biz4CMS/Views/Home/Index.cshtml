@@ -1,6 +1,7 @@
 ﻿
 @{ViewBag.Title = "Nori Express";
 
+
     Layout = "~/Views/Shared/_LayoutNori.cshtml";
 }
 @section slider {
@@ -13,12 +14,19 @@
 
 <section class="main homepage">
 
+
     <div id="main-wrapper">
-        <div id="main" class="row">
+        <div id="article" class="row">
             <div id="content" class="column large-12">
-                @{Html.RenderAction("TopQuickLink", "Home");}
+                @{Html.RenderAction("TopArticle", "Home");}
+            </div>
+        </div>
+        <div id="product" class="row">
+            <div id="content" class="column large-12">
+                @{Html.RenderAction("TopProduct", "Home");}
             </div>
         </div>
     </div>
 </section>
+
 

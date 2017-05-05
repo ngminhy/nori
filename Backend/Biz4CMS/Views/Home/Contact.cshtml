@@ -1,5 +1,6 @@
 ﻿@{
-    ViewBag.Title = "Contact";   
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_LayoutNori.cshtml";
 }
 <script type="text/javascript">
     $(document).ready(function () {
@@ -38,43 +39,54 @@
 
     });
 
-   
+
 
 </script>
 @*@{Html.RenderAction("FeedBack", "Home");}*@
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h2 class="panel-title">
-            Form liên hệ</h2>
+<section class="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Form liên hệ</h1>
+
+                <div class="panel-body">
+                    <form>
+                        <span style="color: orangered !important;" id="s1"></span><span style="color: orangered !important;">
+                            @ViewBag.Message
+                            (*&nbsp;Required Fields)
+                        </span><br />
+                        <label>
+                            Your Name <span class="color-red">*</span>
+                        </label>
+                        <div class="row margin-bottom-20">
+                            <div class="col-md-7 col-md-offset-0">
+                                <input type="text" class="form-control" id="FullName">
+                            </div>
+                        </div>
+                        <label>
+                            Your Email <span class="color-red">*</span>
+                        </label>
+                        <div class="row margin-bottom-20">
+                            <div class="col-md-7 col-md-offset-0">
+                                <input type="text" class="form-control" id="Email">
+                            </div>
+                        </div>
+                        <label>
+                            Message<span class="color-red">*</span>
+                        </label>
+                        <div class="row margin-bottom-20">
+                            <div class="col-md-11 col-md-offset-0">
+                                <textarea class="form-control" rows="8" id="Content"></textarea>
+                            </div>
+                        </div>
+                        <p>
+                            <button class="btn btn-nori" type="submit" id="submit">
+                                Send Message
+                            </button>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="panel-body">
-        <form>
-        <span style="color: #d2751f !important;" id="s1"></span><span style="color: #d2751f !important;">@ViewBag.Message
-            (*&nbsp;Required Fields)</span><br />
-        <label>
-            Your Name <span class="color-red">*</span></label>
-        <div class="row margin-bottom-20">
-            <div class="col-md-7 col-md-offset-0">
-                <input type="text" class="form-control" id="FullName">
-            </div>
-        </div>
-        <label>
-            Your Email <span class="color-red">*</span></label>
-        <div class="row margin-bottom-20">
-            <div class="col-md-7 col-md-offset-0">
-                <input type="text" class="form-control" id="Email">
-            </div>
-        </div>
-        <label>
-            Message<span class="color-red">*</span></label>
-        <div class="row margin-bottom-20">
-            <div class="col-md-11 col-md-offset-0">
-                <textarea class="form-control" rows="8" id="Content"></textarea>
-            </div>
-        </div>
-        <p>
-            <button class="btn btn-primary" type="submit" id="submit">
-                Send Message</button></p>
-        </form>
-    </div>
-</div>
+</section>

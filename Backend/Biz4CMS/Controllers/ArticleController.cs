@@ -40,7 +40,9 @@ namespace Biz4CMS.Controllers
                 MainImage = p.MainImage,
                 Description = p.Description,
                 Title = p.Title,
-                PageURL = "/a/" + p.PageURL
+                PageURL = "/a/" + p.PageURL,
+                ButtonLink = string.IsNullOrEmpty(p.ButtonLink) ? "" : p.ButtonLink,
+                ButtonName = string.IsNullOrEmpty(p.ButtonName) ? "" : p.ButtonName
 
 
             }).ToList();
@@ -48,6 +50,9 @@ namespace Biz4CMS.Controllers
 
 
             ViewBag.TotalPage = (int)Math.Ceiling(((double)db.Articles.Where(p => (CategoryID == 0 || p.CategoryId == CategoryID) && p.Active).Count()) / pageSize);
+            if (pageURL == "saleoff") {
+                return View ("index.saleoff", articles);
+            }
             return View(articles);
         }
 

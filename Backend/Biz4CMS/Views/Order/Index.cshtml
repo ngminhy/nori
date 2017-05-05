@@ -3,17 +3,57 @@
     Layout = "~/Views/Shared/_LayoutNori.cshtml";
 }
 
-<section class="main-content">
+<section id="checkout-page" class="main-content">
 <div class="container">
-    <div class="row" style="position: relative; padding-top:10px; padding-bottom:10px;">
-        <div class="col-md-8">
-          
-            <div class="btn-group btn-toggle">
-                <button class="btn btn-lg btn-default"><b>Giao hàng tận nơi</b> <br/> (Miễn phí với đơn hàng > 200K)</button>
-                <button class="btn btn-lg btn-nori "><b>Mua mang về</b> <br/>(Nhận hàng tại cửa hàng)</button>
+    <div class="row">
+        <div class="col-md-3 col-md-push-9 col-sm-5 col-sm-push-7 col-xs-12 product_box">
+            <h3>Đơn hàng</h3>
+            <div class="alert alert-success" style="display:none" id="success-alert-cart">
+                <strong>Thông báo! </strong>
+                <span id="alert-content-cart"></span>
             </div>
-            
-            <form id="orderform" method="post" action="/Order">
+            <table class="cart-view">
+                @if (ViewBag.Cart.CartItems != null)
+                {
+                    var CartItems = (List<Biz4CMS.Models.Cart>)ViewBag.Cart.CartItems;
+                    foreach (var item in CartItems)
+                    {
+                        <tr id="row-@item.RecordId">
+                            <td>
+                                <div class="product-name">
+                                    <strong>@item.Product.Name</strong>
+                                    <span>@item.ListCakeName</span>
+                                </div>
+                                <div>
+                                    <strong>@item.ListCakeName</strong>
+                                </div>
+                                <div id="item-count-@item.RecordId">
+                                    <input type="number" min="1" max="100" value="@item.Count" class="quantity">
+                                    <span class="price"> x @string.Format("{0:0,0}", item.Price) VNĐ</span>
+                                </div>
+                            </td>
+                            <td>
+                                <a href="#" class="removeLink" data-id="@item.RecordId">
+                                    <i class="glyphicon glyphicon-remove"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+                <tr>
+                    <td colspan="2" class="footer-cart">
+                        <b>Tổng cộng</b>
+                        <div id="cart-total">@string.Format("{0:0,0}", ViewBag.Cart.CartTotal) VNĐ</div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-9 col-md-pull-3 col-sm-7 col-sm-pull-5 col-xs-12">
+            <div class="btn-group btn-toggle">
+                <button class="btn btn-sm btn-default btn-delivery"><b>Giao hàng tận nơi</b> <br/> (Miễn phí với đơn hàng > 200K)</button>
+                <button class="btn btn-sm btn-nori btn-no-delivery"><b>Mua mang về</b> <br/>(Nhận hàng tại cửa hàng)</button>
+            </div>
+            <form id="orderform" method="post" action="">
                 <div class="form-group">
                    
                 </div>
@@ -29,6 +69,7 @@
                     <label for="phone">Số điện thoại:</label>
                     <input type="text" class="form-control" name="phone" required>
                 </div>
+
                 <div class="form-group" id="collapsible_address">
                     <label for="address">Địa chỉ:</label>
                     <input type="text" class="form-control" name="address" >
@@ -104,15 +145,14 @@
                 <div class="checkbox">
                     <label><input type="checkbox"> Tôi chấp nhận <a href="/a/dieu-khoan-mua-hang">các điều khoản mua hàng</a></label>
                 </div>
-                <button type="submit" class="btn btn-lg btn-nori">Đăng ký</button>
+                <button type="submit" class="btn btn-sm btn-nori">Đăng ký</button>
                 <div class="alert alert-success" style="display:none" id="success-alert">
                     
                     <strong>Thông báo! </strong>
                     <span id="alert-content"></span>
                 </div>
-</form>
+            </form>
         </div>
-        @{Html.RenderAction("RightBox", "Home");}
     </div>
 </div>
 </section>
@@ -142,7 +182,7 @@
         var url = 'http://maps.google.com/maps/api/geocode/json?address='+longaddress;
         var myLatlng=null;
         if(!carryout){
-            //event.preventDefault();
+            event.preventDefault();
             $.ajax({
                 url: url,
                 type: 'GET',
@@ -172,13 +212,10 @@
 
                         }else{         
                             var form =  $("#orderform");
-                            $.ajax({
-                                url: form.action,
-                                type: form.method,
-                                data: $(form).serialize(),
-                                then: function(response) {
-                                    location.href = "/product";
-                                }            
+                            $.post("/order", $(form).serialize(), function (data) {
+                                if (data.id != '') {
+                                    location.href = "/shoppingcart/complete/" + data.id;
+                                }
                             });
                         }
                     }else{
@@ -189,14 +226,12 @@
 
         }
         else{
+            event.preventDefault();
             var form =  $("#orderform");
-            $.ajax({
-                url: form.action,
-                type: form.method,
-                data: $(form).serialize(),
-                then: function(response) {
-                    location.href = "/product";
-                }            
+            $.post("/order", $(form).serialize(), function (data) {
+                if (data.id != '') {
+                    location.href = "/shoppingcart/complete/" + data.id;
+                }
             });
         }
         
@@ -306,6 +341,136 @@
     }
 
 
+</script>
+<script>
+    function showAlert(divid, idcontent, content) {
+        $("#" + divid).alert();
+        $('#' + idcontent).text(content);
+        $("#" + divid).fadeTo(10000, 500).slideUp(800, function () {
+            $("#" + divid).slideUp(800);
+        });
+    }
+    function showDetail(productid) {
+        $.get("/home/ProductDetail/" + productid, function (data) {
+            console.log(data);
+            $("#myProductDetail").html(data);
+            $("#myModalDetail").modal('show');
+        })
+    }
+    $(function () {
+
+        $(".quantity").change(function () {
+            var rlist = [];
+            var qlist = [];
+            $(".removeLink").each(function () {
+                rlist.push($(this).attr("data-id"));
+            });
+            $(".quantity").each(function () {
+                qlist.push($(this).val());
+            });
+            if (rlist.length > 0) {
+                // Perform the ajax post
+                $.post("/ShoppingCart/UpdateCart", $.param({ "rlist": rlist, "qlist": qlist }, true),
+                    function (data) {
+                        // Successful requests get here
+                        // Update the page elements
+                        var total = data.CartTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                        $('#cart-total').text(total);
+                        $('#carttotal').text(data.CartTotal);
+                        //$('#update-message').text(data.Message);
+                        showAlert("success-alert-cart", "alert-content-cart", data.Message);
+                        $('#cart-status').text(data.CartCount);
+                    });
+            }
+        });
+
+        $('#submit').click(function () {
+            var total = $('#carttotal').text();
+            if (total == "0" || total == undefined) {
+                showAlert("success-alert-cart", "alert-content-cart", "Chọn sản phẩm trước khi thanh toán.");
+
+            } else {
+                //$.post("/ShoppingCart", { "total": total }, function (data) {
+                //    if (data.id != '') {
+                //        location.href = "/shoppingcart/complete/" + data.id;
+                //    }
+                //});
+                location.href = "/order";
+            }
+
+        });
+
+        $(".removeLink").click(function () {
+            // Get the id from the link
+            var recordToDelete = $(this).attr("data-id");
+            if (recordToDelete != '') {
+                // Perform the ajax post
+                $.post("/ShoppingCart/RemoveFromCart", { "id": recordToDelete },
+                    function (data) {
+                        // Successful requests get here
+                        // Update the page elements
+                        if (data.ItemCount == 0) {
+                            $('#row-' + data.DeleteId).fadeOut('slow');
+                        } else {
+                            $('#item-count-' + data.DeleteId).text(data.ItemCount);
+                        }
+                        $('#cart-total').text(data.CartTotal);
+                        $('#carttotal').text(data.CartTotal);
+                        //$('#update-message').text(data.Message);
+                        showAlert("success-alert-cart", "alert-content-cart", data.Message);
+                        $('#cart-status').text(data.CartCount);
+                    });
+            }
+        });
+
+        var MaxFiller = $("#MaxFiller").val();
+        var ProductId = $("#ProductId").val();
+        var prouctPrice = $("#ProductPrice").val();
+        $("#maxchoise").text("Tối đa: " + MaxFiller);
+        function updateCounter(chk) {
+            var len = $("input[name='chkCakeFiller[]']:checked").length;
+
+            if (len > MaxFiller) {
+                chk.checked = false;
+                showAlert("success-alert-cake", "alert-content-cake", 'Bạn đã chọn tối đa số nhân quy định!');
+            }
+        }
+
+        $("#cake tr").click(function (event) {
+            if (event.target.type !== 'checkbox') {
+                $(':checkbox', this).trigger('click');
+            }
+        })
+
+        $("input[name='chkCakeFiller[]']").on("change", function () {
+            updateCounter(this);
+        });
+        $("#addCakeFiller").click(function () {
+            var chkCake = $("input[name='chkCakeFiller[]']:checked").map(function (_, el) {
+                return $(el).val();
+            }).get();
+
+            var chkCakeName = $("input[name='chkCakeFiller[]']:checked").map(function (_, el) {
+                return $(el).attr("data-name");
+            }).get();
+
+            var chkCakePrice = $("input[name='chkCakeFiller[]']:checked").map(function (_, el) {
+                return $(el).attr("data-price");
+            }).get();
+
+            var price = parseInt(prouctPrice);
+            $.each(chkCakePrice, function () {
+                price += parseInt(this);
+            });
+
+            $.get("/ShoppingCart/AddToCart/" + ProductId + "?listCakeFiller=" + chkCake + "&listCakeName=" + chkCakeName + "&price=" + price, function (data) {
+                $('#myModal').modal('toggle');
+                location.href = "/Product";
+            });
+
+
+        })
+    })
 </script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQ0pDRDKSyAO4lm10ttEXa2_uoZmWQzHc&v=3.exp&sensor=false&callback=initMap"></script>
 
