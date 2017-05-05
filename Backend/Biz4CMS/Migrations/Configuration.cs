@@ -10,6 +10,7 @@ namespace Biz4CMS.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(Biz4CMS.Models.Biz4Db context)
