@@ -1,76 +1,11 @@
 ﻿@model IEnumerable<Biz4CMS.Models.Banner>
-<section class="slider">
-    <div id="page-header">
-        <div class="panel-pane pane-views-panes pane-home-page-slider-panel-pane-1">
-            <div class="pane-content">
-                <div class="view view-home-page-slider view-id-home_page_slider view-display-id-panel_pane_1">
-                    <div class="view-content">
-                        <div id="homepage-slider" class="big-slider">
-                            <div class="slides">
-                                @foreach (var item in Model)
-                                {
-                                    <div class="slide">
-                                        <div class="top-banner">
-                                            <p>
-                                                <strong>@item.Heading1:</strong>
-                                                <span class="top-banner-text">@item.Description</span>
-                                            </p>
-                                        </div>
-                                        <div class="top-border-slide"></div>
-                                        <div style="background-image: url(@Url.Content(item.FullPath));" id="node-1643" class="node node-home-page-slide node-promoted clearfix">                                        
-                                            @if (item.BannerId == 1)
-                                            {
-                                                <div class="row">
-                                                    <div class="large-12 columns">
-                                                        <h2>Christmas 2016</h2>
-                                                        <div class="field field-name-body field-type-text-with-summary field-label-hidden">
-                                                            <div class="field-items">
-                                                                <div class="field-item even">
-                                                                    <style type="text/css">
-                                                                        #homepage-slider .slides .slide:first-child h2 {
-                                                                            display: none;
-                                                                        }
-                                                                    </style>
-                                                                    <p>&nbsp;</p>
-                                                                    <p>&nbsp;</p>
-                                                                    <p>
-                                                                        &nbsp;
-                                                                        <br>
-                                                                    </p>
-                                                                    <p class="cta-button">
-                                                                        <a href="@Url.Content("/a/cau-chuyen-nori")">
-                                                                            <img src="@Url.Content("~/Content/Assets/images/open_the_boxes.png")" />
-                                                                        </a>
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            }
-                                        </div>
-                                    </div>
-                                }                              
-
-                            </div>
-                            <ul class="slider-nav row">
-                                <li class="next">Next</li>
-                                <li class="prev">Previous</li>
-                            </ul>
-                            <div class="row">
-                                <div class="large-12 columns">
-                                    <ul class="slider-nav-bubbles">
-                                        <li class="nav-bubble"></li>
-                                        <li class="nav-bubble"></li>
-                                        <li class="nav-bubble"></li>
-
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div id="camera" class="camera_wrap">
+@foreach (var item in Model)
+{
+    <div data-src="@Url.Content(item.FullPath)">
+        <div class="camera_caption fadeIn">@item.Heading1</div>
     </div>
-</section>
+}
+</div>
+
+
