@@ -60,21 +60,15 @@
 
 
     </main>
-    <div class="clearfix"> &nbsp;</div>
+    
     <footer>
-
-
-        <div id="footer">
-            <div class="row">
-                <div class="section column">
-                    <div class="panel-pane pane-block pane-menu-menu-footer-menu" id="footer-links-menu">
-                        <div class="pane-content">
-                            @{Html.RenderAction("BottomMenu", "Home");}
-                        </div>
-                    </div>
-                    <div class="panel-pane pane-custom pane-1" id="footer-social-wrapper">
-                        <div class="pane-content">
-                            <ul id="footer-social">
+<div class="container">
+        <div class="row flow-offset-1"> 
+        <div class="col-sm-3">       
+                @{Html.RenderAction("BottomMenu", "Home");}
+        </div>
+        <div class="col-sm-3">  
+        <ul id="footer-social">
                                 <li class="leaf title">Follow us!</li>
                                 <li class="leaf">
                                     <a href="#" target="_blank">
@@ -89,34 +83,16 @@
                                     </a>
                                 </li>
                             </ul>
-                        </div>
-                    </div>
-                    <div class="panel-pane pane-custom pane-2">
-                        <div class="pane-content">
-                            <div id="footer-logo">
-                                <a href="index.html"></a>
-                                <div></div>
                             </div>
-                            <div class="panel-pane pane-panels-mini pane-footer-copyright">
-                                <div class="pane-content">
-                                    <div class="panel-display panel-1col clearfix" id="mini-panel-footer_copyright">
-                                        <div class="panel-panel panel-col">
-                                            <div>
-                                                <div class="panel-pane pane-custom pane-3">
-                                                    <div class="pane-content">
-                                                        <p style="text-align: center;"> An Phong Co. Ltd 2016. Registered in Vietnam No.: 0313633836</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+
                     </div>
-                </div>
-            </div>
-        </div>
+                    <div class="row flow-offset-1"> 
+        <div class="col-sm-12"> 
+                    An Phong Co. Ltd 2016. Registered in Vietnam No.: 0313633836
+                    </div>
+                    </div>
+        </div>            
     </footer>
 
     <script type="text/javascript" src="@Url.Content("~/Content/Assets/js/script.js")"></script>

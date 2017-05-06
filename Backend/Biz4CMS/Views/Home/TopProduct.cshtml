@@ -8,13 +8,77 @@
         });
     });
 </script>
-<div class="product_box"><h3 class="text-uppercase"> Sản phẩm yêu thích</h3></div>
 
-<div class="row">
-    @foreach (var item in Model)
+@{
+    var i = 0;
+    var left = new List<Biz4CMS.ViewModels.BriefProductDto>();
+    var right = new List<Biz4CMS.ViewModels.BriefProductDto>();
+    foreach (var item in Model)
     {
-        
-            @Html.Partial("_productItem3", item);
-             
+        if (i % 2 == 0){
+            left.Add(item);
+        }else{
+            right.Add(item);
+        }
+        i++;
     }
-</div>
+}
+
+<section class="well-md">
+            <div class="container">
+                <h1>Main menu</h1>
+                <div class="row offset-1 flow-offset-1">
+
+                    <div class="col-sm-6 col-lg-5">
+                        @foreach(var item in left){
+                            @Html.Partial("_productItem3", item);
+                            
+
+
+                        }
+                        
+                        
+                    </div>
+
+                    <div class="col-sm-6 col-lg-offset-1">
+                        @foreach (var item in right){
+                            @Html.Partial("_productItem3", item);                            
+                        }        
+                        
+                    </div>
+                </div>
+
+                <div class="row offset-3">
+                    <div class="col-sm-9">
+                        <!-- Product -->
+                        <div class="product">
+                            <img src="@Url.Content("~/Content/Assets/images/page-01_img05.jpg")" alt="">
+                            <div class="caption">
+                                <!-- Box -->
+                                <div class="box">
+                                    <div class="box_left"><h5>$ 45.99</h5></div>
+                                    <div class="box_cnt">
+                                        <p class="small">Dinner</p>
+                                        <h5><a href="#">Italian Pasta and Sauce</a></h5>
+                                        <p>Served with herby breadcrumbs & Parmesan</p>
+                                    </div>
+                                </div>
+                                <!-- END Box -->
+                            </div>
+                        </div>
+                        <!-- END Product -->
+                    </div>
+                </div>
+
+                <a href="#" class="btn btn-primary btn-md">View all menu</a>
+
+            </div>
+        </section>
+
+
+
+
+
+
+
+

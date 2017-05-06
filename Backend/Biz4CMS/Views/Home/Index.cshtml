@@ -11,22 +11,8 @@
 }
 
 
+@{Html.RenderAction("TopProduct", "Home");}
+@{Html.RenderAction("TopArticle", "Home");}
 
-<section class="main homepage">
-
-
-    <div id="main-wrapper">
-        <div id="article" class="row">
-            <div id="content" class="column large-12">
-                @{Html.RenderAction("TopArticle", "Home");}
-            </div>
-        </div>
-        <div id="product" class="row">
-            <div id="content" class="column large-12">
-                @{Html.RenderAction("TopProduct", "Home");}
-            </div>
-        </div>
-    </div>
-</section>
 
 
