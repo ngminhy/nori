@@ -13,7 +13,7 @@ namespace Biz4CMS.ViewModels
         public string Description { get; set; }
         public string Code { get; set; }
         public int BasePrice { get; set; }
-        //public int Discount { get; set; }
+        public int MaxFiller { get; set; }
         public int Price { get; set; }
         //public string Tags { get; set; }
         //public bool IsDeleted { get; set; }
@@ -25,6 +25,18 @@ namespace Biz4CMS.ViewModels
         //public string ImagesJson { get; set; }
         public string Folder { get; set; }
         public string PageURL { get; set; }
-       
+        public BriefProductDto() { }
+
+        public BriefProductDto(ProductCat item)
+        {
+            this.Name = item.Name;
+            this.Description = item.Description;
+            this.MainImage = item.MainImage;
+            this.Price = item.Price;
+            this.Code = item.Code;
+            this.PageURL = item.PageURL;
+            this.MaxFiller = item.MaxFiller;
+        }
+
     }
 }

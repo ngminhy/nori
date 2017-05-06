@@ -47,7 +47,7 @@ namespace Biz4CMS.Controllers
                 FillerImage = p.FillerImage,
                 Name = p.Name,
                 Price = p.Price
-            }).ToList().OrderBy(p=>p.Name)
+            }).ToList().OrderBy(p => p.Name)
                 .Select(x => new CakeFiller()
                 {
                     CakeFillerId = x.CakeFillerId,
@@ -100,10 +100,33 @@ namespace Biz4CMS.Controllers
             if (category != null) return category.Name;
             return "";
         }
-        public List<ProductCat> GetTopProduct()
+        public List<ProductCategory> GetTopProduct()
         {
             var products = db.Database.SqlQuery<ProductCat>("getTopProduct").ToList();
-            return products;
+            var productcats = new List<ProductCategory>();
+            var preCat1 = -1;
+            var productCategory = new ProductCategory();
+            foreach (var item in products)
+            {
+                if (preCat1 != item.CategoryId)
+                {
+                    if ( preCat1 > -1) {
+                        productcats.Add(productCategory);
+                    }
+                    productCategory = new ProductCategory();
+                    productCategory.Products = new List<BriefProductDto>();
+                    productCategory.CategoryName = item.CategoryName;
+                    productCategory.CategoryId = item.CategoryId;
+                    productCategory.CategoryPageURL = item.CategoryPageURL;
+                    preCat1 = item.CategoryId;
+                }
+                var product = new BriefProductDto(item);
+
+                productCategory.Products.Add(product);
+                productCategory.NumofItem++;
+            }
+            productcats.Add(productCategory);
+            return productcats;
         }
 
 

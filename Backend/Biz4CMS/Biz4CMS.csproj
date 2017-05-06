@@ -253,6 +253,7 @@
     <Compile Include="Models\ThumbnailCreator.cs" />
     <Compile Include="Util\Common.cs" />
     <Compile Include="ViewModels\OrderDetailDto.cs" />
+    <Compile Include="ViewModels\ProductCategory.cs" />
     <Compile Include="ViewModels\ProductCat.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Cart.cs" />

@@ -1,22 +1,28 @@
-﻿@model Biz4CMS.ViewModels.ProductCat
-<div class="col-md-4 col-sm-4 col-xs-6 productModel">
-    @if (!string.IsNullOrEmpty(Model.MainImage))
+﻿@model Biz4CMS.ViewModels.BriefProductDto
+
+<!-- Product -->
+                            <div class="product">
+                               @if (!string.IsNullOrEmpty(Model.MainImage))
     {
-        <a onclick="showDetail(@Model.ProductId)">
-            <img src="/ImageBrowser/CropImage?path=@Model.MainImage.Replace("~/content/images/","")" class="product-img-thumbnail" alt="@Model.Name " />
+        <a href="">
+            <img src="/ImageBrowser/CropImage?w=470&path=@Url.Content(Model.MainImage)" class="product-img-thumbnail" alt="@Model.Name "/>
         </a>
     }
-    <div class="clearfix">   
-        <div class="row">
-            <div class="col-md-12 product-title">
-                <h4><a href="#">@Model.Name</a></h4>
-            </div>
-            <div class="col-md-12 product-price">
-                <span class="price">@string.Format("{0:0,0}", Model.Price) VNĐ</span>&nbsp;
-            </div>
-            <div class="col-md-12 product-add-cart">
-                @Html.ActionLink("Mua", "AddToCart", "ShoppingCart", new { id = Model.ProductId, count = 1, price = Model.Price }, new { @class = "btn btn-nori" })
-            </div>
-        </div>
-    </div>
-</div>
+                                <div class="caption">
+                                    <!-- Box -->
+                                    <div class="box">
+                                        <div class="box_left"><h5>@string.Format("{0:0,0}", Model.Price) VNĐ</h5>
+@Html.ActionLink("Mua", "AddToCart", "ShoppingCart", new { id = Model.ProductId, count = 1, price = Model.Price }, new { @class="btn btn-primary btn-cart btn-md"})
+                                        </div>
+                                        <div class="box_cnt">
+                                            <p class="small">Dinner</p>
+                                            <h5><a href="#">@Model.Name</a></h5>
+                                            <p>@Model.Description
+</p>
+                                        </div>
+                                    </div>
+                                    <!-- END Box -->
+                                </div>
+                            </div>
+                            <!-- END Product -->
+

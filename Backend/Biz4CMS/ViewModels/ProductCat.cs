@@ -12,6 +12,7 @@ namespace Biz4CMS.ViewModels
     {
         public int ProductId { get; set; }
         public string Name { get; set; }
+        public string Description { get; set; }
         public string MainImage { get; set; }
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }

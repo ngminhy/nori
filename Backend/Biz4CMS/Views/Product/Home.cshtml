@@ -1,26 +1,65 @@
-﻿@model IEnumerable<Biz4CMS.ViewModels.ProductCat>
+﻿@model IEnumerable<Biz4CMS.ViewModels.ProductCategory>
 
 @{
     ViewBag.Title = "Product order ";
     Layout = "~/Views/Shared/_LayoutNori.cshtml";
 }
 
-<style>
-    #limheight {
-        -webkit-column-count: 3;
-        -moz-column-count: 3;
-        column-count: 3; /*3 is just placeholder -- can be anything*/
-    }
-    #limheight li {
-        display: inline-block;
-        padding-bottom: 20px;
-    }
-</style>
 
 @{  var i = 1;
     var preCat = 0;
     var CakeFillers = (List<Biz4CMS.Models.CakeFiller>)ViewData["CakeFillers"];
 }
+
+
+@foreach (var item in Model)
+{   
+    <section class="well-md">
+            <div class="container">
+                <h1>@item.CategoryName</h1>
+                
+                @if (item.NumofItem == 1) {
+                    <div class="row offset-3">
+                        <div class="col-sm-9">
+                            @Html.Partial("_productItem", item.Products[0])
+                        </div>
+                    </div>
+                } else if (item.NumofItem % 3 == 0) {
+                    <div class="row offset-5 flow-offset-1">
+                        @foreach(var product in item.Products){
+                            <div class="col-sm-4">                
+                                @Html.Partial("_productItem", product)
+                            </div>
+                        }                       
+                    </div>
+                } else {
+                    <div class="row offset-1 flow-offset-1">
+
+                        <div class="col-sm-6 col-lg-5">
+
+                            @for(var j =0 ; j < item.NumofItem / 2; j++){
+                                var product = item.Products[j];
+                                @Html.Partial("_productItem", product)
+                            }
+                        </div>
+
+                        <div class="col-sm-6 col-lg-offset-1">
+                            @for (var k =  item.NumofItem / 2; k < item.NumofItem ; k++ ){
+                                var product = item.Products[k];
+                                @Html.Partial("_productItem", product)                           
+                            }        
+                        </div>
+                    </div>
+                }
+                
+
+                
+
+            </div>
+    </section>
+    <div class="container reset-font-size"><hr class="line"></div>
+}                
+
 
 <section class="main-content">
     <div class="container">
@@ -92,21 +131,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-9 col-md-pull-3 col-sm-7 col-sm-pull-5 col-xs-12 product-listing">
-                    @foreach (var item in Model)
-                    {
-                        if (preCat != item.CategoryId)
-                        {
-                            @:<div class="product-category-title"><h3><a href="#">@item.CategoryName</a> </h3></div>
-                        }
-                        @Html.Partial("_productItem", item)
-                        preCat = item.CategoryId;
-                    }
-                </div>
+                
             </div>
         </div>
     </div>
 </section>
+
 
 
 <!-- Modal -->
