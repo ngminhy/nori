@@ -7,35 +7,20 @@
 {
     <div style="background-image: url(@Url.Content(Model.Banner));" id="node-1643" class="node node-home-page-slide node-promoted clearfix"></div>
 }
-<section class="main-content">
+<section class="well-md">
     <div class="container">
-        <div class="row" style="position: relative;">
-            <div class="col-md-8">
-                <article class="post">
+        <h1><a href="@Url.Content(Model.PageURL)">@Model.Title</a></h1>
+        <div class="row offset-5 flow-offset-1">
 
-                    <div class="post-content">
-                        <header class="entry-header  text-uppercase">
+            <div class="col-md-3">
+                <div class="image-wrap"><a href="@Url.Content(Model.PageURL)"><img src="@Url.Content(Model.MainImage)" alt="@Model.Title"></a></div>
+                @if (!string.IsNullOrEmpty(@Model.ButtonLink))
+                {
+                    <p><a class="btn btn-nori" href="@Url.Content(Model.ButtonLink)">@Model.ButtonName</a> </p>
+                }
 
-                            <h1 class="entry-title"><a href="#">@Model.Title</a></h1>
-
-                        </header>
-                        <div class="entry-content">
-                            <p>
-                                @Html.Raw(Model.Content)
-                            </p>
-                        </div>
-                        <div>
-                            @if (!string.IsNullOrEmpty(@Model.ButtonLink))
-                            {
-                                <p><a class="btn btn-nori" href="@Url.Content(Model.ButtonLink)">@Model.ButtonName</a> </p>
-                            }
-
-                        </div>
-                    </div>
-
-                </article>
                 @if (ViewBag.RelatedArticles != null && ViewBag.RelatedArticles.Count > 0)
-            {
+                {
                     <div class="panel-body">
                         <h3>
                             Related Articles
@@ -49,10 +34,16 @@
                             </ul>
                         </div>
                     </div>
+
                 }
+
             </div>
 
-            @{Html.RenderAction("RightBox", "Home");}
+            <div class="col-md-9">
+                @Html.Raw(Model.Content)
+            </div>
+
+        </div>
     </div>
- </div>
 </section>
+

@@ -7,11 +7,11 @@
                 <div class="row offset-5 flow-offset-1">
                     @foreach (var item in Model)
                     {
-                        <div class="col-xs-6 col-md-3">
+                        <div class="col-xs-6 col-md-4">
                             <!-- News Post -->
                             <div class="news-post">
                                 <a href="@Url.Content(item.PageURL)">
-                                    <img src="/ImageBrowser/CropImage?w=300&h=160&path=@Url.Content(item.MainImage)" alt="@item.Title">
+                                    <img src="/ImageBrowser/CropImage?w=370&h=200&path=@Url.Content(item.MainImage)" alt="@item.Title">
                                 </a>
                                 <time class="post-meta small" datetime="1957-10-04">2 days ago</time>
                                 <div class="caption">

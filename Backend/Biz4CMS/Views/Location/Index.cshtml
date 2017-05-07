@@ -3,15 +3,11 @@
     Layout = "~/Views/Shared/_LayoutNori.cshtml";
 }
 
-<section class="location">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Địa điểm</h1>
-                <p>Sơ đồ vị trí tất cả các chi nhánh của Nori tại thành phố Hồ Chí Minh</p>
-            </div>
-        </div>
-    </div>
+<section class="well-md">
+            <div class="container">
+                <h1>Địa điểm</h1> 
+                 <p>Sơ đồ vị trí tất cả các chi nhánh của Nori tại thành phố Hồ Chí Minh</p>  
+
     <div id="map_canvas" style="height: 500px"></div>
     <script type="text/javascript">
         var objLocations = @Html.Raw(Json.Encode(@ViewBag.data));
@@ -87,6 +83,7 @@ function initialize() {
 
 }
     </script>
+    </div>
 </section>
 
 
