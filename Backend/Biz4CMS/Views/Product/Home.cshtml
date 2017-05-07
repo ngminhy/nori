@@ -24,7 +24,7 @@
                             @Html.Partial("_productItem", item.Products[0])
                         </div>
                     </div>
-                } else if (item.NumofItem % 3 == 0) {
+                } else if (item.NumofItem % 3 == 0 || item.NumofItem > 6) {
                     <div class="row offset-5 flow-offset-1">
                         @foreach(var product in item.Products){
                             <div class="col-sm-4">                
@@ -37,14 +37,14 @@
 
                         <div class="col-sm-6 col-lg-5">
 
-                            @for(var j =0 ; j < item.NumofItem / 2; j++){
+                            @for(var j =0 ; j < item.NumofItem / 2 + (item.NumofItem % 2 ==0 ? 0 : 1); j++){
                                 var product = item.Products[j];
                                 @Html.Partial("_productItem", product)
                             }
                         </div>
 
                         <div class="col-sm-6 col-lg-offset-1">
-                            @for (var k =  item.NumofItem / 2; k < item.NumofItem ; k++ ){
+                            @for (var k =  item.NumofItem / 2 + (item.NumofItem % 2 ==0 ? 0 : 1); k < item.NumofItem ; k++ ){
                                 var product = item.Products[k];
                                 @Html.Partial("_productItem", product)                           
                             }        
