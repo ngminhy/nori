@@ -2,19 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>@ViewBag.Title - NoriExpress</title>
+    <title>@ViewBag.Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="NoriExpress">
     <meta charset="utf-8">
     <meta name="format-detection" content="telephone=no"/>
-<link rel="icon" href="images/favicon.ico" type="image/x-icon">
-
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link href="@Url.Content("~/Content/Assets/css/font-awesome.css")" rel="stylesheet">
     <link href="@Url.Content("~/Content/Assets/css/material-icons.css")" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet" type="text/css">
-
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i&amp;subset=vietnamese" rel="stylesheet">
     <link rel="stylesheet" href="@Url.Content("~/Content/Assets/css/grid.css")">
     <link rel="stylesheet" href="@Url.Content("~/Content/Assets/css/style.css")">
     <link rel="stylesheet" href="@Url.Content("~/Content/Assets/css/camera.css")">
@@ -22,27 +19,17 @@
     <link rel="stylesheet" href="@Url.Content("~/Content/Assets/css/main.css")">
     <script src="@Url.Content("~/Content/Assets/js/jquery.js")"></script>
     <script src="@Url.Content("~/Content/Assets/js/jquery-migrate-1.2.1.js")"></script> 
-
- 
-
-
     <script src="@Url.Content("~/Content/Assets/js/device.min.js")"></script>
-
 </head>
-
-
 <body class="page">
     <header>
-    <div id="stuck_container" class="stuck_container">
+        <div id="stuck_container" class="stuck_container">
             <div class="container">
                 <!-- Brand -->
                 <div class="brand">
                     <a href="/"><img style="margin-top: -10px;" src="@Url.Content("~/Content/Assets/images/logo_xmas.png")" alt=""></a>
-
-
                 </div>
                 <!-- END Brand -->
-
                 <!-- Menu  -->
                 @{Html.RenderAction("TopMenu", "Home");}
                 <!-- END Menu -->
@@ -51,50 +38,37 @@
         <!-- END Stuck Container -->
         @RenderSection("slider", required : false)
         <div class="container reset-font-size"><hr class="line"></div>
-
-        
     </header>
-    <main>
-    @RenderBody()
-
-
-    </main>
-    
+    <main>@RenderBody()</main>
     <footer>
-<div class="container">
-        <div class="row flow-offset-1"> 
-        <div class="col-sm-3">       
-                @{Html.RenderAction("BottomMenu", "Home");}
-        </div>
-        <div class="col-sm-3">  
-        <ul id="footer-social">
-                                <li class="leaf title">Follow us!</li>
-                                <li class="leaf">
-                                    <a href="#" target="_blank">
-
-                                        <span class="fa fa-facebook"></span>
-                                    </a>
-                                </li>
-                                <li class="leaf">
-                                    <a href="#" target="_blank">
-
-                                        <span class="fa fa-twitter"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                            </div>
-
-
-                    </div>
-                    <div class="row flow-offset-1"> 
-        <div class="col-sm-12"> 
+        <div class="container">
+            <div class="row flow-offset-1"> 
+                <div class="col-sm-3">       
+                    @{Html.RenderAction("BottomMenu", "Home");}
+                </div>
+                <div class="col-sm-3">  
+                    <ul id="footer-social">
+                        <li class="leaf title">Follow us!</li>
+                        <li class="leaf">
+                            <a href="#" target="_blank">
+                                <span class="fa fa-facebook"></span>
+                            </a>
+                        </li>
+                        <li class="leaf">
+                            <a href="#" target="_blank">
+                                <span class="fa fa-twitter"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row flow-offset-1"> 
+                <div class="col-sm-12"> 
                     An Phong Co. Ltd 2016. Registered in Vietnam No.: 0313633836
-                    </div>
-                    </div>
+                </div>
+            </div>
         </div>            
     </footer>
-
     <script type="text/javascript" src="@Url.Content("~/Content/Assets/js/script.js")"></script>
-
 </body>
 </html>

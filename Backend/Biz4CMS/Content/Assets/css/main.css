@@ -1,8 +1,30 @@
-.btn-cart {
+.btn-addcart {
     font-size: 12px;
     line-height: 32px;
     width: 100px;
     height: 32px;
+	margin-top: 10px;
 }
-
-
+.btn-addcart i {
+    font-size: 12px;
+    line-height: 32px;
+}
+.hot-link {
+	color: #ff6d00;
+	margin-top: 10px;
+}
+.border-bottom {
+	border-bottom: 1px solid #dedede;
+}
+section.article h1 {
+    font-size: 50px;
+}
+section.article h1 a:hover {
+    color: #303334;
+}
+section.article h1+p {
+    margin-top: 40px;
+}
+section.article .btn {
+    margin-top: 40px;
+}

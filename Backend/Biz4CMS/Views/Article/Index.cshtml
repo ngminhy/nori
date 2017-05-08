@@ -6,25 +6,19 @@
 
 @foreach (var item in Model)
 {
-<section class="well-md">
-            <div class="container">                
-                <div class="row offset-5 flow-offset-1">
-                    
-                    <div class="col-md-6">
-                        <div class="image-wrap"><a href="@Url.Content(item.PageURL)"><img src="@Url.Content(item.MainImage)" alt="@item.Title"></a></div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <h1><a href="@Url.Content(item.PageURL)">@item.Title</a></h1>
-                        @item.Description
-                        <br />
-                        <a href="#" class="btn btn-sm btn-primary">Learn more</a>
-                    </div>
-
-                </div>
+    <section class="article well-md container">
+        <div class="row offset-5 flow-offset-1">
+            <div class="col-md-6">
+                <div class="image-wrap"><a href="@Url.Content(item.PageURL)"><img src="@Url.Content(item.MainImage)" alt="@item.Title"></a></div>
             </div>
-        </section>
-    
+            <div class="col-md-6">
+                <h1><a href="@Url.Content(item.PageURL)">@item.Title</a></h1>
+                <p>@item.Description</p>
+                <a href="#" class="btn btn-sm btn-primary">Chi tiết</a>
+            </div>
+
+        </div>
+    </section>
 }
 
 @if (ViewBag.TotalPage > 1)

@@ -1,33 +1,27 @@
 ﻿@model IEnumerable<Biz4CMS.ViewModels.BriefArticleDto>
-
-
-<section class="well-md">
-            <div class="container">
-                <h1>Khuyến mãi</h1>
-                <div class="row offset-5 flow-offset-1">
-                    @foreach (var item in Model)
-                    {
-                        <div class="col-xs-6 col-md-4">
-                            <!-- News Post -->
-                            <div class="news-post">
-                                <a href="@Url.Content(item.PageURL)">
-                                    <img src="/ImageBrowser/CropImage?w=370&h=200&path=@Url.Content(item.MainImage)" alt="@item.Title">
-                                </a>
-                                <time class="post-meta small" datetime="1957-10-04">2 days ago</time>
-                                <div class="caption">
-                                    <h5><a href="@Url.Content(item.PageURL)">@item.Title</a></h5>
-                                    <p>@item.Description</p>
-                                    @if(!string.IsNullOrEmpty(@item.ButtonLink)) {
-                                        <div><a class="btn btn-nori" href="@Url.Content(item.ButtonLink)">@item.ButtonName</a> </div>
-                                    }
-                                </div>
-                            </div>
-                            <!-- END News Post -->
-                        </div>
-                    }
-                    
-
+<section class="well-md container">
+    <h1>Khuyến mãi</h1>
+    <div class="row offset-5 flow-offset-1">
+        @foreach (var item in Model)
+        {
+            <div class="col-xs-6 col-md-4">
+                <!-- News Post -->
+                <div class="news-post">
+                    <a href="@Url.Content(item.PageURL)">
+                        <img src="/ImageBrowser/CropImage?w=370&h=200&path=@Url.Content(item.MainImage)" alt="@item.Title">
+                    </a>
+                    <time class="post-meta small" datetime="1957-10-04">2 days ago</time>
+                    <div class="caption">
+                        <h5><a href="@Url.Content(item.PageURL)">@item.Title</a></h5>
+                        <p>@item.Description</p>
+                        @if(!string.IsNullOrEmpty(@item.ButtonLink)) {
+                            <div class="hot-link"><a href="@Url.Content(item.ButtonLink)"><i class="fa fa-hand-o-right"></i> @item.ButtonName</a> </div>
+                        }
+                    </div>
                 </div>
-                <a href="#" class="btn btn-sm btn-primary">Learn more</a>
+                <!-- END News Post -->
             </div>
-        </section>
+        }
+    </div>
+    <a href="#" class="btn btn-sm btn-primary">Chi tiết</a>
+</section>

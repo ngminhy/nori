@@ -1,58 +1,59 @@
-﻿
-@model IEnumerable<Biz4CMS.ViewModels.LinkDto>
+﻿@model IEnumerable<Biz4CMS.ViewModels.LinkDto>
 <nav class="nav">
-                    <ul class="sf-menu" data-type="navbar">
-    @foreach (var lnk in Model)
-    {
-        <li>
-            <a href="@lnk.Link">@lnk.Title</a>
-            @if (lnk.SubMenus != null && lnk.SubMenus.Count > 0)
-            {
-                <ul>
+    <ul class="sf-menu" data-type="navbar">
+        @foreach (var lnk in Model)
+        {
+            <li>
+                <a href="@lnk.Link">@lnk.Title</a>
+                @if (lnk.SubMenus != null && lnk.SubMenus.Count > 0)
+                {
+                    <ul>
+                        @foreach (var subMenu in lnk.SubMenus)
+                        {
+                            <li>
+                                <a href="@subMenu.Link">@subMenu.Title</a>
+                            </li>
+                        }
+                    </ul>
 
-                    @foreach (var subMenu in lnk.SubMenus)
-                    {
-                        <li>
-                            <a href="@subMenu.Link"> @subMenu.Title</a>
-                        </li>
-                    }
+                }
+
+            </li>
+        }
+
+
+
+        @*@if (HttpContext.Current.Session["role"] != null)
+        {
+            <li>
+                <a href="/account/myprofile">Account</a>
+                <ul class="sf-menu" data-type="navbar">
+                    <li>
+                        <a href="/account/myorder"> My Order</a>
+                    </li>
+                    <li>
+                        <a href="/account/myprofile"> My Profile</a>
+                    </li>
+                    <li>
+                        <a href="/account/ChangePassword"> Change Password</a>
+                    </li>
+                    <li>
+                        <a href="/account/logoff"> Sign Out</a>
+                    </li>
                 </ul>
-
-            }
-
-        </li>
-    }
-    @*@if (HttpContext.Current.Session["role"] != null)
-    {
-        <li>
-            <a href="/account/myprofile">Account</a>
-            <ul class="sf-menu" data-type="navbar">
-                <li>
-                    <a href="/account/myorder"> My Order</a>
-                </li>
-                <li>
-                    <a href="/account/myprofile"> My Profile</a>
-                </li>
-                <li>
-                    <a href="/account/ChangePassword"> Change Password</a>
-                </li>
-                <li>
-                    <a href="/account/logoff"> Sign Out</a>
-                </li>
-            </ul>
-        </li>
-    }
-    else
-    {
-        <li>
-            <a href="/account/logon"> Sign In</a>
-        </li>
-    }*@
-    @*@if (HttpContext.Current.Session["userinfo"] !=null)
-    {
-        <li>
-            <a href="/shoppingCart"> Cart (0)</a>
-        </li>
-    }*@
-</ul>
+            </li>
+        }
+        else
+        {
+            <li>
+                <a href="/account/logon"> Sign In</a>
+            </li>
+        }*@
+        @*@if (HttpContext.Current.Session["userinfo"] !=null)
+        {
+            <li>
+                <a href="/shoppingCart"> Cart (0)</a>
+            </li>
+        }*@
+    </ul>
 </nav>

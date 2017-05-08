@@ -1,16 +1,11 @@
-﻿
-@{ViewBag.Title = "Nori Express";
-
-
+﻿@{ViewBag.Title = "Nori Express";
     Layout = "~/Views/Shared/_LayoutNori.cshtml";
 }
 @section slider {
-        <div class="camera_container">
-                @{Html.RenderAction("Slider", "Home");}
-        </div>
+    <div class="camera_container">
+        @{Html.RenderAction("Slider", "Home");}
+    </div>
 }
-
-
 @{Html.RenderAction("TopProduct", "Home");}
 @{Html.RenderAction("TopArticle", "Home");}
 
