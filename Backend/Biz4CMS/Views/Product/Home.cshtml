@@ -28,7 +28,7 @@
                     <div class="row offset-5 flow-offset-1">
                         @foreach(var product in item.Products){
                             <div class="col-sm-4">                
-                                @Html.Partial("_productItem", product)
+                                @Html.Partial("_productItem3", product)
                             </div>
                         }                       
                     </div>
@@ -39,14 +39,14 @@
 
                             @for(var j =0 ; j < item.NumofItem / 2 + (item.NumofItem % 2 ==0 ? 0 : 1); j++){
                                 var product = item.Products[j];
-                                @Html.Partial("_productItem", product)
+                                @Html.Partial("_productItem2", product)
                             }
                         </div>
 
                         <div class="col-sm-6 col-lg-offset-1">
                             @for (var k =  item.NumofItem / 2 + (item.NumofItem % 2 ==0 ? 0 : 1); k < item.NumofItem ; k++ ){
                                 var product = item.Products[k];
-                                @Html.Partial("_productItem", product)                           
+                                @Html.Partial("_productItem2", product)                           
                             }        
                         </div>
                     </div>

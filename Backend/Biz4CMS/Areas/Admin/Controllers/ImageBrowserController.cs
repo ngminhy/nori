@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Drawing;
 using System.Web;
 using System.Web.Mvc;
 using System.IO;
@@ -55,8 +56,8 @@ namespace Biz4CMS.Areas.Admin.Controllers
             return VirtualPathUtility.Combine(VirtualPathUtility.AppendTrailingSlash(basePath), relativePath);
         }
 
-        [OutputCache(Duration = 86400, VaryByParam = "path")]
-        public virtual ActionResult SmallImage(string path)
+        [OutputCache(Duration = 86400, VaryByParam = "path;w")]
+        public virtual ActionResult ScaleImage(string path, int w = 300)
         {
             try
             {  
@@ -67,7 +68,7 @@ namespace Biz4CMS.Areas.Admin.Controllers
                 if (System.IO.File.Exists(physicalPath))
                 {
                     Response.AddFileDependency(physicalPath);
-                    return CreateThumbnail(physicalPath, 300, 300);
+                    return CreateThumbnail(physicalPath, w);
                 }
                 else
                 {
@@ -109,19 +110,23 @@ namespace Biz4CMS.Areas.Admin.Controllers
         }
         
 
-        private FileContentResult CreateThumbnail(string physicalPath, int width = 80, int height = 80)
+        private FileContentResult CreateThumbnail(string physicalPath, int width = 80)
         {
             using (var fileStream = System.IO.File.OpenRead(physicalPath))
             {
-                var desiredSize = new Biz4CMS.Models.ImageSize
+                using (var image = Image.FromStream(fileStream))
                 {
-                    Width = width,
-                    Height = height
-                };
 
-                const string contentType = "image/png";
+                    var desiredSize = new Biz4CMS.Models.ImageSize
+                    {
+                        Width = width,
+                        Height =  (int) (width * image.Height / image.Width)
+                    };
 
-                return File(thumbnailCreator.Create(fileStream, desiredSize, contentType), contentType);
+                    const string contentType = "image/png";
+
+                    return File(thumbnailCreator.Create(fileStream, desiredSize, contentType), contentType);
+                }
             }
         }
 

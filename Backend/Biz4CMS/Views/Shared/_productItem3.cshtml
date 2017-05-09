@@ -1,28 +1,26 @@
 ﻿@model Biz4CMS.ViewModels.BriefProductDto
-
 <!-- Product -->
-                            <div class="product">
-                               @if (!string.IsNullOrEmpty(Model.MainImage))
+<div class="product">
+    @if (!string.IsNullOrEmpty(Model.MainImage))
     {
         <a href="">
-            <img src="/ImageBrowser/CropImage?w=470&path=@Url.Content(Model.MainImage)" class="product-img-thumbnail" alt="@Model.Name "/>
+            <img src="/ImageBrowser/CropImage?w=370&h=415&path=@Url.Content(Model.MainImage)" class="product-img-thumbnail" alt="@Model.Name "/>
         </a>
     }
-                                <div class="caption">
-                                    <!-- Box -->
-                                    <div class="box">
-                                        <div class="box_left"><h5>@string.Format("{0:0,0}", Model.Price) VNĐ</h5>
-@Html.ActionLink("Mua", "AddToCart", "ShoppingCart", new { id = Model.ProductId, count = 1, price = Model.Price }, new { @class="btn btn-primary"})
-                                        </div>
-                                        <div class="box_cnt">
-                                            <p class="small">Dinner</p>
-                                            <h5><a href="#">@Model.Name</a></h5>
-                                            <p>@Model.Description
-</p>
-                                        </div>
-                                    </div>
-                                    <!-- END Box -->
-                                </div>
-                            </div>
-                            <!-- END Product -->
+    <div class="caption">
+        <!-- Box -->
+        <div class="box">
+            <div class="box_left"><h5>@string.Format("{0:0,0}", Model.Price) VNĐ</h5>
+                <a class="btn btn-primary btn-addcart" href="@Url.Action("AddToCart", "ShoppingCart", new { id = Model.ProductId, count = 1, price = Model.Price })"><i class="fa fa-shopping-cart"></i> Mua</a>
+            </div>
+            <div class="box_cnt">
+                <p class="small">@Model.CategoryName</p>
+                <h5><a href="#">@Model.Name</a></h5>
+                <p>@Model.Description</p>
+             </div>
+        </div>
+         <!-- END Box -->
+    </div>
+</div>
+<!-- END Product -->
 
