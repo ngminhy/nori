@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Biz4CMS.ViewModels.ProductCategory>
 
 @{
-    ViewBag.Title = "Product order ";
+    ViewBag.Title = "Thực đơn";
     Layout = "~/Views/Shared/_LayoutNori.cshtml";
 }
 
@@ -61,7 +61,7 @@
 }                
 
 
-<section class="main-content">
+<section class="main-content hide">
     <div class="container">
         <div class="product_box">
             <div class="row">
@@ -140,7 +140,7 @@
 
 
 <!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
+<div id="myModal" class="modal fade hide" role="dialog">
     <div class="modal-dialog modal-sm">
 
         <!-- Modal content-->
@@ -191,7 +191,7 @@
 </div>
 
 <!-- Modal -->
-<div id="myModalDetail" class="modal fade" role="dialog">
+<div id="myModalDetail" class="modal fade hide" role="dialog">
     <div class="modal-dialog modal-sm">
 
         <!-- Modal content-->

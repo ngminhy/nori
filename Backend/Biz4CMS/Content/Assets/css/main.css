@@ -28,3 +28,6 @@ section.article h1+p {
 section.article .btn {
     margin-top: 40px;
 }
+.hide {
+    display: none !important;
+}

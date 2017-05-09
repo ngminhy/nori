@@ -15,7 +15,7 @@ namespace Biz4CMS.ViewModels
         public int BasePrice { get; set; }
         public int MaxFiller { get; set; }
         public int Price { get; set; }
-        //public string Tags { get; set; }
+        public string CategoryName { get; set; }
         //public bool IsDeleted { get; set; }
         //public DateTime CreatedDate { get; set; }
         //public int NumofViews { get; set; }
@@ -36,6 +36,7 @@ namespace Biz4CMS.ViewModels
             this.Code = item.Code;
             this.PageURL = item.PageURL;
             this.MaxFiller = item.MaxFiller;
+            this.CategoryName = item.CategoryName;
         }
 
     }

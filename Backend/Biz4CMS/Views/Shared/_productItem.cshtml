@@ -14,7 +14,7 @@
                 <a class="btn btn-primary btn-addcart" href="@Url.Action("AddToCart", "ShoppingCart", new { id = Model.ProductId, count = 1, price = Model.Price })"><i class="fa fa-shopping-cart"></i> Mua</a>
             </div>
             <div class="box_cnt">
-                <p class="small">Dinner</p>
+                <p class="small">@Model.CategoryName</p>
                 <h5><a href="#">@Model.Name</a></h5>
                 <p>@Model.Description</p>
              </div>

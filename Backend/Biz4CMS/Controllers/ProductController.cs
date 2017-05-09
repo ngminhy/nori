@@ -102,7 +102,7 @@ namespace Biz4CMS.Controllers
         }
         public List<ProductCategory> GetTopProduct()
         {
-            var products = db.Database.SqlQuery<ProductCat>("getTopProduct").ToList();
+            var products = db.Database.SqlQuery<ProductCat>("getAllProduct").ToList();
             var productcats = new List<ProductCategory>();
             var preCat1 = -1;
             var productCategory = new ProductCategory();

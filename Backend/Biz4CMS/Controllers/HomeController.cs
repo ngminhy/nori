@@ -163,19 +163,10 @@ namespace Biz4CMS.Controllers
 
         public ActionResult TopProduct()
         {
-            var topproducts = db.Products.Where(p => p.IsSpecial ).OrderByDescending(p => p.ProductId).Take(12).Select(model => new BriefProductDto()
-            {
-                ProductId = model.ProductId,
-                Description = model.Description,
-                Code = model.Code,
-                Folder = model.Folder,
-                Name = model.Name,
-                MainImage = model.MainImage,
-                Price = model.Price,
-                BasePrice = model.BasePrice
-
-            }).ToList();
-            return PartialView("TopProduct", topproducts);
+          
+            var products = db.Database.SqlQuery<BriefProductDto>("getTopProduct").ToList();
+                
+            return PartialView("TopProduct", products);
         }
 
         public ActionResult TopArticle()
