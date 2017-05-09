@@ -27,12 +27,12 @@
     <div class="row offset-1 flow-offset-1">
         <div class="col-sm-6 col-lg-5">
             @foreach(var item in left){
-                @Html.Partial("_productItem", item);
+                @Html.Partial("_productItem2", item);
             }
         </div>
         <div class="col-sm-6 col-lg-offset-1">
             @foreach (var item in right){
-                @Html.Partial("_productItem", item);                            
+                @Html.Partial("_productItem2", item);                            
             }        
         </div>
     </div>
