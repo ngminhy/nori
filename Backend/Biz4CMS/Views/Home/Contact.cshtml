@@ -4,7 +4,6 @@
 }
 <script type="text/javascript">
     $(document).ready(function () {
-
         $("#submit").click(function () {
             var Success = false;
             var Content = $("#Content").val();
@@ -28,62 +27,38 @@
                     error: function (textStatus, errorThrown) {
                         Success = false; //doesnt goes here
                     }
-
                 });
             } else {
                 $('#s1').text('Please enter all required fields, message must be at least 20 characters')
             }
             return false;
         });
-
-
     });
-
-
-
 </script>
 
 <section class="well-md">
     <div class="container">
-        <h1>Contacts</h1>
-
+        <h1>Liên hệ</h1>
         <form class="rd-mailform offset-6" method="post">
-
             <input type="hidden" name="form-type" value="contact" />
             <fieldset>
-
                 <label data-add-placeholder="">
-                    <input type="text" id="fullname"
-                           name="name"
-                           placeholder="Your name"
-                           required />
+                    <input type="text" id="fullname" name="name" placeholder="Họ tên" required />
                 </label>
 
                 <label data-add-placeholder="">
-                    <input type="text"
-                           name="email"
-                           placeholder="Your email" id="Email"
-                           required />
+                    <input type="text" name="email" placeholder="Email" id="email" required />
                 </label>
-
                 <label data-add-placeholder="" class="textarea">
-                    <textarea name="message"
-                              placeholder="Your message" id="Content"
-                              required></textarea>
+                    <textarea name="message" placeholder="Nội dung" id="message" required></textarea>
                 </label>
-
-                <button class="btn btn-primary" type="submit" id="submit">
-                    Send Message
-                </button>
+                <div class="mfControls">
+                    <button class="btn btn-primary btn-sm" type="submit">Gửi</button>
+                </div>
 
                 <div class="mfInfo"></div>
             </fieldset>
-            <span style="color: orangered !important;" id="s1"></span><span style="color: orangered !important;">
-                @ViewBag.Message
-                (*&nbsp;Required Fields)
-            </span><br />
         </form>
-        <!-- END RD-Mailform -->
     </div>
 </section>
 

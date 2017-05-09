@@ -1964,7 +1964,7 @@ main h1 {
     letter-spacing: -0.04em;
 }
 
-main h1:after {
+main h1:before {
     content: "";
     position: absolute;
     top: 119%;
@@ -1979,19 +1979,19 @@ main h1:after {
 }
 
 @media (min-width: 480px) {
-    main h1:after {
+    main h1:before {
         height: 2px;
     }
 }
 
 @media (min-width: 768px) {
-    main h1:after {
+    main h1:before {
         height: 3px;
     }
 }
 
 @media (min-width: 992px) {
-    main h1:after {
+    main h1:before {
         height: 4px;
     }
 }

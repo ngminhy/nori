@@ -2,40 +2,29 @@
 @{
     Layout = "~/Views/Shared/_LayoutNori.cshtml";
 }
-
 <section class="well-md">
-            <div class="container">
-                <h1>Khuyến mãi</h1>
-                <div class="row offset-5 flow-offset-1">
-                    @foreach (var item in Model)
-                    {
-                        <div class="col-xs-6 col-md-4">
-                            <!-- News Post -->
-                            <div class="news-post">
-                                <a href="@Url.Content(item.PageURL)">
-                                    <img src="/ImageBrowser/CropImage?w=370&h=200&path=@Url.Content(item.MainImage)" alt="@item.Title">
-                                </a>
-                                <time class="post-meta small" datetime="1957-10-04">2 days ago</time>
-                                <div class="caption">
-                                    <h5><a href="@Url.Content(item.PageURL)">@item.Title</a></h5>
-                                    <p>@item.Description</p>
-                                    @if(!string.IsNullOrEmpty(@item.ButtonLink)) {
-                                        <div><a class="btn btn-nori" href="@Url.Content(item.ButtonLink)">@item.ButtonName</a> </div>
-                                    }
-                                </div>
-                            </div>
-                            <!-- END News Post -->
+    <div class="container">
+        <h1>Khuyến mãi</h1>
+        <div class="row offset-5 flow-offset-1">
+            @foreach (var item in Model)
+            {
+                <div class="col-xs-6 col-md-4">
+                    <div class="news-post">
+                        <a href="@Url.Content(item.PageURL)">
+                            <img src="/ImageBrowser/CropImage?w=370&h=200&path=@Url.Content(item.MainImage)" alt="@item.Title">
+                        </a>
+                        <time class="post-meta small">2 days ago</time>
+                        <div class="caption">
+                            <h5><a href="@Url.Content(item.PageURL)">@item.Title</a></h5>
+                            <p>@item.Description</p>
+                            @if(!string.IsNullOrEmpty(@item.ButtonLink)) {
+                                <div class="hot-link"><a href="@Url.Content(item.ButtonLink)"><i class="fa fa-hand-o-right"></i> @item.ButtonName</a> </div>
+                            }
                         </div>
-                    }
-                    
-
+                    </div>
                 </div>
-              
-          
-
-
-
-
+            }
+        </div>
         @if (ViewBag.TotalPage > 1)
         {
             <div class="text-center">
@@ -50,7 +39,6 @@
                     }
                     @for (var i = 1; i <= ViewBag.TotalPage; i++)
                     {
-
                         <li class='@(ViewBag.PageIndex == i ? "active" : "")'>
                             <a href='@(Request.Url.AbsolutePath)?page=@i'>@i</a>
                         </li>
@@ -66,9 +54,5 @@
                 </ul>
             </div>
         }
-
     </div>
-
-
-  </div>
-        </section>
+</section>

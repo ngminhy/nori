@@ -31,3 +31,30 @@ section.article .btn {
 .hide {
     display: none !important;
 }
+.article-related {
+    margin-top: 30px;
+}
+.article-related .marked-list {
+    margin-top: 20px;
+}
+footer a:hover {
+    text-decoration: none !important;
+}
+footer h5.title {
+    text-transform: uppercase;
+    margin-top: 20px;
+}
+footer .marked-list, footer .list {
+    margin-top: 20px;
+}
+.footer-icon {
+    color: #ff6d00;
+    margin-right: 5px;
+    line-height: 1.5;
+}
+.no-marked>li {
+    padding-left: 2px !important;
+}
+.no-marked>li:before {
+    content: "" !important;
+}

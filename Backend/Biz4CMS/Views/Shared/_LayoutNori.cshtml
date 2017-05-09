@@ -41,100 +41,46 @@
     <main>@RenderBody()</main>
     <footer>
         <div class="container">
-            <div class="row flow-offset-1">
-                
-                @{Html.RenderAction("BottomMenu", "Home");}
-                
-<!--                 <div class="col-sm-3">
-                    <ul class="list">
-                        <li><a href="#">Facebook</a></li>
-                        <li><a href="#">Twitter</a></li>
-                        <li><a href="#">Instagram</a></li>
-                    </ul>
+            <div class="row">
+                <div class="col-sm-4">
+                    <h5 class="title">Hỗ trợ</h5>
+                    <ol class="marked-list">        
+                        <li><a href="">Phương thức mua hàng & thanh toán</a></li>
+                        <li><a href="">Chính sách vận chuyển & giao hàng</a></li>
+                        <li><a href="">Chính sách Đổi trả</a></li>
+                    </ol>
+                    <h5 class="title">Tin tức</h5>
+                    <ol class="marked-list">
+                        <li><a href="">Khuyến mãi tối thứ 7</a></li>
+                        <li><a href="">Trò chuyện cùng Nori</a></li>
+                        <li><a href="">Thẻ thành viên</a></li>
+                    </ol>
+                </div>
+                <div class="col-sm-5">
+                    <h5 class="title">Cửa hàng Nori</h5>
+                    <ol class="marked-list no-marked">
+                        <li><i class="fa fa-map-marker footer-icon"></i> 186 Phan Xích Long, phường 2, Quận Phú Nhuận</li>
+                        <li><i class="fa fa-map-marker footer-icon"></i> 39 Tống Hữu Định, Phường Thảo Điền, Quận 2</li>
+                        <li><i class="fa fa-map-marker footer-icon"></i> 93 Hồ Tùng Mậu, phường Bến Nghé, Quận 1</li>
+                        <li><i class="fa fa-map-marker footer-icon"></i> 341 Nguyễn Tri Phương, Phường 5, Quận 10</li>
+                        <li><i class="fa fa-map-marker footer-icon"></i> 33 Grand View B, Nguyễn Đức Cảnh, P. Tân Phong, Quận 7</li>
+                    </ol>
                 </div>
                 <div class="col-sm-3">
-                    <address>8901 Marmora road,<br>Glasgow, D04 89GR</address>
-                </div> -->
-                <div class="col-sm-6">
-                    <h3 class="widget-title">CỬA HÀNG NORI</h3>
-                    <ul>
-                        <li>
-                            <i class="fa fa-map-marker"></i>
-186 Phan Xích Long, phường 2, Quận Phú Nhuận
-                        </li>
-                        <li>
-                            <i class="fa fa-map-marker"></i>
-                                
-39 Tống Hữu Định, Phường Thảo Điền, Quận 2
-                        </li>
-                        <li>
-                            <i class="fa fa-map-marker"></i>
-93 Hồ Tùng Mậu, phường Bến Nghé, Quận 1
-                        </li>
-                        <li>
-                            <i class="fa fa-map-marker"></i>
-341 Nguyễn Tri Phương, Phường 5, Quận 10
+                    <h5 class="title">Kết nối</h5>
+                    <ol class="marked-list no-marked">
+                        <li><i class="fa fa-facebook-square footer-icon"></i><a href=""> Facebook</a></li>
+                        <li><i class="fa fa-twitter-square footer-icon"></i><a href=""> Twitter</a></li>
+                        <li><i class="fa fa-envelope footer-icon"></i> <a href="mailto:trucchi@noriexpress.com">trucchi@noriexpress.com</a></li>
+                    </ol>
 
-                        </li>
-                        <li>
-                            <i class="fa fa-map-marker"></i>
-341 Nguyễn Tri Phương, Phường 5, Quận 10
-                        </li>
-                        <li>
-                            <i class="fa fa-mobile"></i>
-                            
-                                <a href="tel:+841234682324">01234 682 324</a>
-                            
-                        </li>
-                        <li>
-                            <i class="fa fa-envelope-o"></i>
-                            
-                                <a href="mailto:trucchi@noriexpress.com">trucchi@noriexpress.com</a>
-                           
-                        </li>
-                    </ul>
                 </div>
             </div>
-            <div class="offset-5">
-                <span>An Phong Co. Ltd 2016. Registered in Vietnam No.: 0313633836</span>
+            <div class="offset-3">
+                &copy; <span>An Phong Co. Ltd 2016. Registered in Vietnam No.: 0313633836</span>
             </div>
         </div>
     </footer>
-
-
-
-
-
-
-<!--     <footer>
-        <div class="container">
-            <div class="row flow-offset-1"> 
-                <div class="col-sm-3">       
-                    @{Html.RenderAction("BottomMenu", "Home");}
-                </div>
-                <div class="col-sm-3">  
-                    <ul id="footer-social">
-                        <li class="leaf title">Follow us!</li>
-                        <li class="leaf">
-                            <a href="#" target="_blank">
-                                <span class="fa fa-facebook"></span>
-                            </a>
-                        </li>
-                        <li class="leaf">
-                            <a href="#" target="_blank">
-                                <span class="fa fa-twitter"></span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row flow-offset-1"> 
-                <div class="col-sm-12"> 
-                    An Phong Co. Ltd 2016. Registered in Vietnam No.: 0313633836
-                </div>
-            </div>
-        </div>            
-    </footer> -->
     <script type="text/javascript" src="@Url.Content("~/Content/Assets/js/script.js")"></script>
 </body>
 </html>
