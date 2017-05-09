@@ -1,19 +1,19 @@
-﻿@model IEnumerable<Biz4CMS.ViewModels.LinkDto>
-<!-- <ul class="list">
-    @foreach (var lnk in Model)
-    {
-        <li>
-            <a href="@lnk.Link">@lnk.Title</a>
-        </li>
-    }
-</ul> -->
-@{
-	foreach (var lnk in Model) {
-<!-- 		<div class="col-sm-3">
-			<ul class="list">
-			    <a href="@lnk.Link">@lnk.Title</a>
+﻿@model IList<Biz4CMS.ViewModels.LinkDto>
 
-			</ul>
-		</div> -->
-	}
-}
+<div class="col-sm-3">
+	<h5 class="widget-title">Hỗ trợ</h5>
+	<ol class="marked-list">		
+		<li> Phương thức mua hàng & thanh toán </li>
+		<li> Chính sách vận chuyển & giao hàng </li>
+		<li> Chính sách Đổi trả </li>
+	</ol>
+</div>
+
+<div class="col-sm-3">
+	<h5 class="widget-title">TIN TỨC</h5>
+	<ol class="marked-list">
+		<li> Khuyến mãi tối thứ 7 </li>
+		<li> Trò chuyện cùng Nori </li>
+		<li> Thẻ thành viên</li>
+	</ol>
+</div>
