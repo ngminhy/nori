@@ -1494,21 +1494,21 @@ h1+p {
 }
 
 .sf-menu>li>a {
-    color: #cacccc;
+    color: #303334;
     font-size: 19px;
     height: 26px;
-    border-bottom: 2px solid #cacccc;
+    border-bottom: 1px solid #303334;
 }
 
 .sf-menu>li.sfHover>a,
 .sf-menu>li>a:hover {
     color: #ff6d00;
-    border-bottom: 2px solid #ff6d00;
+    border-bottom: 1px solid #ff6d00;
 }
 
 .sf-menu>li.active>a {
-    color: #303334;
-    border-bottom: 2px solid #303334;
+    color: #ff6d00;
+    border-bottom: 1px solid #ff6d00;
 }
 
 .sf-menu ul {
@@ -1530,7 +1530,7 @@ h1+p {
 }
 
 .sf-menu ul>li>a {
-    color: #5a5d5d;
+    color: #303334;
     background: none;
     padding: 5px 20px;
     line-height: 21px;

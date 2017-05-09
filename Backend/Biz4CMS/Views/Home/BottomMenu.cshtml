@@ -1,10 +1,19 @@
-﻿
-@model IEnumerable<Biz4CMS.ViewModels.LinkDto>
-<ul class="menu">
+﻿@model IEnumerable<Biz4CMS.ViewModels.LinkDto>
+<!-- <ul class="list">
     @foreach (var lnk in Model)
     {
-        <li class="leaf branches">
+        <li>
             <a href="@lnk.Link">@lnk.Title</a>
         </li>
     }
-</ul>
+</ul> -->
+@{
+	foreach (var lnk in Model) {
+<!-- 		<div class="col-sm-3">
+			<ul class="list">
+			    <a href="@lnk.Link">@lnk.Title</a>
+
+			</ul>
+		</div> -->
+	}
+}
