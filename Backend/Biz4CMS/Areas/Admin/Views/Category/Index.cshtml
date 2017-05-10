@@ -23,6 +23,7 @@
         columns.Bound(p => p.Name);
         columns.Bound(p => p.Description);
         columns.Bound(p => p.Tag);
+        columns.Bound(p => p.SortNumber);
         columns.Bound(p => p.PageURL).Title("URL").ClientTemplate("#= (Tag=='Article' ? '/c/' : '/s/').concat(PageURL)   #"); 
         columns.Bound(p => p.CategoryId).Title("").ClientTemplate("<a class='k-button' href='" + Url.Action("edit", "Category") + "/#=CategoryId#'><span class='k-icon k-edit'></span>Edit</a>");
         columns.Command(cmd =>

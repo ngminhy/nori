@@ -46,6 +46,14 @@
             </div>
 
         </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.SortNumber, new { @class = "col-sm-3 control-label no-padding-right" })
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.SortNumber, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SortNumber)
+            </div>
+
+        </div>
 
         <div class="editor-label">
             &nbsp;

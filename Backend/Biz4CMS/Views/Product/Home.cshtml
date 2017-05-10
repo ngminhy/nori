@@ -11,12 +11,23 @@
     var CakeFillers = (List<Biz4CMS.Models.CakeFiller>)ViewData["CakeFillers"];
 }
 
-
+ <section class="submenu">
+            <div>&nbsp;</div>
+            <div class="container">
+                 <ul class="submenu">
+                        @foreach (var item in Model)
+                        {                         
+                           
+                                @:<li><a href= "#@item.CategoryName" >@item.CategoryName</a></li>
+                        }
+                    </ul>
+            </div>
+</div>    
 @foreach (var item in Model)
 {   
     <section class="well-md">
             <div class="container">
-                <h1>@item.CategoryName</h1>
+                <h1><a name="@item.CategoryName"> @item.CategoryName</a></h1>
                 
                 @if (item.NumofItem == 1) {
                     <div class="row offset-3">
