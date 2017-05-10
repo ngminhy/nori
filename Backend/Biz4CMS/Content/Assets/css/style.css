@@ -1322,7 +1322,7 @@ h1+p {
 
 .product .caption {
     position: relative;
-    z-index: 2;
+    z-index: 1;
     background: #fff;
     -moz-transition: 0.5s all ease;
     -o-transition: 0.5s all ease;
@@ -1895,7 +1895,7 @@ h1+p {
     position: fixed;
     right: 8.87%;
     bottom: 40px;
-    display: none;
+    display: none !important;
     overflow: hidden;
     text-align: center;
     text-decoration: none;

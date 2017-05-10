@@ -772,6 +772,7 @@
     <Content Include="Content\Assets\css\bootstrap.css" />
     <Content Include="Content\Assets\css\bootstrap.min.css" />
     <Content Include="Content\Assets\css\camera.css" />
+    <Content Include="Content\Assets\css\cart.css" />
     <Content Include="Content\Assets\css\colorbox.css" />
     <Content Include="Content\Assets\css\font-awesome.css" />
     <Content Include="Content\Assets\css\google-map.css" />
@@ -839,10 +840,14 @@
     <Content Include="Content\Assets\images\sprite-2x-s883f768b5b.png" />
     <Content Include="Content\Assets\images\sprite-sedb1a8cb30.png" />
     <Content Include="Content\Assets\images\tn_me.png" />
+    <Content Include="Content\Assets\img\cd-icon-arrow-next.svg" />
+    <Content Include="Content\Assets\img\cd-icon-select.svg" />
+    <Content Include="Content\Assets\img\cd-icons-cart-close.svg" />
     <Content Include="Content\Assets\img\logo_nori.png" />
     <Content Include="Content\Assets\img\logo_xmas.png" />
     <Content Include="Content\Assets\img\me.png" />
     <Content Include="Content\Assets\img\open_the_boxes.png" />
+    <Content Include="Content\Assets\img\product-preview.png" />
     <Content Include="Content\Assets\img\slideshow_1.jpg" />
     <Content Include="Content\Assets\img\slideshow_2.jpg" />
     <Content Include="Content\Assets\img\slideshow_3.jpg" />
@@ -851,6 +856,7 @@
     <Content Include="Content\Assets\js\bootstrap.min.js" />
     <Content Include="Content\Assets\js\call.js" />
     <Content Include="Content\Assets\js\camera.js" />
+    <Content Include="Content\Assets\js\cart.js" />
     <Content Include="Content\Assets\js\cloud-zoom.1.0.2.js" />
     <Content Include="Content\Assets\js\common.js" />
     <Content Include="Content\Assets\js\device.min.js" />

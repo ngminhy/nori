@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="@Url.Content("~/Content/Assets/css/camera.css")">
     <link rel="stylesheet" href="@Url.Content("~/Content/Assets/css/rd-mailform.css")" />
     <link rel="stylesheet" href="@Url.Content("~/Content/Assets/css/main.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/Assets/css/cart.css")">
     <script src="@Url.Content("~/Content/Assets/js/jquery.js")"></script>
     <script src="@Url.Content("~/Content/Assets/js/jquery-migrate-1.2.1.js")"></script> 
     <script src="@Url.Content("~/Content/Assets/js/device.min.js")"></script>
@@ -81,6 +82,36 @@
             </div>
         </div>
     </footer>
+
+    <!-- Cart content -->
+    <div class="cd-cart-container empty">
+        <a href="#0" class="cd-cart-trigger">
+            Giỏ hàng
+            <ul class="count">
+                <li>0</li>
+                <li>0</li>
+            </ul>
+        </a>
+        <div class="cd-cart">
+            <div class="wrapper">
+                <header>
+                    <h2>Giỏ hàng</h2>
+                    <!-- <span class="undo">Item removed. <a href="#0">Undo</a></span> -->
+                </header>
+                <div class="body">
+                    <ul>
+                        <!-- products added to the cart will be inserted here using JavaScript -->
+                    </ul>
+                </div>
+                <footer>
+                    <a href="#" class="checkout btn"><em>Thanh toán</em></a>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+
     <script type="text/javascript" src="@Url.Content("~/Content/Assets/js/script.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/Assets/js/cart.js")"></script>
 </body>
 </html>
