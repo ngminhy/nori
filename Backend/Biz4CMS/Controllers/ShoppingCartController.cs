@@ -17,29 +17,30 @@ namespace Biz4CMS.Controllers
         // GET: /ShoppingCart/
         public ActionResult Index()
         {
-            if (HttpContext.Session["userinfo"] == null)
-            {
-                return RedirectToAction("Index", "product");
-            }
-            var cart = ShoppingCart.GetCart(this.HttpContext);
+            // if (HttpContext.Session["userinfo"] == null)
+            // {
+            //     return RedirectToAction("Index", "product");
+            // }
+            // var cart = ShoppingCart.GetCart(this.HttpContext);
 
-            // Set up our ViewModel
-            ViewBag.Cart = new ShoppingCartViewModel
-            {
-                CartItems = cart.GetCartItems(),
-                CartTotal = cart.GetTotal()
-            };
-            // Return the view
-            var userinfo = (UserInfo)HttpContext.Session["userinfo"];
-            var order = new Order();
-            order.Email = userinfo.Email;
-            order.FullName = userinfo.Name;
-            order.Phone = userinfo.Phone;
-            order.Address = userinfo.Address;
-            order.Note = userinfo.Note;
-            order.BookingTime = userinfo.BookingTime;
-            order.BranchName = userinfo.BranchName;
-            return View(order);
+            // // Set up our ViewModel
+            // ViewBag.Cart = new ShoppingCartViewModel
+            // {
+            //     CartItems = cart.GetCartItems(),
+            //     CartTotal = cart.GetTotal()
+            // };
+            // // Return the view
+            // var userinfo = (UserInfo)HttpContext.Session["userinfo"];
+            // var order = new Order();
+            // order.Email = userinfo.Email;
+            // order.FullName = userinfo.Name;
+            // order.Phone = userinfo.Phone;
+            // order.Address = userinfo.Address;
+            // order.Note = userinfo.Note;
+            // order.BookingTime = userinfo.BookingTime;
+            // order.BranchName = userinfo.BranchName;
+            // return View(order);
+            return View();
         }
         private bool SendEmail(string toEmail,string strBody)
         {

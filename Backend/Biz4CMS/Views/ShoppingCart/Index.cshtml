@@ -1,10 +1,83 @@
-﻿@model Biz4CMS.Models.Order
-@{
+﻿@{
     ViewBag.Title = "Shopping Cart";
     Layout = "~/Views/Shared/_LayoutNori.cshtml";
 }
-
-<script type="text/javascript">
+<section class="well-md">
+    <div class="container">
+        <h1>Giỏ hàng của bạn</h1>
+        <div class="offset-6">
+            <div class="table-responsive">
+                <table class="overview-cart">
+                    <thead>
+                        <tr>
+                            <th class="product-thumbnail">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                            <th class="product-name">Sản phẩm</th>
+                            <th class="product-price">Đơn giá</th>
+                            <th class="product-quantity">Số lượng</th>
+                            <th class="product-subtotal">Thành tiền</th>
+                            <th class="product-remove"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-cart-item">
+                        <tr>
+                            <td class="product-thumbnail">
+                                <img src="@Url.Content("~/Content/Assets/images/page-01_img05.jpg")" alt="" class="product-img-thumbnail">
+                            </td>
+                            <td class="product-name">
+                                <h5><a href="">Italian Pasta and Sauce</a></h5>
+                            </td>
+                            <td class="product-price">
+                                <h5>88,000 VNĐ</h5>
+                            </td>
+                            <td class="product-quantity">
+                                <input type="number" value="1" class="input-qty" size="4" min="1">
+                            </td>
+                            <td class="product-subtotal">
+                                <h5>88,000 VNĐ</h5>
+                            </td>
+                            <td class="product-remove">
+                                <a class="remove" title="Xoá sản phẩm"><i class="fa fa-times"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="product-thumbnail">
+                                <img src="@Url.Content("~/Content/Assets/images/page-01_img02.jpg")" alt="" class="product-img-thumbnail">
+                            </td>
+                            <td class="product-name">
+                                <h5><a href="">Seafood Udon</a></h5>
+                            </td>
+                            <td class="product-price">
+                                <h5>58,000 VNĐ</h5>
+                            </td>
+                            <td class="product-quantity">
+                                <input type="number" value="1" class="input-qty" size="4" min="1">
+                            </td>
+                            <td class="product-subtotal">
+                                <h5>88,000 VNĐ</h5>
+                            </td>
+                            <td class="product-remove">
+                                <a class="remove" title="Xoá sản phẩm"><i class="fa fa-times"></i></a>
+                            </td>
+                        </tr>
+                        <tr class="cart-total">
+                            <td colspan="4">
+                                <h5>Tổng cộng</h5>
+                            </td>
+                            <td class="order-total" colspan="2">
+                                <h5 class="amount">146,000 VNĐ</h5>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="buttons-cart">
+                <a class="btn btn-primary btn-sm">Tiếp tục mua hàng</a>
+                <a class="btn btn-primary btn-sm">Thanh toán</a>
+            </div>
+        </div>
+    </div>
+</section>
+@*<script type="text/javascript">
     $(function () {
 
         $("#paymentform > form").addClass("form-horizontal");
@@ -54,8 +127,8 @@
             }
         });
     });
-</script>
-<section class="main-content">
+</script>*@
+@*<section class="main-content">
     <div class="container">
         <div class="row" style="position: relative; padding-top:10px; padding-bottom:10px;">
             <div class="col-md-8">
@@ -220,4 +293,4 @@
             @{Html.RenderAction("RightBox", "Home");}
         </div>
     </div>
-</section>
+</section>*@
