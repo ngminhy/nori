@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_LayoutNori.cshtml";
+}
+<section class="well-md">
+    <div class="container">
+        <h1>Thanh toán</h1>
+        <div class="row offset-6 flow-offset-1">
+			<form name="checkout" action="/">
+				<div class="col-md-6">
+				</div>
+				<div class="col-md-6 order-box">
+					<h3>Đơn hàng của bạn</h3>
+	                <table class="checkout-review">
+	                    <thead>
+	                        <tr>
+	                            <th><h5>Sản phẩm</h5></th>
+	                            <th><h5>Thành tiền</h5></th>
+	                        </tr>
+	                    </thead>
+	                    <tbody>
+	                    	<tr>
+	                    		<td>Italian Pasta and Sauce <strong>x 1</strong></td>
+	                    		<td>88,000 VNĐ</td>
+	                    	</tr>
+	                    	<tr>
+	                    		<td>Seafood Udon <strong>x 1</strong></td>
+	                    		<td>58,000 VNĐ</td>
+	                    	</tr>
+                            <tr class="total">
+                                <th><h5>Tổng cộng</h5></th>
+                                <td><h5>146,000 VNĐ</h5></td>
+                            </tr>
+	                    </tbody>
+	                </table>
+	            	<div class="checkout-payment">
+                        <input id="payment_method_cash" type="radio" class="input-radio" name="payment_method" value="1"  checked='checked' />
+                        <label>Thanh toán tiền mặt</label>
+	                </div>
+		            <div class="buttons-cart">
+		                <button class="btn btn-primary btn-sm">Thanh toán</button>
+		            </div>
+				</div>
+			</form>
+        </div>
+    </div>
+</section>

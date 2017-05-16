@@ -1626,6 +1626,7 @@
     <Content Include="Views\Home\TopArticle.cshtml" />
     <Content Include="Views\Shared\_productItem3.cshtml" />
     <Content Include="Views\Article\Index.saleoff.cshtml" />
+    <Content Include="Views\ShoppingCart\Checkout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />

@@ -42,6 +42,12 @@ namespace Biz4CMS.Controllers
             // return View(order);
             return View();
         }
+        
+        public ActionResult Checkout()
+        {
+            return View();
+        }
+
         private bool SendEmail(string toEmail,string strBody)
         {
 
