@@ -8,31 +8,111 @@
         <div class="row offset-6 flow-offset-1">
 			<form name="checkout" action="/">
 				<div class="col-md-6">
+					<div class="billing-fields">
+						<p class="form-row">
+							<label><input type="radio" name="shipping-type" checked> Giao hàng tận nơi (Miễn phí với đơn hàng > 200K)</label>
+						</p>
+						<p class="form-row">
+							<label><input type="radio" name="shipping-type"> Mua mang về (Nhận hàng tại cửa hàng)</label>
+						</p>
+                      	<p class="form-row">
+                            <label>Họ và tên <span class="required">*</span></label>
+                            <input type="text" class="input-text"/>
+                        </p>
+		                <p class="form-row">
+		                    <label>Email <span class="required">*</span></label>
+		                    <input type="email" class="input-text" required>
+		                </p>
+		                <p class="form-row">
+		                    <label>Số điện thoại <span class="required">*</span></label>
+		                    <input type="text" class="input-text" required>
+		                </p>
+		                <p class="form-row">
+		                    <label>Địa chỉ <span class="required">*</span></label>
+		                    <input type="text" class="input-text" required>
+		                </p>
+		                <p class="form-row">
+		                    <label>Phường</label>
+		                    <input type="text" class="input-text">
+		                </p>
+		                <p class="form-row">
+		                    <label>Quận</label>
+		                    <select class="select-box">
+		                        <option>Quận 1</option>
+		                        <option>Quận 2</option>
+		                        <option>Quận 3</option>
+		                        <option>Quận 4</option>
+		                        <option>Quận 5</option>
+		                        <option>Quận 6</option>
+		                        <option>Quận 7</option>
+		                        <option>Quận 8</option>
+		                        <option>Quận 9</option>
+		                        <option>Quận 10</option>
+		                        <option>Quận 11</option>
+		                        <option>Quận 12</option>
+		                        <option>Quận Thủ Đức</option>
+		                        <option>Quận Gò Vấp</option>
+		                        <option>Quận Bình Thạnh</option>
+		                        <option>Quận Tân Bình</option>
+		                        <option>Quận Tân Phú</option>
+		                        <option>Quận Phú Nhuận</option>                  
+		                        <option>Quận Bình Tân</option>
+		                        <option>Huyện Củ Chi</option>
+		                        <option>Huyện Hóc Môn</option>
+		                        <option>Huyện Bình Chánh</option>
+		                        <option>Huyện Nhà Bè</option>
+		                        <option>Huyện Cần Giờ</option>
+		                    </select>
+		                </p>
+		                <p class="form-row">
+		                    <label>Thành phố</label>
+		                    <input type="text" class="input-text" value="Hồ Chí Minh">
+		                </p>
+		                <p class="form-row">
+		                    <label>Cửa hàng Nori</label>
+		                    <select class="select-box">
+		                        <option>186 Phan Xích Long, phường 2, Quận Phú Nhuận</option>
+		                        <option>39 Tống Hữu Định, Phường Thảo Điền, Quận 2</option>
+		                        <option>93 Hồ Tùng Mậu, phường Bến Nghé, Quận 1</option>
+		                        <option>341 Nguyễn Tri Phương, Phường 5, Quận 10</option>
+		                        <option>33 Grand View B, Nguyễn Đức Cảnh, P. Tân Phong, Quận 7</option>
+		                    </select>
+		                </p>
+		                <p class="form-row">
+		                    <label>Ghi chú</label>
+		                    <textarea class="note" rows="4" ></textarea>
+		                </p>
+		                <p class="form-row">
+		                	<label><input type="checkbox"> Tôi chấp nhận <a href="/a/dieu-khoan-mua-hang">các điều khoản mua hàng</a></label>
+		                </p>
+					</div>
 				</div>
 				<div class="col-md-6 order-box">
 					<h3>Đơn hàng của bạn</h3>
-	                <table class="checkout-review">
-	                    <thead>
-	                        <tr>
-	                            <th><h5>Sản phẩm</h5></th>
-	                            <th><h5>Thành tiền</h5></th>
-	                        </tr>
-	                    </thead>
-	                    <tbody>
-	                    	<tr>
-	                    		<td>Italian Pasta and Sauce <strong>x 1</strong></td>
-	                    		<td>88,000 VNĐ</td>
-	                    	</tr>
-	                    	<tr>
-	                    		<td>Seafood Udon <strong>x 1</strong></td>
-	                    		<td>58,000 VNĐ</td>
-	                    	</tr>
-                            <tr class="total">
-                                <th><h5>Tổng cộng</h5></th>
-                                <td><h5>146,000 VNĐ</h5></td>
-                            </tr>
-	                    </tbody>
-	                </table>
+					<div class="table-responsive">
+		                <table class="checkout-review">
+		                    <thead>
+		                        <tr>
+		                            <th><h5>Sản phẩm</h5></th>
+		                            <th><h5>Thành tiền</h5></th>
+		                        </tr>
+		                    </thead>
+		                    <tbody>
+		                    	<tr>
+		                    		<td>Italian Pasta and Sauce <strong>x 1</strong></td>
+		                    		<td>88,000 VNĐ</td>
+		                    	</tr>
+		                    	<tr>
+		                    		<td>Seafood Udon <strong>x 1</strong></td>
+		                    		<td>58,000 VNĐ</td>
+		                    	</tr>
+	                            <tr class="total">
+	                                <th><h5>Tổng cộng</h5></th>
+	                                <td><h5>146,000 VNĐ</h5></td>
+	                            </tr>
+		                    </tbody>
+		                </table>
+		            </div>
 	            	<div class="checkout-payment">
                         <input id="payment_method_cash" type="radio" class="input-radio" name="payment_method" value="1"  checked='checked' />
                         <label>Thanh toán tiền mặt</label>
