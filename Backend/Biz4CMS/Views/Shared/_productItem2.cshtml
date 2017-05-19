@@ -11,7 +11,7 @@
         <!-- Box -->
         <div class="box">
             <div class="box_left"><h5>@string.Format("{0:0,0}", Model.Price) VNĐ</h5>
-                <a class="btn btn-primary btn-addcart" href="@Url.Action("AddToCart", "ShoppingCart", new { id = Model.ProductId, count = 1, price = Model.Price })"><i class="fa fa-shopping-cart"></i> Mua</a>
+                <a class="btn btn-primary btn-addcart" data-product-id="@Model.ProductId" data-product-name="@Model.Name" data-product-price="@Model.Price" data-product-img="@Model.MainImage" href=""><i class="fa fa-shopping-cart"></i> Mua</a>
             </div>
             <div class="box_cnt">
                 <p class="small">@Model.CategoryName</p>
@@ -19,7 +19,6 @@
                 <p>@Model.Description</p>
              </div>
         </div>
-         <!-- END Box -->
     </div>
 </div>
 <!-- END Product -->

@@ -9,8 +9,6 @@ jQuery(document).ready(function($){
 		var cartTrigger = cartWrapper.children('.cd-cart-trigger');
 		var cartCount = cartTrigger.children('.count')
 		var addToCartBtn = $('.btn-addcart');
-		var undo = cartWrapper.find('.undo');
-		var undoTimeoutId;
 
 		//add product to cart
 		addToCartBtn.on('click', function(event){
@@ -28,28 +26,6 @@ jQuery(document).ready(function($){
 		cartWrapper.on('click', function(event){
 			if( $(event.target).is($(this)) ) toggleCart(true);
 		});
-
-		//delete an item from the cart
-		cartList.on('click', '.delete-item', function(event){
-			event.preventDefault();
-			removeProduct($(event.target).parents('.product'));
-		});
-
-		//update item quantity
-		cartList.on('change', 'select', function(event){
-			quickUpdateCart();
-		});
-
-		//reinsert item deleted from the cart
-		undo.on('click', 'a', function(event){
-			clearInterval(undoTimeoutId);
-			event.preventDefault();
-			cartList.find('.deleted').addClass('undo-deleted').one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(){
-				$(this).off('webkitAnimationEnd oanimationend msAnimationEnd animationend').removeClass('deleted undo-deleted').removeAttr('style');
-				quickUpdateCart();
-			});
-			undo.removeClass('visible');
-		});
 	}
 
 	function toggleCart(bool) {
@@ -57,11 +33,6 @@ jQuery(document).ready(function($){
 		
 		if( cartIsOpen ) {
 			cartWrapper.removeClass('cart-open');
-			//reset undo
-			clearInterval(undoTimeoutId);
-			undo.removeClass('visible');
-			cartList.find('.deleted').remove();
-
 			setTimeout(function(){
 				cartBody.scrollTop(0);
 				//check if cart empty to hide it
@@ -73,68 +44,65 @@ jQuery(document).ready(function($){
 	}
 
 	function addToCart(trigger) {
+		var prouctItem = {
+		    id: trigger.attr('data-product-id'),
+		    name: trigger.attr('data-product-name'),
+		    price: trigger.attr('data-product-price'),
+		    img: trigger.attr('data-product-img'),
+		    count: 0
+		}
+		var count = 0;
+		var itemStorage = JSON.parse(localStorage.getItem(prouctItem.id));
+		if (itemStorage != null) {
+		    count = JSON.parse(localStorage.getItem(prouctItem.id)).count;
+		}
+		count ++;
+		prouctItem.count = count;
+		localStorage.setItem(prouctItem.id, JSON.stringify(prouctItem));
 		var cartIsEmpty = cartWrapper.hasClass('empty');
-		//update cart product list
-		addProduct();
-		//update number of items 
-		updateCartCount(cartIsEmpty);
-		//update total price
-		updateCartTotal(trigger.data('price'), true);
-		//show cart
+		// //update cart product list
+		addProduct(prouctItem);
+
+		// //update number of items 
+		// updateCartCount(cartIsEmpty);
+		// // //update total price
+		// updateCartTotal(trigger.data('price'), true);
+		// // //show cart
 		cartWrapper.removeClass('empty');
 	}
 
-	function addProduct() {
-		//this is just a product placeholder
-		//you should insert an item with the selected product info
-		//replace productId, productName, price and url with your real product info
-		productId = productId + 1;
+	function addProduct(prouctItem) {
+		var name = prouctItem.name;
+		var img = prouctItem.img.replace('~', '');
+		var price = numeral(prouctItem.price).format('0,0');
+		var count = prouctItem.count;
+
+		console.log(prouctItem);
+
 		var productAdded = $('<li class="product">'+
 			'<div class="product-image">'+
-			'<a href="#"><img src="/Content/assets/img/product-preview.png" alt="placeholder"></a></div>'+
+			'<a href="#"><img src="'+img+'"></a></div>'+
 			'<div class="product-details">'+
-			'<h5><a href="#0">Product Name</a></h5>'+
-			'<div class="actions"><span class="qty">2</span> x <span class="price">$25.99</span></div>'+
+			'<h5><a href="">'+name+'</a></h5>'+
+			'<div class="actions"><span class="qty">'+count+'</span> x <span class="price">'+price+' VNĐ</span></div>'+
 			'</div></li>');
 		cartList.prepend(productAdded);
 	}
 
-	function removeProduct(product) {
-		clearInterval(undoTimeoutId);
-		cartList.find('.deleted').remove();
+	// function quickUpdateCart() {
+	// 	var quantity = 0;
+	// 	var price = 0;
 		
-		var topPosition = product.offset().top - cartBody.children('ul').offset().top ,
-			productQuantity = Number(product.find('.quantity').find('select').val()),
-			productTotPrice = Number(product.find('.price').text().replace('$', '')) * productQuantity;
-		
-		product.css('top', topPosition+'px').addClass('deleted');
+	// 	cartList.children('li:not(.deleted)').each(function(){
+	// 		var singleQuantity = Number($(this).find('select').val());
+	// 		quantity = quantity + singleQuantity;
+	// 		price = price + singleQuantity*Number($(this).find('.price').text().replace('$', ''));
+	// 	});
 
-		//update items count + total price
-		updateCartTotal(productTotPrice, false);
-		updateCartCount(true, -productQuantity);
-		undo.addClass('visible');
-
-		//wait 8sec before completely remove the item
-		undoTimeoutId = setTimeout(function(){
-			undo.removeClass('visible');
-			cartList.find('.deleted').remove();
-		}, 8000);
-	}
-
-	function quickUpdateCart() {
-		var quantity = 0;
-		var price = 0;
-		
-		cartList.children('li:not(.deleted)').each(function(){
-			var singleQuantity = Number($(this).find('select').val());
-			quantity = quantity + singleQuantity;
-			price = price + singleQuantity*Number($(this).find('.price').text().replace('$', ''));
-		});
-
-		cartTotal.text(price.toFixed(2));
-		cartCount.find('li').eq(0).text(quantity);
-		cartCount.find('li').eq(1).text(quantity+1);
-	}
+	// 	cartTotal.text(price.toFixed(2));
+	// 	cartCount.find('li').eq(0).text(quantity);
+	// 	cartCount.find('li').eq(1).text(quantity+1);
+	// }
 
 	function updateCartCount(emptyCart, quantity) {
 		if( typeof quantity === 'undefined' ) {
