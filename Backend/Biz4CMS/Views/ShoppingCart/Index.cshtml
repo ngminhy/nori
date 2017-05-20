@@ -18,8 +18,8 @@
                             <th class="product-remove"></th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
+                    <tbody id="tbody-cart">
+<!--                         <tr>
                             <td class="product-thumbnail">
                                 <img src="@Url.Content("~/Content/Assets/images/page-01_img05.jpg")" alt="" class="product-img-thumbnail">
                             </td>
@@ -58,7 +58,7 @@
                             <td class="product-remove">
                                 <a class="remove" title="Xoá sản phẩm"><i class="fa fa-times"></i></a>
                             </td>
-                        </tr>
+                        </tr> -->
                         <tr class="cart-total">
                             <td colspan="4">
                                 <h5>Tổng cộng</h5>
@@ -77,220 +77,45 @@
         </div>
     </div>
 </section>
-@*<script type="text/javascript">
+<script type="text/javascript">
+    function removeItem(key) {
+        
+    }
     $(function () {
+        var $cartBody = $('#tbody-cart');
+        var totalprice = 0;
+        $cartBody.html("");
+        if(localStorage.length != 0) {
+            Object.keys(localStorage).forEach(function (key) {
+                var itemlocal = JSON.parse(localStorage.getItem(key))
+                var total = 0;
+                total = itemlocal.price * itemlocal.count;
+                totalprice += total
+                var sprice = numeral(itemlocal.price).format('0,0');
+                var stotal = numeral(total).format('0,0');
+                var cartappend = '<tr>'+
+                        '<td class="product-thumbnail">'+
+                            '<img src="'+itemlocal.img.replace('~', '') +'" alt="" class="product-img-thumbnail">'+
+                        '</td>'+
+                        '<td class="product-name">'+
+                            '<h5><a href="">'+itemlocal.name+'</a></h5>'+
+                        '</td>'+
+                        '<td class="product-price">'+
+                            '<h5>'+sprice+' VNĐ</h5>'+
+                        '</td>'+
+                        '<td class="product-quantity">'+
+                            '<input type="number" value="'+itemlocal.count+'" class="input-qty item'+key+'" size="4" min="1">'+
+                        '</td>'+
+                        '<td class="product-subtotal">'+
+                            '<h5>'+stotal+' VNĐ</h5>'+
+                        '</td>'+
+                        '<td class="product-remove">'+
+                            '<a class="remove" title="Xoá sản phẩm" onclick="removeItem(\'' + key +'\');"><i class="fa fa-times"></i></a>'+
+                        '</td>'+
+                    '</tr>';
 
-        $("#paymentform > form").addClass("form-horizontal");
-        $("div.form-group input[type='text']").addClass("form-control").attr('required', '');
-        $("div.form-group textarea").addClass("form-control");
-        // Document.ready -> link up remove event handler
-        $(".RemoveLink").click(function () {
-            // Get the id from the link
-            var recordToDelete = $(this).attr("data-id");
-            if (recordToDelete != '') {
-                // Perform the ajax post
-                $.post("/ShoppingCart/RemoveFromCart", { "id": recordToDelete },
-                    function (data) {
-                        // Successful requests get here
-                        // Update the page elements
-                        if (data.ItemCount == 0) {
-                            $('#row-' + data.DeleteId).fadeOut('slow');
-                        } else {
-                            $('#item-count-' + data.DeleteId).text(data.ItemCount);
-                        }
-                        $('#cart-total').text(data.CartTotal);
-                        $('#update-message').text(data.Message);
-                        $('#cart-status').text(data.CartCount);
-                    });
-            }
-        });
-        $("#UpdateCart").click(function () {
-            var rlist = [];
-            var qlist = [];
-            $(".RemoveLink").each(function () {
-                rlist.push($(this).attr("data-id"));
-            });
-            $(".quantity").each(function () {
-                qlist.push($(this).val());
-            });
-            if (rlist.length > 0) {
-                // Perform the ajax post
-                $.post("/ShoppingCart/UpdateCart", $.param({ "rlist": rlist, "qlist": qlist }, true),
-                    function (data) {
-                        // Successful requests get here
-                        // Update the page elements
-
-                        $('#cart-total').text(data.CartTotal);
-                        $('#update-message').text(data.Message);
-                        $('#cart-status').text(data.CartCount);
-                    });
-            }
-        });
+                $cartBody.append(cartappend);
+            })
+        }
     });
-</script>*@
-@*<section class="main-content">
-    <div class="container">
-        <div class="row" style="position: relative; padding-top:10px; padding-bottom:10px;">
-            <div class="col-md-8">
-                <div class="headline">
-                    <h1 class="panel-title">
-                        Thông tin giỏ hàng:
-                    </h1>
-                </div>
-                <div id="update-message">
-                </div>
-                <table width="100%">
-                    <tr>
-                        <th>
-                            Tên sản phẩm
-                        </th>
-                        <th>
-                            Giá
-                        </th>
-                        <th>
-                            Số lượng
-                        </th>
-                        <th>
-                            Thành tiên
-                        </th>
-                        <th>
-                        </th>
-                    </tr>
-                    @if (ViewBag.Cart.CartItems != null)
-                    {
-                        var CartItems = (List<Biz4CMS.Models.Cart>)ViewBag.Cart.CartItems;
-                        foreach (var item in CartItems)
-                        {
-                            <tr id="row-@item.RecordId">
-                                <td>
-                                    <a href="/p/@item.Product.PageURL"><strong>@item.Product.Name</strong></a>
-                                </td>
-                                <td>
-                                    @string.Format("{0:0,0}", item.Product.Price)
-                                </td>
-                                <td id="item-count-@item.RecordId">
-                                    <input type="number" min="1" max="100"
-                                           value="@item.Count" class="form-control quantity">
-                                </td>
-                                <td align="right" style="padding-right:
-                30px;">
-                                    @string.Format("{0:0,0}", (item.Product.Price * item.Count))
-                                </td>
-                                <td>
-                                    <a href="#" class="RemoveLink btn btn-danger btn-block" data-id="@item.RecordId">
-                                        Xóa
-                                    </a>
-                                </td>
-                            </tr>
-                        }
-                    }
-                    <tr>
-                        <td>
-                            <b>Tổng cộng</b>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td id="cart-total" align="right" style="padding-right: 30px;">
-                            @string.Format("{0:0,0}", ViewBag.Cart.CartTotal)
-                        </td>
-                        <td></td>
-                    </tr>
-                </table>
-                <hr class="margin-top-30" />
-                <div class="row">
-                    <div class=" col-md-3 column">
-                        <a href="/product" class="btn btn-primary btn-block" onclick="window.history.back();return false;">
-                            Tiếp tục mua sắm
-                        </a>
-                    </div>
-                    <div class=" col-md-3 column">
-                        <a href="#" class="btn btn-success btn-block" id="UpdateCart">
-                            Cập nhật giỏ hàng
-                        </a>
-                    </div>
-                </div>
-                <hr class="margin-top-30" />
-                <div class="headline">
-                    <h2 class="panel-title">
-                        Thông tin người mua:
-                    </h2>
-                </div>
-                <hr class="margin-top-30" />
-                <div class="row" id="paymentform">
-                    @using (Html.BeginForm(null, null, FormMethod.Post))
-                    {
-                        <input hidden name="Total" value="@ViewBag.Cart.CartTotal" />
-                        <div class="form-group">
-                            <label for="exampleInputEmail1" class="col-md-5">
-                                Họ và Tên
-                            </label>
-                            <div class="col-md-7">
-                                @Html.EditorFor(model => model.FullName)
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="cellphone" class="col-md-5">
-                                Số điện thoại
-                            </label>
-                            <div class="col-md-7">
-                                @Html.EditorFor(model => model.Phone)
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="email" class="col-md-5">
-                                Email
-                            </label>
-                            <div class="col-md-7">
-                                @Html.EditorFor(model => model.Email)
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="address" class="col-md-5">
-                                Địa chỉ
-                            </label>
-                            <div class="col-md-7">
-                                @Html.EditorFor(model => model.Address)
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="address" class="col-md-5">
-                                Thanh toán
-                            </label>
-                            <div class="col-md-7">
-                                <label class="radio-inline">
-                                    <input type="radio" name="PaymentType" value="1">
-                                    Chuyển khoản
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="PaymentType" value="2" checked="checked">
-                                    Tiền mặt
-                                </label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="address" class="col-md-5">
-                                Ghi chú
-                            </label>
-                            <div class="col-md-7">
-                                @Html.TextAreaFor(model => model.Note, new { rows = 3, columns = 80 })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="address" class="col-md-5">
-                              
-                            </label>
-                            <div class="col-md-7">
-                                <button type="submit" class="btn btn-success">
-                                    Đăng ký mua hàng
-                                </button>
-                            </div>
-                        </div>
-                      
-                    }
-                </div>
-
-            </div>
-            @{Html.RenderAction("RightBox", "Home");}
-        </div>
-    </div>
-</section>*@
+</script>
