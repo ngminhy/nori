@@ -18,56 +18,17 @@
                             <th class="product-remove"></th>
                         </tr>
                     </thead>
-                    <tbody id="tbody-cart">
-<!--                         <tr>
-                            <td class="product-thumbnail">
-                                <img src="@Url.Content("~/Content/Assets/images/page-01_img05.jpg")" alt="" class="product-img-thumbnail">
-                            </td>
-                            <td class="product-name">
-                                <h5><a href="">Italian Pasta and Sauce</a></h5>
-                            </td>
-                            <td class="product-price">
-                                <h5>88,000 VNĐ</h5>
-                            </td>
-                            <td class="product-quantity">
-                                <input type="number" value="1" class="input-qty" size="4" min="1">
-                            </td>
-                            <td class="product-subtotal">
-                                <h5>88,000 VNĐ</h5>
-                            </td>
-                            <td class="product-remove">
-                                <a class="remove" title="Xoá sản phẩm"><i class="fa fa-times"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="product-thumbnail">
-                                <img src="@Url.Content("~/Content/Assets/images/page-01_img02.jpg")" alt="" class="product-img-thumbnail">
-                            </td>
-                            <td class="product-name">
-                                <h5><a href="">Seafood Udon</a></h5>
-                            </td>
-                            <td class="product-price">
-                                <h5>58,000 VNĐ</h5>
-                            </td>
-                            <td class="product-quantity">
-                                <input type="number" value="1" class="input-qty" size="4" min="1">
-                            </td>
-                            <td class="product-subtotal">
-                                <h5>58,000 VNĐ</h5>
-                            </td>
-                            <td class="product-remove">
-                                <a class="remove" title="Xoá sản phẩm"><i class="fa fa-times"></i></a>
-                            </td>
-                        </tr> -->
+                    <tbody id="tbody-cart"></tbody>
+                    <tfoot>
                         <tr class="cart-total">
                             <td colspan="4">
                                 <h5>Tổng cộng</h5>
                             </td>
                             <td class="order-total" colspan="2">
-                                <h5 class="amount">146,000 VNĐ</h5>
+                                <h5 class="amount">0 VNĐ</h5>
                             </td>
-                        </tr>
-                    </tbody>
+                        </tr>                        
+                    </tfoot>
                 </table>
             </div>
             <div class="buttons-cart">
@@ -79,11 +40,13 @@
 </section>
 <script type="text/javascript">
     function removeItem(key) {
-        
+
     }
     $(function () {
         var $cartBody = $('#tbody-cart');
+        var $totalPrice = $('.order-total').find('.amount');
         var totalprice = 0;
+        var stotalprice = 0;
         $cartBody.html("");
         if(localStorage.length != 0) {
             Object.keys(localStorage).forEach(function (key) {
@@ -93,7 +56,7 @@
                 totalprice += total
                 var sprice = numeral(itemlocal.price).format('0,0');
                 var stotal = numeral(total).format('0,0');
-                var cartappend = '<tr>'+
+                var itemHTML = '<tr>'+
                         '<td class="product-thumbnail">'+
                             '<img src="'+itemlocal.img.replace('~', '') +'" alt="" class="product-img-thumbnail">'+
                         '</td>'+
@@ -113,9 +76,10 @@
                             '<a class="remove" title="Xoá sản phẩm" onclick="removeItem(\'' + key +'\');"><i class="fa fa-times"></i></a>'+
                         '</td>'+
                     '</tr>';
-
-                $cartBody.append(cartappend);
+                $cartBody.append(itemHTML);
             })
         }
+        var stotalprice = numeral(totalprice).format('0,0');
+        $totalPrice.html(stotalprice+' VNĐ');
     });
 </script>
