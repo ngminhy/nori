@@ -37,6 +37,7 @@ namespace Biz4CMS.ViewModels
             this.PageURL = item.PageURL;
             this.MaxFiller = item.MaxFiller;
             this.CategoryName = item.CategoryName;
+            this.ProductId = item.ProductId;
         }
 
     }
