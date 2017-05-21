@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Biz4CMS.Models.Location>
+<h5 class="title">Cửa hàng Nori</h5>
+<ol class="marked-list no-marked">
+    @foreach (var lnk in Model)
+    {
+        <li><i class="fa fa-map-marker footer-icon"></i> @lnk.Address </li>
+       
+    }  
+   
+</ol>

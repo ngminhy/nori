@@ -45,28 +45,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-4">
-                    <h5 class="title">Hỗ trợ</h5>
-                    <ol class="marked-list">        
-                        <li><a href="">Phương thức mua hàng & thanh toán</a></li>
-                        <li><a href="">Chính sách vận chuyển & giao hàng</a></li>
-                        <li><a href="">Chính sách Đổi trả</a></li>
-                    </ol>
-                    <h5 class="title">Tin tức</h5>
-                    <ol class="marked-list">
-                        <li><a href="">Khuyến mãi tối thứ 7</a></li>
-                        <li><a href="">Trò chuyện cùng Nori</a></li>
-                        <li><a href="">Thẻ thành viên</a></li>
-                    </ol>
+                    @{Html.RenderAction("SupportMenu", "Home");}
+                    @{Html.RenderAction("SaleoffMenu", "Home");}
+                    
                 </div>
                 <div class="col-sm-5">
-                    <h5 class="title">Cửa hàng Nori</h5>
-                    <ol class="marked-list no-marked">
-                        <li><i class="fa fa-map-marker footer-icon"></i> 186 Phan Xích Long, phường 2, Quận Phú Nhuận</li>
-                        <li><i class="fa fa-map-marker footer-icon"></i> 39 Tống Hữu Định, Phường Thảo Điền, Quận 2</li>
-                        <li><i class="fa fa-map-marker footer-icon"></i> 93 Hồ Tùng Mậu, phường Bến Nghé, Quận 1</li>
-                        <li><i class="fa fa-map-marker footer-icon"></i> 341 Nguyễn Tri Phương, Phường 5, Quận 10</li>
-                        <li><i class="fa fa-map-marker footer-icon"></i> 33 Grand View B, Nguyễn Đức Cảnh, P. Tân Phong, Quận 7</li>
-                    </ol>
+                    @{Html.RenderAction("ShopAddress", "Home");}
                 </div>
                 <div class="col-sm-3">
                     <h5 class="title">Kết nối</h5>
