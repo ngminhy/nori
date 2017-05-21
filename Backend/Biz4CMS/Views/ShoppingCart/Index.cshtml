@@ -38,11 +38,12 @@
         </div>
     </div>
 </section>
-<script type="text/javascript">
-    function removeItem(key) {
-
-    }
+<script>
     $(function () {
+        $('.cd-cart-container').addClass('empty');
+        initCheckoutCart();
+    });
+    function initCheckoutCart(){
         var $cartBody = $('#tbody-cart');
         var $totalPrice = $('.order-total').find('.amount');
         var totalprice = 0;
@@ -67,19 +68,34 @@
                             '<h5>'+sprice+' VNĐ</h5>'+
                         '</td>'+
                         '<td class="product-quantity">'+
-                            '<input type="number" value="'+itemlocal.count+'" class="input-qty item'+key+'" size="4" min="1">'+
+                            '<input type="number" value="'+itemlocal.count+'" class="input-qty input-item-'+key+'" size="4" min="1">'+
                         '</td>'+
                         '<td class="product-subtotal">'+
                             '<h5>'+stotal+' VNĐ</h5>'+
                         '</td>'+
                         '<td class="product-remove">'+
-                            '<a class="remove" title="Xoá sản phẩm" onclick="removeItem(\'' + key +'\');"><i class="fa fa-times"></i></a>'+
+                            '<a class="remove" title="Xoá sản phẩm" onclick="removeProduct(\'' + key +'\');"><i class="fa fa-times"></i></a>'+
                         '</td>'+
                     '</tr>';
                 $cartBody.append(itemHTML);
+                $('.product-quantity').find('.input-item-' + key).focusout(function () {
+                    var qty = $(this).val();
+                    var cdefault = isNaN(parseInt(qty)) == true ? 1 : parseInt(qty);
+                    var itemlocal = JSON.parse(localStorage.getItem(key))
+                    itemlocal.count = cdefault;
+                    localStorage.setItem(key, JSON.stringify(itemlocal));
+                    initCheckoutCart();
+                })
             })
         }
         var stotalprice = numeral(totalprice).format('0,0');
         $totalPrice.html(stotalprice+' VNĐ');
-    });
+    }
+    function removeProduct(key) {
+        var isRemove = confirm("Bạn có chắc không mua sản phẩm này?");
+        if (isRemove) {
+            localStorage.removeItem(key);
+            initCheckoutCart();
+        }
+    }
 </script>

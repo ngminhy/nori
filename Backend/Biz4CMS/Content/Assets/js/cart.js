@@ -1,4 +1,4 @@
-jQuery(document).ready(function($){
+$(function() {
 	var $cartWrapper = $('.cd-cart-container');
 	var $cartBody = $cartWrapper.find('.body')
 	var $cartList = $cartBody.find('ul').eq(0);
