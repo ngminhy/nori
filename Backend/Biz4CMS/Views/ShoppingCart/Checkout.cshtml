@@ -97,20 +97,13 @@
 		                            <th><h5>Thành tiền</h5></th>
 		                        </tr>
 		                    </thead>
-		                    <tbody>
-		                    	<tr>
-		                    		<td>Italian Pasta and Sauce <strong>x 1</strong></td>
-		                    		<td>88,000 VNĐ</td>
-		                    	</tr>
-		                    	<tr>
-		                    		<td>Seafood Udon <strong>x 1</strong></td>
-		                    		<td>58,000 VNĐ</td>
-		                    	</tr>
+		                    <tbody id="tbody-cart"></tbody>
+		                    <tfoot>
 	                            <tr class="total">
 	                                <th><h5>Tổng cộng</h5></th>
-	                                <td><h5>146,000 VNĐ</h5></td>
+	                                <td><h5 class="amount">0 VNĐ</h5></td>
 	                            </tr>
-		                    </tbody>
+		                    </tfoot>
 		                </table>
 		            </div>
 	            	<div class="checkout-payment">
@@ -125,3 +118,34 @@
         </div>
     </div>
 </section>
+<script type="text/javascript">
+    $(function () {
+        $('.cd-cart-container').addClass('empty');
+        initCheckout();
+    });
+	function initCheckout(){
+        var $cartBody = $('#tbody-cart');
+        var totalprice = 0;
+        var $totalPrice = $('.total').find('.amount');
+        $cartBody.html("");
+        lstProduct = [];
+        if(localStorage.length != 0) {
+	        Object.keys(localStorage).forEach(function (key) {
+                var itemlocal = JSON.parse(localStorage.getItem(key));
+                lstProduct.push(itemlocal);
+                var total = 0;
+                total = itemlocal.price * itemlocal.count;
+                totalprice += total
+                var sprice = numeral(itemlocal.price).format('0,0');
+                var stotal = numeral(total).format('0,0');
+                var productHTML = '<tr>'+
+                					'<td>'+itemlocal.name+' <strong>x '+itemlocal.count+'</strong></td>'+
+                					'<td>'+stotal+' VNĐ</td>'+
+                				'</tr>';
+               	$cartBody.append(productHTML);
+	        })
+	    }
+        var stotalprice = numeral(totalprice).format('0,0');
+        $totalPrice.html(stotalprice + 'VNĐ');
+	}
+</script>
