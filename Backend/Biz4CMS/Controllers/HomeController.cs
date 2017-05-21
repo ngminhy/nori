@@ -68,6 +68,7 @@ namespace Biz4CMS.Controllers
             var banners = db.Banners.Where(p => p.Tag == "Top").OrderBy(p => p.BannerId).ToList();
             return PartialView("_Banner", banners);
         }
+
         public ActionResult MiddleBanner()
         {
             var banners = db.Banners.Where(p => p.Tag == "Middle").OrderBy(p => p.BannerId).ToList();
@@ -116,6 +117,26 @@ namespace Biz4CMS.Controllers
             }
             return PartialView("TopMenu", menus);
         }
+        public ActionResult SupportMenu()
+        {
+
+            var menus = db.Menus.Where(p => p.ParentId == 0 && p.Tag == "Support").OrderByDescending(p => p.Order).Select(p => new LinkDto() { Title = p.Text, Link = p.Link, MenuId = p.MenuId }).ToList();
+            return PartialView("SupportMenu", menus);
+        }
+
+        public ActionResult SaleoffMenu()
+        {
+
+            var menus = db.Menus.Where(p => p.ParentId == 0 && p.Tag == "Saleoff").OrderByDescending(p => p.Order).Select(p => new LinkDto() { Title = p.Text, Link = p.Link, MenuId = p.MenuId }).ToList();
+            return PartialView("SaleoffMenu", menus);
+        }
+
+        public ActionResult ShopAddress()
+        {
+            var Locations = db.Location.Where(p => p.Active).OrderByDescending(p => p.LocationId).ToList();
+            return PartialView("ShopAddress", Locations);
+        }
+
         public ActionResult BoxMenu(int id,int type = 0 )
         {
             var menu = db.Menus.Where(p => p.MenuId == id && p.Tag == "Right").FirstOrDefault();

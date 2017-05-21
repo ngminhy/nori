@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Biz4CMS.ViewModels.LinkDto>
+<h5 class="title">Hỗ trợ</h5>
+<ol class="marked-list">
+    @foreach (var lnk in Model)
+    {
+        <li>
+            <a href="@lnk.Link">@lnk.Title</a>
+        </li>
+    }
+</ol>
