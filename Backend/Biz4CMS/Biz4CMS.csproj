@@ -252,6 +252,7 @@
     <Compile Include="Models\ShippingLocation.cs" />
     <Compile Include="Models\ThumbnailCreator.cs" />
     <Compile Include="Util\Common.cs" />
+    <Compile Include="ViewModels\CartItem.cs" />
     <Compile Include="ViewModels\OrderDetailDto.cs" />
     <Compile Include="ViewModels\ProductCategory.cs" />
     <Compile Include="ViewModels\ProductCat.cs" />

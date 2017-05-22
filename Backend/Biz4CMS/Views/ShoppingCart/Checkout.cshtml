@@ -6,38 +6,38 @@
     <div class="container">
         <h1>Thanh toán</h1>
         <div class="row offset-6 flow-offset-1">
-			<form name="checkout" action="/">
+			<form id="orderform" method="post" action="" name="checkout">
 				<div class="col-md-6">
 					<div class="billing-fields">
 						<p class="form-row">
-							<label><input type="radio" name="shipping-type" checked> Giao hàng tận nơi (Miễn phí với đơn hàng > 200K)</label>
+							<label><input type="radio" value="0" name="shipping-type" checked> Giao hàng tận nơi (Miễn phí với đơn hàng > 200K)</label>
 						</p>
 						<p class="form-row">
-							<label><input type="radio" name="shipping-type"> Mua mang về (Nhận hàng tại cửa hàng)</label>
+							<label><input type="radio" value="1" name="shipping-type"> Mua mang về (Nhận hàng tại cửa hàng)</label>
 						</p>
                       	<p class="form-row">
                             <label>Họ và tên <span class="required">*</span></label>
-                            <input type="text" class="input-text"/>
+                            <input type="text" class="input-text" id="name" name="name" required/>
                         </p>
 		                <p class="form-row">
 		                    <label>Email <span class="required">*</span></label>
-		                    <input type="email" class="input-text" required>
+		                    <input type="email" class="input-text" name="email" required>
 		                </p>
 		                <p class="form-row">
 		                    <label>Số điện thoại <span class="required">*</span></label>
-		                    <input type="text" class="input-text" required>
+		                    <input type="text" class="input-text" name="phone" required>
 		                </p>
 		                <p class="form-row">
 		                    <label>Địa chỉ <span class="required">*</span></label>
-		                    <input type="text" class="input-text" required>
+		                    <input type="text" class="input-text" name="address" required>
 		                </p>
 		                <p class="form-row">
 		                    <label>Phường</label>
-		                    <input type="text" class="input-text">
+		                    <input type="text" class="input-text" name="ward">
 		                </p>
 		                <p class="form-row">
 		                    <label>Quận</label>
-		                    <select class="select-box">
+		                    <select class="select-box" name="dist">
 		                        <option>Quận 1</option>
 		                        <option>Quận 2</option>
 		                        <option>Quận 3</option>
@@ -66,21 +66,20 @@
 		                </p>
 		                <p class="form-row">
 		                    <label>Thành phố</label>
-		                    <input type="text" class="input-text" value="Hồ Chí Minh">
+		                    <input type="text" class="input-text" name="city" value="Hồ Chí Minh">
 		                </p>
 		                <p class="form-row">
 		                    <label>Cửa hàng Nori</label>
-		                    <select class="select-box">
-		                        <option>186 Phan Xích Long, phường 2, Quận Phú Nhuận</option>
-		                        <option>39 Tống Hữu Định, Phường Thảo Điền, Quận 2</option>
-		                        <option>93 Hồ Tùng Mậu, phường Bến Nghé, Quận 1</option>
-		                        <option>341 Nguyễn Tri Phương, Phường 5, Quận 10</option>
-		                        <option>33 Grand View B, Nguyễn Đức Cảnh, P. Tân Phong, Quận 7</option>
+		                    <select class="select-box" name="BranchName">
+                                @foreach (var item in ViewBag.data)
+                                {
+                                    <option value="@item.Address">@item.Address</option>
+                                }
 		                    </select>
 		                </p>
 		                <p class="form-row">
 		                    <label>Ghi chú</label>
-		                    <textarea class="note" rows="4" ></textarea>
+		                    <textarea class="note" rows="4" name="note"></textarea>
 		                </p>
 		                <p class="form-row">
 		                	<label><input type="checkbox"> Tôi chấp nhận <a href="/a/dieu-khoan-mua-hang">các điều khoản mua hàng</a></label>
@@ -113,6 +112,10 @@
 		            <div class="buttons-cart">
 		                <button class="btn btn-primary btn-sm">Thanh toán</button>
 		            </div>
+                    <div class="alert alert-success" style="display:none" id="success-alert">
+                        <strong>Thông báo! </strong>
+                        <span id="alert-content"></span>
+                    </div>
 				</div>
 			</form>
         </div>
@@ -149,3 +152,175 @@
         $totalPrice.html(stotalprice + 'VNĐ');
 	}
 </script>
+
+<script>
+    function showAlert(content){
+        $("#success-alert").alert();
+        $('#alert-content').text(content);
+        $("#success-alert").fadeTo(10000, 500).slideUp(800, function(){
+            $("#success-alert").slideUp(800);
+        });   
+    }
+
+    function SaveOrder(){
+        var form = $("#orderform");
+        var infoOrder = {
+            Name: $('input[name=name').val(),
+            Email: $('input[name=email').val(),
+            Address: $('input[name=address').val(),
+            Phone: $('input[name=phone').val(),
+            Note: $('input[name=note').val(),
+            PaymentType: 1
+        }
+
+        $.post('/shoppingcart',  { "info": infoOrder, "cart": lstProduct }, function (data) {
+            if (data.id != "") {
+                localStorage.clear();
+                alert('Đặt hàng thành công. Xin cảm ơn!');
+                location.href = '/';
+            }
+        })
+    }
+
+    $( "#orderform" ).submit(function( event ) {
+
+        var carryout = $("input[name=shipping-type]:checked").val();
+        var address = $('input[name=address').val();
+        var ward = $('input[name=ward').val();
+        var dist = $('select[name=dist').val();
+        var city = $('input[name=city').val();
+        var longaddress = address + " "+ward+" "+dist+" "+city;
+
+        var url = 'http://maps.google.com/maps/api/geocode/json?address='+longaddress;
+        var myLatlng=null;
+        if(carryout === "0"){
+            event.preventDefault();
+            $.ajax({
+                url: url,
+                type: 'GET',
+                async: false,
+                success : function(res) {
+
+                    if(res.status =='OK'){
+                        var latlng = res.results[0].geometry.location;
+                        myLatlng = new google.maps.LatLng(latlng.lat,latlng.lng);
+                        var check =false;
+                        for(var i =0;i<arrPolyObj.length;i++){
+                            console.log(arrPolyObj[i])
+                            if(arrPolyObj[i].Contains(myLatlng) ){
+                                check=true;
+                                break;
+                            }else
+                            {
+                                check=false;
+                            }
+                        }
+                        if(!check){
+                            alert('Hiện tại Nori Express chưa hỗ trợ giao hàng tại địa điểm này. Xin quý khách chọn điểm giao hàng khác hoặc nhận thức ăn tại nhà hàng của Nori Express.');
+
+                            event.preventDefault();
+
+                        }else{
+                            //submit order
+                            SaveOrder();
+                        }
+                    }else{
+                        alert('Hiện tại Nori Express chưa hỗ trợ giao hàng tại địa điểm này. Xin quý khách chọn điểm giao hàng khác hoặc nhận thức ăn tại nhà hàng của Nori Express.');
+                        event.preventDefault();
+                    }
+                }});
+
+        }
+        else{
+            event.preventDefault();
+            //submit order
+            SaveOrder();
+        }
+
+    });
+
+    var carryout = true;
+
+    function showAlert(content){
+        $("#success-alert").alert();
+        $('#alert-content').text(content);
+        $("#success-alert").fadeTo(10000, 500).slideUp(800, function(){
+            $("#success-alert").slideUp(800);
+        });
+    }
+
+
+    var arrPolyObj;
+    var myLatlng;
+    var map;
+
+    function initMap(){
+        var listpoly = @Html.Raw(Json.Encode(@ViewBag.polyobj));
+
+        google.maps.Polygon.prototype.Contains = function (point) {
+            // ray casting alogrithm http://rosettacode.org/wiki/Ray-casting_algorithm
+            var crossings = 0,
+        path = this.getPath();
+
+            // for each edge
+            for (var i = 0; i < path.getLength() ; i++) {
+                var a = path.getAt(i),
+            j = i + 1;
+                if (j >= path.getLength()) {
+                    j = 0;
+                }
+                var b = path.getAt(j);
+                if (rayCrossesSegment(point, a, b)) {
+                    crossings++;
+                }
+            }
+
+            // odd number of crossings?
+            return (crossings % 2 == 1);
+
+            function rayCrossesSegment(point, a, b) {
+                var px = point.lng(),
+                py = point.lat(),
+                ax = a.lng(),
+                ay = a.lat(),
+                bx = b.lng(),
+                by = b.lat();
+                if (ay > by) {
+                    ax = b.lng();
+                    ay = b.lat();
+                    bx = a.lng();
+                    by = a.lat();
+                }
+                if (py == ay || py == by) py += 0.00000001;
+                if ((py > by || py < ay) || (px > Math.max(ax, bx))) return false;
+                if (px < Math.min(ax, bx)) return true;
+
+                var red = (ax != bx) ? ((by - ay) / (bx - ax)) : Infinity;
+                var blue = (ax != px) ? ((py - ay) / (px - ax)) : Infinity;
+                return (blue >= red);
+            }
+        };
+
+         arrPolyObj = [];
+        for(var i =0;i<listpoly.length;i++){
+            var arrFeatures = JSON.parse( listpoly[i].Polyobj).features;
+            for(var j=0;j<arrFeatures.length;j++){
+                var listCoordinates = arrFeatures[j].geometry.coordinates[0];
+                var points =[];
+                for(var k =0;k<listCoordinates.length;k++){
+                    points.push(new google.maps.LatLng(listCoordinates[k][1],listCoordinates[k][0]));
+                }
+
+                var poly = new google.maps.Polygon({
+                    path: points
+                });
+                poly.setMap(map)
+                arrPolyObj.push(poly);
+            }
+        }
+
+    }
+
+
+</script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQ0pDRDKSyAO4lm10ttEXa2_uoZmWQzHc&v=3.exp&callback=initMap"></script>
