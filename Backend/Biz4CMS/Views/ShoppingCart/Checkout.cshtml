@@ -6,7 +6,7 @@
     <div class="container">
         <h1>Thanh toán</h1>
         <div class="row offset-6 flow-offset-1">
-			<form id="orderform" method="post" action="" name="checkout">
+			<form id="orderform" method="post" action="/shoppingcart" name="checkout">
 				<div class="col-md-6">
 					<div class="billing-fields">
 						<p class="form-row">
@@ -170,20 +170,28 @@
             Address: $('input[name=address').val(),
             Phone: $('input[name=phone').val(),
             Note: $('input[name=note').val(),
+            BranchName:  $('input[name=BranchName').val(),
             PaymentType: 1
-        }
+        };
 
-        $.post('/shoppingcart',  { "info": infoOrder, "cart": lstProduct }, function (data) {
-            if (data.id != "") {
-                localStorage.clear();
-                alert('Đặt hàng thành công. Xin cảm ơn!');
-                location.href = '/';
-            }
-        })
+        $.ajax({
+            url:'/shoppingcart',
+            type:"POST",
+            data: JSON.stringify({ info: infoOrder,cart:lstProduct }),
+            contentType:"application/json; charset=utf-8",
+            dataType:"json",
+            success: function(data){
+                if (data.id != "") {
+                    localStorage.clear();
+                    alert('Đặt hàng thành công. Xin cảm ơn!');
+                    location.href = '/';
+                }
+                }
+        });
     }
 
     $( "#orderform" ).submit(function( event ) {
-
+       
         var carryout = $("input[name=shipping-type]:checked").val();
         var address = $('input[name=address').val();
         var ward = $('input[name=ward').val();
@@ -206,7 +214,6 @@
                         myLatlng = new google.maps.LatLng(latlng.lat,latlng.lng);
                         var check =false;
                         for(var i =0;i<arrPolyObj.length;i++){
-                            console.log(arrPolyObj[i])
                             if(arrPolyObj[i].Contains(myLatlng) ){
                                 check=true;
                                 break;
