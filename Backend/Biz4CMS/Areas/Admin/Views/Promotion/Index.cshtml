@@ -1,0 +1,37 @@
+﻿@using Biz4CMS.Models;
+@{
+    ViewBag.Title = "Promotion List";
+    
+}
+
+<p>
+    <a href="/bo/Promotion/create" class="btn btn-info"><i class="ace-icon fa fa-plus bigger-110"></i>Add new item</a>
+</p> 
+@(Html.Kendo().Grid<Promotion>()
+    .Name("PromotionGrid")
+    .Sortable()
+    .Filterable()
+    .Pageable()
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Model(model => model.Id(p => p.Code))
+        .Read(read => read.Action("Get", "Promotion"))
+        .Destroy(destroy => destroy.Action("Delete", "Promotion"))
+    )
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.Code).Width("60px");
+        columns.Bound(p => p.Title);
+        columns.Bound(p => p.PercentDiscount);
+        columns.Bound(p => p.FromDate).Format("{0:dd/MM/yyyy}");
+        columns.Bound(p => p.ToDate).Format("{0:dd/MM/yyyy}");
+        columns.Bound(p => p.ListDayofWeek);
+        columns.Bound(p => p.Active);
+        columns.Bound(u => u.Code).Title("").ClientTemplate("<a class='k-button' href='" + Url.Action("edit", "Promotion") + "/#=Code#'><span class='k-icon k-edit'></span>Edit</a>");
+        columns.Command(cmd =>
+        {
+            cmd.Destroy();
+        });
+    })
+
+) 
