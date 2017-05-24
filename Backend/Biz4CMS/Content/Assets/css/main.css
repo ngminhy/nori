@@ -194,6 +194,13 @@ textarea.note {
     padding: 0px 5px 0px 5px;
     margin-top: 2px;
 }
+.discount input.input-text {
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    width: 150px;
+    text-align: center;
+}
 
 @media (max-width: 480px) {
     .buttons-cart .btn {
