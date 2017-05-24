@@ -889,6 +889,7 @@
     <Content Include="Content\Assets\js\mailform\jquery.form.min.js" />
     <Content Include="Content\Assets\js\mailform\jquery.rd-mailform.min.js" />
     <Content Include="Content\Assets\js\main-jquery.js" />
+    <Content Include="Content\Assets\js\numeral.min.js" />
     <Content Include="Content\Assets\js\pointer-events.js" />
     <Content Include="Content\Assets\js\script.js" />
     <Content Include="Content\Assets\js\scripts.js" />
