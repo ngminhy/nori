@@ -40,11 +40,16 @@ namespace Biz4CMS.Controllers
             // order.BookingTime = userinfo.BookingTime;
             // order.BranchName = userinfo.BranchName;
             // return View(order);
+         
             return View();
         }
         
         public ActionResult Checkout()
         {
+            var Locations = storeDB.Location.OrderByDescending(p => p.LocationId).ToList();
+            ViewBag.data = Locations;
+            var polyobj = storeDB.ShippingLocation.Where(p => p.Active).OrderByDescending(p => p.ShippingLocationId).ToList();
+            ViewBag.polyobj = polyobj;
             return View();
         }
 
@@ -105,54 +110,89 @@ namespace Biz4CMS.Controllers
             }
             return result.ToString();
         }
+       
+
         // POST: /ShoppingCart/
         [HttpPost]
-        public ActionResult Index(FormCollection values,int total)
+        public ActionResult Index(UserInfo info, List<CartItem> cart)
         {
-            var order = new Order();
-            TryUpdateModel(order);
 
             try
             {
 
-                //order.Username = User.Identity.Name;
-                var userinfo =(UserInfo) HttpContext.Session["userinfo"];
-                order.Username = userinfo.Email;
-                order.FullName = userinfo.Name;
-                order.Phone = userinfo.Phone;
-                order.Note = userinfo.Note;
-                order.Address = userinfo.Address;
-                order.Total = total;
+                //check not exist account then save account
+
+
+                //save to order and orderdetail
+                var order = new Order();
+                order.FullName = info.Name;
+                order.Email = info.Email;
+                order.Address = info.Address;
+                order.Phone = info.Phone;
+                order.Note = info.Note;
+                order.Total = 0;
+                order.PaymentType = 1;
                 order.OrderStatusId = 1;
                 order.OrderDate = DateTime.Now;
-                order.BookingTime = userinfo.BookingTime;
-                order.BranchName = userinfo.BranchName;
                 order.OrderCode = GetUniqueKey(8);
                 //Save Order
                 storeDB.Orders.Add(order);
                 storeDB.SaveChanges();
-                //Process the order
-                var cart = ShoppingCart.GetCart(this.HttpContext);
-                //string strBody = cart.CreateOrderEmail();
-                
-                
-                cart.CreateOrder(order);
-                //strBody = strBody + "<h2>Thông tin người mua:</h2>Họ và Tên:  " + order.FullName + " <br />Số điện thoại: " + order.Phone + " <br />Email: " + order.Email + " <br />Địa chỉ: " + order.Address + " <br />Thanh toán: " + order.PaymentType + " (Chuyển khoản | Tiền mặt) <br />Ghi chú: " + order.Note + " <br /> <br />";
-                //strBody = strBody + "<h3>Đơn hàng số: " + order.OrderId.ToString() + "</h3>";
-                //SendEmail(order.Email, strBody);
-                //return RedirectToAction("Complete",
-                //    new { id = order.OrderId });
+
+                decimal orderTotal = 0;
+
+                // adding the order details for each
+                foreach (var item in cart)
+                {
+                    var productitem = storeDB.Products.Where(p => p.ProductId == item.id).FirstOrDefault();
+                    var productprice = item.price;
+                    if (productitem != null)
+                    {
+                        productprice = productitem.Price;
+                    }
+
+                    var orderDetail = new OrderDetail
+                    {
+                        ProductId = item.id,
+                        OrderId = order.OrderId,
+                        UnitPrice = productprice,
+                        Quantity = item.count
+                    };
+                    // Set the order total of the shopping cart
+                    orderTotal += (item.count * productprice);
+                    storeDB.OrderDetails.Add(orderDetail);
+                }
+                order.Total = orderTotal;
+                storeDB.SaveChanges();
+
+                //send mail to customer
+                var strBody = "";
+                var spayment = "Tiền mặt";
+                if (order.PaymentType == 2)
+                {
+                    spayment = "Chuyển khoản";
+                }
+                strBody = strBody + "<h2>Cảm ơn quý khách đã đặt hàng. Chúng tôi sẽ sớm xử lý đơn hàng của quý khách.</h2> <br />";
+                strBody = strBody + "<h3>Mã số đơn hàng của quý khách : " + order.OrderCode + "</h3>";
+                var subject = "Thông tin đơn hàng từ epsi.vn";
+                try
+                {
+                    //UtilHelper.SendEmail(order.Email, subject, strBody);
+                }
+                catch
+                {
+
+                }
+
                 return Json(new { id = order.OrderCode });
 
             }
-            catch { 
-
+            catch
+            {
                 //Invalid - redisplay with errors
-                //return View(order);
-            return Json(new { id = "" });
+                return Json(new { id = "" });
             }
         }
-        //
         // GET: /ShoppingCart/AddToCart/5
         public ActionResult AddToCart(int id, int count = 1, string listCakeFiller = "", string listCakeName = "" , long price =0)
         {
