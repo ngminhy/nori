@@ -20,22 +20,39 @@
                     </thead>
                     <tbody id="tbody-cart"></tbody>
                     <tfoot>
-                        <tr class="discount">
-                            <td colspan="4">
-                                <h5>Mã giảm giá</h5>
-                            </td>
-                            <td class="order-total" colspan="2">
-                                <input type="text" class="input-text" />
-                            </td>
-                        </tr>  
-                        <tr class="cart-total">
-                            <td colspan="4">
+                        <tr class="order-estimate-total">
+                            <th colspan="4">
                                 <h5>Tổng cộng</h5>
-                            </td>
-                            <td class="order-total" colspan="2">
+                            </th>
+                            <td colspan="2">
                                 <h5 class="amount">0 VNĐ</h5>
                             </td>
-                        </tr>                        
+                        </tr>
+                        <tr class="discount">
+                            <th colspan="4">
+                                <h5>Mã giảm giá</h5>
+                            </th>
+                            <td colspan="2">
+                                <input type="text" class="input-text discount-code" />
+                            </td>
+                        </tr>  
+                        <tr class="saving">
+                            <th colspan="4">
+                                <h5>Tiết kiệm</h5>
+                            </th>
+                            <td colspan="2">
+                                <h5 class="amount">0 VNĐ</h5>
+                            </td>
+                        </tr>
+                        <tr class="order-total">
+                            <th colspan="4">
+                                <h5>Tổng tiền</h5>
+                                <span>(Tổng số tiền thanh toán)</span>
+                            </th>
+                            <td colspan="2">
+                                <h5 class="amount">0 VNĐ</h5>
+                            </td>
+                        </tr> 
                     </tfoot>
                 </table>
             </div>
@@ -51,12 +68,30 @@
         $('.cd-cart-container').addClass('empty');
         initCheckoutCart();
     });
+
+    // Kiem tra discount code hop le (Hardcode = 123)
+    function checkDiscountCode(code) {
+    	var objDiscount = {};
+    	objDiscount.isDiscount = false;
+    	objDiscount.value = 0;
+    	if(code == "123") {
+    		objDiscount.isDiscount = true;
+    		objDiscount.value = 10;
+    	}
+    	return objDiscount;
+    }
+
     function initCheckoutCart(){
         var $cartBody = $('#tbody-cart');
-        var $totalPrice = $('.order-total').find('.amount');
+        var $totalprice = $('.order-total').find('.amount');
+    	var $estimatetotal = $('.order-estimate-total');
+    	var $disountCode = $('.discount-code');
+    	var $saving = $('.saving');
         var totalprice = 0;
         var stotalprice = 0;
         $cartBody.html("");
+    	$estimatetotal.addClass('hidden');
+    	$saving.addClass('hidden');
         if(localStorage.length != 0) {
             Object.keys(localStorage).forEach(function (key) {
                 var itemlocal = JSON.parse(localStorage.getItem(key))
@@ -97,7 +132,26 @@
             })
         }
         var stotalprice = numeral(totalprice).format('0,0');
-        $totalPrice.html(stotalprice+' VNĐ');
+        $totalprice.html(stotalprice+' VNĐ');
+
+        //Xu ly discount
+        $disountCode.focusout(function(){
+        	var disountCode = $(this).val();
+        	var isDiscount = checkDiscountCode(disountCode).isDiscount;
+        	var valueDiscount = checkDiscountCode(disountCode).value;
+        	if(isDiscount) {
+		    	$estimatetotal.removeClass('hidden');
+		    	$saving.removeClass('hidden');
+		    	var savingprice = totalprice * valueDiscount / 100;
+		    	var discounttotalprice = numeral(totalprice - savingprice).format('0,0');
+		    	$estimatetotal.find('.amount').html(stotalprice+' VNĐ');
+		    	$saving.find('.amount').html('-'+numeral(savingprice).format('0,0')+' VNĐ');
+		    	$totalprice.html(discounttotalprice+' VNĐ');
+        	} else {
+		    	$estimatetotal.addClass('hidden');
+		    	$saving.addClass('hidden');
+        	}
+        });
     }
     function removeProduct(key) {
         var isRemove = confirm("Bạn có chắc không mua sản phẩm này?");

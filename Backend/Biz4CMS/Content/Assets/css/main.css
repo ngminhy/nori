@@ -114,18 +114,39 @@ table.overview-cart td {
 table.overview-cart img.product-img-thumbnail {
     width: 70px;
 }
-table.overview-cart .cart-total h5 {
-    text-transform: uppercase;
-    font-weight: bold;
-}
 table.overview-cart input.input-qty {
     border: 1px solid #e5e5e5;
     width: 60px;
     height: 32px;
     padding: 0 0 0 10px;
 }
+table.overview-cart .discount input.input-text {
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    width: 150px;
+    height: 100%;
+    text-align: center;
+    padding-bottom: 5px;
+    font-size: 19px;
+}
 table.overview-cart a.remove:hover {
     cursor: pointer;
+}
+table.overview-cart tfoot th {
+    text-align: right;
+}
+table.overview-cart tfoot th span {
+    padding-top: 5px; 
+}
+table.overview-cart .hidden {
+    display: none;
+}
+table.overview-cart .saving .amount {
+    color: #ff6d00;
+}
+table.overview-cart .order-total .amount {
+    font-weight: bold;
 }
 .buttons-cart *+.btn{
     margin-top: 0px;
@@ -193,13 +214,6 @@ textarea.note {
     height: 80px;
     padding: 0px 5px 0px 5px;
     margin-top: 2px;
-}
-.discount input.input-text {
-    border-top: 0px;
-    border-left: 0px;
-    border-right: 0px;
-    width: 150px;
-    text-align: center;
 }
 
 @media (max-width: 480px) {
