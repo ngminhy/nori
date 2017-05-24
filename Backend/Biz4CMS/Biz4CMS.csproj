@@ -223,6 +223,7 @@
     <Compile Include="Areas\Admin\Controllers\BannerController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\CommentController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PromotionController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShippingLocationController.cs" />
     <Compile Include="Areas\Admin\Controllers\VideoController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuickLinkController.cs" />
@@ -242,6 +243,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Promotion.cs" />
     <Compile Include="Models\CakeFiller.cs" />
     <Compile Include="Models\CheckOrder.cs" />
     <Compile Include="Models\FAQ.cs" />
@@ -1454,6 +1456,8 @@
     <Content Include="Content\Assets\fonts\MaterialIcons-Regular.ttf" />
     <Content Include="Content\Assets\fonts\MaterialIcons-Regular.woff" />
     <Content Include="Content\Assets\fonts\MaterialIcons-Regular.woff2" />
+    <Content Include="Areas\Admin\Views\Promotion\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Promotion\Index.cshtml" />
     <None Include="Content\Assets\Scripts\jquery-1.7.1-vsdoc.js" />
     <Content Include="Content\Assets\Scripts\jquery-1.7.1.js" />
     <Content Include="Content\Assets\Scripts\jquery-1.7.1.min.js" />

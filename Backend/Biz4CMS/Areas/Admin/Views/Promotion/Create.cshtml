@@ -1,0 +1,165 @@
+﻿@model Biz4CMS.Models.Promotion
+@using Kendo.Mvc.UI;
+@{
+    ViewBag.Title = "Create";
+}
+
+<script>
+    function startChange() {
+        var endPicker = $("#ToDate").data("kendoDatePicker"),
+            startDate = this.value();
+
+        if (startDate) {
+            startDate = new Date(startDate);
+            startDate.setDate(startDate.getDate());
+            endPicker.min(startDate);
+        }
+    }
+
+    function endChange() {
+        var startPicker = $("#FromDate").data("kendoDatePicker"),
+            endDate = this.value();
+
+        if (endDate) {
+            endDate = new Date(endDate);
+            endDate.setDate(endDate.getDate());
+            startPicker.max(endDate);
+        }
+    }
+</script>
+@using (Html.BeginForm(ViewContext.RouteData.Values["Action"].ToString(), ViewContext.RouteData.Values["Controller"].ToString(), FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Promotion</legend>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, new { @class = "col-sm-3 control-label no-padding-right" })
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.Title, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Title)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Code, new { @class = "col-sm-3 control-label no-padding-right" })
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.Code, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Code)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PercentDiscount, new { @class = "col-sm-3 control-label no-padding-right" })
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.PercentDiscount, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PercentDiscount)
+            </div>
+        </div>
+   
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FromDate, new { @class = "col-sm-3 control-label no-padding-right" })
+            <div class="col-sm-9">
+                @(Html.Kendo().DatePickerFor(model => model.FromDate)
+                  .Name("FromDate")
+                  .Value(Model.FromDate)
+                  .Min(DateTime.Today)
+                  .ParseFormats(new string[] { "dd-MM-yyyy" })
+                  .Events(e => e.Change("startChange"))
+                  .HtmlAttributes(new { style = "width:100%;" ,@type =""})
+                )
+                @Html.ValidationMessageFor(model => model.FromDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ToDate, new { @class = "col-sm-3 control-label no-padding-right" })
+            <div class="col-sm-9">
+                @(Html.Kendo().DatePickerFor(model=>model.ToDate)
+                  .Name("ToDate")
+                  .Value(Model.ToDate)
+                  .Min(DateTime.Today)
+                  .ParseFormats(new string[] { "dd-MM-yyyy" })
+                  .Events(e => e.Change("endChange"))
+                  .HtmlAttributes(new { style = "width:100%;", @type = "" })
+                )
+                @Html.ValidationMessageFor(model => model.ToDate)
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Monday, new { @class = "col-sm-3 control-label no-padding-right" })
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.Monday, new { @class = "number form-control" })
+                @Html.ValidationMessageFor(model => model.Monday)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tuesday, new { @class = "col-sm-3 control-label no-padding-right" })
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.Tuesday, new { @class = "number form-control" })
+                @Html.ValidationMessageFor(model => model.Tuesday)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Wednesday, new { @class = "col-sm-3 control-label no-padding-right" })
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.Wednesday, new { @class = "number form-control" })
+                @Html.ValidationMessageFor(model => model.Wednesday)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Thursday, new { @class = "col-sm-3 control-label no-padding-right" })
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.Thursday, new { @class = "number form-control" })
+                @Html.ValidationMessageFor(model => model.Thursday)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Friday, new { @class = "col-sm-3 control-label no-padding-right" })
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.Friday, new { @class = "number form-control" })
+                @Html.ValidationMessageFor(model => model.Friday)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Saturday, new { @class = "col-sm-3 control-label no-padding-right" })
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.Saturday, new { @class = "number form-control" })
+                @Html.ValidationMessageFor(model => model.Saturday)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Sunday, new { @class = "col-sm-3 control-label no-padding-right" })
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.Sunday, new { @class = "number form-control" })
+                @Html.ValidationMessageFor(model => model.Sunday)
+            </div>
+        </div>
+      
+        <div class="form-group">
+            @Html.LabelFor(model => model.Active, new { @class = "col-sm-3 control-label no-padding-right" })
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.Active, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Active)
+            </div>
+        </div>
+
+       @Html.HiddenFor(model => model.UpdatedDate)
+       @Html.HiddenFor(model => model.CreatedDate)
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right"></label>
+            <div class="col-sm-9">
+                <input type="submit" value="Create or Update" class="btn btn-info" />
+            </div>
+
+        </div>
+    </fieldset>
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+    <div id="imgBrowser" style="display: none;">
+    </div>
+</div>
