@@ -33,7 +33,7 @@
                                 <h5>Mã giảm giá</h5>
                             </th>
                             <td colspan="2">
-                                <input type="text" class="input-text discount-code" />
+                                <input type="text" class="input-text discount-code"/>
                             </td>
                         </tr>  
                         <tr class="saving">
@@ -68,19 +68,6 @@
         $('.cd-cart-container').addClass('empty');
         initCheckoutCart();
     });
-
-    // Kiem tra discount code hop le (Hardcode = 123)
-    function checkDiscountCode(code) {
-    	var objDiscount = {};
-    	objDiscount.isDiscount = false;
-    	objDiscount.value = 0;
-    	if(code == "123") {
-    		objDiscount.isDiscount = true;
-    		objDiscount.value = 10;
-    	}
-    	return objDiscount;
-    }
-
     function initCheckoutCart(){
         var $cartBody = $('#tbody-cart');
         var $totalprice = $('.order-total').find('.amount');
@@ -93,66 +80,98 @@
     	$estimatetotal.addClass('hidden');
     	$saving.addClass('hidden');
         if(localStorage.length != 0) {
+        	var discountCode = localStorage.getItem("code");
+	        var discountValue = localStorage.getItem("codeValue");
+            if(discountCode && discountValue) {
+		    	$estimatetotal.removeClass('hidden');
+		    	$saving.removeClass('hidden');
+            }
             Object.keys(localStorage).forEach(function (key) {
-                var itemlocal = JSON.parse(localStorage.getItem(key))
-                var total = 0;
-                total = itemlocal.price * itemlocal.count;
-                totalprice += total
-                var sprice = numeral(itemlocal.price).format('0,0');
-                var stotal = numeral(total).format('0,0');
-                var productHTML = '<tr>'+
-                        '<td class="product-thumbnail">'+
-                            '<img src="'+itemlocal.img.replace('~', '') +'" alt="" class="product-img-thumbnail">'+
-                        '</td>'+
-                        '<td class="product-name">'+
-                            '<h5><a href="">'+itemlocal.name+'</a></h5>'+
-                        '</td>'+
-                        '<td class="product-price">'+
-                            '<h5>'+sprice+' VNĐ</h5>'+
-                        '</td>'+
-                        '<td class="product-quantity">'+
-                            '<input type="number" value="'+itemlocal.count+'" class="input-qty input-item-'+key+'" size="4" min="1">'+
-                        '</td>'+
-                        '<td class="product-subtotal">'+
-                            '<h5>'+stotal+' VNĐ</h5>'+
-                        '</td>'+
-                        '<td class="product-remove">'+
-                            '<a class="remove" title="Xoá sản phẩm" onclick="removeProduct(\'' + key +'\');"><i class="fa fa-times"></i></a>'+
-                        '</td>'+
-                    '</tr>';
-                $cartBody.append(productHTML);
-                $('.product-quantity').find('.input-item-' + key).focusout(function () {
-                    var qty = $(this).val();
-                    var cdefault = isNaN(parseInt(qty)) == true ? 1 : parseInt(qty);
-                    var itemlocal = JSON.parse(localStorage.getItem(key))
-                    itemlocal.count = cdefault;
-                    localStorage.setItem(key, JSON.stringify(itemlocal));
-                    initCheckoutCart();
-                })
+            	if(key != 'codeValue' && key != 'code') {
+	                var itemlocal = JSON.parse(localStorage.getItem(key))
+	                var total = 0;
+	                total = itemlocal.price * itemlocal.count;
+	                totalprice += total
+	                var sprice = numeral(itemlocal.price).format('0,0');
+	                var stotal = numeral(total).format('0,0');
+	                var productHTML = '<tr>'+
+	                        '<td class="product-thumbnail">'+
+	                            '<img src="'+itemlocal.img.replace('~', '') +'" alt="" class="product-img-thumbnail">'+
+	                        '</td>'+
+	                        '<td class="product-name">'+
+	                            '<h5><a href="">'+itemlocal.name+'</a></h5>'+
+	                        '</td>'+
+	                        '<td class="product-price">'+
+	                            '<h5>'+sprice+' VNĐ</h5>'+
+	                        '</td>'+
+	                        '<td class="product-quantity">'+
+	                            '<input type="number" value="'+itemlocal.count+'" class="input-qty input-item-'+key+'" size="4" min="1">'+
+	                        '</td>'+
+	                        '<td class="product-subtotal">'+
+	                            '<h5>'+stotal+' VNĐ</h5>'+
+	                        '</td>'+
+	                        '<td class="product-remove">'+
+	                            '<a class="remove" title="Xoá sản phẩm" onclick="removeProduct(\'' + key +'\');"><i class="fa fa-times"></i></a>'+
+	                        '</td>'+
+	                    '</tr>';
+	                $cartBody.append(productHTML);
+	                var stotalprice = numeral(totalprice).format('0,0');
+	                $totalprice.html(stotalprice+' VNĐ');
+		            if(discountCode && discountValue) {
+				    	$disountCode.val(discountCode);
+				    	var savingprice = totalprice * discountValue / 100;
+				    	var discounttotalprice = numeral(totalprice - savingprice).format('0,0');
+				    	$estimatetotal.find('.amount').html(stotalprice+' VNĐ');
+				    	$saving.find('.amount').html('-'+numeral(savingprice).format('0,0')+' VNĐ');
+				    	$totalprice.html(discounttotalprice+' VNĐ');
+		            }
+	                $('.product-quantity').find('.input-item-' + key).focusout(function () {
+	                    var qty = $(this).val();
+	                    var cdefault = isNaN(parseInt(qty)) == true ? 1 : parseInt(qty);
+	                    var itemlocal = JSON.parse(localStorage.getItem(key))
+	                    itemlocal.count = cdefault;
+	                    localStorage.setItem(key, JSON.stringify(itemlocal));
+	                    initCheckoutCart();
+	                })
+            	}
             })
-        }
-        var stotalprice = numeral(totalprice).format('0,0');
-        $totalprice.html(stotalprice+' VNĐ');
-
-        //Xu ly discount
+        }       
         $disountCode.focusout(function(){
         	var disountCode = $(this).val();
         	var isDiscount = checkDiscountCode(disountCode).isDiscount;
         	var valueDiscount = checkDiscountCode(disountCode).value;
+	    	var stotalprice = numeral(totalprice).format('0,0');
+	    	var savingprice = totalprice * valueDiscount / 100;
+	    	var discounttotalprice = numeral(totalprice - savingprice).format('0,0');
         	if(isDiscount) {
 		    	$estimatetotal.removeClass('hidden');
 		    	$saving.removeClass('hidden');
-		    	var savingprice = totalprice * valueDiscount / 100;
-		    	var discounttotalprice = numeral(totalprice - savingprice).format('0,0');
 		    	$estimatetotal.find('.amount').html(stotalprice+' VNĐ');
 		    	$saving.find('.amount').html('-'+numeral(savingprice).format('0,0')+' VNĐ');
 		    	$totalprice.html(discounttotalprice+' VNĐ');
+		    	localStorage.setItem('codeValue', valueDiscount);
+		    	localStorage.setItem('code', disountCode);
         	} else {
 		    	$estimatetotal.addClass('hidden');
 		    	$saving.addClass('hidden');
+		    	localStorage.removeItem('codeValue');
+		    	localStorage.removeItem('code');
+		    	$totalprice.html(stotalprice+' VNĐ');
         	}
         });
     }
+    // Kiem tra discount code hop le (Hardcode = 123)
+    function checkDiscountCode(code) {
+    	var objDiscount = {};
+    	objDiscount.isDiscount = false;
+    	objDiscount.value = 0;
+    	if(code == "123") {
+    		objDiscount.isDiscount = true;
+    		objDiscount.value = 10;
+    	}
+    	return objDiscount;
+    }
+
     function removeProduct(key) {
         var isRemove = confirm("Bạn có chắc không mua sản phẩm này?");
         if (isRemove) {

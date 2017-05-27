@@ -55,18 +55,21 @@ $(function() {
 	function initProduct() {
 		$cartList.html("");
 		Object.keys(localStorage).forEach(function (key) {
-			var itemlocal = JSON.parse(localStorage.getItem(key));
-			var name = itemlocal.name;
-			var img = itemlocal.img.replace('~', '');
-			var price = numeral(itemlocal.price).format('0,0');
-			var count = itemlocal.count;
-			var productHTML = $('<li class="product">'+
-				'<div class="product-image">'+
-				'<a href="#"><img src="'+img+'"></a></div>'+
-				'<div class="product-details">'+
-				'<h5><a href="">'+name+'</a></h5>'+
-				'<div class="actions"><span class="qty">'+count+'</span> x <span class="price">'+price+' VNĐ</span></div>'+
-				'</div></li>');
+			var productHTML = '';
+			if(key != 'codeValue' && key != 'code') {
+				var itemlocal = JSON.parse(localStorage.getItem(key));
+				var name = itemlocal.name;
+				var img = itemlocal.img.replace('~', '');
+				var price = numeral(itemlocal.price).format('0,0');
+				var count = itemlocal.count;
+				productHTML = $('<li class="product">'+
+					'<div class="product-image">'+
+					'<a href="#"><img src="'+img+'"></a></div>'+
+					'<div class="product-details">'+
+					'<h5><a href="">'+name+'</a></h5>'+
+					'<div class="actions"><span class="qty">'+count+'</span> x <span class="price">'+price+' VNĐ</span></div>'+
+					'</div></li>');
+			}
 			$cartList.prepend(productHTML);
 		})
 		if(localStorage.length != 0) $cartWrapper.removeClass('empty');

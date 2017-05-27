@@ -171,6 +171,7 @@ table.checkout-review {
     background-color: transparent;
     margin: 0 0 30px;
     width: 100%;
+    text-align: left;
 }
 table.checkout-review thead {
     display: table-header-group;
@@ -182,7 +183,6 @@ table.checkout-review th {
     text-transform: uppercase;
     vertical-align: middle;
     white-space: nowrap;
-    text-align: center;
 }
 table.checkout-review tr {
     display: table-row;
@@ -194,7 +194,13 @@ table.checkout-review tr {
 table.checkout-review td {
     padding: 20px 10px;
     vertical-align: middle;
-    text-align: center;
+}
+table.checkout-review tfoot h5 {
+    font-size: 16px;
+    font-weight: 600;
+}
+table.checkout-review tfoot .order-total h5 {
+    margin-bottom: 5px;
 }
 .order-box .buttons-cart .btn {
     margin-top: 20px;
