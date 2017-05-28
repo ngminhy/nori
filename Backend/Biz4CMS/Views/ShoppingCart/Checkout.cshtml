@@ -198,7 +198,12 @@
                 }
                	$cartBody.append(productHTML);
 	        })
-	    }
+        }
+
+	    //check shoppingcart
+        if(lstProduct.length ==0){
+            location.href="/";
+        }
 
         $disountCode.html(discountCode);
         var stotalprice = numeral(totalprice).format('0,0');
