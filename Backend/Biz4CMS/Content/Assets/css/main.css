@@ -66,6 +66,9 @@ ul.submenu li{
     min-height: .01%;
     overflow-x: auto;
 }
+.hidden {
+    display: none !important;
+}
 table.overview-cart {
     display: table;
     background-color: transparent;
@@ -136,11 +139,8 @@ table.overview-cart a.remove:hover {
 table.overview-cart tfoot th {
     text-align: right;
 }
-table.overview-cart tfoot th span {
-    padding-top: 5px; 
-}
-table.overview-cart .hidden {
-    display: none;
+table.overview-cart tfoot .order-total th h5 {
+    margin-bottom: 5px; 
 }
 table.overview-cart .saving .amount {
     color: #ff6d00;
@@ -230,5 +230,10 @@ textarea.note {
         line-height: 30px;
         border-radius: 4px;
         width: 120px;
+    }
+}
+@media (max-width: 991px) {
+    .well-md {
+        padding-bottom: 50px;
     }
 }
