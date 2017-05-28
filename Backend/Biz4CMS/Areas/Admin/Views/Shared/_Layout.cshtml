@@ -189,6 +189,13 @@
                     </a>
                     <b class="arrow"></b>
                 </li>
+                <li class="@(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "promotion" ? "active" : "")">
+                    <a href="@Url.Action("Index", "Promotion")">
+                        <i class="menu-icon fa fa-th"></i>
+                        <span class="menu-text"> Promotion </span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
                 <li class="@(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "article" ? "active" : "")">
                     <a href="@Url.Action("Index", "Article")">
                         <i class="menu-icon fa fa-th"></i>

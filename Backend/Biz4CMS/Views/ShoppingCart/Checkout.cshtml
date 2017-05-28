@@ -159,8 +159,11 @@
     </div>
 </section>
 <script type="text/javascript">
+    var lstProduct = [];
+
     $(function () {
         $('.cd-cart-container').addClass('empty');
+
         initCheckout();
     });
 	function initCheckout(){
@@ -176,7 +179,6 @@
         var discountCode = localStorage.getItem("code");
         var discountValue = localStorage.getItem("codeValue");
         var totalprice = 0;
-        var lstProduct = [];
         $cartBody.html("");
         if(localStorage.length != 0) {
 	        Object.keys(localStorage).forEach(function (key) {
@@ -232,7 +234,7 @@
             $estimatetotal.removeClass('hidden');
         }
         $estimatetotal.find('.amount').html(stotalprice + 'VNĐ');
-        $shippingfee.find('.amount').html(numeral(shippingfee).format('0,0') + 'VNĐ');
+        $shippingfee.find('.amount').html(numeral(shippingfee).format('0,0') + ' VNĐ');
         discounttotalprice = numeral(totalprice + shippingfee - savingprice).format('0,0');
         $totalprice.html(discounttotalprice+' VNĐ');
 
@@ -251,14 +253,17 @@
 
     function SaveOrder(){
         var form = $("#orderform");
+        var carryout = $("input[name=shipping-type]:checked").val();
         var infoOrder = {
             Name: $('input[name=name').val(),
             Email: $('input[name=email').val(),
             Address: $('input[name=address').val(),
             Phone: $('input[name=phone').val(),
-            Note: $('input[name=note').val(),
-            BranchName:  $('input[name=BranchName').val(),
-            PaymentType: 1
+            Note: $('textarea[name=note').val(),
+            BranchName:  $('select[name=BranchName').val(),
+            PaymentType: 1,
+            DiscountCode: localStorage.getItem("code"),
+            ShippingType: carryout
         };
 
         $.ajax({

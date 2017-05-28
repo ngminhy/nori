@@ -17,30 +17,6 @@ namespace Biz4CMS.Controllers
         // GET: /ShoppingCart/
         public ActionResult Index()
         {
-            // if (HttpContext.Session["userinfo"] == null)
-            // {
-            //     return RedirectToAction("Index", "product");
-            // }
-            // var cart = ShoppingCart.GetCart(this.HttpContext);
-
-            // // Set up our ViewModel
-            // ViewBag.Cart = new ShoppingCartViewModel
-            // {
-            //     CartItems = cart.GetCartItems(),
-            //     CartTotal = cart.GetTotal()
-            // };
-            // // Return the view
-            // var userinfo = (UserInfo)HttpContext.Session["userinfo"];
-            // var order = new Order();
-            // order.Email = userinfo.Email;
-            // order.FullName = userinfo.Name;
-            // order.Phone = userinfo.Phone;
-            // order.Address = userinfo.Address;
-            // order.Note = userinfo.Note;
-            // order.BookingTime = userinfo.BookingTime;
-            // order.BranchName = userinfo.BranchName;
-            // return View(order);
-         
             return View();
         }
         
@@ -73,18 +49,13 @@ namespace Biz4CMS.Controllers
             smtp.Port = 587;
             smtp.EnableSsl = true;
             smtp.Send(message);
-
             return true;
 
-
         }
-
-     
 
         // GET: /ShoppingCart/Complete
         public ActionResult Complete()
         {
-
             // Return the view
             //clear session
             HttpContext.Session["userinfo"] = null;
@@ -111,18 +82,12 @@ namespace Biz4CMS.Controllers
             return result.ToString();
         }
        
-
         // POST: /ShoppingCart/
         [HttpPost]
         public ActionResult Index(UserInfo info, List<CartItem> cart)
         {
-
             try
             {
-
-                //check not exist account then save account
-
-
                 //save to order and orderdetail
                 var order = new Order();
                 order.FullName = info.Name;
@@ -139,7 +104,7 @@ namespace Biz4CMS.Controllers
                 storeDB.Orders.Add(order);
                 storeDB.SaveChanges();
 
-                decimal orderTotal = 0;
+                int orderTotal = 0;
 
                 // adding the order details for each
                 foreach (var item in cart)
@@ -163,6 +128,38 @@ namespace Biz4CMS.Controllers
                     storeDB.OrderDetails.Add(orderDetail);
                 }
                 order.Total = orderTotal;
+
+                order.DiscountCode = "";
+                order.DiscountValue = 0;
+                order.DiscountTotal = 0;
+                order.ShippingFee = 0;
+
+                if (string.IsNullOrEmpty(info.DiscountCode)){
+                    order.DiscountCode = "";
+                    order.DiscountValue = 0;
+                    order.DiscountTotal = 0;
+                }
+                else
+                {
+                    var promotion = storeDB.Promotions.Where(p => p.Code == info.DiscountCode).SingleOrDefault();
+                    if(promotion != null)
+                    {
+                        order.DiscountCode = promotion.Code;
+                        order.DiscountValue = promotion.PercentDiscount;
+                        order.DiscountTotal = promotion.PercentDiscount*orderTotal /100;
+                    }
+                }
+                //shipping
+                if (info.ShippingType.Equals("0"))
+                {
+                    order.ShippingFee = orderTotal < 200000 ? 20000 : 0;
+                }
+                else
+                {
+                    //carry out
+                    order.BranchName = info.BranchName;
+                }
+
                 storeDB.SaveChanges();
 
                 //send mail to customer
@@ -187,7 +184,7 @@ namespace Biz4CMS.Controllers
                 return Json(new { id = order.OrderCode });
 
             }
-            catch
+            catch(Exception e)
             {
                 //Invalid - redisplay with errors
                 return Json(new { id = "" });

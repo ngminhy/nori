@@ -11,12 +11,16 @@
         <b>Email:</b> @order.Email <br />
         <b>Address:</b> @order.Address <br />
         <b>Note:</b> @order.Note <br />
+        @*<b>Booking Time:</b> @order.BookingTime <br />*@
+        <b>Branch:</b> @order.BranchName <br />
+
     </div>
     <div class="col-md-6">
         <b>Order Code:</b> @order.OrderCode <br />
         <b>Order Date:</b> @order.OrderDate <br />
-        <b>Booking Time:</b> @order.BookingTime <br />
-        <b>Branch:</b> @order.BranchName <br />
+        <b>Discount:</b> @string.Format("{0:n0}", order.DiscountTotal) VND<br />
+        <b>Shipping Fee:</b> @string.Format("{0:n0}", order.ShippingFee) VND<br />
+        <b>Total Paid:</b> @string.Format("{0:n0}", order.Total-order.DiscountTotal + order.ShippingFee) VND<br />
         <b>Status:</b> @order.State <br />
     </div>
 </div>
