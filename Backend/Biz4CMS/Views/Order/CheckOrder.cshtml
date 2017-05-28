@@ -9,8 +9,6 @@
     .bs-wizard {
         margin-top: 40px;
     }
-
-    /*Form Wizard*/
     .bs-wizard {
         border-bottom: solid 1px #e0e0e0;
         padding: 0 0 10px 0;
@@ -19,162 +17,156 @@
         background-color:#f5f5f5;
     }
 
-        .bs-wizard > .bs-wizard-step {
-            padding: 0;
-            position: relative;
-        }
+    .bs-wizard > .bs-wizard-step {
+        padding: 0;
+        position: relative;
+        width: 20%;
+        float: left;
+    }
 
-            .bs-wizard > .bs-wizard-step + .bs-wizard-step {
-            }
+    .bs-wizard > .bs-wizard-step + .bs-wizard-step {
+    }
 
-            .bs-wizard > .bs-wizard-step .bs-wizard-stepnum {
-                color: #595959;
-                font-size: 16px;
-                margin-bottom: 5px;
-            }
+    .bs-wizard > .bs-wizard-step .bs-wizard-stepnum {
+        color: #595959;
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
 
-            .bs-wizard > .bs-wizard-step .bs-wizard-info {
-                color: #999;
-                font-size: 14px;
-            }
+    .bs-wizard > .bs-wizard-step .bs-wizard-info {
+        color: #999;
+        font-size: 14px;
+    }
 
-            .bs-wizard > .bs-wizard-step > .bs-wizard-dot {
-                position: absolute;
-                width: 30px;
-                height: 30px;
-                display: block;
-                background: #fbe8aa;
-                top: 45px;
-                left: 50%;
-                margin-top: -15px;
-                margin-left: -15px;
-                border-radius: 50%;
-            }
+    .bs-wizard > .bs-wizard-step > .bs-wizard-dot {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        display: block;
+        background: #fbe8aa;
+        top: 52px;
+        left: 50%;
+        margin-top: -15px;
+        margin-left: -15px;
+        border-radius: 50%;
+    }
 
-                .bs-wizard > .bs-wizard-step > .bs-wizard-dot:after {
-                    content: ' ';
-                    width: 14px;
-                    height: 14px;
-                    background: #fbbd19;
-                    border-radius: 50px;
-                    position: absolute;
-                    top: 8px;
-                    left: 8px;
-                }
+    .bs-wizard > .bs-wizard-step > .bs-wizard-dot:after {
+        content: ' ';
+        width: 14px;
+        height: 14px;
+        background: #fbbd19;
+        border-radius: 50px;
+        position: absolute;
+        top: 8px;
+        left: 8px;
+    }
 
-            .bs-wizard > .bs-wizard-step > .progress-order {
-                position: relative;
-                border-radius: 0px;
-                height: 8px;
-                box-shadow: none;
-                margin: 25px 0;
-            }
+    .bs-wizard > .bs-wizard-step > .progress-order {
+        position: relative;
+        border-radius: 0px;
+        height: 8px;
+        box-shadow: none;
+        margin: 25px 0;
+    }
 
-                .bs-wizard > .bs-wizard-step > .progress-order > .progress-bar-order {
-                    width: 0px;
-                    box-shadow: none;
-                    background: #fbe8aa;
-                    height:100%;
-                }
+    .bs-wizard > .bs-wizard-step > .progress-order > .progress-bar-order {
+        width: 0px;
+        box-shadow: none;
+        background: #fbe8aa;
+        height:100%;
+    }
 
-            .bs-wizard > .bs-wizard-step.complete > .progress-order > .progress-bar-order {
-                width: 100%;
-            }
+    .bs-wizard > .bs-wizard-step.complete > .progress-order > .progress-bar-order {
+        width: 100%;
+    }
 
-            .bs-wizard > .bs-wizard-step.active > .progress-order > .progress-bar-order {
-                width: 50%;
-            }
+    .bs-wizard > .bs-wizard-step.active > .progress-order > .progress-bar-order {
+        width: 50%;
+    }
 
-            .bs-wizard > .bs-wizard-step:first-child.active > .progress-order > .progress-bar-order {
-                width: 0%;
-            }
+    .bs-wizard > .bs-wizard-step:first-child.active > .progress-order > .progress-bar-order {
+        width: 0%;
+    }
 
-            .bs-wizard > .bs-wizard-step:last-child.active > .progress-order > .progress-bar-order {
-                width: 100%;
-            }
+    .bs-wizard > .bs-wizard-step:last-child.active > .progress-order > .progress-bar-order {
+        width: 100%;
+    }
 
-            .bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot {
-                background-color: #f5f5f5;
-            }
+    .bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot {
+        background-color: #f5f5f5;
+    }
 
-                .bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot:after {
-                    opacity: 0;
-                }
+    .bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot:after {
+        opacity: 0;
+    }
 
-            .bs-wizard > .bs-wizard-step:first-child > .progress-order {
-                left: 50%;
-                width: 50%;
-            }
+    .bs-wizard > .bs-wizard-step:first-child > .progress-order {
+        left: 50%;
+        width: 50%;
+    }
 
-            .bs-wizard > .bs-wizard-step:last-child > .progress-order {
-                width: 50%;
-            }
+    .bs-wizard > .bs-wizard-step:last-child > .progress-order {
+        width: 50%;
+    }
 
-            .bs-wizard > .bs-wizard-step.disabled a.bs-wizard-dot {
-                pointer-events: none;
-            }
+    .bs-wizard > .bs-wizard-step.disabled a.bs-wizard-dot {
+        pointer-events: none;
+    }
     /*END Form Wizard*/
     
 </style>
-<div class="container">
-    <div class="row">
-        
-        <div  style="width:auto; margin-top:20px; text-align:center">
-            <h4>Kiểm tra đơn hàng</h4>
-            <table class="center-block" style="width: 460px; ">
-                <tr>
-                    <td><b>Mã đơn hàng:</b> </td>
-                    <td><input type="text" style="margin-top:12px;" id="ordercode" value="@Model.ordercode" /></td>
-                    <td><button class="btn btn-lg btn-nori" id="checkorder">Kiểm tra</button></td>
-                </tr>
-            </table>
-            @if (!string.IsNullOrEmpty(Model.ordercode))
-            {
-               <div style="padding-bottom:5px;">Mã đơn hàng:<b> @Model.ordercode</b></div>
-                <div>Trạng thái:<b> @Model.message</b></div>
-            }
-        </div>
-    </div>
-    
-         
-   
-    @if (Model.status > 0)
-{
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-10">
-                <div class="bs-wizard center-block" style="border-bottom:0; ">
-
-                    @for (var i = 1; i < 6; i++)
-                    {
-                        string status = "disabled";
-                        if (i < Model.status)
-                        {
-                            status = "complete";
-                        }
-                        else if (i == Model.status) { status = "active"; }
-                        <div class="col-xs-2 bs-wizard-step @status">
-                            <div class="text-center bs-wizard-stepnum">@Model.liststatus[i - 1]</div>
-                            <div class="progress-order"><div class="progress-bar-order"></div></div>
-                            <a href="#" class="bs-wizard-dot"></a>
-                        </div>
-                    }
+<section class="well-md">
+    <div class="container checkorder">
+        <h1>Kiểm tra đơn hàng</h1>
+        <form class="rd-mailform offset-6">
+            <fieldset>
+                <label>
+                    <input type="text" id="ordercode" value="@Model.ordercode" onfocus="this.placeholder=''" onblur="this.placeholder='Mã đơn hàng'" placeholder='Mã đơn hàng'/>
+                </label>
+                <div class="mfControls">
+                    <button type="button" class="btn btn-primary btn-sm" id="checkorder">Kiểm tra</button>
                 </div>
+            </fieldset>
+        </form>
+        <br>
+        @if (!string.IsNullOrEmpty(Model.ordercode))
+        {
+            <div class="order-info">
+                <p>Mã đơn hàng:<b> @Model.ordercode</b></p>
+                <p>Trạng thái:<b> @Model.message</b></p>
             </div>
-        </div>
-   
+        }
+        <br>
+        @if (Model.status > 0)
+        {
+            <div class="bs-wizard center-block" style="border-bottom:0; ">
 
-}
-
-</div>
-
+                @for (var i = 1; i < 6; i++)
+                {
+                    string status = "disabled";
+                    if (i < Model.status)
+                    {
+                        status = "complete";
+                    }
+                    else if (i == Model.status) { status = "active"; }
+                    <div class="bs-wizard-step @status">
+                        <div class="text-center bs-wizard-stepnum"><p>@Model.liststatus[i - 1]</p></div>
+                        <div class="progress-order"><div class="progress-bar-order"></div></div>
+                        <a href="#" class="bs-wizard-dot"></a>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</section>
 <script>
     $(function () {
         $('#checkorder').click(function () {
             var ordercode = $('#ordercode').val();
-       
             location.href = "/order/checkorder/" + ordercode;
         });
+
     });
 </script>
 
