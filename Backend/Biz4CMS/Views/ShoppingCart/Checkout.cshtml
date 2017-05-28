@@ -10,10 +10,10 @@
 				<div class="col-md-6">
 					<div class="billing-fields">
 						<p class="form-row">
-							<label><input type="radio" value="0" name="shipping-type" checked> Giao hàng tận nơi (Miễn phí với đơn hàng > 200K)</label>
+							<label><input type="radio" value="0" class="shipping-type" name="shipping-type" checked> Giao hàng tận nơi (Miễn phí với đơn hàng > 200K)</label>
 						</p>
 						<p class="form-row">
-							<label><input type="radio" value="1" name="shipping-type"> Mua mang về (Nhận hàng tại cửa hàng)</label>
+							<label><input type="radio" value="1" class="shipping-type" name="shipping-type"> Mua mang về (Nhận hàng tại cửa hàng)</label>
 						</p>
                       	<p class="form-row">
                             <label>Họ và tên <span class="required">*</span></label>
@@ -167,13 +167,17 @@
         var $cartBody = $('#tbody-cart');
         var $totalprice = $('.order-total').find('.amount');
         var $estimatetotal = $('.order-estimate-total');
+        var $disount = $('.discount');
         var $disountCode = $('.discount-code');
         var $saving = $('.saving');
+        var $shippingfee = $('.shipping-fee');
+        var isdiscount = true;
+        var shippingtype = $('.shipping-type:checked').val();
         var discountCode = localStorage.getItem("code");
         var discountValue = localStorage.getItem("codeValue");
         var totalprice = 0;
+        var lstProduct = [];
         $cartBody.html("");
-        lstProduct = [];
         if(localStorage.length != 0) {
 	        Object.keys(localStorage).forEach(function (key) {
                 var productHTML = '';
@@ -193,14 +197,47 @@
                	$cartBody.append(productHTML);
 	        })
 	    }
+
+        $disountCode.html(discountCode);
         var stotalprice = numeral(totalprice).format('0,0');
         var savingprice = totalprice * discountValue / 100;
         var discounttotalprice = numeral(totalprice - savingprice).format('0,0');
-        $disountCode.html(discountCode);
         $estimatetotal.find('.amount').html(stotalprice + 'VNĐ');
         $saving.find('.amount').html('-'+numeral(savingprice).format('0,0')+' VNĐ');
         $totalprice.html(discounttotalprice+' VNĐ');
+
+        if(!discountCode && !discountValue) {
+            isdiscount = false
+            $estimatetotal.addClass('hidden');
+            $disount.addClass('hidden');
+            $saving.addClass('hidden');
+        }
+        $('.shipping-type').click(function(){
+            shippingtype = $(this).val();
+            shipping(shippingtype, isdiscount, totalprice, savingprice, stotalprice, $shippingfee, $totalprice, $estimatetotal);
+        });
+        shipping(shippingtype, isdiscount, totalprice, savingprice, stotalprice, $shippingfee, $totalprice, $estimatetotal);
 	}
+
+    function shipping(shippingtype, isdiscount, totalprice, savingprice, stotalprice, $shippingfee, $totalprice, $estimatetotal) {
+        var shippingfee = 0;
+        if(shippingtype == 1 || totalprice > 200000) {
+            $shippingfee.addClass('hidden');
+            if(!isdiscount) {
+                $estimatetotal.addClass('hidden');
+            }
+        } else {
+            shippingfee = 20000;
+            $shippingfee.removeClass('hidden');
+            $estimatetotal.removeClass('hidden');
+        }
+        $estimatetotal.find('.amount').html(stotalprice + 'VNĐ');
+        $shippingfee.find('.amount').html(numeral(shippingfee).format('0,0') + 'VNĐ');
+        discounttotalprice = numeral(totalprice + shippingfee - savingprice).format('0,0');
+        $totalprice.html(discounttotalprice+' VNĐ');
+
+    }
+
 </script>
 
 <script>
