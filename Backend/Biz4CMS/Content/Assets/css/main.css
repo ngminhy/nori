@@ -232,3 +232,8 @@ textarea.note {
         width: 120px;
     }
 }
+@media (max-width: 991px) {
+    .well-md {
+        padding-bottom: 50px;
+    }
+}
