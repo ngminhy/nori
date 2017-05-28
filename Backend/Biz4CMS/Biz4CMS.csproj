@@ -1601,7 +1601,6 @@
     <Content Include="Content\Images\Quicklinks\collection_1.jpg" />
     <Content Include="Content\Images\Quicklinks\collection_2.jpg" />
     <Content Include="Content\Images\Quicklinks\collection_3.jpg" />
-    <Content Include="Content\Site.css" />
     <Content Include="Content\Template-Images\logo\nori.png" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">

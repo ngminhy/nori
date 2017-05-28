@@ -85,6 +85,10 @@
             if(discountCode && discountValue) {
 		    	$estimatetotal.removeClass('hidden');
 		    	$saving.removeClass('hidden');
+                if(localStorage.length == 2) {
+                    localStorage.clear();
+                    location.href = "/home";
+                }
             }
             Object.keys(localStorage).forEach(function (key) {
             	if(key != 'codeValue' && key != 'code') {
@@ -139,7 +143,6 @@
         $disountCode.focusout(function(){
             var disountCode = $(this).val();
             $.get("/ShoppingCart/getPromotionByCode/?code=" + disountCode, function (objDiscount) {
-
                 var isDiscount = objDiscount.isDiscount;
                 var valueDiscount = objDiscount.value;
                 var stotalprice = numeral(totalprice).format('0,0');
@@ -161,11 +164,9 @@
                     $totalprice.html(stotalprice + ' VNĐ');
                 }
             });
-
-           
         });
+        if(localStorage.length == 0) location.href = "/home";
     }
-
 
     function removeProduct(key) {
         var isRemove = confirm("Bạn có chắc không mua sản phẩm này?");
