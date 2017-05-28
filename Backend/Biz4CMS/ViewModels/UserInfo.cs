@@ -15,5 +15,7 @@ namespace Biz4CMS.ViewModels
         public int Branch { get; set; }
         public string BranchName { get; set; }
         public string Note { get; set; }
+        public string DiscountCode { get; set; }
+        public string ShippingType { get; set; }
     }
 }

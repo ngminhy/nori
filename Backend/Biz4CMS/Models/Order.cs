@@ -27,6 +27,10 @@ namespace Biz4CMS.Models
             public string BookingTime { get; set; }
             public string OrderCode { get; set; }
             public int OrderStatusId { get; set; }
+            public string DiscountCode { get; set; }
+            public int DiscountValue { get; set; }
+            public int ShippingFee { get; set; }
+            public int DiscountTotal { get; set; }
             public System.DateTime OrderDate { get; set; }
             public List<OrderDetail> OrderDetails { get; set; }
         }
