@@ -221,7 +221,18 @@ textarea.note {
     padding: 0px 5px 0px 5px;
     margin-top: 2px;
 }
-
+.checkorder .order-info {
+    text-align: center;
+}
+.checkorder form {
+    text-align: center;
+}
+.checkorder input {
+    text-align: center;
+}
+.checkorder .mfPlaceHolder {
+    left: 40%;
+}
 @media (max-width: 480px) {
     .buttons-cart .btn {
         margin-top: 10px;
@@ -232,6 +243,17 @@ textarea.note {
         width: 120px;
     }
 }
+@media (max-width: 767px) {
+    .bs-wizard > .bs-wizard-step {
+        width: 100% !important;
+        float: none !important;
+    }
+    .bs-wizard > .bs-wizard-step > .progress-order {
+        left: 0 !important;
+        width: 100% !important;
+    }
+}
+
 @media (max-width: 991px) {
     .well-md {
         padding-bottom: 50px;
