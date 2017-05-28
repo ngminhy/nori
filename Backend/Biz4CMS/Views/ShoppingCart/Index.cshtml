@@ -137,40 +137,35 @@
             })
         }       
         $disountCode.focusout(function(){
-        	var disountCode = $(this).val();
-        	var isDiscount = checkDiscountCode(disountCode).isDiscount;
-        	var valueDiscount = checkDiscountCode(disountCode).value;
-	    	var stotalprice = numeral(totalprice).format('0,0');
-	    	var savingprice = totalprice * valueDiscount / 100;
-	    	var discounttotalprice = numeral(totalprice - savingprice).format('0,0');
-        	if(isDiscount) {
-		    	$estimatetotal.removeClass('hidden');
-		    	$saving.removeClass('hidden');
-		    	$estimatetotal.find('.amount').html(stotalprice+' VNĐ');
-		    	$saving.find('.amount').html('-'+numeral(savingprice).format('0,0')+' VNĐ');
-		    	$totalprice.html(discounttotalprice+' VNĐ');
-		    	localStorage.setItem('codeValue', valueDiscount);
-		    	localStorage.setItem('code', disountCode);
-        	} else {
-		    	$estimatetotal.addClass('hidden');
-		    	$saving.addClass('hidden');
-		    	localStorage.removeItem('codeValue');
-		    	localStorage.removeItem('code');
-		    	$totalprice.html(stotalprice+' VNĐ');
-        	}
+            var disountCode = $(this).val();
+            $.get("/ShoppingCart/getPromotionByCode/?code=" + disountCode, function (objDiscount) {
+
+                var isDiscount = objDiscount.isDiscount;
+                var valueDiscount = objDiscount.value;
+                var stotalprice = numeral(totalprice).format('0,0');
+                var savingprice = totalprice * valueDiscount / 100;
+                var discounttotalprice = numeral(totalprice - savingprice).format('0,0');
+                if (isDiscount) {
+                    $estimatetotal.removeClass('hidden');
+                    $saving.removeClass('hidden');
+                    $estimatetotal.find('.amount').html(stotalprice + ' VNĐ');
+                    $saving.find('.amount').html('-' + numeral(savingprice).format('0,0') + ' VNĐ');
+                    $totalprice.html(discounttotalprice + ' VNĐ');
+                    localStorage.setItem('codeValue', valueDiscount);
+                    localStorage.setItem('code', disountCode);
+                } else {
+                    $estimatetotal.addClass('hidden');
+                    $saving.addClass('hidden');
+                    localStorage.removeItem('codeValue');
+                    localStorage.removeItem('code');
+                    $totalprice.html(stotalprice + ' VNĐ');
+                }
+            });
+
+           
         });
     }
-    // Kiem tra discount code hop le (Hardcode = 123)
-    function checkDiscountCode(code) {
-    	var objDiscount = {};
-    	objDiscount.isDiscount = false;
-    	objDiscount.value = 0;
-    	if(code == "123") {
-    		objDiscount.isDiscount = true;
-    		objDiscount.value = 10;
-    	}
-    	return objDiscount;
-    }
+
 
     function removeProduct(key) {
         var isRemove = confirm("Bạn có chắc không mua sản phẩm này?");

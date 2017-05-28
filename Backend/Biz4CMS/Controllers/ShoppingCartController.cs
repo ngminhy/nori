@@ -266,5 +266,20 @@ namespace Biz4CMS.Controllers
             ViewData["CartCount"] = cart.GetCount();
             return PartialView("CartSummary");
         }
+
+
+        public JsonResult getPromotionByCode(string code)
+        {
+            var datepromotion = DateTime.Now;
+            var dayofweek = ((int)datepromotion.DayOfWeek +1).ToString();
+
+            var promotion = storeDB.Promotions.Where(p => p.Active && p.Code == code && p.FromDate <= datepromotion && p.ToDate >= datepromotion && p.ListDayofWeek.Contains(dayofweek)).SingleOrDefault();
+            var objPromotion = new { isDiscount = false, value = 0 };
+            if (promotion != null)
+            {
+                objPromotion = new { isDiscount = true, value = promotion.PercentDiscount };
+            }
+            return Json(objPromotion, JsonRequestBehavior.AllowGet);
+        }
     }
 }
