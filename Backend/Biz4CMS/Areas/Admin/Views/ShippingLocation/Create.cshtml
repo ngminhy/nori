@@ -1,73 +1,87 @@
-﻿@{
+﻿@model Biz4CMS.Models.ShippingLocation
+@{
     ViewBag.Title = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-@model Biz4CMS.Models.ShippingLocation
-@using (Html.BeginForm(ViewContext.RouteData.Values["Action"].ToString(), ViewContext.RouteData.Values["Controller"].ToString(),
-                                                                        new { ReturnUrl = ViewBag.ReturnUrl },
-                                                                        FormMethod.Post, new { @class = "form-horizontal" }))
-{
-    @Html.ValidationSummary(true)
-
-    <fieldset>
-
-        <legend>ShippingLocation</legend>
+<div class="col-sm-12">
+    @using (Html.BeginForm(ViewContext.RouteData.Values["Action"].ToString(), ViewContext.RouteData.Values["Controller"].ToString(),
+    new { ReturnUrl = ViewBag.ReturnUrl },
+    FormMethod.Post))
+    {
+        @Html.ValidationSummary(true)
         <div class="form-group">
-            @Html.LabelFor(model => model.Title , new { @class = "col-sm-3 control-label no-padding-right" })
-            <div class="col-sm-9">
-                @Html.EditorFor(model => model.Title, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Title)
+            @Html.LabelFor(model => model.Title)
+            @Html.EditorFor(model => model.Title, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Title)
+
+        </div>
+
+
+
+    <!-- 
+        <fieldset>
+
+            <legend>ShippingLocation</legend>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Title , new { @class = "col-sm-3 control-label no-padding-right" })
+                <div class="col-sm-9">
+                    @Html.EditorFor(model => model.Title, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Title)
+                </div>
+
+            </div>
+       
+         
+            <div class="form-group">
+                @Html.LabelFor(model => model.Polyobj, new { @class = "col-sm-3 control-label no-padding-right" })
+                <div class="col-sm-9">
+                    @Html.EditorFor(model => model.Polyobj, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Polyobj)
+                </div>
+
             </div>
 
-        </div>
-   
-     
-        <div class="form-group">
-            @Html.LabelFor(model => model.Polyobj, new { @class = "col-sm-3 control-label no-padding-right" })
-            <div class="col-sm-9">
-                @Html.EditorFor(model => model.Polyobj, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Polyobj)
+            <div class="form-group">
+                @Html.LabelFor(model => model.Polyobj, new { @class = "col-sm-3 control-label no-padding-right" })
+                <div class="col-sm-9">
+                    <div id="map_canvas" style="width:500px; height:450px;"></div>
+                    
+                </div>
+
             </div>
 
-        </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Active, new { @class = "col-sm-3 control-label no-padding-right" })
+                <div class="col-sm-9">
+                    @Html.EditorFor(model => model.Active, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Active)
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Polyobj, new { @class = "col-sm-3 control-label no-padding-right" })
-            <div class="col-sm-9">
-                <div id="map_canvas" style="width:500px; height:450px;"></div>
-                
             </div>
 
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Active, new { @class = "col-sm-3 control-label no-padding-right" })
-            <div class="col-sm-9">
-                @Html.EditorFor(model => model.Active, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Active)
+            <div class="editor-label">
+                &nbsp;
+                @Html.HiddenFor(model => model.ShippingLocationId)
             </div>
 
-        </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right"></label>
+                <div class="col-sm-9">
+                    <input type="submit" value="Create or Update" class="btn btn-info" />
+                </div>
 
-        <div class="editor-label">
-            &nbsp;
-            @Html.HiddenFor(model => model.ShippingLocationId)
-        </div>
-
-        <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right"></label>
-            <div class="col-sm-9">
-                <input type="submit" value="Create or Update" class="btn btn-info" />
             </div>
 
-        </div>
+        </fieldset> -->
 
-    </fieldset>
-}
-<div>
-    @Html.ActionLink("Back to List", "Index")
+
+
+
+    }
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
 </div>
-
 <script>
     var map;
     function initMap() {

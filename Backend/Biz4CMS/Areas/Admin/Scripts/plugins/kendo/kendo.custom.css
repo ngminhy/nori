@@ -1,0 +1,34 @@
+.k-editor, .k-grid, .k-menu, .k-scheduler {
+  border-radius: 0px;
+}
+.k-overflow-container .k-primary, .k-primary {
+  border-color: #ff6d00;
+  background-color: #ff6d00;
+}
+.k-primary:hover {
+  background-color: #ff6d00;
+  border-color: #ff6d00;
+}
+.k-draghandle.k-state-selected:hover, .k-ghost-splitbar-horizontal, .k-ghost-splitbar-vertical, .k-list>.k-state-highlight, .k-list>.k-state-selected, .k-marquee-color, .k-panel>.k-state-selected, .k-scheduler .k-scheduler-toolbar .k-state-selected, .k-scheduler .k-today.k-state-selected, .k-state-selected, .k-state-selected:link, .k-state-selected:visited {
+  background-color: #ff6d00;
+  border-color: #ff6d00;
+}
+.k-pager-wrap .k-link, .k-pager-wrap .k-link:hover {
+  color: #ff6d00;
+}
+.k-tiles li.k-state-selected {
+  border-color: #ff6d00;
+}
+.k-pager-wrap .k-link {
+  border-left: none;
+  border-right: solid 1px #ccc;
+}
+.k-pager-wrap > a.k-link:first-child {
+  border-left: solid 1px #ccc;
+}
+.k-grid tbody .k-button, .k-ie8 .k-grid tbody button.k-button {
+  min-width: 85px;
+}
+.k-widget.k-dropdown {
+  border: 0px;
+}
