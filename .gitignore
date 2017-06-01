@@ -164,3 +164,4 @@ Biz4CMS/Web.config
 Biz4CMS/packages.config
 packages/
 Backend/.vs/
+Backend/.vs/config/applicationhost.config
