@@ -28,7 +28,6 @@
     .Columns(columns =>
     {
         columns.Bound(p => p.OrderDetailId).Width(70);
-
         columns.Bound(p => p.ProductId).Width(240);
         columns.Bound(p => p.ProductName).Title("Product").Width(150);
         columns.Bound(p => p.ListCakeName).Title("Cake Name").Width(150);
@@ -51,9 +50,9 @@
         .Events(events => events.Error("error_handler"))
         .Model(model => { model.Id(p => p.OrderDetailId); model.Field(p => p.OrderDetailId).Editable(false); })
             .Create(create => create.Action("Create", "OrderDetail", new { OrderId = @ViewBag.OrderId }))
-                .Read(read => read.Action("Get", "OrderDetail", new { OrderId = @ViewBag.OrderId }))
-                    .Update(update => update.Action("Edit", "OrderDetail", new { OrderId = @ViewBag.OrderId }))
-                    .Destroy(destroy => destroy.Action("Delete", "OrderDetail", new { OrderId = @ViewBag.OrderId }))
+            .Read(read => read.Action("Get", "OrderDetail", new { OrderId = @ViewBag.OrderId }))
+            .Update(update => update.Action("Edit", "OrderDetail", new { OrderId = @ViewBag.OrderId }))
+            .Destroy(destroy => destroy.Action("Delete", "OrderDetail", new { OrderId = @ViewBag.OrderId }))
     )
     )
     <script type="text/javascript">
