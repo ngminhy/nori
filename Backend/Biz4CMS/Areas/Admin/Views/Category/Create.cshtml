@@ -1,74 +1,48 @@
 ﻿@model Biz4CMS.Models.Category
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-<script type="text/javascript">
-    $(document).ready(function () {
-        document.getElementById("main-container").className = "main-container";
-        document.getElementById("navbar-container").className = "navbar-container";
-    });
-</script>
-@using (Html.BeginForm(ViewContext.RouteData.Values["Action"].ToString(), ViewContext.RouteData.Values["Controller"].ToString(), FormMethod.Post, new { @class = "form-horizontal" }))
-{
-    @Html.ValidationSummary(true)
-    <fieldset>
-        <legend>Category</legend>
+<div class="col-sm-12">
+    @using (Html.BeginForm(ViewContext.RouteData.Values["Action"].ToString(), ViewContext.RouteData.Values["Controller"].ToString(), FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.ValidationSummary(true)
         <div class="form-group">
-            @Html.LabelFor(model => model.Name, new { @class = "col-sm-3 control-label no-padding-right" })
-            <div class="col-sm-9">
-                @Html.EditorFor(model => model.Name, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Name)
-            </div>
-
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, new { @class = "col-sm-3 control-label no-padding-right" })
-            <div class="col-sm-9">
-                @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Description)
-            </div>
+            @Html.LabelFor(model => model.Name)
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name)
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.Tag, new { @class = "col-sm-3 control-label no-padding-right" })
-            <div class="col-sm-9">
-                @Html.EditorFor(model => model.Tag, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Tag)
-            </div>
-
+            @Html.LabelFor(model => model.PageURL)
+            @Html.EditorFor(model => model.PageURL, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PageURL)
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.PageURL, new { @class = "col-sm-3 control-label no-padding-right" })
-            <div class="col-sm-9">
-                @Html.EditorFor(model => model.PageURL, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.PageURL)
-            </div>
-
+            @Html.LabelFor(model => model.Description)
+            @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Description)
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.SortNumber, new { @class = "col-sm-3 control-label no-padding-right" })
-            <div class="col-sm-9">
-                @Html.EditorFor(model => model.SortNumber, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.SortNumber)
-            </div>
-
+            @Html.LabelFor(model => model.Tag)
+            @Html.EditorFor(model => model.Tag, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Tag)
         </div>
-
+        <div class="form-group">
+            @Html.LabelFor(model => model.SortNumber)
+            @Html.EditorFor(model => model.SortNumber, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SortNumber)
+        </div>
         <div class="editor-label">
-            &nbsp;
             @Html.HiddenFor(model => model.CategoryId)
             @Html.HiddenFor(model => model.IsDeleted)
         </div>
+        <div class="hr-line-dashed"></div>
         <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right"></label>
-            <div class="col-sm-9">
-                <input type="submit" value="Create or Update" class="btn btn-info" />
+            <div class="text-center">
+                <a href="@Url.Action("Index")">
+                    <button type="button" class="btn btn-white"><i class="fa fa-reply"></i> Back to List</button>
+                </a>
+                <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Save changes</button>
             </div>
-
         </div>
-    </fieldset>
-}
-<div>
-    @Html.ActionLink("Back to List", "Index")
+    }
 </div>
