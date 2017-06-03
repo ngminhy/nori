@@ -1,12 +1,13 @@
 ﻿@using Biz4CMS.Models;
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Shipping location";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
-<p>
-    <a href="/bo/ShippingLocation/create" class="btn btn-info"><i class="ace-icon fa fa-plus bigger-110"></i>Add new item</a>
-</p>
+<div class="form-group">
+    <a href="/bo/ShippingLocation/create">
+        <button type="button" class="btn btn-primary"><i class="fa fa-plus"></i> Add new item</button>
+    </a>
+</div>
 @(Html.Kendo().Grid<ShippingLocation>()
     .Name("ShippingLocationGrid")
     .Sortable()
@@ -23,18 +24,12 @@
         columns.Bound(p => p.ShippingLocationId).Width(70);
         columns.Bound(p => p.Title).Width(240);
         columns.Bound(p => p.Active).Width(150);
-
-        columns.Bound(u => u.ShippingLocationId).Title("").ClientTemplate("<a class='k-button' href='" + Url.Action("edit", "ShippingLocation") + "/#=ShippingLocationId#'><span class='k-icon k-edit'></span>Edit</a>");
+        columns.Bound(u => u.ShippingLocationId).Title("").ClientTemplate("<a class='k-button' href='" + Url.Action("edit", "ShippingLocation") + "/#=ShippingLocationId#'><span class='k-icon k-i-edit'></span> Edit</a>");
         columns.Command(cmd =>
         {
-
             cmd.Destroy();
         });
-
-
     })
-
-
 )
 
 

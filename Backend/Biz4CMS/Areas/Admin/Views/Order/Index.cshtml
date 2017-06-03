@@ -1,6 +1,6 @@
 ﻿@using Biz4CMS.Models;
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Order";
     
 }
 @model IEnumerable<Biz4CMS.Models.Order>
@@ -18,7 +18,6 @@
         columns.ForeignKey(p => p.OrderStatusId, (System.Collections.IEnumerable)ViewData["OrderStatus"],
             "OrderStatusId", "Title").EditorTemplateName("OrderStatus").Title("Status");
         columns.Bound(p => p.Total).Format("{0:0,0}").Width(150);
-
         columns.Bound(u => u.OrderId).Title("Details").ClientTemplate("<a class='k-button' href='" + Url.Action("index", "OrderDetail") + "/?OrderId=#=OrderId#'>Details</a>");
         columns.Command(command => { command.Destroy(); }).Width(90);
     })

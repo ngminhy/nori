@@ -1,12 +1,12 @@
 ﻿@using Biz4CMS.ViewModels;
 @{
-    ViewBag.Title = "Product List";
-    
+    ViewBag.Title = "Product";
 }
-
-<p>
-    <a href="/bo/Product/create" class="btn btn-info"><i class="ace-icon fa fa-plus bigger-110"></i>Add new item</a>
-</p> 
+<div class="form-group">
+    <a href="/bo/Product/create">
+        <button type="button" class="btn btn-primary"><i class="fa fa-plus"></i> Add new item</button>
+    </a>
+</div>
 @(Html.Kendo().Grid<ProductDto>()
     .Name("aricleGrid")
     .Sortable()
@@ -27,8 +27,7 @@
         columns.Bound(p => p.CategoryName).Title("Category");
         columns.Bound(u => u.PageURL).Title("URL").ClientTemplate("/p/#=PageURL#"); 
         //columns.Bound(u => u.ProductId).Title("Picture").ClientTemplate("<a class='k-button' href='" + Url.Action("index", "Picture") + "/?ProductId=#=ProductId#'><span class='k-icon k-image'></span>Pictures</a>");
-        columns.Bound(u => u.ProductId).Title("").ClientTemplate("<a class='k-button' href='" + Url.Action("edit", "Product") + "/#=ProductId#'><span class='k-icon k-edit'></span>Edit</a>");  
-        
+        columns.Bound(u => u.ProductId).Title("").ClientTemplate("<a class='k-button' href='" + Url.Action("edit", "Product") + "/#=ProductId#'><span class='k-icon k-i-edit'></span> Edit</a>");  
         columns.Command(cmd =>
         {            
             cmd.Destroy();

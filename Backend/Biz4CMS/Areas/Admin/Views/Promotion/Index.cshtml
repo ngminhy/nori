@@ -1,12 +1,12 @@
 ﻿@using Biz4CMS.Models;
 @{
-    ViewBag.Title = "Promotion List";
-    
+    ViewBag.Title = "Promotion";
 }
-
-<p>
-    <a href="/bo/Promotion/create" class="btn btn-info"><i class="ace-icon fa fa-plus bigger-110"></i>Add new item</a>
-</p> 
+<div class="form-group">
+    <a href="/bo/Promotion/create">
+        <button type="button" class="btn btn-primary"><i class="fa fa-plus"></i> Add new item</button>
+    </a>
+</div>
 @(Html.Kendo().Grid<Promotion>()
     .Name("PromotionGrid")
     .Sortable()
@@ -27,7 +27,7 @@
         columns.Bound(p => p.ToDate).Format("{0:dd/MM/yyyy}");
         columns.Bound(p => p.ListDayofWeek);
         columns.Bound(p => p.Active);
-        columns.Bound(u => u.Code).Title("").ClientTemplate("<a class='k-button' href='" + Url.Action("edit", "Promotion") + "/#=Code#'><span class='k-icon k-edit'></span>Edit</a>");
+        columns.Bound(u => u.Code).Title("").ClientTemplate("<a class='k-button' href='" + Url.Action("edit", "Promotion") + "/#=Code#'><span class='k-icon k-i-edit'></span> Edit</a>");
         columns.Command(cmd =>
         {
             cmd.Destroy();
