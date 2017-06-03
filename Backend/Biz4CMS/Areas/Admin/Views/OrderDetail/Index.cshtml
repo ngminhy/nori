@@ -1,27 +1,26 @@
 ﻿@using Biz4CMS.Models;
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Order detail";
     var order =(Biz4CMS.Models.Order) ViewBag.order;
 }
 @model IEnumerable<Biz4CMS.ViewModels.OrderDetailDto>
 <div class="row">
     <div class="col-md-6">
-        <b>Name:</b> @order.FullName <br />
-        <b>Phone:</b> @order.Phone <br />
-        <b>Email:</b> @order.Email <br />
-        <b>Address:</b> @order.Address <br />
-        <b>Note:</b> @order.Note <br />
-        @*<b>Booking Time:</b> @order.BookingTime <br />*@
-        <b>Branch:</b> @order.BranchName <br />
-
+        <label>Name:</label><span> @order.FullName<span><br/>
+        <label>Phone:</label><span> @order.Phone<span><br/>
+        <label>Email:</label><span> @order.Email<span><br/>
+        <label>Address:</label><span> @order.Address<span><br/>
+        <label>Note:</label><span> @order.Note<span><br/>
+        @*<label>Booking Time:</label><span> @order.BookingTime<span><br/>*@
+        <label>Branch:</label><span> @order.BranchName<span><br/>
     </div>
     <div class="col-md-6">
-        <b>Order Code:</b> @order.OrderCode <br />
-        <b>Order Date:</b> @order.OrderDate <br />
-        <b>Discount:</b> @string.Format("{0:n0}", order.DiscountTotal) VND<br />
-        <b>Shipping Fee:</b> @string.Format("{0:n0}", order.ShippingFee) VND<br />
-        <b>Total Paid:</b> @string.Format("{0:n0}", order.Total-order.DiscountTotal + order.ShippingFee) VND<br />
-        <b>Status:</b> @order.State <br />
+        <label>Order Code:</label><span> @order.OrderCode<span><br/>
+        <label>Order Date:</label><span> @order.OrderDate<span><br/>
+        <label>Discount:</label><span> @string.Format("{0:n0}", order.DiscountTotal) VNĐ<span><br/>
+        <label>Shipping Fee:</label><span> @string.Format("{0:n0}", order.ShippingFee) VNĐ<span><br/>
+        <label>Total Paid:</label><span> @string.Format("{0:n0}", order.Total-order.DiscountTotal + order.ShippingFee) VNĐ<span><br/>
+        <label>Status:</label><span> @order.State<span><br/>
     </div>
 </div>
     @(Html.Kendo().Grid<Biz4CMS.ViewModels.OrderDetailDto>()
