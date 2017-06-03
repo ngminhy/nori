@@ -1,36 +1,27 @@
 ﻿@{
     ViewBag.Title = "Create";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 @model Biz4CMS.Models.CakeFiller
 
 <script type="text/javascript">
     $(document).ready(function () {
-
-        wndNewContact = $("#imgBrowser").kendoWindow({
+        kendoWindow = $("#imgBrowser").kendoWindow({
             actions: ["Close", "Refresh"],
             Title: "Choose your file:",
             visible: false,
             dragable: true,
             modal: true,
-            width: 800,
-            height: 415
-            //minHeight:300,
+            width: 615
+        }).data("kendoWindow").center();
 
-            //height:300
-
-        }).data("kendoWindow")
 
         $("#upload").click(function () {
-            console.log($(this).attr('id'));
             $("#firebutton").val($(this).attr('id'));
-            wndNewContact.open();
-            wndNewContact.center()
+            kendoWindow.open();
         });
 
         $("#imgBrowser").kendoImageBrowser({
-
             transport: {
                 type: "imagebrowser-aspnetmvc",
                 read: "/ImageBrowser/Read",
@@ -46,67 +37,58 @@
                 uploadUrl: "/ImageBrowser/Upload",
                 imageUrl: "~/Content/Images/{0}"
             },
-            change: function () {
-                //this.value(); //Selected image URL
+            apply: function () {
                 $("#FillerImage").val(this.value());
-                wndNewContact.close();
+                kendoWindow.close();
             }
         });
     });
 </script>
-@using (Html.BeginForm(ViewContext.RouteData.Values["Action"].ToString(), ViewContext.RouteData.Values["Controller"].ToString(),
-                                                new { ReturnUrl = ViewBag.ReturnUrl },
-                                                FormMethod.Post, new { @class = "form-horizontal" }))
-{
-    @Html.ValidationSummary(true)
-    <input type="hidden" id="firebutton" value="upload" />
-
-    <fieldset>
-
-        <legend>CakeFiller</legend>
+<div class="col-sm-12">
+    @using (Html.BeginForm(ViewContext.RouteData.Values["Action"].ToString(), ViewContext.RouteData.Values["Controller"].ToString(),
+    new { ReturnUrl = ViewBag.ReturnUrl },
+    FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.ValidationSummary(true)
+        <input type="hidden" id="firebutton" value="upload" />
         <div class="form-group">
-            @Html.LabelFor(model => model.Name, new { @class = "col-sm-3 control-label no-padding-right" })
-            <div class="col-sm-9">
-                @Html.EditorFor(model => model.Name, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Name)
-            </div>
-
+            @Html.LabelFor(model => model.Name)
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name)
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.Price, new { @class = "col-sm-3 control-label no-padding-right" })
-            <div class="col-sm-9">
-                @Html.EditorFor(model => model.Price, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Price)
-            </div>
+            @Html.LabelFor(model => model.Price)
+            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Price)
         </div>
-
         <div class="form-group">
-            @Html.LabelFor(model => model.FillerImage, new { @class = "col-sm-3 control-label no-padding-right" })
-            <div class="col-sm-9">
-                @Html.EditorFor(model => model.FillerImage, new { @class = "form-control" })<a href="#" class="k-tool-icon k-insertImage" id="upload" style="text-decoration:none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-                @Html.ValidationMessageFor(model => model.FillerImage)
-            </div>
-
+            @Html.LabelFor(model => model.FillerImage)
+            <div class="input-inline">
+                <div class="col-sm-9">
+                    @Html.EditorFor(model => model.FillerImage, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FillerImage)
+                </div>
+                <div class="col-sm-3">
+                    <a href="#" id="upload"><i class="fa fa-cloud-upload upload-image-icon"></i></a>
+                </div>
+            </div> 
         </div>
-     
-
         <div class="editor-label">
-            &nbsp;
             @Html.HiddenFor(model => model.CakeFillerId)
         </div>
-
+        <div class="hr-line-dashed"></div>
         <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right"></label>
-            <div class="col-sm-9">
-                <input type="submit" value="Create or Update" class="btn btn-info" />
+            <div class="text-center">
+                <a href="@Url.Action("Index")">
+                    <button type="button" class="btn btn-white"><i class="fa fa-reply"></i> Back to List</button>
+                </a>
+                <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Save changes</button>
             </div>
-
         </div>
-
-    </fieldset>
-}
-<div>
-    @Html.ActionLink("Back to List", "Index")
-    <div id="imgBrowser" style="display: none;"> </div>
+    }
 </div>
+<div>
+    <div id="imgBrowser" style="display: none;">
+</div>
+
 

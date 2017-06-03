@@ -38,11 +38,7 @@
                 imageUrl: "~/Content/Images/{0}"
             },
             apply: function () {
-                if ($("#firebutton").val() == "upload1") {
-                    $("#Banner").val(this.value());
-                } else {
-                    $("#MainImage").val(this.value());
-                }
+                $("#MainImage").val(this.value());
                 kendoWindow.close();
             }
         });
