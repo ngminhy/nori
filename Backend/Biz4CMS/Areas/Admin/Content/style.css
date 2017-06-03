@@ -36,3 +36,9 @@ a .btn-white:hover {
 	background-color: #ffffff;
 	border-color: #ff6d00;
 }
+.icheckbox_square-green {
+	margin-right: 10px;
+}
+.lbcheck-inline {
+	margin-right: 20px;
+}
