@@ -1,27 +1,26 @@
 ﻿@using Biz4CMS.Models;
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Order detail";
     var order =(Biz4CMS.Models.Order) ViewBag.order;
 }
 @model IEnumerable<Biz4CMS.ViewModels.OrderDetailDto>
 <div class="row">
     <div class="col-md-6">
-        <b>Name:</b> @order.FullName <br />
-        <b>Phone:</b> @order.Phone <br />
-        <b>Email:</b> @order.Email <br />
-        <b>Address:</b> @order.Address <br />
-        <b>Note:</b> @order.Note <br />
-        @*<b>Booking Time:</b> @order.BookingTime <br />*@
-        <b>Branch:</b> @order.BranchName <br />
-
+        <label>Name:</label><span> @order.FullName<span><br/>
+        <label>Phone:</label><span> @order.Phone<span><br/>
+        <label>Email:</label><span> @order.Email<span><br/>
+        <label>Address:</label><span> @order.Address<span><br/>
+        <label>Note:</label><span> @order.Note<span><br/>
+        @*<label>Booking Time:</label><span> @order.BookingTime<span><br/>*@
+        <label>Branch:</label><span> @order.BranchName<span><br/>
     </div>
     <div class="col-md-6">
-        <b>Order Code:</b> @order.OrderCode <br />
-        <b>Order Date:</b> @order.OrderDate <br />
-        <b>Discount:</b> @string.Format("{0:n0}", order.DiscountTotal) VND<br />
-        <b>Shipping Fee:</b> @string.Format("{0:n0}", order.ShippingFee) VND<br />
-        <b>Total Paid:</b> @string.Format("{0:n0}", order.Total-order.DiscountTotal + order.ShippingFee) VND<br />
-        <b>Status:</b> @order.State <br />
+        <label>Order Code:</label><span> @order.OrderCode<span><br/>
+        <label>Order Date:</label><span> @order.OrderDate<span><br/>
+        <label>Discount:</label><span> @string.Format("{0:n0}", order.DiscountTotal) VNĐ<span><br/>
+        <label>Shipping Fee:</label><span> @string.Format("{0:n0}", order.ShippingFee) VNĐ<span><br/>
+        <label>Total Paid:</label><span> @string.Format("{0:n0}", order.Total-order.DiscountTotal + order.ShippingFee) VNĐ<span><br/>
+        <label>Status:</label><span> @order.State<span><br/>
     </div>
 </div>
     @(Html.Kendo().Grid<Biz4CMS.ViewModels.OrderDetailDto>()
@@ -29,7 +28,6 @@
     .Columns(columns =>
     {
         columns.Bound(p => p.OrderDetailId).Width(70);
-
         columns.Bound(p => p.ProductId).Width(240);
         columns.Bound(p => p.ProductName).Title("Product").Width(150);
         columns.Bound(p => p.ListCakeName).Title("Cake Name").Width(150);
@@ -52,9 +50,9 @@
         .Events(events => events.Error("error_handler"))
         .Model(model => { model.Id(p => p.OrderDetailId); model.Field(p => p.OrderDetailId).Editable(false); })
             .Create(create => create.Action("Create", "OrderDetail", new { OrderId = @ViewBag.OrderId }))
-                .Read(read => read.Action("Get", "OrderDetail", new { OrderId = @ViewBag.OrderId }))
-                    .Update(update => update.Action("Edit", "OrderDetail", new { OrderId = @ViewBag.OrderId }))
-                    .Destroy(destroy => destroy.Action("Delete", "OrderDetail", new { OrderId = @ViewBag.OrderId }))
+            .Read(read => read.Action("Get", "OrderDetail", new { OrderId = @ViewBag.OrderId }))
+            .Update(update => update.Action("Edit", "OrderDetail", new { OrderId = @ViewBag.OrderId }))
+            .Destroy(destroy => destroy.Action("Delete", "OrderDetail", new { OrderId = @ViewBag.OrderId }))
     )
     )
     <script type="text/javascript">
