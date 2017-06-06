@@ -45,31 +45,31 @@
                         </li>
                         <li class="@(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "location" ? "active" : "")">
                             <a href="@Url.Action("Index", "Location")">
-                                <i class="menu-icon fa fa-th"></i>
+                                <i class="menu-icon fa fa-map-marker"></i>
                                 <span class="nav-label">Location</span>
                             </a>
                         </li>
                         <li class="@(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "shippinglocation" ? "active" : "")">
                             <a href="@Url.Action("Index", "ShippingLocation")">
-                                <i class="menu-icon fa fa-th"></i>
+                                <i class="menu-icon fa fa-globe"></i>
                                 <span class="nav-label">Shipping Location</span>
                             </a>
                         </li>
                         <li class="@(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "promotion" ? "active" : "")">
                             <a href="@Url.Action("Index", "Promotion")">
-                                <i class="menu-icon fa fa-th"></i>
+                                <i class="menu-icon fa fa-barcode"></i>
                                 <span class="nav-label">Promotion</span>
                             </a>
                         </li>
                         <li class="@(ViewContext.RouteData.Values["Controller"].ToString().ToLower() == "article" ? "active" : "")">
                             <a href="@Url.Action("Index", "Article")">
-                                <i class="menu-icon fa fa-th"></i>
+                                <i class="menu-icon fa fa-newspaper-o"></i>
                                 <span class="nav-label">Blog</span>
                             </a>
                         </li>
                         <li class="@(ViewContext.RouteData.Values["Controller"].ToString().ToLower()  == "product" ? "active" : "")">
                             <a href="@Url.Action("Index", "Product")">
-                                <i class="menu-icon fa fa-heart-o"></i>
+                                <i class="menu-icon fa fa-cutlery"></i>
                                 <span class="nav-label">Product</span>
                             </a>
                         </li>
@@ -105,7 +105,7 @@
                         </li>
                         <li class="@(ViewContext.RouteData.Values["Controller"].ToString().ToLower().Contains("order") ? "active" : "")">
                             <a href="@Url.Action("Index", "Order")">
-                                <i class="menu-icon fa fa-list-alt"></i>
+                                <i class="menu-icon fa fa-shopping-cart"></i>
                                 <span class="nav-label">Order</span>
                             </a>
                         </li>
