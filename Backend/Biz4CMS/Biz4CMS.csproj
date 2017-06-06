@@ -1176,7 +1176,7 @@
     <Content Include="Views\Account\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Account\LogOn.cshtml" />
+    <Content Include="Views\Account\LogIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />

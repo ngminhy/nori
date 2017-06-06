@@ -16,7 +16,7 @@ namespace Biz4CMS.Controllers
         // GET: /Account/LogOn
         Biz4Db db = new Biz4Db();
 
-        public ActionResult LogOn()
+        public ActionResult LogIn()
         {
             return View();
         }
@@ -26,7 +26,7 @@ namespace Biz4CMS.Controllers
         {
             if(HttpContext.Session["role"] == null)
             {
-                return RedirectToAction("LogOn", "Account");
+                return RedirectToAction("LogIn", "Account");
             }
             return View();
         }
@@ -124,7 +124,7 @@ namespace Biz4CMS.Controllers
         {
             if (HttpContext.Session["role"] == null)
             {
-                return RedirectToAction("LogOn", "Account");
+                return RedirectToAction("LogIn", "Account");
             }
             return View();
         }
